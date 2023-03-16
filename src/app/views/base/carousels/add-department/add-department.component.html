@@ -1,0 +1,25 @@
+<section>
+    <div class="d-flex justify-content-center">
+        <div class="w-75">
+            <h2 *ngIf="title=='Add'">Add Department Name</h2>
+            <h2 *ngIf="title=='Update'">Update Department Name</h2>
+            <div class="p-4">
+
+                <form [formGroup]="departmentForm" (ngSubmit)="addDepartment()">
+                    <div class="form-outline mb-4">
+                        <label>Department Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Department" formControlName="name"
+                            [ngClass]="{ 'has-error': submitted && f['name'].errors }">
+                        <div *ngIf="submitted && f['name'].errors" class="has-error">
+                            <div *ngIf="f['name'].errors['required']">Branch name is required!</div>
+                            <div *ngIf="f['name'].errors['pattern']">Please enter valid Branch Name!!</div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add'">Add</button>
+                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update'">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,52 @@
+<section>
+    <div class="d-flex justify-content-center">
+        <div class="w-75">
+            <h2 *ngIf="title=='Add'">Add Scrap</h2>
+            <h2 *ngIf="title=='Update'">Update Scrap</h2>
+            <div class="p-4">
+
+                <form [formGroup]="scrapForm" (ngSubmit)="addScrap()">
+                    <div class="form-outline mb-4">
+                        <input type="text" class="form-control" placeholder="Enter Asset ID" formControlName="asset"
+                            [ngClass]="{ 'has-error': submitted && f['asset'].errors }">
+                        <div *ngIf="submitted && f['asset'].errors" class="has-error">
+                            <div *ngIf="f['asset'].errors['required']">AssetID is required!</div>
+                            <div *ngIf="f['asset'].errors['pattern']">Please enter valid AssetID!!</div>
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="text" class="form-control" placeholder="Enter Branch ID" formControlName="branch"
+                            [ngClass]="{ 'has-error': submitted && f['branch'].errors }">
+                        <div *ngIf="submitted && f['branch'].errors" class="has-error">
+                            <div *ngIf="f['branch'].errors['required']">BranchID is required!</div>
+                            <div *ngIf="f['branch'].errors['pattern']">Please enter valid BranchID!!</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-outline mb-4">
+                        <input type="datetime" class="form-control" placeholder="Enter EmpID who use the last" formControlName="last_user"
+                            [ngClass]="{ 'has-error': submitted && f['last_user'].errors }">
+                        <div *ngIf="submitted && f['last_user'].errors" class="has-error">
+                            <div *ngIf="f['last_user'].errors['required']">EmpID is required!</div>
+                            <div *ngIf="f['last_user'].errors['pattern']">Please enter valid EmpID!!</div>
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="datetime" class="form-control" placeholder="Vendor ID" formControlName="vendor"
+                            [ngClass]="{ 'has-error': submitted && f['vendor'].errors }">
+                        <div *ngIf="submitted && f['vendor'].errors" class="has-error">
+                            <div *ngIf="f['vendor'].errors['required']">VendorID is required!</div>
+                            <div *ngIf="f['vendor'].errors['pattern']">Please enter valid VendorID!!</div>
+                        </div>
+                    </div>
+
+                    
+                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add'">Add</button>
+                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update'">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

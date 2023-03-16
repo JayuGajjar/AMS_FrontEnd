@@ -1,0 +1,50 @@
+<section>
+    <div class="d-flex justify-content-center">
+        <div class="w-75">
+            <h2 *ngIf="title=='Add'">Add Request</h2>
+            <h2 *ngIf="title=='Update'">Update Request</h2>
+            <div class="p-4">
+
+                <form [formGroup]="requestForm" (ngSubmit)="addRequest()">
+
+                    <div class="form-outline mb-4">
+                        <select type="text" class="form-control form-select" formControlName="empid">
+                            <option selected>choose EmpID</option>
+                            <!-- <option *ngFor="let user of userList">
+                                {{user.userList}}
+                            </option> -->
+                        </select>
+                            <!-- [ngClass]="{ 'has-error': submitted && f['empid'].errors }">
+                        <div *ngIf="submitted && f['empid'].errors" class="has-error">
+                            <div *ngIf="f['empid'].errors['required']">EmpID is required!</div>
+                            <div *ngIf="f['empid'].errors['pattern']">Please enter valid EmpID!!</div>
+                        </div> -->
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="text" class="form-control" placeholder="Enter Asset ID" formControlName="assetid"
+                            [ngClass]="{ 'has-error': submitted && f['assetid'].errors }">
+                        <div *ngIf="submitted && f['assetid'].errors" class="has-error">
+                            <div *ngIf="f['assetid'].errors['required']">AssetID is required!</div>
+                            <div *ngIf="f['assetid'].errors['pattern']">Please enter valid AssetID!!</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-outline mb-4">
+                        <input type="text" class="form-control" placeholder="Enter Justify" formControlName="justify"
+                            [ngClass]="{ 'has-error': submitted && f['justify'].errors }">
+                        <div *ngIf="submitted && f['justify'].errors" class="has-error">
+                            <div *ngIf="f['justify'].errors['required']">Justify is required!</div>
+                            <div *ngIf="f['justify'].errors['pattern']">Please enter valid Justify!!</div>
+                        </div>
+                    </div>
+
+                    
+                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add'">Add</button>
+                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update'">Update</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,136 @@
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+          <img src="https://www.aceinfoway.com/recruitment/images/ace-infoway-walk-in-logo.png" class="w-100"
+            style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;" alt="Sample photo">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2"><u><i>LogIn</i></u></h3>
+
+
+
+            <form class="user px-md-2" [formGroup]="loginForm" (ngSubmit)="loginSubmited()">
+
+
+
+              <div class="form-outline mb-4">
+                <input type="text" class="form-control" placeholder="Gmail" formControlName="email"
+                  [ngClass]="{'has-error': submitted && f['email'].errors }">
+                <div *ngIf="submitted && f['email'].errors" class="has-error">
+                  <div *ngIf="f['email'].errors['required']">Email is required!</div>
+                  <div *ngIf="f['email'].errors['pattern']">Enter valid Email!!</div>
+                </div>
+              </div>
+
+
+
+
+              <div class="form-outline mb-4">
+                <input type="password" class="form-control" placeholder="Password" formControlName="password"
+                  [ngClass]="{ 'has-error': submitted && f['password'].errors }">
+                <div *ngIf="submitted && f['password'].errors" class="has-error">
+                  <div *ngIf="f['password'].errors['required']">Password is required!</div>
+                  <div *ngIf="f['password'].errors['pattern']">Enter valid Password!</div>
+                </div>
+              </div>
+
+
+
+              <div class="form-outline mb-4">
+                <button class="px-4" color="primary" class="btn form-control gradient-custom-4 rounded submit px-3"><i
+                    class="fas fa-save"></i>
+                  Login</button>
+              </div>
+
+
+            </form>
+
+
+
+            <div class="w-100 text-center mt-4 text">
+              <p class="mb-0">Don't have an account ?</p>
+              <a class="mt-3" color="primary" routerLink="/register">
+                Register
+              </a>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+  <c-container>
+    <c-row class="justify-content-center">
+      <c-col md="8">
+        <c-card-group>
+          <c-card class="p-4">
+            <c-card-body>
+              <form #newForm="ngForm" novalidate >
+                <h1>Login</h1>
+                <p class="text-medium-emphasis">Sign In to your account</p>
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilUser"></svg>
+                  </span>
+                  <input type="text" name="username" #username="ngModel" [class.is-invalid]="username.touched && username.invalid" minlength="3" maxlength="20" pattern="[a-zA-Z][a-zA-Z ]+" class="form-control" required ngModel placeholder="Username">
+                  <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
+                    <div *ngIf="username.errors && username.errors['required']">
+                      Username is Required
+                    </div>
+                    <div *ngIf="username.errors && username.errors['minlength']">
+                      3 Characters Must
+                    </div>
+                    <div *ngIf="username.errors && username.errors['pattern']">
+                      Please enter valid Name
+                    </div>
+                  </div>  
+                </c-input-group>
+                <c-input-group class="mb-4">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilLockLocked"></svg>
+                  </span>
+                  <input type="password" name="pass" #pass="ngModel" [class.is-invalid]="pass.touched && pass.invalid" class="form-control" required ngModel placeholder="Password">
+                  <div class="alert alert-danger" *ngIf="pass.touched && pass.invalid">
+                    <div *ngIf="pass.errors && pass.errors['required']">
+                      Password is Required
+                    </div>
+                  </div>
+                </c-input-group>
+                <c-row>
+                  <c-col xs="6">
+                    <button cButton type="submit" [class.disabled]="newForm.form.invalid" value="Submit" class="px-4" color="primary" routerLink="/dashbord">
+                      Login
+                    </button>
+                  </c-col>
+                  <c-col class="text-right" xs="6">
+                    <button cButton class="px-0" color="link">
+                      Forgot password?
+                    </button>
+                  </c-col>
+                </c-row>
+              </form>
+            </c-card-body>
+          </c-card>
+          <c-card [ngStyle]="{'width.%': 44}" class="text-white bg-primary py-5">
+            <c-card-body class="text-center">
+              <div>
+                <h2>Sign up</h2>
+                <p>
+                  Don't have an account ?
+                </p>
+                <button [active]="true" cButton class="mt-3" color="primary" routerLink="/register">
+                  Register Now!
+                </button>
+              </div>
+            </c-card-body>
+          </c-card>
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+</div> -->

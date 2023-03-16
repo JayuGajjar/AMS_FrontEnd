@@ -1,0 +1,155 @@
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<div class="container">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-xs-6">
+            <h2><b>Vendors</b></h2>
+          </div>
+
+
+          <div class="col-xs-6">
+            <!-- <svg cIcon name = "cilPlus"></svg> -->
+            <button class="btn btn-success" routerLink="/base/add-vendors"> <span>Add New Vendor</span></button>
+            <!-- <svg cIcon name = "cilMinus"></svg> -->
+            <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><span>Delete</span></a>						 -->
+          </div>
+        </div>
+      </div>
+
+
+
+      <table class="table table-striped table-hover">
+
+
+        <thead>
+          <tr>
+            <th>Vendorid</th>
+            <th>Name</th>
+            <th>InvoiceNo</th>
+            <th>InvoiceDate</th>
+            <th>Warranty_Till</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+
+
+        <tbody>
+        <tr *ngFor="let vendorlist of vendordata">
+          <td>{{vendorlist.Vendorid}}</td>
+          <td>{{vendorlist.Name}}</td>
+          <td>{{vendorlist.InvoiceNo}}</td>
+          <td>{{vendorlist.InvoiceDate}}</td>
+          <td>{{vendorlist.Warranty_Till}}</td>
+          <td>
+            <!-- <svg cIcon name = "cilPencil"></svg> -->
+            <a href="javascript:void(0)" routerLink="/base/edit-vendors/{{vendorlist.Vendorid}}" class="info"><i class="material-icons"
+              data-toggle="tooltip" title="Info">&#8505;</i></a>
+            <!-- <svg cIcon name = "cilTrash"></svg> -->
+            <a href="javascript:void(0)" (click)="deleteVendor(vendorlist)" class="delete"><i class="material-icons"
+              data-toggle="tooltip" title="Remove">&#xE872;</i></a>
+          </td>
+        </tr>
+        </tbody> 
+
+      </table>
+
+      <div class="col">
+        <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
+            <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
+                (change)="changePageSize()">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+            </select>
+        </span>
+    </div>
+
+       <div>
+      <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+  </div> 
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <c-row ngPreserveWhitespaces>
+  <c-col xs="12">
+    <app-docs-callout href="components/popover" name="Popover"></app-docs-callout>
+  </c-col>
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header>
+        <strong>Angular Popover</strong> <small>Basic example</small>
+      </c-card-header>
+      <c-card-body>
+        <app-docs-example href="components/popover">
+          <button [cPopover]="popoverHtml"
+                  cPopoverPlacement="right"
+                  [cPopoverTrigger]="'click'"
+                  [cPopoverVisible]="visible"
+                  cButton
+                  class="m-1"
+                  color="danger"
+                  size="lg">
+            Click to toggle popover
+            <ng-template #popoverHtml>
+              <h3 class="popover-header">
+                Popover Title
+              </h3>
+              <div class="popover-body">
+                And here’s some amazing content. It’s very engaging. Right?
+              </div>
+            </ng-template>
+          </button>
+        </app-docs-example>
+      </c-card-body>
+    </c-card>
+  </c-col>
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header>
+        <strong>Angular Popover</strong> <small>Four directions</small>
+      </c-card-header>
+      <c-card-body>
+        <p class="text-medium-emphasis small">
+          Four options are available: top, right, bottom, and left aligned.
+        </p>
+        <app-docs-example href="components/popover#four-directions">
+          <button [cPopoverTrigger]="'hover'" cButton [cPopover]="tooltipHtml"
+                  cPopoverPlacement="top" class="me-1"
+                  color="secondary">Popover on top
+            <ng-template #tooltipHtml>
+              <div class="popover-body">
+                Vivamus sagittis lacus vel augue laoreet rutrum faucibus. Top!
+              </div>
+            </ng-template>
+          </button>
+          <button [cPopoverTrigger]="'hover'" cButton cPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus. Right!"
+                  cPopoverPlacement="right"
+                  class="me-1" color="secondary">Popover on right
+          </button>
+          <button [cPopoverTrigger]="'hover'" cButton cPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus. Bottom!"
+                  cPopoverPlacement="bottom"
+                  class="me-1" color="secondary">Popover on bottom
+          </button>
+          <button [cPopoverTrigger]="'hover'" cButton cPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus. Left!"
+                  cPopoverPlacement="left" class="me-1"
+                  color="secondary">Popover on left
+          </button>
+        </app-docs-example>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row> -->
