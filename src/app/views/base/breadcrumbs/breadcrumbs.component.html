@@ -13,13 +13,15 @@
 
 
           <div class="row">
-            <div class="col-xs-6">
+            <div class="col-xs-6" align="right">
               <!-- <svg cIcon name = "cilPlus"></svg> -->
               <button class="btn btn-success" routerLink="/base/add-branch"> <span>Add New Branch</span></button>
               <!-- <svg cIcon name = "cilMinus"></svg> -->
               <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><span>Delete</span></a> -->
-              <!-- <input type="search" placeholder="Search" class="me-2" formControlName="search">
-              <button class="btn btn-info" variant="outline">Search</button> -->
+              <input type="search" placeholder="Search" class="me-2">
+              <button type="button" class="btn btn-info">
+                <svg cIcon name="cilMagnifyingGlass" size="lg"></svg>
+              </button>
             </div>
           </div>
         </div>
@@ -47,12 +49,8 @@
             <td>{{branchlist.Branchid}}</td>
             <td>{{branchlist.Name}}</td>
             <td>
-              <!-- <svg cIcon name = "cilPencil"></svg> -->
-              <a href="javascript:void(0)" routerLink="/base/edit-branch/{{branchlist.Branchid}}" class="info"><i class="material-icons"
-                  data-toggle="tooltip" title="Info">&#8505;</i></a> 
-              <!-- <svg cIcon name = "cilTrash"></svg> -->
-              <a href="javascript:void(0)" (click)="deleteBranch(branchlist)" class="delete"><i class="material-icons"
-                  data-toggle="tooltip" title="Remove">&#xE872;</i></a> 
+              <a href="javascript:void(0)" routerLink="/base/edit-branch/{{branchlist.Branchid}}" class="edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+              <a href="javascript:void(0)" (click)="deleteBranch(branchlist)" class="delete" title="Remove"><i class="fa-regular fa-trash-can"></i></a> 
             </td>
           </tr>
         </tbody>
