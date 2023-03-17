@@ -97,13 +97,15 @@ table.table td a {
     outline: none !important;
 }
 table.table td a:hover {
-    color: #2196F3;
+    color: #62b6fc;
 }
 table.table td a.edit {
-    color: #FFC107;
+    color: #0040ff;
+    padding-right: 10px;
 }
 table.table td a.delete {
-    color: #F44336;
+    color: #ff1100;
+    padding-right: 10px;
 }
 table.table td i {
     font-size: 19px;

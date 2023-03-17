@@ -48,12 +48,8 @@
           <td>{{requestlist.Justify}}</td>
           <td>{{requestlist.Status}}</td>
           <td>
-              <!-- <svg cIcon name = "cilPencil"></svg> -->
-              <a href="javascript:void(0)" routerLink="/base/edit-request/{{requestlist.Requestid}}" class="info"><i class="material-icons"
-                data-toggle="tooltip" title="Info">&#8505;</i></a> 
-            <!-- <svg cIcon name = "cilTrash"></svg> -->
-            <a href="javascript:void(0)" (click)="deleteRequest(requestlist)" class="delete"><i class="material-icons"
-                data-toggle="tooltip" title="Remove">&#xE872;</i></a>
+              <a href="javascript:void(0)" routerLink="/base/edit-request/{{requestlist.Requestid}}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href="javascript:void(0)" (click)="deleteRequest(requestlist)" class="delete"><i class="fa-regular fa-trash-can"></i></a>
           </td>
         </tr>
         </tbody>

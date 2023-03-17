@@ -15,7 +15,7 @@
             <!-- <svg cIcon name = "cilPlus"></svg> -->
             <button class="btn btn-success" routerLink="/base/add-vendors"> <span>Add New Vendor</span></button>
             <!-- <svg cIcon name = "cilMinus"></svg> -->
-            <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><span>Delete</span></a>						 -->
+            <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><span>Delete</span></a> -->
           </div>
         </div>
       </div>
@@ -46,12 +46,8 @@
           <td>{{vendorlist.InvoiceDate}}</td>
           <td>{{vendorlist.Warranty_Till}}</td>
           <td>
-            <!-- <svg cIcon name = "cilPencil"></svg> -->
-            <a href="javascript:void(0)" routerLink="/base/edit-vendors/{{vendorlist.Vendorid}}" class="info"><i class="material-icons"
-              data-toggle="tooltip" title="Info">&#8505;</i></a>
-            <!-- <svg cIcon name = "cilTrash"></svg> -->
-            <a href="javascript:void(0)" (click)="deleteVendor(vendorlist)" class="delete"><i class="material-icons"
-              data-toggle="tooltip" title="Remove">&#xE872;</i></a>
+            <a href="javascript:void(0)" routerLink="/base/edit-vendors/{{vendorlist.Vendorid}}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href="javascript:void(0)" (click)="deleteVendor(vendorlist)" class="delete"><i class="fa-regular fa-trash-can"></i></a>
           </td>
         </tr>
         </tbody> 

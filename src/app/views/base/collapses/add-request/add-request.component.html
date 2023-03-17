@@ -9,10 +9,10 @@
 
                     <div class="form-outline mb-4">
                         <select type="text" class="form-control form-select" formControlName="empid">
-                            <option selected>choose EmpID</option>
-                            <!-- <option *ngFor="let user of userList">
+                            <option value="">choose EmpID</option>
+                            <option *ngFor="let user of userList">
                                 {{user.userList}}
-                            </option> -->
+                            </option>
                         </select>
                             <!-- [ngClass]="{ 'has-error': submitted && f['empid'].errors }">
                         <div *ngIf="submitted && f['empid'].errors" class="has-error">

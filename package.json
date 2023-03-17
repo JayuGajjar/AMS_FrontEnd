@@ -36,6 +36,7 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "chart.js": "^3.9.1",
+    "font-awesome-icons": "^1.6.0",
     "ngx-pagination": "^6.0.3",
     "ngx-perfect-scrollbar": "^10.1.1",
     "rxjs": "~7.5.0",
