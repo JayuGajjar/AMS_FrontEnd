@@ -7,20 +7,28 @@
 
                 <form [formGroup]="scrapForm" (ngSubmit)="addScrap()">
                     <div class="form-outline mb-4">
-                        <input type="text" class="form-control" placeholder="Enter Asset ID" formControlName="asset"
+                        <select type="text" class="form-control form-select" formControlName="asset"
                             [ngClass]="{ 'has-error': submitted && f['asset'].errors }">
+                            <option value="">select Asset</option>
+                            <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
+                              {{assets.specification}}
+                            </option>
+                        </select>
                         <div *ngIf="submitted && f['asset'].errors" class="has-error">
-                            <div *ngIf="f['asset'].errors['required']">AssetID is required!</div>
-                            <div *ngIf="f['asset'].errors['pattern']">Please enter valid AssetID!!</div>
+                            <div *ngIf="f['asset'].errors['required']">Asset is required!</div>
                         </div>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input type="text" class="form-control" placeholder="Enter Branch ID" formControlName="branch"
+                        <select type="text" class="form-control form-select" formControlName="branch"
                             [ngClass]="{ 'has-error': submitted && f['branch'].errors }">
+                            <option value="">select Branch</option>
+                            <option [ngValue]="branches.branchid" *ngFor="let branches of branchlistdata">
+                              {{branches.name}}
+                            </option>
+                        </select>
                         <div *ngIf="submitted && f['branch'].errors" class="has-error">
-                            <div *ngIf="f['branch'].errors['required']">BranchID is required!</div>
-                            <div *ngIf="f['branch'].errors['pattern']">Please enter valid BranchID!!</div>
+                            <div *ngIf="f['branch'].errors['required']">Branch is required!</div>
                         </div>
                     </div>
                     
@@ -34,11 +42,15 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input type="datetime" class="form-control" placeholder="Vendor ID" formControlName="vendor"
+                        <select type="datetime" class="form-control form-select" formControlName="vendor"
                             [ngClass]="{ 'has-error': submitted && f['vendor'].errors }">
+                            <option value="">select Vendor</option>
+                            <option [ngValue]="vendors.vendorid" *ngFor="let vendors of vendorlistdata">
+                              {{vendors.name}}
+                            </option>
+                        </select>
                         <div *ngIf="submitted && f['vendor'].errors" class="has-error">
-                            <div *ngIf="f['vendor'].errors['required']">VendorID is required!</div>
-                            <div *ngIf="f['vendor'].errors['pattern']">Please enter valid VendorID!!</div>
+                            <div *ngIf="f['vendor'].errors['required']">Vendor is required!</div>
                         </div>
                     </div>
 

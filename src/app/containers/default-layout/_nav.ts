@@ -43,7 +43,7 @@ export const navItems: INavData[] = [
         url: '/base/branch'             //'/base/breadcrumbs'
       },
       {
-        name: 'Comapny',              //'Cards',
+        name: 'Company',              //'Cards',
         url: '/base/company'             //'/base/cards'
       },
       {

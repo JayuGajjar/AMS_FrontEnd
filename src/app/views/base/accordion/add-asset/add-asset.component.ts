@@ -19,6 +19,11 @@ export class AddAssetComponent {
   frlable:string="";
   title:string="";
   assetid: number=0;
+  typelistdata : any=[];
+  branchlistdata : any=[];
+  companylistdata : any=[];
+  departmentlistdata : any=[];
+  vendorlistdata : any=[];
 
 constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
 { 
@@ -138,6 +143,9 @@ onReset(){
 }
 
 ngOnInit(): void {
+
+  this.getAllTables();
+
 //  debugger
   const ID: number = parseInt(this.route.snapshot.params['id']);
   if(ID>0){
@@ -174,5 +182,41 @@ ngOnInit(): void {
       }
     })
   }
+
+
+  //get for all tables
+  getAllTables(){
+    // debugger
+    this.authservice.getAllTables().subscribe(responce => {
+      // debugger
+      if(responce.IsSuccess){
+        
+        if(responce.Data.table.length > 0){
+          this.typelistdata = responce.Data.table;
+        }
+        else
+        {
+          this.typelistdata = [];
+        }
+
+        if(responce.Data.table2.length > 0){
+          this.branchlistdata = responce.Data.table2;
+        }
+        else
+        {
+          this.branchlistdata = [];
+        }
+
+        if(responce.Data.table5.length > 0){
+          this.vendorlistdata = responce.Data.table5;
+        }
+        else
+        {
+          this.vendorlistdata = [];
+        }
+      }
+    })
+  }
+
 
 }

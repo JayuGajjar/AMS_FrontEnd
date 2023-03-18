@@ -8,26 +8,24 @@
                 <form [formGroup]="requestForm" (ngSubmit)="addRequest()">
 
                     <div class="form-outline mb-4">
-                        <input type="text" class="form-control" placeholder="Enter Emp ID" formControlName="empid">
-                        <!-- <select type="text" class="form-control form-select" formControlName="empid">
-                            <option value="">choose EmpID</option>
-                            <option *ngFor="let user of userList">
-                                {{user.userList}}
-                            </option>
-                        </select> -->
-                            <!-- [ngClass]="{ 'has-error': submitted && f['empid'].errors }">
-                        <div *ngIf="submitted && f['empid'].errors" class="has-error">
-                            <div *ngIf="f['empid'].errors['required']">EmpID is required!</div>
-                            <div *ngIf="f['empid'].errors['pattern']">Please enter valid EmpID!!</div>
-                        </div> -->
+                        <input type="text" class="form-control" placeholder="Enter UserID" formControlName="userid"
+                            [ngClass]="{ 'has-error': submitted && f['userid'].errors }">
+                        <div *ngIf="submitted && f['userid'].errors" class="has-error">
+                            <div *ngIf="f['userid'].errors['required']">UserID is required!</div>
+                            <div *ngIf="f['userid'].errors['pattern']">Please enter valid UserID!!</div>
+                        </div>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input type="text" class="form-control" placeholder="Enter Asset ID" formControlName="assetid"
+                        <select type="text" class="form-control form-select" formControlName="assetid"
                             [ngClass]="{ 'has-error': submitted && f['assetid'].errors }">
+                            <option value="">select Branch</option>
+                            <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
+                                 {{assets.specification}}
+                            </option>
+                        </select>
                         <div *ngIf="submitted && f['assetid'].errors" class="has-error">
                             <div *ngIf="f['assetid'].errors['required']">AssetID is required!</div>
-                            <div *ngIf="f['assetid'].errors['pattern']">Please enter valid AssetID!!</div>
                         </div>
                     </div>
                     

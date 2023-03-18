@@ -19,6 +19,9 @@ export class AddScrapComponent {
     frlable:string="";
     title:string="";
     scrapid: number=0;
+    assetlistdata : any=[];
+    branchlistdata : any=[];
+    vendorlistdata : any=[];
 
   constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
   { 
@@ -116,7 +119,10 @@ export class AddScrapComponent {
   }
 
   ngOnInit(): void {
-   debugger
+
+    this.getAllTables();
+
+  //  debugger
     const ID: number = parseInt(this.route.snapshot.params['id']);
     if(ID>0){
       //fill record in
@@ -146,6 +152,42 @@ export class AddScrapComponent {
            this.scrapForm.controls["last_user"].setValue(responce.Data[0].Last_user);
            this.scrapForm.controls["vendor"].setValue(responce.Data[0].Vendor);
            }
+        }
+      })
+    }
+
+
+
+    //get method for all tables
+    getAllTables(){
+      // debugger
+      this.authservice.getAllTables().subscribe(responce => {
+        // debugger
+        if(responce.IsSuccess){
+          
+          if(responce.Data.table2.length > 0){
+            this.branchlistdata = responce.Data.table2;
+          }
+          else
+          {
+            this.branchlistdata = [];
+          }
+  
+          if(responce.Data.table5.length > 0){
+            this.vendorlistdata = responce.Data.table5;
+          }
+          else
+          {
+            this.vendorlistdata = [];
+          }
+  
+          if(responce.Data.table6.length > 0){
+            this.assetlistdata = responce.Data.table6;
+          }
+          else
+          {
+            this.assetlistdata = [];
+          }
         }
       })
     }

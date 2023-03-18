@@ -20,11 +20,15 @@
 
                     <div class="form-outline mb-4">
                         <label>Branch Name</label>
-                        <input type="text" class="form-control" placeholder="Enter Branch" formControlName="branch"
+                        <select type="text" class="form-control form-select" formControlName="branch"
                             [ngClass]="{ 'has-error': submitted && f['branch'].errors }">
+                            <option value="">select Branch</option>
+                            <option [ngValue]="branches.branchid" *ngFor="let branches of branchlistdata">
+                                {{branches.name}}
+                            </option>
+                        </select>
                         <div *ngIf="submitted && f['branch'].errors" class="has-error">
                             <div *ngIf="f['branch'].errors['required']">Branch name is required!</div>
-                            <!-- <div *ngIf="f['branch'].errors['pattern']">Please enter valid Branch Name!!</div> -->
                         </div>
                     </div>
 
@@ -44,11 +48,15 @@
 
                     <div class="form-outline mb-4">
                         <label>Asset Type</label>
-                        <input type="text" class="form-control" placeholder="Enter Type" formControlName="type"
+                        <select type="text" class="form-control form-select" formControlName="type"
                             [ngClass]="{ 'has-error': submitted && f['type'].errors }">
+                            <option value="">select Asset Type</option>
+                            <option [ngValue]="types.typeid" *ngFor="let types of typelistdata">
+                                {{types.name}}
+                            </option>
+                        </select>
                         <div *ngIf="submitted && f['type'].errors" class="has-error">
                             <div *ngIf="f['type'].errors['required']">Asset Type is required!</div>
-                            <!-- <div *ngIf="f['type'].errors['pattern']">Please enter valid Branch Name!!</div> -->
                         </div>
                     </div>
 
@@ -92,11 +100,15 @@
 
                     <div class="form-outline mb-4">
                         <label>Vendor Name</label>
-                        <input type="text" class="form-control" placeholder="Enter VendorID" formControlName="vendorid"
+                        <select type="text" class="form-control form-select" formControlName="vendorid"
                             [ngClass]="{ 'has-error': submitted && f['vendorid'].errors }">
+                            <option value="">select Vendor</option>
+                            <option [ngValue]="vendors.vendorid" *ngFor="let vendors of vendorlistdata">
+                                {{vendors.name}}
+                            </option>
+                        </select>
                         <div *ngIf="submitted && f['vendorid'].errors" class="has-error">
                             <div *ngIf="f['vendorid'].errors['required']">Vendor name is required!</div>
-                            <!-- <div *ngIf="f['vendor'].errors['pattern']">Please enter valid Branch Name!!</div> -->
                         </div>
                     </div>
 

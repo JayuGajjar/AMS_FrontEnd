@@ -1,6 +1,6 @@
 export interface request{
     // userid : number;
-    empid : string;
+    userid : string;
     assetid : string;
     justify : string
 }
