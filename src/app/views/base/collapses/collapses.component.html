@@ -22,14 +22,14 @@
 
 
 
-      <table class="table table-striped table-hover">
+      <table class="table table-hover">
 
 
         <thead>
           <tr>
             <th>Requestid</th>
-            <th>Empid</th>
-            <th>Assetid</th>
+            <th>UserName</th>
+            <th>AssetName</th>
             <th>Created_at</th>
             <th>Justify</th>
             <th>Status</th>
@@ -42,11 +42,11 @@
         <tbody>
         <tr *ngFor="let requestlist of requestdata">
           <td>{{requestlist.Requestid}}</td>
-          <td>{{requestlist.Empid}}</td>
-          <td>{{requestlist.Assetid}}</td>
+          <td>{{requestlist.UserName}}</td>
+          <td>{{requestlist.Asset}}</td>
           <td>{{requestlist.Created_at}}</td>
           <td>{{requestlist.Justify}}</td>
-          <td>{{requestlist.Status}}</td>
+          <td>{{requestlist.CurrentStatus}}</td>
           <td>
               <a href="javascript:void(0)" routerLink="/base/edit-request/{{requestlist.Requestid}}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
             <a href="javascript:void(0)" (click)="deleteRequest(requestlist)" class="delete"><i class="fa-regular fa-trash-can"></i></a>

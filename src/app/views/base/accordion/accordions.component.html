@@ -22,19 +22,19 @@
 
 
 
-      <table class="table table-striped table-hover">
+      <table class="table table-hover">
 
 
         <thead>
           <tr>
             <th>Assetid</th>
             <th>SerialNo</th>
-            <th>Branch</th>
+            <th>BranchName</th>
             <th>Brand</th>
-            <th>Type</th>
+            <th>TypeName</th>
             <th>Nos</th>
             <th>Specification</th>
-            <th>Vendorid</th>
+            <th>VendorName</th>
             <!-- <th>Status</th>
             <th>Allocated_to</th> -->
             <th>Actions</th>
@@ -47,12 +47,12 @@
         <tr *ngFor="let assetlist of assetdata">
           <td>{{assetlist.Assetid}}</td>
           <td>{{assetlist.SerialNo}}</td>
-          <td>{{assetlist.Branch}}</td>
+          <td>{{assetlist.Branches}}</td>
           <td>{{assetlist.Brand}}</td>
-          <td>{{assetlist.Type}}</td>
+          <td>{{assetlist.TypeName}}</td>
           <td>{{assetlist.Nos}}</td>
           <td>{{assetlist.Specification}}</td>
-          <td>{{assetlist.Vendorid}}</td>
+          <td>{{assetlist.Vendors}}</td>
           <!-- <td>{{assetlist.Status}}</td>
           <td>{{assetlist.Allocated_to}}</td> -->
           <td>

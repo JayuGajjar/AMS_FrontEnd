@@ -36,10 +36,12 @@ constructor(private authservice: AuthService, private FB: FormBuilder,private ro
   this.assetForm = this.FB.group({
     serialno : ['',[Validators.required]],
     branch : ['',[Validators.required]],
-    brand : ['',[Validators.required]],
+    brand : ['',[Validators.required,
+                  Validators.pattern('[A-Z]+')]],
     type : ['',[Validators.required]],
     model : ['',[Validators.required]],
-    nos : ['',[Validators.required]],
+    nos : ['',[Validators.required,
+                Validators.pattern('[0-9]+')]],
     specification : ['',[Validators.required]],
     vendorid : ['',[Validators.required]],
 

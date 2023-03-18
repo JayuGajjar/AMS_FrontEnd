@@ -8,12 +8,13 @@
                 <form [formGroup]="requestForm" (ngSubmit)="addRequest()">
 
                     <div class="form-outline mb-4">
-                        <select type="text" class="form-control form-select" formControlName="empid">
+                        <input type="text" class="form-control" placeholder="Enter Emp ID" formControlName="empid">
+                        <!-- <select type="text" class="form-control form-select" formControlName="empid">
                             <option value="">choose EmpID</option>
                             <option *ngFor="let user of userList">
                                 {{user.userList}}
                             </option>
-                        </select>
+                        </select> -->
                             <!-- [ngClass]="{ 'has-error': submitted && f['empid'].errors }">
                         <div *ngIf="submitted && f['empid'].errors" class="has-error">
                             <div *ngIf="f['empid'].errors['required']">EmpID is required!</div>
