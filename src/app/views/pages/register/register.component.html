@@ -78,7 +78,7 @@
                 <div class="col form-outline mb-4">
                   <select type="text" class="form-control form-select" formControlName="branch"
                     [ngClass]="{ 'has-error': submitted && f['branch'].errors }">
-                    <option value="">select branch</option>
+                    <option value="">select Branch</option>
                     <option [ngValue]="branches.branchid" *ngFor="let branches of branchlistdata">
                       {{branches.name}}
                     </option>

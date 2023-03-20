@@ -39,16 +39,25 @@ export class AuthService {
   // this.http.post(url, jsonData, httpOptions).subscribe(...);
 
 
-  //get method for all tables for register form
+  //get method for all tables
   getAllTables(): Observable<any> {
     // debugger
     return this.http.get(this.baseServeUrl + "Registeration/GetAllTables");
   }
 
+
+  //get method for all dashboard values
+  getAllValues(): Observable<any> {
+    // debugger
+    return this.http.get(this.baseServeUrl + "Reports/DashbordValues");
+  }
+
+
   //register post service
   registerUser(objRegister: Registration): Observable<any> {
     return this.http.post<Registration>(this.baseServeUrl + "Registeration/NewUser", objRegister);
   }
+
 
   //login post service
   loginUser(objLogin: Login): Observable<any> {
