@@ -11,19 +11,19 @@ export class CollapsesComponent {
 
   requestdata : any=[];
   pageSize : number=5;
-  PageNumber:any=1;
-
+  PageNumber : any=1;
+  Requests : any="";
 
     constructor(private authservice:AuthService) { }
   
     ngOnInit(): void {
       //debugger
-      this.requestDetails(this.PageNumber,this.pageSize);
+      this.requestDetails(this.PageNumber,this.pageSize,this.Requests);
     }
   
-    requestDetails(PageNumber:number,pageSize:number) {
+    requestDetails(PageNumber:number,pageSize:number,Requests:string) {
       // debugger
-      this.authservice.requestDetails(PageNumber,pageSize).subscribe(responce => {
+      this.authservice.requestDetails(PageNumber,pageSize,Requests).subscribe(responce => {
        
         if(responce.IsSuccess)
         {
@@ -39,14 +39,20 @@ export class CollapsesComponent {
   
     pageChangeEvent(event: number) {
       this.PageNumber = event;
-      this.requestDetails(this.PageNumber, this.pageSize);
+      this.requestDetails(this.PageNumber, this.pageSize, this.Requests);
     }
   
   
     changePageSize(){
       // debugger
       this.PageNumber=1;
-     this.requestDetails(this.PageNumber, this.pageSize);
+     this.requestDetails(this.PageNumber, this.pageSize, this.Requests);
+    }
+
+
+    //search method
+    searchRequest(){
+      this.requestDetails(this.PageNumber, this.pageSize, this.Requests);
     }
 
     //delete method
@@ -71,7 +77,7 @@ export class CollapsesComponent {
                 responce.ReturnMessage,
                 'success'
               )
-              this.requestDetails(this.PageNumber,this.pageSize);
+              this.requestDetails(this.PageNumber,this.pageSize, this.Requests);
             }
             else 
             {

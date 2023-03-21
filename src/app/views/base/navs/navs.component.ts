@@ -12,17 +12,18 @@ export class NavsComponent {
   statusdata : any=[];
   pageSize : number=5;
   PageNumber:any=1;
+  Status : any="";
 
   constructor(private service:AuthService) { }
 
   ngOnInit(): void {
     //debugger
-    this.getFeedbacktype(this.PageNumber,this.pageSize);
+    this.getFeedbacktype(this.PageNumber,this.pageSize,this.Status);
   }
 
-  getFeedbacktype(PageNumber:number,pageSize:number) {
+  getFeedbacktype(PageNumber:number,pageSize:number,Status:string) {
     // debugger
-    this.service.statusDetails(PageNumber,pageSize).subscribe(responce => {
+    this.service.statusDetails(PageNumber,pageSize,Status).subscribe(responce => {
      
       if(responce.IsSuccess)
       {
@@ -38,14 +39,20 @@ export class NavsComponent {
 
   pageChangeEvent(event: number) {
     this.PageNumber = event;
-    this.getFeedbacktype(this.PageNumber, this.pageSize);
+    this.getFeedbacktype(this.PageNumber, this.pageSize, this.Status);
   }
 
 
   changePageSize(){
     // debugger
     this.PageNumber=1;
-   this.getFeedbacktype(this.PageNumber, this.pageSize);
+   this.getFeedbacktype(this.PageNumber, this.pageSize, this.Status);
+  }
+
+
+  //search method
+  searchStatus(){
+    this.getFeedbacktype(this.PageNumber, this.pageSize, this.Status);
   }
 }
 

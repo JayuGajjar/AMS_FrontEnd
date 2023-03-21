@@ -12,18 +12,19 @@ export class ProgressComponent {
 
   scrapdata : any=[];
   pageSize : number=5;
-  PageNumber:any=1;
+  PageNumber : any=1;
+  Scraps : any="";
 
   constructor(private authservice:AuthService) { }
 
   ngOnInit(): void {
-    //debugger
-    this.scrapDetails(this.PageNumber,this.pageSize);
+    // debugger
+    this.scrapDetails(this.PageNumber,this.pageSize,this.Scraps);
   }
 
-  scrapDetails(PageNumber:number,pageSize:number) {
+  scrapDetails(PageNumber:number,pageSize:number,Scraps:string) {
     // debugger
-    this.authservice.scrapDetails(PageNumber,pageSize).subscribe(responce => {
+    this.authservice.scrapDetails(PageNumber,pageSize,Scraps).subscribe(responce => {
      
       if(responce.IsSuccess=true)
       {
@@ -39,15 +40,22 @@ export class ProgressComponent {
 
   pageChangeEvent(event: number) {
     this.PageNumber = event;
-    this.scrapDetails(this.PageNumber, this.pageSize);
+    this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps);
   }
 
 
   changePageSize(){
     // debugger
     this.PageNumber=1;
-   this.scrapDetails(this.PageNumber, this.pageSize);
+   this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps);
   }
+
+
+  //search method
+  searchScrap(){
+    this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps);
+  }
+
 
   //delete method
   deleteScrap(scraplist : any) {
@@ -71,7 +79,7 @@ export class ProgressComponent {
               responce.ReturnMessage,
               'success'
             )
-            this.scrapDetails(this.PageNumber,this.pageSize);
+            this.scrapDetails(this.PageNumber,this.pageSize, this.Scraps);
           }
           else 
           {

@@ -8,19 +8,22 @@ import Swal from 'sweetalert2';
   styleUrls: ['./placeholders.component.css']
 })
 export class PlaceholdersComponent implements OnInit {
+
 userdata : any=[];
 pageSize : number=5;
-PageNumber:any=1;
+PageNumber : any=1;
+Users : any="";
+
   constructor(private authservice:AuthService) { }
 
   ngOnInit(): void {
     //debugger
-    this.userDetails(this.PageNumber,this.pageSize);
+    this.userDetails(this.PageNumber,this.pageSize,this.Users);
   }
 
-  userDetails(PageNumber:number,pageSize:number) {
+  userDetails(PageNumber:number,pageSize:number,Users:string) {
     // debugger
-    this.authservice.userDetails(PageNumber,pageSize).subscribe(responce => {
+    this.authservice.userDetails(PageNumber,pageSize,Users).subscribe(responce => {
      
       if(responce.IsSuccess)
       {
@@ -36,14 +39,20 @@ PageNumber:any=1;
 
   pageChangeEvent(event: number) {
     this.PageNumber = event;
-    this.userDetails(this.PageNumber, this.pageSize);
+    this.userDetails(this.PageNumber, this.pageSize, this.Users);
   }
 
 
   changePageSize(){
     // debugger
     this.PageNumber=1;
-   this.userDetails(this.PageNumber, this.pageSize);
+   this.userDetails(this.PageNumber, this.pageSize, this.Users);
+  }
+
+
+  //serach method
+  searchUser(){
+    this.userDetails(this.PageNumber, this.pageSize, this.Users);
   }
 
   //delete method
@@ -69,7 +78,7 @@ PageNumber:any=1;
               responce.ReturnMessage,
               'success'
             )
-            this.userDetails(this.PageNumber,this.pageSize);
+            this.userDetails(this.PageNumber,this.pageSize,this.Users);
           }
           else 
           {

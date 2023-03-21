@@ -12,16 +12,18 @@ export class PopoversComponent implements OnInit {
   vendordata : any=[];
   pageSize : number=5;
   PageNumber:any=1;
+  Vendors : any="";
+
     constructor(private authservice:AuthService) { }
   
     ngOnInit(): void {
       //debugger
-      this.vendorDetails(this.PageNumber,this.pageSize);
+      this.vendorDetails(this.PageNumber,this.pageSize,this.Vendors);
     }
   
-    vendorDetails(PageNumber:number,pageSize:number) {
-      // debugger
-      this.authservice.vendorDetails(PageNumber,pageSize).subscribe(responce => {
+    vendorDetails(PageNumber:number,pageSize:number,Vendor:string) {
+      //  debugger
+      this.authservice.vendorDetails(PageNumber,pageSize,Vendor).subscribe(responce => {
        
         if(responce.IsSuccess)
         {
@@ -37,15 +39,22 @@ export class PopoversComponent implements OnInit {
   
     pageChangeEvent(event: number) {
       this.PageNumber = event;
-      this.vendorDetails(this.PageNumber, this.pageSize);
+      this.vendorDetails(this.PageNumber, this.pageSize, this.Vendors);
     }
   
   
     changePageSize(){
       // debugger
       this.PageNumber=1;
-     this.vendorDetails(this.PageNumber, this.pageSize);
+     this.vendorDetails(this.PageNumber, this.pageSize, this.Vendors);
     }
+
+
+    //search method
+    searchVendor(){
+      this.vendorDetails(this.PageNumber, this.pageSize, this.Vendors);
+    }
+
 
     //delete method
   deleteVendor(vendorlist : any) {
@@ -69,7 +78,7 @@ export class PopoversComponent implements OnInit {
               responce.ReturnMessage,
               'success'
             )
-            this.vendorDetails(this.PageNumber,this.pageSize);
+            this.vendorDetails(this.PageNumber,this.pageSize, this.Vendors);
           }
           else 
           {

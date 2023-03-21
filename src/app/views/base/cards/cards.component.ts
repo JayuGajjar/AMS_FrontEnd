@@ -12,17 +12,18 @@ export class CardsComponent {
   companydata : any=[];
   pageSize : number=5;
   PageNumber:any=1;
+  Companies : any="";
   
   constructor(private authservice:AuthService) { }
 
   ngOnInit(): void {
     //debugger
-    this.companyDetails(this.PageNumber,this.pageSize);
+    this.companyDetails(this.PageNumber,this.pageSize,this.Companies);
   }
 
-  companyDetails(PageNumber:number,pageSize:number) {
+  companyDetails(PageNumber:number,pageSize:number,Companies:string) {
     // debugger
-    this.authservice.companyDetails(PageNumber,pageSize).subscribe(responce => {
+    this.authservice.companyDetails(PageNumber,pageSize,Companies).subscribe(responce => {
      
       if(responce.IsSuccess)
       {
@@ -38,14 +39,20 @@ export class CardsComponent {
 
   pageChangeEvent(event: number) {
     this.PageNumber = event;
-    this.companyDetails(this.PageNumber, this.pageSize);
+    this.companyDetails(this.PageNumber, this.pageSize, this.Companies);
   }
 
 
   changePageSize(){
     // debugger
     this.PageNumber=1;
-   this.companyDetails(this.PageNumber, this.pageSize);
+   this.companyDetails(this.PageNumber, this.pageSize, this.Companies);
+  }
+
+
+  //search method
+  searchCompany(){
+    this.companyDetails(this.PageNumber, this.pageSize, this.Companies);
   }
 
 
@@ -71,7 +78,7 @@ export class CardsComponent {
               responce.ReturnMessage,
               'success'
             )
-            this.companyDetails(this.PageNumber,this.pageSize);
+            this.companyDetails(this.PageNumber,this.pageSize, this.Companies);
           }
           else 
           {

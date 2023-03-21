@@ -4,28 +4,30 @@
 <div class="container">
   <div class="table-responsive">
     <div class="table-wrapper">
-      <div class="table-title">
         <div class="row">
-          <div class="col-xs-6">
-            <h2><b>Department</b></h2>
+          
+          <div class="col input-group">
+            <div>
+              <input type="search" class="form-control" [(ngModel)]="Departments" (keyup.enter)="searchDepartment()" placeholder="Search">
+            </div>
+            <span class="input-group-append">
+              <button type="button" class="btn btn-outline-info" (click)="searchDepartment()" >
+                <i class="fas fa-search"></i>
+              </button>
+            </span>
           </div>
 
-
-          <div class="col-xs-6">
-            <!-- <svg cIcon name = "cilPlus"></svg> -->
-            <button class="btn btn-success" routerLink="/base/add-department"> <span>Add New Department</span></button>
-            <!-- <svg cIcon name = "cilMinus"></svg> -->
-            <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><span>Delete</span></a> -->
+          <div class="col" align="right">
+            <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-department"> <span>Add New Department</span></button>
           </div>
         </div>
-      </div>
-
+        <br>
 
 
       <table class="table table-hover">
 
 
-        <thead>
+        <thead class="table-title">
           <tr>
             <th>Depid</th>
             <th>Name</th>

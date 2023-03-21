@@ -1,31 +1,31 @@
-<head>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
 <div class="container">
   <div class="table-responsive">
     <div class="table-wrapper">
-      <div class="table-title">
         <div class="row">
-          <div class="col-xs-6">
-            <h2><b>Company</b></h2>
+          
+          <div class="col input-group">
+            <div>
+              <input type="search" class="form-control" [(ngModel)]="Companies" (keyup.enter)="searchCompany()" placeholder="Search">
+            </div>
+            <span class="input-group-append">
+              <button type="button" class="btn btn-outline-info" (click)="searchCompany()" >
+                <i class="fas fa-search"></i>
+              </button>
+            </span>
           </div>
 
-
-          <div class="col-xs-6">
-            <!-- <svg cIcon name = "cilPlus"></svg> -->
-            <button class="btn btn-success" routerLink="/base/add-company"> <span>Add New Company</span></button>
-            <!-- <svg cIcon name = "cilMinus"></svg> -->
-            <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><span>Delete</span></a>						 -->
+          <div class="col" align="right">
+            <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-company"> <span>Add New Company</span></button>
           </div>
         </div>
-      </div>
+        <br>
 
 
 
       <table class="table table-hover">
 
 
-        <thead>
+        <thead class="table-title">
           <tr>
             <th>Companyid</th>
             <th>Name</th>

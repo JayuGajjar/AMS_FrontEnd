@@ -1,31 +1,28 @@
-<head>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
 <div class="container">
   <div class="table-responsive">
     <div class="table-wrapper">
-      <div class="table-title">
         <div class="row">
-          <div class="col-xs-6">
-            <h2>All <b>Users</b></h2>
+          
+          <div class="col input-group">
+            <div>
+              <input type="search" class="form-control" [(ngModel)]="Users" (keyup.enter)="searchUser()" placeholder="Search">
+            </div>
+            <span class="input-group-append">
+              <button type="button" class="btn btn-outline-info" (click)="searchUser()" >
+                <i class="fas fa-search"></i>
+              </button>
+            </span>
           </div>
 
-
-          <!-- <div class="col-xs-6"> -->
-            <!-- <svg cIcon name = "cilPlus"></svg> -->
-            <!-- <button class="btn btn-success" data-toggle="modal"> <span>Add New User</span></button> -->
-            <!-- <svg cIcon name = "cilMinus"></svg> -->
-            <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><span>Delete</span></a>						 -->
-          <!-- </div> -->
         </div>
-      </div>
+        <br>
 
 
 
       <table class="table table-hover">
 
 
-        <thead>
+        <thead class="table-title">
           <tr>
             <th>Username</th>
             <th>Email</th>
