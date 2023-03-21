@@ -12,17 +12,20 @@ export class AccordionsComponent {
 
   assetdata : any=[];
   pageSize : number=5;
-  PageNumber:any=1;
+  PageNumber: any=1;
+  Assets : any="";
+
   constructor(private authservice:AuthService) { }
 
   ngOnInit(): void {
     //debugger
-    this.assetDetails(this.PageNumber,this.pageSize);
+    this.assetDetails(this.PageNumber,this.pageSize,this.Assets);
   }
 
-  assetDetails(PageNumber:number,pageSize:number) {
-    // debugger
-    this.authservice.assetDetails(PageNumber,pageSize).subscribe(responce => {
+  //get method for get the data of branch
+  assetDetails(PageNumber:number,pageSize:number,Assets:string) {
+    debugger
+    this.authservice.assetDetails(PageNumber,pageSize,Assets).subscribe(responce => {
      
       if(responce.IsSuccess)
       {
@@ -38,14 +41,21 @@ export class AccordionsComponent {
 
   pageChangeEvent(event: number) {
     this.PageNumber = event;
-    this.assetDetails(this.PageNumber, this.pageSize);
+    this.assetDetails(this.PageNumber, this.pageSize,this.Assets);
   }
 
 
   changePageSize(){
     // debugger
     this.PageNumber=1;
-   this.assetDetails(this.PageNumber, this.pageSize);
+   this.assetDetails(this.PageNumber, this.pageSize,this.Assets);
+  }
+
+
+  //search method
+  searchAsset(){
+    debugger
+    this.assetDetails(this.PageNumber,this.pageSize,this.Assets);
   }
 
 
@@ -72,7 +82,7 @@ export class AccordionsComponent {
               responce.ReturnMessage,
               'success'
             )
-            this.assetDetails(this.PageNumber,this.pageSize);
+            this.assetDetails(this.PageNumber,this.pageSize,this.Assets);
           }
           else 
           {

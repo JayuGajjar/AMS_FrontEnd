@@ -1,3 +1,10 @@
+.form-control:focus{
+    box-shadow: 0 0 0 0.1rem rgb(213, 209, 255);
+}
+
+
+
+
 body {
     color: #566787;
     background: #f5f5f5;

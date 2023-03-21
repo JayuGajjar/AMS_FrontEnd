@@ -90,9 +90,9 @@ export class AuthService {
 
 
   //Asset get Service
-  assetDetails(PageNumber: any, pageSize: any): Observable<any> {
-    //debugger
-    return this.http.get(this.baseServeUrl + "Asset/GetAllAssets?PageNumber=" + PageNumber + '&PageSize=' + pageSize);
+  assetDetails(PageNumber: any, pageSize: any, Assets: any): Observable<any> {
+    debugger
+    return this.http.get(this.baseServeUrl + "Asset/GetAllAssets?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Assets);
   }
 
 
@@ -108,6 +108,7 @@ export class AuthService {
   }
 
 
+
   //edit branch
   editBranch(branch: any, id: any): Observable<any> {
     return this.http.put(this.baseServeUrl + "Branch/Update/" + id, branch);
@@ -121,9 +122,9 @@ export class AuthService {
 
 
   //Branch get service
-  branchDetails(PageNumber: any, pageSize: any): Observable<any> {
-    //debugger
-    return this.http.get(this.baseServeUrl + "Branch/GetAllBranch?PageNumber=" + PageNumber + '&PageSize=' + pageSize);
+  branchDetails(PageNumber: any, pageSize: any, Branches: any): Observable<any> {
+    // debugger
+    return this.http.get(this.baseServeUrl + "Branch/GetAllBranch?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Branches);
   }
 
 
@@ -154,7 +155,7 @@ export class AuthService {
   //company get service
   companyDetails(PageNumber: any, pageSize: any): Observable<any> {
     //debugger
-    return this.http.get(this.baseServeUrl + "Company/GetAllComp?PageNumber=" + PageNumber + '&PageSize=' + pageSize);
+    return this.http.get(this.baseServeUrl + "Company/GetAllComp?pageNumber=" + PageNumber + '&pageSize=' + pageSize);
   }
 
 
@@ -185,7 +186,7 @@ export class AuthService {
   //department get service
   depDetails(PageNumber: any, pageSize: any): Observable<any> {
     //debugger
-    return this.http.get(this.baseServeUrl + "Department/GetAllDep?PageNumber=" + PageNumber + '&PageSize=' + pageSize);
+    return this.http.get(this.baseServeUrl + "Department/GetAllDep?pageNumber=" + PageNumber + '&pageSize=' + pageSize);
   }
 
 
@@ -216,14 +217,14 @@ export class AuthService {
   //Request get service
   requestDetails(PageNumber: any, pageSize: any): Observable<any> {
     //debugger
-    return this.http.get(this.baseServeUrl + "Request/GetAllRequests?PageNumber=" + PageNumber + '&PageSize=' + pageSize);
+    return this.http.get(this.baseServeUrl + "Request/GetAllRequests?pageNumber=" + PageNumber + '&pageSize=' + pageSize);
   }
 
 
   //status get service
   statusDetails(PageNumber: any, pageSize: any): Observable<any> {
     //debugger
-    return this.http.get(this.baseServeUrl + "Status/GetAllStatus?PageNumber=" + PageNumber + '&PageSize=' + pageSize);
+    return this.http.get(this.baseServeUrl + "Status/GetAllStatus?pageNumber=" + PageNumber + '&pageSize=' + pageSize);
   }
 
 
@@ -236,7 +237,7 @@ export class AuthService {
   //user get service
   userDetails(PageNumber: any, pageSize: any): Observable<any> {
     //debugger
-    return this.http.get(this.baseServeUrl + "Registeration/GetAllUsers?PageNumber=" + PageNumber + '&PageSize=' + pageSize);
+    return this.http.get(this.baseServeUrl + "Registeration/GetAllUsers?pageNumber=" + PageNumber + '&pageSize=' + pageSize);
   }
 
 
@@ -267,7 +268,7 @@ export class AuthService {
   //vendor get service
   vendorDetails(PageNumber: any, pageSize: any): Observable<any> {
     //debugger
-    return this.http.get(this.baseServeUrl + "Vendor/GetAllVendors?PageNumber=" + PageNumber + '&PageSize=' + pageSize);
+    return this.http.get(this.baseServeUrl + "Vendor/GetAllVendors?pageNumber=" + PageNumber + '&pageSize=' + pageSize);
   }
 
 
@@ -298,7 +299,7 @@ export class AuthService {
   //scrap get service
   scrapDetails(PageNumber: any, pageSize: any): Observable<any> {
     //debugger
-    return this.http.get(this.baseServeUrl + "Scrap/GetAllScrap?PageNumber=" + PageNumber + '&PageSize=' + pageSize);
+    return this.http.get(this.baseServeUrl + "Scrap/GetAllScrap?pageNumber=" + PageNumber + '&pageSize=' + pageSize);
   }
 
 

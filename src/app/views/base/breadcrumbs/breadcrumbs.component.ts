@@ -13,14 +13,14 @@ export class BreadcrumbsComponent implements OnInit {
 
     branchdata : any=[];
     pageSize : number=5;
-    PageNumber:any=1;
-
+    PageNumber : number=1;
+    Branches : any="";
     
       constructor(private authservice:AuthService, private FB: FormBuilder) {  }
     
       ngOnInit(): void {
-        //debugger
-        this.branchDetails(this.PageNumber,this.pageSize);
+        // debugger
+        this.branchDetails(this.PageNumber,this.pageSize,this.Branches);
       }
 
       //for popup form
@@ -32,14 +32,12 @@ export class BreadcrumbsComponent implements OnInit {
       // handleLiveDemoChange(event : any){
       //   this.visible = event;
       // }
-
-      //post method for branch name
       
     
       //get method for get the data of branch
-      branchDetails(PageNumber:number,pageSize:number) {
+      branchDetails(PageNumber:number,pageSize:number,Branches:string) {
         // debugger
-        this.authservice.branchDetails(PageNumber,pageSize).subscribe(responce => {
+        this.authservice.branchDetails(PageNumber,pageSize,Branches).subscribe(responce => {
          
           if(responce.IsSuccess)
           {
@@ -56,15 +54,23 @@ export class BreadcrumbsComponent implements OnInit {
     
       pageChangeEvent(event: number) {
         this.PageNumber = event;
-        this.branchDetails(this.PageNumber, this.pageSize);
+        this.branchDetails(this.PageNumber, this.pageSize,this.Branches);
       }
     
     
       changePageSize(){
         // debugger
         this.PageNumber=1;
-       this.branchDetails(this.PageNumber, this.pageSize);
+       this.branchDetails(this.PageNumber, this.pageSize,this.Branches);
       }
+
+
+      //search method
+      searchBranch(){
+        // debugger
+        this.branchDetails(this.PageNumber,this.pageSize,this.Branches);
+      }
+
 
       //delete method
       deleteBranch(branchlist : any) {
@@ -88,7 +94,7 @@ export class BreadcrumbsComponent implements OnInit {
                       responce.ReturnMessage,
                       'success'
                     )
-                    this.branchDetails(this.PageNumber,this.pageSize);
+                    this.branchDetails(this.PageNumber,this.pageSize,this.Branches);
                   }
                   else 
                   {

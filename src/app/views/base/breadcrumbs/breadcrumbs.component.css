@@ -4,6 +4,12 @@
     "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
     Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
   } */
+
+
+.form-control:focus{
+    box-shadow: 0 0 0 0.1rem rgb(213, 209, 255);
+}
+
   
 body {
     font-family: "Open Sans", 

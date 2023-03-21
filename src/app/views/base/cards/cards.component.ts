@@ -12,6 +12,7 @@ export class CardsComponent {
   companydata : any=[];
   pageSize : number=5;
   PageNumber:any=1;
+  
   constructor(private authservice:AuthService) { }
 
   ngOnInit(): void {

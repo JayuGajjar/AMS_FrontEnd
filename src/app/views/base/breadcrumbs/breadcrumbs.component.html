@@ -1,28 +1,32 @@
 <div class="container">
   <div class="table-responsive">
     <div class="table-wrapper">
-      <div class="table-title">
         <div class="row">
-          <div class="col-xs-6">
-            <h2><b>Branch</b></h2>
-          </div>
 
-          <div class="col-xs-6" align="right">
-            <button class="btn btn-success" routerLink="/base/add-branch"> <span>Add New Branch</span></button>
-            <input type="search" placeholder="Search" class="me-2">
-            <button type="button" class="btn btn-info">
-              <svg cIcon name="cilMagnifyingGlass" size="lg"></svg>
-            </button>
+            <div class="col input-group">
+              <div>
+                <input type="search" class="form-control" [(ngModel)]="Branches" (keyup.enter)="searchBranch()" placeholder="Search">
+              </div>
+              <span class="input-group-append">
+                <button type="button" class="btn btn-outline-info" (click)="searchBranch()" >
+                  <i class="fas fa-search"></i>
+                </button>
+              </span>
+            </div>
+
+          <div class="col" align="right">  
+            <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-branch">Add New Branch</button>
           </div>
+          
         </div>
-      </div>
+        <br>
 
 
 
       <table class="table table-hover">
 
 
-        <thead>
+        <thead class="table-title">
           <tr>
             <th>Branchid</th>
             <th>Name</th>
