@@ -214,6 +214,13 @@ export class AuthService {
   }
 
 
+  //status change in request
+  statusChange(id: any, type: any, isworking: any, inuse: any): Observable<any> {
+    debugger
+    return this.http.get(this.baseServeUrl + "Request/StatusChange/" + id + '?type=' + type + '&isworking=' + isworking + '&inuse=' + inuse);
+  }
+
+
   //Request get service
   requestDetails(PageNumber: any, pageSize: any, Requests: any): Observable<any> {
     //debugger

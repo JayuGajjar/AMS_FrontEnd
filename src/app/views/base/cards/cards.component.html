@@ -5,17 +5,17 @@
           
           <div class="col input-group">
             <div>
-              <input type="search" class="form-control" [(ngModel)]="Companies" (keyup.enter)="searchCompany()" placeholder="Search">
+              <input type="search" class="form-control form-control-sm" [(ngModel)]="Companies" (keyup.enter)="searchCompany()" placeholder="Search">
             </div>
             <span class="input-group-append">
-              <button type="button" class="btn btn-outline-info" (click)="searchCompany()" >
+              <button type="button" class="btn btn-outline-info btn-sm" (click)="searchCompany()" >
                 <i class="fas fa-search"></i>
               </button>
             </span>
           </div>
 
           <div class="col" align="right">
-            <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-company"> <span>Add New Company</span></button>
+            <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-company"> <span>Add</span></button>
           </div>
         </div>
         <br>

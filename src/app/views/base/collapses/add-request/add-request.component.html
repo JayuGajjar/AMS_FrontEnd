@@ -19,7 +19,7 @@
                     <div class="form-outline mb-4">
                         <select type="text" class="form-control form-select" formControlName="assetid"
                             [ngClass]="{ 'has-error': submitted && f['assetid'].errors }">
-                            <option value="">select Branch</option>
+                            <option value="">select Asset</option>
                             <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
                                  {{assets.specification}}
                             </option>

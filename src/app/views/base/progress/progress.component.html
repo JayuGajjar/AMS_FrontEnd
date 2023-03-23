@@ -8,17 +8,17 @@
           
           <div class="col input-group">
             <div>
-              <input type="search" class="form-control" [(ngModel)]="Scraps" (keyup.enter)="searchScrap()" placeholder="Search">
+              <input type="search" class="form-control form-control-sm" [(ngModel)]="Scraps" (keyup.enter)="searchScrap()" placeholder="Search">
             </div>
             <span class="input-group-append">
-              <button type="button" class="btn btn-outline-info" (click)="searchScrap()" >
+              <button type="button" class="btn btn-outline-info btn-sm" (click)="searchScrap()" >
                 <i class="fas fa-search"></i>
               </button>
             </span>
           </div>
 
           <div class="col" align="right">
-            <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-scrap"> <span>Add New Scrap</span></button>
+            <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-scrap"> <span>Add</span></button>
           </div>
         </div>
         <br>

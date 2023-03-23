@@ -8,17 +8,17 @@
           
           <div class="col input-group">
             <div>
-              <input type="search" class="form-control" [(ngModel)]="Vendors" (keyup.enter)="searchVendor()" placeholder="Search">
+              <input type="search" class="form-control form-control-sm" [(ngModel)]="Vendors" (keyup.enter)="searchVendor()" placeholder="Search">
             </div>
             <span class="input-group-append">
-              <button type="button" class="btn btn-outline-info" (click)="searchVendor()" >
+              <button type="button" class="btn btn-outline-info btn-sm" (click)="searchVendor()" >
                 <i class="fas fa-search"></i>
               </button>
             </span>
           </div>
 
           <div class="col" align="right">
-            <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-vendors"> <span>Add New Vendor</span></button>
+            <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-vendors"> <span>Add</span></button>
           </div>
         </div>
         <br>

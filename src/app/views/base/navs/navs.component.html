@@ -8,10 +8,10 @@
           
           <div class="col input-group">
             <div>
-              <input type="search" class="form-control" [(ngModel)]="Status" (keyup.enter)="searchStatus()" placeholder="Search">
+              <input type="search" class="form-control form-control-sm" [(ngModel)]="Status" (keyup.enter)="searchStatus()" placeholder="Search">
             </div>
             <span class="input-group-append">
-              <button type="button" class="btn btn-outline-info" (click)="searchStatus()" >
+              <button type="button" class="btn btn-outline-info btn-sm" (click)="searchStatus()" >
                 <i class="fas fa-search"></i>
               </button>
             </span>
@@ -42,7 +42,20 @@
         <tbody>
         <tr *ngFor="let statuslist of statusdata">
           <td>{{statuslist.Statusid}}</td>
-          <td>{{statuslist.StatusNow}}</td>
+          <td>
+            <c-badge *ngIf="statuslist.Status==1" color="info">
+              {{statuslist.StatusNow}}
+            </c-badge>
+            <c-badge *ngIf="statuslist.Status==2" color="success">
+              {{statuslist.StatusNow}}
+            </c-badge>
+            <c-badge *ngIf="statuslist.Status==3" color="secondary">
+              {{statuslist.StatusNow}}
+            </c-badge>
+            <c-badge *ngIf="statuslist.Status==4" color="danger">
+              {{statuslist.StatusNow}}
+            </c-badge>
+          </td>
           <td>{{statuslist.UserName}}</td>
           <td>{{statuslist.Asset}}</td>
           <td>{{statuslist.Request}}</td>
