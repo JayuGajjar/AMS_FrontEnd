@@ -56,7 +56,8 @@
           </td>
           <td>
             <c-form-check [switch]="true">
-              <input [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput type="checkbox">
+              <input *ngIf="requestlist.isworking==false" disabled [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput type="checkbox">
+              <input *ngIf="requestlist.isworking==true" [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput type="checkbox">
             </c-form-check>
           </td>
           <td>
