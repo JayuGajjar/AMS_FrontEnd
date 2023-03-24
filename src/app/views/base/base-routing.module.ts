@@ -32,11 +32,6 @@ const routes: Routes = [
       title: '',
     },
     children: [
-      {
-        path: '', 
-        pathMatch: 'full',
-        redirectTo: 'cards',
-      },
 
       //for asset
       {
