@@ -15,7 +15,10 @@ export class DashboardComponent implements OnInit {
 
 
   totalasset : number=0;
+  totalnew : number=0;
+  totalinUse : number=0;
   totalSpare : number=0;
+  totalWorking : number=0;
   totalscrap : number=0;
   totalbranches : number=0;
   totalcompanies : number=0;
@@ -46,6 +49,10 @@ export class DashboardComponent implements OnInit {
         
         if(responce.Data.table.length > 0){
           this.totalasset = responce.Data.table[0].totalassets;
+          this.totalnew = responce.Data.table[0].totalnew;
+          this.totalinUse = responce.Data.table[0].totalinUse;
+          this.totalSpare = responce.Data.table[0].totalSpare;
+          this.totalWorking = responce.Data.table[0].totalWorking;
           this.totalscrap = responce.Data.table[0].totalscrap;
           this.totalbranches = responce.Data.table[0].totalbranches;
           this.totalcompanies = responce.Data.table[0].totalcompanies;
