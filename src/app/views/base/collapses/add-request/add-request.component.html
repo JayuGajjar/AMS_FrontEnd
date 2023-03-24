@@ -17,15 +17,29 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <select type="text" class="form-control form-select" formControlName="assetid"
-                            [ngClass]="{ 'has-error': submitted && f['assetid'].errors }">
+                        <select type="text" (change)="assetDropDown(typeid)" [(ngModel)]="typeid" class="form-control form-select" formControlName="typeid"
+                            [ngClass]="{ 'has-error': submitted && f['typeid'].errors }">
+                            <option v
+                            alue="">select Asset Type</option>
+                            <option [ngValue]="types.typeid" *ngFor="let types of typelistdata">
+                                 {{types.name}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f['typeid'].errors" class="has-error">
+                            <div *ngIf="f['typeid'].errors['required']">Asset Type is required!</div>
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <select type="text" class="form-control form-select" formControlName="asset"
+                            [ngClass]="{ 'has-error': submitted && f['asset'].errors }">
                             <option value="">select Asset</option>
                             <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
                                  {{assets.specification}}
                             </option>
                         </select>
-                        <div *ngIf="submitted && f['assetid'].errors" class="has-error">
-                            <div *ngIf="f['assetid'].errors['required']">AssetID is required!</div>
+                        <div *ngIf="submitted && f['asset'].errors" class="has-error">
+                            <div *ngIf="f['asset'].errors['required']">Asset Type is required!</div>
                         </div>
                     </div>
                     

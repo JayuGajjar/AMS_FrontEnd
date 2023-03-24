@@ -202,6 +202,12 @@ export class AuthService {
   }
 
 
+  //get asset dropdown
+  assetDropDown(typeid: any): Observable<any> {
+    return this.http.get(this.baseServeUrl + "Request/AssetDropdown/" + typeid);
+  }
+
+
   //edit request
   editRequest(request: any, id: any): Observable<any> {
     return this.http.put(this.baseServeUrl + "Request/UpdateRequest/" + id, request);

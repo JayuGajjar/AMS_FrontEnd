@@ -1,6 +1,7 @@
 export interface request{
     // userid : number;
     userid : string;
-    assetid : string;
+    typeid : string;
+    asset : string;
     justify : string
 }
