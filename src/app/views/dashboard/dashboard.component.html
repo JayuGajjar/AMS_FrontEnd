@@ -205,11 +205,22 @@
     </div>
   </div>
 </div>
+<br>
 
 
-<c-chart [data]="data" type="bar"></c-chart>
 
-
+<div class="row">
+  <div class="col" style="width:100%;max-width:600px">
+    <div class="container" style="background-color: aliceblue;">
+      <c-chart [data]="data" type="bar"></c-chart>
+    </div>
+  </div>
+  <div class="col" style="width:100%;max-width:600px">
+    <div class="container" style="background-color: aliceblue;">
+      <c-chart [data]="data" type="pie"></c-chart>
+    </div>
+  </div>
+</div>
 
 
   <!-- <div class="container">

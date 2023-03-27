@@ -64,12 +64,12 @@ export class DashboardComponent implements OnInit {
 
 
   data = {
-    labels: ['InUse', 'Spare', 'InWorking', 'Spare'],
+    labels: ['InUse', 'Spare', 'InWorking', 'Scrap'],
     datasets: [
       {
-        label: 'GitHub Commits',
+        label: 'Total',
         backgroundColor: '#f87979',
-        data: [40, 20, 12, 39, 10, 80, 40]
+        data: [40, 20, 100, 39, 10, 100, 40]
       }
     ]
   };
