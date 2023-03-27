@@ -43,7 +43,7 @@
 
 
         <tbody>
-          <tr *ngFor="let scraplist of scrapdata">
+          <tr *ngFor="let scraplist of scrapdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
             <td>{{scraplist.Scrapid}}</td>
             <td>{{scraplist.AssetName}}</td>
             <td>{{scraplist.BranchName}}</td>

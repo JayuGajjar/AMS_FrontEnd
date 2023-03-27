@@ -23,21 +23,21 @@ export class AddRequestComponent {
     requestid: number=0;
     assetlistdata : any=[];
     typelistdata : any=[];
-    typeid : any;
-
+    userid: number=0;
+    asset: number=0;
+    justify: string="";
+    
 
   constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
   { 
     this.data = {
-      userid : "",
-      typeid : "",
-      asset : "",
+      userid : 0,
+      asset : 0,
       justify : "",
     }
     
     this.requestForm = this.FB.group({
       userid : ['',[Validators.required, Validators.pattern("[0-9]+")]],
-      typeid : ['',[Validators.required]],
       asset : ['',[Validators.required]],
       justify : ['',[Validators.required, Validators.pattern("[a-zA-Z][a-zA-Z ]+")]],
 
@@ -47,7 +47,7 @@ export class AddRequestComponent {
 
   get f() { return this.requestForm.controls; }
 
-  addRequest(){
+  addRequest(userid:number, asset:number, justify:string){
     this.submitted = true;
 
     if(this.requestForm.invalid)
@@ -56,8 +56,8 @@ export class AddRequestComponent {
     }
 
     if(this.requestid>0){
+      debugger
       this.data.userid = this.requestForm.value.userid;
-      this.data.typeid = this.requestForm.value.typeid;
       this.data.asset = this.requestForm.value.asset;
       this.data.justify = this.requestForm.value.justify;
 
@@ -85,13 +85,13 @@ export class AddRequestComponent {
 
     }
     else{
-      this.data.userid = this.requestForm.value.userid;
-      this.data.typeid = this.requestForm.value.typeid;
-      this.data.asset = this.requestForm.value.asset;
-      this.data.justify = this.requestForm.value.justify;
+      debugger
+      this.userid = this.requestForm.value.userid;
+      this.asset = this.requestForm.value.asset;
+      this.justify = this.requestForm.value.justify;
 
-      this.authservice.addrequest(this.data).subscribe(response => {
-    
+      this.authservice.addrequest(this.userid,this.asset,this.justify).subscribe(response => {
+        
         if(response.IsSuccess)
         {
           Swal.fire(
@@ -117,7 +117,6 @@ export class AddRequestComponent {
 
   onReset(){
     this.requestForm.patchValue({userid:""});
-    this.requestForm.patchValue({typeid:""});
     this.requestForm.patchValue({asset:""});
     this.requestForm.patchValue({justify:""});
   }
@@ -152,7 +151,6 @@ export class AddRequestComponent {
           if(responce.Data.length > 0){
             this.requestid=responce.Data[0].Requestid;
             this.requestForm.controls["userid"].setValue(responce.Data[0].Userid);
-            this.requestForm.controls["typeid"].setValue(responce.Data[0].Typeid);
             this.requestForm.controls["asset"].setValue(responce.Data[0].Assetid);
             this.requestForm.controls["justify"].setValue(responce.Data[0].Justify);
            }
@@ -163,22 +161,22 @@ export class AddRequestComponent {
 
 
     //get method for asset dropdown
-    assetDropDown(typeid:number){
-      debugger
-      this.authservice.assetDropDown(typeid).subscribe(responce => {
-        if(responce.IsSuccess)
-        {
-          if(responce.Data.table.length > 0)
-          {
-            this.assetlistdata = responce.Data.table;
-          }
-          else
-          {
-            this.assetlistdata = [];
-          }
-        }
-      })
-    }
+    // assetDropDown(typeid:number){
+    //   debugger
+    //   this.authservice.assetDropDown(typeid).subscribe(responce => {
+    //     if(responce.IsSuccess)
+    //     {
+    //       if(responce.Data.table.length > 0)
+    //       {
+    //         this.assetlistdata = responce.Data.table;
+    //       }
+    //       else
+    //       {
+    //         this.assetlistdata = [];
+    //       }
+    //     }
+    //   })
+    // }
 
 
 
@@ -189,8 +187,8 @@ export class AddRequestComponent {
         // debugger
         if(responce.IsSuccess)
         {
-          if(responce.Data.table.length > 0){
-            this.typelistdata = responce.Data.table;
+          if(responce.Data.table6.length > 0){
+            this.typelistdata = responce.Data.table6;
           }
           else
           {

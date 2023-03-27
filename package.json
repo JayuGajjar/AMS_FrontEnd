@@ -38,6 +38,7 @@
     "bootstrap-icons": "^1.10.3",
     "chart.js": "^3.9.1",
     "font-awesome-icons": "^1.6.0",
+    "highcharts": "^10.3.3",
     "ngx-pagination": "^6.0.3",
     "ngx-perfect-scrollbar": "^10.1.1",
     "node": "^19.8.1",

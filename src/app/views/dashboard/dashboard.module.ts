@@ -22,8 +22,17 @@ import { DashboardComponent } from './dashboard.component';
 
 import { WidgetsModule } from '../widgets/widgets.module';
 import { TotalinuseComponent } from './totalinuse/totalinuse.component';
+import { TotalspareComponent } from './totalspare/totalspare.component';
 
 @NgModule({
+  
+  declarations: [
+    
+    DashboardComponent,
+    TotalinuseComponent,
+    TotalspareComponent
+  ],
+
   imports: [
     DashboardRoutingModule,
     CardModule,
@@ -43,7 +52,6 @@ import { TotalinuseComponent } from './totalinuse/totalinuse.component';
     TableModule,
     WidgetsModule
   ],
-  declarations: [DashboardComponent, TotalinuseComponent]
 })
 export class DashboardModule {
 }

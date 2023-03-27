@@ -12,17 +12,6 @@ const routes: Routes = [
     data: {
       title: 'Dashboard'
     },
-    children: [
-      
-      //inuse component
-      {
-        path: 'inuse', canActivate : [AuthGuard],
-        component: TotalinuseComponent,
-        data: {
-          title: 'Add Branch', 
-        },
-      },
-    ]
   }
 ];
 

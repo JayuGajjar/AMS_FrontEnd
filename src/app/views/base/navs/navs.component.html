@@ -40,7 +40,7 @@
 
 
         <tbody>
-        <tr *ngFor="let statuslist of statusdata">
+        <tr *ngFor="let statuslist of statusdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
           <td>{{statuslist.Statusid}}</td>
           <td>
             <c-badge *ngIf="statuslist.Status==1" color="info">

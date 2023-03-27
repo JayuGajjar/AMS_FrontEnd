@@ -5,10 +5,10 @@
             <h2 *ngIf="title=='Update'">Update Request</h2>
             <div class="p-4">
 
-                <form [formGroup]="requestForm" (ngSubmit)="addRequest()">
+                <form [formGroup]="requestForm" (ngSubmit)="addRequest(userid,asset,justify)">
 
                     <div class="form-outline mb-4">
-                        <input type="text" class="form-control" placeholder="Enter UserID" formControlName="userid"
+                        <input type="number" class="form-control" placeholder="Enter UserID" formControlName="userid"
                             [ngClass]="{ 'has-error': submitted && f['userid'].errors }">
                         <div *ngIf="submitted && f['userid'].errors" class="has-error">
                             <div *ngIf="f['userid'].errors['required']">UserID is required!</div>
@@ -16,25 +16,24 @@
                         </div>
                     </div>
 
-                    <div class="form-outline mb-4">
-                        <select type="text" (change)="assetDropDown(typeid)" [(ngModel)]="typeid" class="form-control form-select" formControlName="typeid"
+                    <!-- <div class="form-outline mb-4">
+                        <select type="text" class="form-control form-select" formControlName="typeid"
                             [ngClass]="{ 'has-error': submitted && f['typeid'].errors }">
-                            <option v
-                            alue="">select Asset Type</option>
+                            <option value="">select Asset Type</option>
                             <option [ngValue]="types.typeid" *ngFor="let types of typelistdata">
-                                 {{types.name}}
+                                 {{types.typeName}}
                             </option>
                         </select>
                         <div *ngIf="submitted && f['typeid'].errors" class="has-error">
                             <div *ngIf="f['typeid'].errors['required']">Asset Type is required!</div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="form-outline mb-4">
                         <select type="text" class="form-control form-select" formControlName="asset"
                             [ngClass]="{ 'has-error': submitted && f['asset'].errors }">
                             <option value="">select Asset</option>
-                            <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
+                            <option [ngValue]="assets.assetid" *ngFor="let assets of typelistdata">
                                  {{assets.specification}}
                             </option>
                         </select>
@@ -43,6 +42,7 @@
                         </div>
                     </div>
                     
+
                     <div class="form-outline mb-4">
                         <input type="text" class="form-control" placeholder="Enter Justify" formControlName="justify"
                             [ngClass]="{ 'has-error': submitted && f['justify'].errors }">

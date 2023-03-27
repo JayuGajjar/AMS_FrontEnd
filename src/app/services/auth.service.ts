@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Registration } from '../Interfaces/registration';
@@ -30,11 +30,11 @@ export class AuthService {
   //   const data = { name: 'John Doe', age: 30 };
   //   const jsonData = JSON.stringify(data);
 
-  //   const httpOptions = {
-  //     headers: new HttpHeaders({
-  //       'Content-Type': 'application/json'
-  //     })
-  //   };
+ httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
 
   // this.http.post(url, jsonData, httpOptions).subscribe(...);
 
@@ -191,10 +191,14 @@ export class AuthService {
 
 
   //add post request
-  addrequest(objrequest: request): Observable<any> {
-    return this.http.post<request>(this.baseServeUrl + "Request/CreateNew", objrequest);
+  addrequest(userid: any, asset: any, justify: any): Observable<any> {
+    debugger
+    return this.http.post(this.baseServeUrl + "Request/CreateNew?userid=" + userid + '&asset=' + asset + '&justify=' + justify,this.httpOptions);
   }
 
+  // assigntopic( userid: number, asset: number,justify:string): Observable<any> {
+  //   return this.http.get(this.baseServeUrl+'Request/CreateNew?userid='+userid+'&asset='+asset+'&justify='+justify);
+  // }
 
   //get current request data with the ID
   getRequestById(Requestid: any): Observable<any> {
@@ -210,6 +214,7 @@ export class AuthService {
 
   //edit request
   editRequest(request: any, id: any): Observable<any> {
+    debugger
     return this.http.put(this.baseServeUrl + "Request/UpdateRequest/" + id, request);
   }
 

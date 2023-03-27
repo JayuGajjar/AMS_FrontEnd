@@ -93,7 +93,7 @@ const APP_CONTAINERS = [
     CardModule,
     FormsModule,
     HttpClientModule,
-    ModalModule
+    ModalModule,
   ],
   providers: [
     {

@@ -15,7 +15,7 @@
             </div>
 
           <div class="col" align="right">
-            <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-branch">Add</button>
+            <a type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-branch">Add</a>
           </div>
           
         </div>
@@ -39,7 +39,7 @@
 
 
         <tbody>
-          <tr *ngFor="let branchlist of branchdata">
+          <tr *ngFor="let branchlist of branchdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
             <td>{{branchlist.Branchid}}</td>
             <td>{{branchlist.Name}}</td>
             <td>

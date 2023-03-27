@@ -24,14 +24,33 @@ import { AddRequestComponent } from './collapses/add-request/add-request.compone
 import { AddVendorsComponent } from './popovers/add-vendors/add-vendors.component';
 import { AddScrapComponent } from './progress/add-scrap/add-scrap.component';
 import { AddAssetComponent } from './accordion/add-asset/add-asset.component';
+import { TotalinuseComponent } from '../dashboard/totalinuse/totalinuse.component';
+import { TotalspareComponent } from '../dashboard/totalspare/totalspare.component';
 
 const routes: Routes = [
   {
-    path: '', 
+    path: '',
     data: {
       title: '',
     },
     children: [
+
+      //total inuse
+      {
+        path: 'inuse', canActivate : [AuthGuard],
+        component: TotalinuseComponent,
+        data: {
+          title: 'InUse', 
+        },
+      },
+      //total Spare
+      {
+        path: 'spare', canActivate : [AuthGuard],
+        component: TotalspareComponent,
+        data: {
+          title: 'Spare', 
+        },
+      },
 
       //for asset
       {

@@ -4,7 +4,7 @@
       <div class="card shadow h-100 py-2 notice notice-info">
           <div class="card-body">
               <!-- <a href="javascript:void(0)" (click)="redirectCandidatePage(4)"> -->
-              <a href="javascript:void(0)" routerLink="/dashboard/inuse">
+              <a href="javascript:void(0)" routerLink="/base/inuse">
                   <div class="row align-items-center">
                       <div class="col mr-2">
                           <div class="text-uppercase infotxt">
@@ -26,7 +26,7 @@
     <div class="card shadow h-100 py-2 notice notice-info">
         <div class="card-body">
             <!-- <a href="javascript:void(0)" (click)="redirectCandidatePage(4)"> -->
-            <a routerLink="/base/branch">
+            <a href="javascript:void(0)" routerLink="/base/spare">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-uppercase infotxt">
@@ -206,6 +206,8 @@
   </div>
 </div>
 
+
+<c-chart [data]="data" type="bar"></c-chart>
 
 
 

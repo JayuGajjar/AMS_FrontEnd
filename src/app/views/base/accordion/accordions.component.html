@@ -45,7 +45,7 @@
 
 
         <tbody>
-        <tr *ngFor="let assetlist of assetdata">
+        <tr *ngFor="let assetlist of assetdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
           <td>{{assetlist.Assetid}}</td>
           <td>{{assetlist.SerialNo}}</td>
           <td>{{assetlist.Branches}}</td>

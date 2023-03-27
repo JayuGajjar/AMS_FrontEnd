@@ -42,7 +42,7 @@
 
 
         <tbody>
-        <tr *ngFor="let vendorlist of vendordata">
+        <tr *ngFor="let vendorlist of vendordata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
           <td>{{vendorlist.Vendorid}}</td>
           <td>{{vendorlist.Name}}</td>
           <td>{{vendorlist.InvoiceNo}}</td>
