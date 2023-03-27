@@ -43,7 +43,7 @@
 
 
         <tbody>
-        <tr *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalCount };let i = index">
+        <tr *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
           <td>{{requestlist.Requestid}}</td>
           <td>{{requestlist.UserName}}</td>
           <td>{{requestlist.Asset}}</td>
