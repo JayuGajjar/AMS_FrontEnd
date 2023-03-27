@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import * as Highcharts from 'highcharts';
 
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 
@@ -22,6 +23,8 @@ export class DashboardComponent implements OnInit {
   totalrequest : number=0;
   totalstatus : number=0;
   totalusers : number=0;
+  columnchart: any;
+  piechart: any;
 
 
   constructor(private authService: AuthService) { }
@@ -57,22 +60,116 @@ export class DashboardComponent implements OnInit {
           this.totalusers = responce.Data.table[0].totalusers;
           // this.totalvendors = responce.Data.table[0].totalvendors;
         }
+
+        this.columnchart = {
+          chart: {
+            type: 'column',
+            
+          },
+          accessibility: {
+          description: '',
+        },
+        title: {
+          text: 'Bar Chart'
+        },
+      
+        plotOptions: {
+          column: {
+            dataLabels: {
+              enabled: true
+            }
+          }
+        },
+        legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'top',
+          x: -40,
+          y: 80,
+          floating: true,
+          borderWidth: 1,
+          backgroundColor:
+          Highcharts.defaultOptions.legend?.backgroundColor || '#FFFFFF',
+          shadow: false
+        },
+        xAxis: { 
+          
+          categories: [
+            'Total InUse', 
+            'Total Spare', 
+            'Total Working',
+            'Total Scrap']
+        },
+        series: [{
+          data: [this.totalinUse,this.totalSpare,this.totalWorking,this.totalscrap],
+          colorByPoint: true
+        }]
+      }
+      
+      Highcharts.chart('columnChart', this.columnchart);
+
+
+      //Pie Chart
+      this.piechart = {   
+        chart : {
+           plotBorderWidth: null,
+           plotShadow: false
+        },
+        title : {
+           text: 'Pie Chart'   
+        },
+        tooltip : {
+           pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions : {
+           pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+        
+              dataLabels: {
+                 enabled: false           
+              },
+        
+              showInLegend: true
+           }
+        },
+        series : [{
+           type: 'pie',
+           name: 'Browser share',
+           data: [
+              ['Total InUse', this.totalinUse],
+              ['Total Spare', this.totalSpare],
+              {
+                 name: 'Total Working',
+                 y: this.totalWorking,
+                 sliced: true,
+                 selected: true
+              },
+              ['Total Scrap', this.totalscrap]
+            ]
+          }]
+        };
+        Highcharts.chart('pieChart', this.piechart);
       }
     })
   }
 
 
 
-  data = {
-    labels: ['InUse', 'Spare', 'InWorking', 'Scrap'],
-    datasets: [
-      {
-        label: 'Total',
-        backgroundColor: '#f87979',
-        data: [40, 20, 100, 39, 10, 100, 40]
-      }
-    ]
-  };
+  // data = {
+  //   labels: ['InUse', 'Spare', 'InWorking', 'Scrap'],
+  //   datasets: [
+  //     {
+  //       label: 'Total',
+  //       backgroundColor: '#f87979',
+  //       data: [40, 20, 100, 39, 10, 100, 40]
+  //     }
+  //   ]
+  // };
+
+
+  
+  
 
 
 }
