@@ -2,8 +2,8 @@
     <div class="table-responsive">
       <div class="table-wrapper">
           <div class="row">
-            <!-- <div class="col input-group">
-              <div>
+            <div class="col input-group">
+              <!-- <div>
                 <input type="search" class="form-control form-control-sm" [(ngModel)]="Assets" (keyup.enter)="searchAsset()" placeholder="Search">
               </div>
               <span class="input-group-append">
@@ -22,22 +22,28 @@
   
           <thead class="table-title">
             <tr>
-              <th>Name</th>
               <th>UserInfo</th>
-              <th>AssetInUse</th>
+              <th>Branch</th>
+              <th>Laptop</th>
+              <th>CPU</th>
+              <th>Headphones</th>
+              <th>Spare</th>
             </tr>
           </thead>
   
   
   
-        <tbody>
-          <!-- <tr *ngFor="let inuselist of inusedata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index"> -->
-            <tr >
-                <td>{{name}}</td>
-                <td>{{userinfo}}</td>
-                <td>{{assetsinUse}}</td>
-            </tr>
-        </tbody> 
+          <tbody>
+          <!-- <tr *ngFor="let assetlist of assetdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index"> -->
+          <tr>
+            <td>{{userinfo}}</td>
+            <td>{{branch}}</td>
+            <td>{{laptop}}</td>
+            <td>{{cpu}}</td>
+            <td>{{headphones}}</td>
+            <td>{{spareAssets}}</td>
+          </tr>
+          </tbody> 
   
         </table>
   

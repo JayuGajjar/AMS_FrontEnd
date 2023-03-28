@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit {
           description: '',
         },
         title: {
-          text: 'Bar Chart'
+          text: 'Column Chart'
         },
       
         plotOptions: {
@@ -101,7 +101,10 @@ export class DashboardComponent implements OnInit {
             'Total Scrap']
         },
         series: [{
-          data: [this.totalinUse,this.totalSpare,this.totalWorking,this.totalscrap],
+          data: [{y: this.totalinUse, color: '#80D651' },
+          {y: this.totalSpare, color: '#969696'},
+          {y: this.totalWorking, color: '#58a6ff'},
+          {y: this.totalscrap, color: '#d73814'}],
           colorByPoint: true
         }]
       }
@@ -137,15 +140,28 @@ export class DashboardComponent implements OnInit {
            type: 'pie',
            name: 'Browser share',
            data: [
-              ['Total InUse', this.totalinUse],
-              ['Total Spare', this.totalSpare],
+              {
+                 name: 'Total InUse',
+                 y: this.totalinUse,
+                 color: '#80D651',
+              },
+              {
+                 name: 'Total Spare',
+                 y: this.totalSpare,
+                 color: '#969696',
+              },
               {
                  name: 'Total Working',
                  y: this.totalWorking,
+                 color: '#58a6ff',
                  sliced: true,
                  selected: true
               },
-              ['Total Scrap', this.totalscrap]
+              {
+                 name: 'Total Scrap',
+                 y: this.totalscrap,
+                 color: '#d73814',
+              },
             ]
           }]
         };

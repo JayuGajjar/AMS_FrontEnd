@@ -23,6 +23,7 @@ import { DashboardComponent } from './dashboard.component';
 import { WidgetsModule } from '../widgets/widgets.module';
 import { TotalinuseComponent } from './totalinuse/totalinuse.component';
 import { TotalspareComponent } from './totalspare/totalspare.component';
+import { TotalworkingComponent } from './totalworking/totalworking.component';
 
 @NgModule({
   
@@ -30,7 +31,8 @@ import { TotalspareComponent } from './totalspare/totalspare.component';
     
     DashboardComponent,
     TotalinuseComponent,
-    TotalspareComponent
+    TotalspareComponent,
+    TotalworkingComponent
   ],
 
   imports: [

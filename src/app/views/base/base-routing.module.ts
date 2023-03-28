@@ -26,6 +26,7 @@ import { AddScrapComponent } from './progress/add-scrap/add-scrap.component';
 import { AddAssetComponent } from './accordion/add-asset/add-asset.component';
 import { TotalinuseComponent } from '../dashboard/totalinuse/totalinuse.component';
 import { TotalspareComponent } from '../dashboard/totalspare/totalspare.component';
+import { TotalworkingComponent } from '../dashboard/totalworking/totalworking.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,14 @@ const routes: Routes = [
         component: TotalspareComponent,
         data: {
           title: 'Spare', 
+        },
+      },
+      //total Working
+      {
+        path: 'working', canActivate : [AuthGuard],
+        component: TotalworkingComponent,
+        data: {
+          title: 'Working', 
         },
       },
 

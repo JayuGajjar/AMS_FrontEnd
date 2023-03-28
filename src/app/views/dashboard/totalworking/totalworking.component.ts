@@ -2,15 +2,20 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-totalspare',
-  templateUrl: './totalspare.component.html',
-  styleUrls: ['./totalspare.component.css']
+  selector: 'app-totalworking',
+  templateUrl: './totalworking.component.html',
+  styleUrls: ['./totalworking.component.css']
 })
-export class TotalspareComponent {
+export class TotalworkingComponent {
 
 
 
-  sparedata : any=[];
+  userinfo : any;
+  branch : any;
+  laptop : any;
+  cpu : any;
+  headphones : any;
+  spareAssets : any;
   // pageSize : number=5;
   // PageNumber: any=1;
   // Assets : any="";
@@ -19,17 +24,25 @@ export class TotalspareComponent {
 
   ngOnInit(): void {
     //debugger
-    this.spareDetails();
+    this.workingDetails();
   }
 
   //get method for get the data of branch
-  spareDetails() {
+  workingDetails() {
     // debugger
-    this.authservice.spareDetails().subscribe(responce => {
+    this.authservice.workingDetails().subscribe(responce => {
      
       if(responce.IsSuccess)
       {
-        this.sparedata = responce.Data;
+        if(responce.Data.table.length > 0)
+        {
+          this.userinfo = responce.Data.table[0].userinfo;
+          this.branch = responce.Data.table[0].branch;
+          this.laptop = responce.Data.table[0].laptop;
+          this.cpu = responce.Data.table[0].cpu;
+          this.headphones = responce.Data.table[0].headphones;
+          this.spareAssets = responce.Data.table[0].spareAssets;
+        }
       }
       else
       {

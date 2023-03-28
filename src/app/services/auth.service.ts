@@ -46,6 +46,30 @@ export class AuthService {
   }
 
 
+  
+  //get method for inuse
+  inuseDetails(): Observable<any> {
+    debugger
+    return this.http.get(this.baseServeUrl + "Reports/GetInUseTable");
+  }
+
+
+
+  //get method for spare
+  spareDetails(): Observable<any> {
+    // debugger
+    return this.http.get(this.baseServeUrl + "Reports/GetIsSpareTable");
+  }
+
+
+
+  //get method for working
+  workingDetails(): Observable<any> {
+    // debugger
+    return this.http.get(this.baseServeUrl + "Reports/GetIsWorkingTable");
+  }
+
+
   //get method for all dashboard values
   getAllValues(): Observable<any> {
     // debugger
@@ -192,7 +216,7 @@ export class AuthService {
 
   //add post request
   addrequest(userid: any, asset: any, justify: any): Observable<any> {
-    debugger
+    // debugger
     return this.http.post(this.baseServeUrl + "Request/CreateNew?userid=" + userid + '&asset=' + asset + '&justify=' + justify,this.httpOptions);
   }
 

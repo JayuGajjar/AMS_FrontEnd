@@ -24,7 +24,7 @@ export class AccordionsComponent {
 
   //get method for get the data of branch
   assetDetails(PageNumber:number,pageSize:number,Assets:string) {
-    debugger
+    // debugger
     this.authservice.assetDetails(PageNumber,pageSize,Assets).subscribe(responce => {
      
       if(responce.IsSuccess)
@@ -54,7 +54,7 @@ export class AccordionsComponent {
 
   //search method
   searchAsset(){
-    debugger
+    // debugger
     this.assetDetails(this.PageNumber,this.pageSize,this.Assets);
   }
 

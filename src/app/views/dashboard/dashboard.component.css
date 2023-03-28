@@ -21,6 +21,12 @@
 .notice-success>strong {
     color: #80D651;
 }
+.notice-secondary {
+    border-left-color: #969696;
+}
+.notice-primary {
+    border-left-color: #003cff;
+}
 .notice-info {
     border-left-color: #58a6ff;
 }
@@ -39,11 +45,17 @@
 .notice-danger>strong {
     color: #d73814;
 }
+.infotxt {
+    color: #021b38;
+}
 .success {
     color: #80D651;
 }
-.infotxt {
-    color: #021b38;
+.secondary {
+    color: #969696;
+}
+.primary {
+    color: #003cff;
 }
 .info {
     color: #58a6ff;
