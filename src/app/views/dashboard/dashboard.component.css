@@ -1,3 +1,25 @@
+a {
+    text-decoration: none;
+}
+
+a:hover>div>.success{
+    color:#80D651;
+    text-decoration: underline;
+}
+a:hover>div>.secondary{
+    color:#969696;
+    text-decoration: underline;
+}
+a:hover>div>.info{
+    color:#58a6ff;
+    text-decoration: underline;
+}
+a:hover>div>.danger{
+    color:#d73814;
+    text-decoration: underline;
+}
+
+
 .notice {
     padding: 15px;
     background-color: #fafafa;

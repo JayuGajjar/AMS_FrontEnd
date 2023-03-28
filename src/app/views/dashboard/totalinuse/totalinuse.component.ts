@@ -20,13 +20,13 @@ export class TotalinuseComponent {
   constructor(private authservice:AuthService) { }
 
   ngOnInit(): void {
-    debugger
+    // debugger
     this.inuseDetails();
   }
 
   //get method for get the data of branch
   inuseDetails() {
-    debugger
+    // debugger
     this.authservice.inuseDetails().subscribe(responce => {
      
       if(responce.IsSuccess)

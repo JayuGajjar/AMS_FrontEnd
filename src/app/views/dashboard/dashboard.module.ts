@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BadgeModule } from '@coreui/angular';
 
 import {
   AvatarModule,
@@ -52,7 +53,8 @@ import { TotalworkingComponent } from './totalworking/totalworking.component';
     ChartjsModule,
     AvatarModule,
     TableModule,
-    WidgetsModule
+    WidgetsModule,
+    BadgeModule
   ],
 })
 export class DashboardModule {

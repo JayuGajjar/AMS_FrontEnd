@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import * as Highcharts from 'highcharts';
 
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit {
   piechart: any;
 
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private router: Router) { }
 
 
 

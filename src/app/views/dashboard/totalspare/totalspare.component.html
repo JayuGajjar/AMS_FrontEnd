@@ -22,9 +22,11 @@
   
           <thead class="table-title">
             <tr>
-              <th>Assetid</th>
-              <th>SerialNo</th>
+              <th>UserInfo</th>
               <th>Branch</th>
+              <th>Type</th>
+              <th>SpareAsset</th>
+              <th>Status</th>
             </tr>
           </thead>
   
@@ -32,11 +34,17 @@
   
           <tbody>
           <!-- <tr *ngFor="let assetlist of assetdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index"> -->
-          <!-- <tr *ngFor="let assetlist of assetdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
-            <td>{{assetlist.Assetid}}</td>
-            <td>{{assetlist.SerialNo}}</td>
-            <td>{{assetlist.Branches}}</td>
-          </tr> -->
+          <tr>
+            <td>{{userinfo}}</td>
+            <td>{{branch}}</td>
+            <td>{{type}}</td>
+            <td>{{spareAssets}}</td>
+            <td>
+              <c-badge color="success">
+                {{status}}
+              </c-badge>
+            </td>
+          </tr>
           </tbody> 
   
         </table>

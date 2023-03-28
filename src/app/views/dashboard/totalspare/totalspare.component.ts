@@ -11,6 +11,11 @@ export class TotalspareComponent {
 
 
   sparedata : any=[];
+  userinfo: any;
+  branch: any;
+  type: any;
+  spareAssets: any;
+  status: any;
   // pageSize : number=5;
   // PageNumber: any=1;
   // Assets : any="";
@@ -29,7 +34,14 @@ export class TotalspareComponent {
      
       if(responce.IsSuccess)
       {
-        this.sparedata = responce.Data;
+        if(responce.Data.table.length > 0)
+        {
+          this.userinfo = responce.Data.table[0].userinfo;
+          this.branch = responce.Data.table[0].branch;
+          this.type = responce.Data.table[0].type;
+          this.spareAssets = responce.Data.table[0].spareAssets;
+          this.status = responce.Data.table[0].status;
+        }
       }
       else
       {

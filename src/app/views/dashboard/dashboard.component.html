@@ -3,14 +3,13 @@
   <div class="col-xl-4 col-md-6 mb-4">
       <div class="card shadow h-100 py-2 notice notice-success">
           <div class="card-body">
-              <!-- <a href="javascript:void(0)" (click)="redirectCandidatePage(4)"> -->
               <a href="javascript:void(0)" routerLink="/base/inuse">
                   <div class="row align-items-center">
-                      <div class="col mr-2">
-                          <div class="text-uppercase infotxt">
+                      <div class="col mr-2 success">
+                          <div class="text-uppercase">
                               Total InUses
                           </div>
-                          <div class="h5 mb-0 font-weight-bold"> {{totalinUse}} </div>
+                          <div class="h3 mb-0 font-weight-bold"> {{totalinUse}} </div>
                       </div>
                       <div class="col-auto success">
                         <i class="fa-solid fa-clipboard-check fa-bounce fa-2xl"></i>
@@ -25,14 +24,13 @@
   <div class="col-xl-4 col-md-6 mb-4">
     <div class="card shadow h-100 py-2 notice notice-secondary">
         <div class="card-body">
-            <!-- <a href="javascript:void(0)" (click)="redirectCandidatePage(4)"> -->
             <a href="javascript:void(0)" routerLink="/base/spare">
                 <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-uppercase infotxt">
+                    <div class="col mr-2 secondary">
+                        <div class="text-uppercase">
                             Total Spares
                         </div>
-                        <div class="h5 mb-0 font-weight-bold"> {{totalSpare}} </div>
+                        <div class="h3 mb-0 font-weight-bold"> {{totalSpare}} </div>
                     </div>
                     <div class="col-auto secondary">
                       <i class="fa-solid fa-box fa-flip fa-2xl"></i>
@@ -47,14 +45,13 @@
   <div class="col-xl-4 col-md-6 mb-4">
     <div class="card shadow h-100 py-2 notice notice-info">
         <div class="card-body">
-            <!-- <a href="javascript:void(0)"> (click)="redirectCandidatePage(4)"> -->
             <a href="javascript:void(0)" routerLink="/base/working">
                 <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-uppercase infotxt">
+                    <div class="col mr-2 info">
+                        <div class="text-uppercase">
                             Total Working
                         </div>
-                        <div class="h5 mb-0 font-weight-bold"> {{totalWorking}} </div>
+                        <div class="h3 mb-0 font-weight-bold"> {{totalWorking}} </div>
                     </div>
                     <div class="col-auto info">
                       <i class="fa-solid fa-plug-circle-check fa-beat-fade fa-2xl"></i>
@@ -187,14 +184,13 @@
   <div class="col-xl-4 col-md-6 mb-4">
     <div class="card shadow h-100 py-2 notice notice-danger">
         <div class="card-body">
-            <!-- <a href="javascript:void(0)"> (click)="redirectCandidatePage(4)"> -->
             <a routerLink="/base/scrap">
                 <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-uppercase infotxt">
+                    <div class="col mr-2 danger">
+                        <div class="text-uppercase">
                             Total Scraps
                         </div>
-                        <div class="h5 mb-0 font-weight-bold"> {{totalscrap}} </div>
+                        <div class="h3 mb-0 font-weight-bold"> {{totalscrap}} </div>
                     </div>
                     <div class="col-auto danger">
                       <i class="fa-solid fa-trash fa-shake fa-2xl"></i>
