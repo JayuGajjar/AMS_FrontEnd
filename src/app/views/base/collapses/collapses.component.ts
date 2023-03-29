@@ -13,6 +13,7 @@ export class CollapsesComponent {
   requestdata : any=[];
   pageSize : number=5;
   PageNumber : any=1;
+  totalrecord : number=0;
   Requests : any="";
   id : any;
   type: any;
@@ -38,6 +39,7 @@ export class CollapsesComponent {
        
         if(responce.IsSuccess)
         {
+          this.totalrecord=responce.Data[0].totalrecord;
           this.requestdata = responce.Data;
         }
         else

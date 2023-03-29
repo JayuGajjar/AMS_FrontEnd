@@ -27,7 +27,7 @@
 
         <thead class="table-title">
           <tr>
-            <th>Companyid</th>
+            <th>No</th>
             <th>Name</th>
             <th>Actions</th>
             <!-- <th>Requestid</th>
@@ -38,7 +38,7 @@
 
 
         <tbody>
-        <tr *ngFor="let companylist of companydata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
+        <tr *ngFor="let companylist of companydata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
           <td>{{companylist.Companyid}}</td>
           <td>{{companylist.Name}}</td>
           <td>

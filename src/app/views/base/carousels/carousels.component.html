@@ -29,7 +29,7 @@
 
         <thead class="table-title">
           <tr>
-            <th>Depid</th>
+            <th>No</th>
             <th>Name</th>
             <!-- <th>Remarks</th> -->
             <!-- <th>Created_at</th> -->
@@ -41,7 +41,7 @@
 
 
         <tbody>
-          <tr *ngFor="let deplist of depdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
+          <tr *ngFor="let deplist of depdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
             <td>{{deplist.Depid}}</td>
             <td>{{deplist.Name}}</td>
             <td>

@@ -2,7 +2,9 @@
   <div class="table-responsive">
     <div class="table-wrapper">
         <div class="row">
-          
+          <!-- <div class="col mr-2">
+            <p class="p-2 badge badge-info ">Total Record : <b style="font-size: 15px;">{{totalrecord}}</b></p>
+          </div> -->
           <div class="col input-group">
             <div>
               <input type="search" class="form-control form-control-sm" [(ngModel)]="Requests" (keyup.enter)="searchRequest()" placeholder="Search">
@@ -28,7 +30,6 @@
 
         <thead class="table-title">
           <tr>
-            <th>Requestid</th>
             <th>User</th>
             <th>Asset</th>
             <th>Created_at</th>
@@ -43,8 +44,7 @@
 
 
         <tbody>
-        <tr *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
-          <td>{{requestlist.Requestid}}</td>
+        <tr *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
           <td>{{requestlist.UserName}}</td>
           <td>{{requestlist.Asset}}</td>
           <td>{{requestlist.Created_at}}</td>

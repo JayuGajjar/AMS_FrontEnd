@@ -28,10 +28,8 @@
 
         <thead class="table-title">
           <tr>
-            <th>Branchid</th>
+            <th>No</th>
             <th>Name</th>
-            <!-- <th>Requestid</th>
-            <th>Created_at</th> -->
             <th>Actions</th>
           </tr>
         </thead>
@@ -39,7 +37,7 @@
 
 
         <tbody>
-          <tr *ngFor="let branchlist of branchdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
+          <tr *ngFor="let branchlist of branchdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
             <td>{{branchlist.Branchid}}</td>
             <td>{{branchlist.Name}}</td>
             <td>

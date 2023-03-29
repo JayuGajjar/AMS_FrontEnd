@@ -30,9 +30,8 @@
 
         <thead class="table-title">
           <tr>
-            <th>Vendorid</th>
-            <th>Name</th>
             <th>InvoiceNo</th>
+            <th>Name</th>
             <th>InvoiceDate</th>
             <th>Warranty_Till</th>
             <th>Actions</th>
@@ -42,10 +41,9 @@
 
 
         <tbody>
-        <tr *ngFor="let vendorlist of vendordata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
-          <td>{{vendorlist.Vendorid}}</td>
-          <td>{{vendorlist.Name}}</td>
+        <tr *ngFor="let vendorlist of vendordata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
           <td>{{vendorlist.InvoiceNo}}</td>
+          <td>{{vendorlist.Name}}</td>
           <td>{{vendorlist.InvoiceDate}}</td>
           <td>{{vendorlist.Warranty_Till}}</td>
           <td>

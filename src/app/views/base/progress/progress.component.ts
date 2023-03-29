@@ -13,6 +13,7 @@ export class ProgressComponent {
   scrapdata : any=[];
   pageSize : number=5;
   PageNumber : any=1;
+  totalrecord : any=0;
   Scraps : any="";
 
   constructor(private authservice:AuthService) { }
@@ -28,6 +29,7 @@ export class ProgressComponent {
      
       if(responce.IsSuccess=true)
       {
+        this.totalrecord = responce.Data[0].totalrecord;
         this.scrapdata = responce.Data;
       }
       else

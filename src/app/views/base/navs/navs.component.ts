@@ -12,6 +12,7 @@ export class NavsComponent {
   statusdata : any=[];
   pageSize : number=5;
   PageNumber:any=1;
+  totalrecord : any=0;
   Status : any="";
 
   constructor(private service:AuthService) { }
@@ -27,6 +28,7 @@ export class NavsComponent {
      
       if(responce.IsSuccess)
       {
+        this.totalrecord = responce.Data[0].totalrecord;
         this.statusdata = responce.Data;
       }
       else

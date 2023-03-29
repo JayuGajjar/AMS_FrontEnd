@@ -12,6 +12,7 @@ export class CardsComponent {
   companydata : any=[];
   pageSize : number=5;
   PageNumber:any=1;
+  totalrecord : any=0;
   Companies : any="";
   
   constructor(private authservice:AuthService) { }
@@ -27,6 +28,7 @@ export class CardsComponent {
      
       if(responce.IsSuccess)
       {
+        this.totalrecord = responce.Data[0].totalrecord;
         this.companydata = responce.Data;
       }
       else

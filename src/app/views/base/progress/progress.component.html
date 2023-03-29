@@ -30,7 +30,6 @@
 
         <thead class="table-title">
           <tr>
-            <th>Scrapid</th>
             <th>Asset</th>
             <th>Branch</th>
             <th>LastUser</th>
@@ -43,8 +42,7 @@
 
 
         <tbody>
-          <tr *ngFor="let scraplist of scrapdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
-            <td>{{scraplist.Scrapid}}</td>
+          <tr *ngFor="let scraplist of scrapdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
             <td>{{scraplist.AssetName}}</td>
             <td>{{scraplist.BranchName}}</td>
             <td>{{scraplist.LastUser}}</td>

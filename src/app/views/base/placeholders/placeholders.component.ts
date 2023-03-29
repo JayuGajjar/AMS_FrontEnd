@@ -12,6 +12,7 @@ export class PlaceholdersComponent implements OnInit {
 userdata : any=[];
 pageSize : number=5;
 PageNumber : any=1;
+totalrecord : any=0;
 Users : any="";
 
   constructor(private authservice:AuthService) { }
@@ -27,6 +28,7 @@ Users : any="";
      
       if(responce.IsSuccess)
       {
+        this.totalrecord = responce.Data[0].totalrecord;
         this.userdata = responce.Data;
       }
       else

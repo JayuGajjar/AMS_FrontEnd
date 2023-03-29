@@ -13,6 +13,7 @@ export class AccordionsComponent {
   assetdata : any=[];
   pageSize : number=5;
   PageNumber: any=1;
+  totalrecord : any=0;
   Assets : any="";
 
   constructor(private authservice:AuthService) { }
@@ -29,6 +30,7 @@ export class AccordionsComponent {
      
       if(responce.IsSuccess)
       {
+        this.totalrecord = responce.Data[0].totalrecord;
         this.assetdata = responce.Data;
       }
       else

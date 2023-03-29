@@ -13,6 +13,7 @@ export class CarouselsComponent {
   depdata : any=[];
   pageSize : number=5;
   PageNumber : any=1;
+  totalrecord : any=0;
   Departments : any="";
 
   constructor(private authservice:AuthService) { }
@@ -28,6 +29,7 @@ export class CarouselsComponent {
      
       if(responce.IsSuccess)
       {
+        this.totalrecord = responce.Data[0].totalrecord;
         this.depdata = responce.Data;
       }
       else

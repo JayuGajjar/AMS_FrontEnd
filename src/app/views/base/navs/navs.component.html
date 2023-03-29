@@ -27,12 +27,11 @@
 
         <thead class="table-title">
           <tr>
-            <th>Statusid</th>
-            <th>Status</th>
             <th>User</th>
             <th>Asset</th>
             <th>Request</th>
             <th>Created_at</th>
+            <th>Status</th>
             <!-- <th>Actions</th> -->
           </tr>
         </thead>
@@ -40,8 +39,11 @@
 
 
         <tbody>
-        <tr *ngFor="let statuslist of statusdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
-          <td>{{statuslist.Statusid}}</td>
+        <tr *ngFor="let statuslist of statusdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
+          <td>{{statuslist.UserName}}</td>
+          <td>{{statuslist.Asset}}</td>
+          <td>{{statuslist.Request}}</td>
+          <td>{{statuslist.Created_at}}</td>
           <td>
             <c-badge *ngIf="statuslist.Status==1" color="info">
               {{statuslist.StatusNow}}
@@ -56,16 +58,12 @@
               {{statuslist.StatusNow}}
             </c-badge>
           </td>
-          <td>{{statuslist.UserName}}</td>
-          <td>{{statuslist.Asset}}</td>
-          <td>{{statuslist.Request}}</td>
-          <td>{{statuslist.Created_at}}</td>
-          <td>
-              <!-- <svg cIcon name = "cilPencil"></svg> -->
-              <!-- <a href="#editEmployeeModal" class="info" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Info">&#8505;</i></a>   -->
-              <!-- <svg cIcon name = "cilTrash"></svg> -->
-              <!-- <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Remove">&#xE872;</i></a> -->
-          </td>
+          <!-- <td>
+              <svg cIcon name = "cilPencil"></svg>
+              <a href="#editEmployeeModal" class="info" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Info">&#8505;</i></a>  
+              <svg cIcon name = "cilTrash"></svg>
+              <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Remove">&#xE872;</i></a>
+          </td> -->
         </tr>
        </tbody> 
 

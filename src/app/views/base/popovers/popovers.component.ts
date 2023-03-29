@@ -12,6 +12,7 @@ export class PopoversComponent implements OnInit {
   vendordata : any=[];
   pageSize : number=5;
   PageNumber:any=1;
+  totalrecord : any=0;
   Vendors : any="";
 
     constructor(private authservice:AuthService) { }
@@ -27,6 +28,7 @@ export class PopoversComponent implements OnInit {
        
         if(responce.IsSuccess)
         {
+          this.totalrecord = responce.Data[0].totalrecord;
           this.vendordata = responce.Data;
         }
         else

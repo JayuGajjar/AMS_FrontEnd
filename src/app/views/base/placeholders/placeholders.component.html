@@ -35,7 +35,7 @@
 
 
         <tbody>
-          <tr *ngFor="let userlist of userdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
+          <tr *ngFor="let userlist of userdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
             <td>{{userlist.Username}}</td>
             <td>{{userlist.Email}}</td>
             <td>{{userlist.Role}}</td>

@@ -14,6 +14,7 @@ export class BreadcrumbsComponent implements OnInit {
     branchdata : any=[];
     pageSize : number=5;
     PageNumber : number=1;
+    totalrecord : any=0;
     Branches : any="";
     
       constructor(private authservice:AuthService, private FB: FormBuilder) {  }
@@ -41,6 +42,7 @@ export class BreadcrumbsComponent implements OnInit {
          
           if(responce.IsSuccess)
           {
+            this.totalrecord = responce.Data[0].totalrecord;
             this.branchdata = responce.Data;
           }
           else
