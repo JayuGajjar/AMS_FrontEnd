@@ -34,14 +34,7 @@ export class TotalspareComponent {
      
       if(responce.IsSuccess)
       {
-        if(responce.Data.table.length > 0)
-        {
-          this.userinfo = responce.Data.table[0].userinfo;
-          this.branch = responce.Data.table[0].branch;
-          this.type = responce.Data.table[0].type;
-          this.spareAssets = responce.Data.table[0].spareAssets;
-          this.status = responce.Data.table[0].status;
-        }
+        this.sparedata = responce.Data;
       }
       else
       {

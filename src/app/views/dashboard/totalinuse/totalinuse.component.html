@@ -22,9 +22,11 @@
   
           <thead class="table-title">
             <tr>
-              <th>TypeName</th>
               <th>UserInfo</th>
+              <th>Branch</th>
+              <th>Type</th>
               <th>AssetInUse</th>
+              <th>Status</th>
             </tr>
           </thead>
   
@@ -32,10 +34,16 @@
   
         <tbody>
           <!-- <tr *ngFor="let inuselist of inusedata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index"> -->
-            <tr >
-                <td>{{name}}</td>
-                <td>{{userinfo}}</td>
-                <td>{{assetsinUse}}</td>
+          <tr *ngFor="let inuselist of inusedata">
+                <td>{{inuselist.userinfo}}</td>
+                <td>{{inuselist.branch}}</td>
+                <td>{{inuselist.type}}</td>
+                <td>{{inuselist.assetsinUse}}</td>
+                <td>
+                  <c-badge color="success">
+                    {{inuselist.status}}
+                  </c-badge>
+                </td>
             </tr>
         </tbody> 
   

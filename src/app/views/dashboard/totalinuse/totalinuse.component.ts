@@ -31,12 +31,7 @@ export class TotalinuseComponent {
      
       if(responce.IsSuccess)
       {
-        if(responce.Data.table.length > 0)
-        {
-          this.name = responce.Data.table[0].name;
-          this.userinfo = responce.Data.table[0].userinfo;
-          this.assetsinUse = responce.Data.table[0].assetsinUse;
-        }
+        this.inusedata = responce.Data;
       }
       else
       {

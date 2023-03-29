@@ -22,12 +22,10 @@
   
           <thead class="table-title">
             <tr>
-              <th>UserInfo</th>
               <th>Branch</th>
-              <th>Laptop</th>
-              <th>CPU</th>
-              <th>Headphones</th>
-              <th>Spare</th>
+              <th>Type</th>
+              <th>WorkingAsset</th>
+              <th>Status</th>
             </tr>
           </thead>
   
@@ -35,13 +33,18 @@
   
           <tbody>
           <!-- <tr *ngFor="let assetlist of assetdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index"> -->
-          <tr>
-            <td>{{userinfo}}</td>
-            <td>{{branch}}</td>
-            <td>{{laptop}}</td>
-            <td>{{cpu}}</td>
-            <td>{{headphones}}</td>
-            <td>{{spareAssets}}</td>
+          <tr *ngFor="let workinglist of workingdata">
+            <td>{{workinglist.branch}}</td>
+            <td>{{workinglist.type}}</td>
+            <td>{{workinglist.workingassets}}</td>
+            <td>
+              <c-badge *ngIf="workinglist.status=='InUse'" color="success">
+                {{workinglist.status}}
+              </c-badge>
+              <c-badge *ngIf="workinglist.status=='Spare'" color="secondary">
+                {{workinglist.status}}
+              </c-badge>
+            </td>
           </tr>
           </tbody> 
   

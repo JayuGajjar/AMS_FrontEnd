@@ -10,12 +10,7 @@ export class TotalworkingComponent {
 
 
 
-  userinfo : any;
-  branch : any;
-  laptop : any;
-  cpu : any;
-  headphones : any;
-  spareAssets : any;
+  workingdata : any=[];
   // pageSize : number=5;
   // PageNumber: any=1;
   // Assets : any="";
@@ -34,15 +29,7 @@ export class TotalworkingComponent {
      
       if(responce.IsSuccess)
       {
-        if(responce.Data.table.length > 0)
-        {
-          this.userinfo = responce.Data.table[0].userinfo;
-          this.branch = responce.Data.table[0].branch;
-          this.laptop = responce.Data.table[0].laptop;
-          this.cpu = responce.Data.table[0].cpu;
-          this.headphones = responce.Data.table[0].headphones;
-          this.spareAssets = responce.Data.table[0].spareAssets;
-        }
+        this.workingdata = responce.Data;
       }
       else
       {
