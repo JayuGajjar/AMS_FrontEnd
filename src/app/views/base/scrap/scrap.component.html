@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+          <div class="row">
+            
+            <div class="col input-group">
+              <div>
+                <input type="search" class="form-control form-control-sm" [(ngModel)]="Scraps" (keyup.enter)="searchScrap()" placeholder="Search">
+              </div>
+              <span class="input-group-append">
+                <button type="button" class="btn btn-outline-info btn-sm" (click)="searchScrap()" >
+                  <i class="fas fa-search"></i>
+                </button>
+              </span>
+            </div>
+  
+            <div class="col" align="right">
+              <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-scrap"> <span>Add</span></button>
+            </div>
+          </div>
+          <br>
+  
+  
+  
+        <table class="table table-hover">
+  
+  
+          <thead class="table-title">
+            <tr>
+              <th>Asset</th>
+              <th>Branch</th>
+              <th>LastUser</th>
+              <th>Vendor</th>
+              <th>Created_at</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+  
+  
+  
+          <tbody>
+            <tr *ngFor="let scraplist of scrapdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
+              <td>{{scraplist.AssetName}}</td>
+              <td>{{scraplist.BranchName}}</td>
+              <td>{{scraplist.LastUser}}</td>
+              <td>{{scraplist.VendorName}}</td>
+              <td>{{scraplist.Created_at}}</td>
+              <td>
+                <a href="javascript:void(0)" routerLink="/base/edit-scrap/{{scraplist.Scrapid}}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="javascript:void(0)" (click)="deleteScrap(scraplist)" class="delete"><i class="fa-regular fa-trash-can"></i></a>
+              </td>
+            </tr>
+          </tbody>
+  
+        </table>
+  
+        <div class="col">
+          <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
+            <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
+              (change)="changePageSize()">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+          </span>
+        </div>
+  
+        <div>
+          <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+        </div>
+  
+  
+  
+  
+      </div>
+    </div>
+  </div>

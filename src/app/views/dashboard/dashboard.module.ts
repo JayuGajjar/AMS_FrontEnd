@@ -21,7 +21,6 @@ import { ChartjsModule } from '@coreui/angular-chartjs';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 
-import { WidgetsModule } from '../widgets/widgets.module';
 import { TotalinuseComponent } from './totalinuse/totalinuse.component';
 import { TotalspareComponent } from './totalspare/totalspare.component';
 import { TotalworkingComponent } from './totalworking/totalworking.component';
@@ -53,7 +52,6 @@ import { TotalworkingComponent } from './totalworking/totalworking.component';
     ChartjsModule,
     AvatarModule,
     TableModule,
-    WidgetsModule,
     BadgeModule
   ],
 })

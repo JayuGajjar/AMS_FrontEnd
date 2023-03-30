@@ -1,33 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AccordionsComponent } from './accordion/accordions.component';
-import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
-import { CardsComponent } from './cards/cards.component';
-import { CarouselsComponent } from './carousels/carousels.component';
-import { CollapsesComponent } from './collapses/collapses.component';
-import { ListGroupsComponent } from './list-groups/list-groups.component';
-import { NavsComponent } from './navs/navs.component';
-import { PaginationsComponent } from './paginations/paginations.component';
-import { PopoversComponent } from './popovers/popovers.component';
-import { ProgressComponent } from './progress/progress.component';
-import { SpinnersComponent } from './spinners/spinners.component';
-import { TablesComponent } from './tables/tables.component';
-import { TooltipsComponent } from './tooltips/tooltips.component';
-import { TabsComponent } from './tabs/tabs.component';
-import { PlaceholdersComponent } from './placeholders/placeholders.component';
+import { AssetComponent } from './asset/asset.component';
 import { AuthGuard } from 'src/app/services/auth.guard';
-import { AddBranchComponent } from './breadcrumbs/add-branch/add-branch.component';
-import { AddCompanyComponent } from './cards/add-company/add-company.component';
-import { AddDepartmentComponent } from './carousels/add-department/add-department.component';
-import { AddRequestComponent } from './collapses/add-request/add-request.component';
-import { AddVendorsComponent } from './popovers/add-vendors/add-vendors.component';
-import { AddScrapComponent } from './progress/add-scrap/add-scrap.component';
-import { AddAssetComponent } from './accordion/add-asset/add-asset.component';
+import { AddBranchComponent } from './branch/add-branch/add-branch.component';
+import { AddCompanyComponent } from './company/add-company/add-company.component';
+import { AddDepartmentComponent } from './department/add-department/add-department.component';
+import { AddRequestComponent } from './request/add-request/add-request.component';
+import { AddVendorsComponent } from './vendors/add-vendors/add-vendors.component';
+import { AddScrapComponent } from './scrap/add-scrap/add-scrap.component';
+import { AddAssetComponent } from './asset/add-asset/add-asset.component';
 import { TotalinuseComponent } from '../dashboard/totalinuse/totalinuse.component';
 import { TotalspareComponent } from '../dashboard/totalspare/totalspare.component';
 import { TotalworkingComponent } from '../dashboard/totalworking/totalworking.component';
-
+import { BranchComponent } from './branch/branch.component';
+import { CompanyComponent } from './company/company.component';
+import { DepartmentComponent } from './department/department.component';
+import { RequestComponent } from './request/request.component';
+import { StatusComponent } from './status/status.component';
+import { UserdetailsComponent } from './userdetails/userdetails.component';
+import { VendorsComponent } from './vendors/vendors.component';
+import { ScrapComponent } from './scrap/scrap.component';
+const titleP = "Asset Managment";
 const routes: Routes = [
   {
     path: '',
@@ -38,7 +32,7 @@ const routes: Routes = [
 
       //total inuse
       {
-        path: 'inuse', canActivate : [AuthGuard],
+        path: 'inuse', title: titleP + ' - InUse', canActivate : [AuthGuard],
         component: TotalinuseComponent,
         data: {
           title: 'InUse', 
@@ -46,7 +40,7 @@ const routes: Routes = [
       },
       //total Spare
       {
-        path: 'spare', canActivate : [AuthGuard],
+        path: 'spare', title: titleP + ' - Spare', canActivate : [AuthGuard],
         component: TotalspareComponent,
         data: {
           title: 'Spare', 
@@ -54,7 +48,7 @@ const routes: Routes = [
       },
       //total Working
       {
-        path: 'working', canActivate : [AuthGuard],
+        path: 'working', title: titleP + ' - Working', canActivate : [AuthGuard],
         component: TotalworkingComponent,
         data: {
           title: 'Working', 
@@ -63,21 +57,21 @@ const routes: Routes = [
 
       //for asset
       {
-        path: 'asset', canActivate : [AuthGuard],             //'accordion',
-        component: AccordionsComponent,
+        path: 'asset', title: titleP + ' - Asset', canActivate : [AuthGuard],
+        component: AssetComponent,
         data: {
-          title: 'Asset',             //'Accordion',
+          title: 'Asset',
         },
       },
       {
-        path: 'add-asset', canActivate : [AuthGuard],
+        path: 'add-asset', title: titleP + ' - Add Asset', canActivate : [AuthGuard],
         component: AddAssetComponent,
         data: {
           title: 'Add Asset', 
         },
       },
       {
-        path: 'edit-asset/:id', canActivate : [AuthGuard], 
+        path: 'edit-asset/:id', title: titleP + ' - Edit Asset', canActivate : [AuthGuard], 
         component: AddAssetComponent,
         data: {
           title: 'Edit Asset',
@@ -87,21 +81,21 @@ const routes: Routes = [
 
       //for branch
       {
-        path: 'branch', canActivate : [AuthGuard],             //'breadcrumbs',
-        component: BreadcrumbsComponent,
+        path: 'branch', title: titleP + ' - Branch', canActivate : [AuthGuard],
+        component: BranchComponent,
         data: {
-          title: 'Branch',           //'Breadcrumbs',
+          title: 'Branch',
         },
       },
       {
-        path: 'add-branch', canActivate : [AuthGuard],
+        path: 'add-branch', title: titleP + ' - Add Branch', canActivate : [AuthGuard],
         component: AddBranchComponent,
         data: {
           title: 'Add Branch', 
         },
       },
       {
-        path: 'edit-branch/:id', canActivate : [AuthGuard], 
+        path: 'edit-branch/:id', title: titleP + ' - Edit Branch', canActivate : [AuthGuard], 
         component: AddBranchComponent,
         data: {
           title: 'Edit Branch',
@@ -111,21 +105,21 @@ const routes: Routes = [
 
       //for company
       {
-        path: 'company', canActivate : [AuthGuard],             //'cards',
-        component: CardsComponent,
+        path: 'company', title: titleP + ' - Company', canActivate : [AuthGuard],
+        component: CompanyComponent,
         data: {
-          title: 'Company',             //'Cards',
+          title: 'Company',
         },
       },
       {
-        path: 'add-company', canActivate : [AuthGuard],
+        path: 'add-company', title: titleP + ' - Add Company', canActivate : [AuthGuard],
         component: AddCompanyComponent,
         data: {
           title: 'Add Company',
         },
       },
       {
-        path: 'edit-company/:id', canActivate : [AuthGuard],
+        path: 'edit-company/:id', title: titleP + ' - Edit Company', canActivate : [AuthGuard],
         component: AddCompanyComponent,
         data: {
           title: 'Edit Company',
@@ -135,21 +129,21 @@ const routes: Routes = [
 
       //for department
       {
-        path: 'department', canActivate : [AuthGuard],             //'carousel',
-        component: CarouselsComponent,
+        path: 'department', title: titleP + ' - Department', canActivate : [AuthGuard],
+        component: DepartmentComponent,
         data: {
-          title: 'Department',             //'Carousel',
+          title: 'Department',
         },
       },
       {
-        path: 'add-department', canActivate : [AuthGuard],
+        path: 'add-department', title: titleP + ' - Add Department', canActivate : [AuthGuard],
         component: AddDepartmentComponent,
         data: {
           title: 'Add Department',
         },
       },
       {
-        path: 'edit-department/:id', canActivate : [AuthGuard],
+        path: 'edit-department/:id', title: titleP + ' - Edit Department', canActivate : [AuthGuard],
         component: AddDepartmentComponent,
         data: {
           title: 'Edit Department',
@@ -158,22 +152,23 @@ const routes: Routes = [
 
 
 
+      //for request
       {
-        path: 'request', canActivate : [AuthGuard],             //'collapse',
-        component: CollapsesComponent,
+        path: 'request', title: titleP + ' - Request', canActivate : [AuthGuard],
+        component: RequestComponent,
         data: {
-          title: 'Request',             //'Collapse',
+          title: 'Request',
         },
       },
       {
-        path: 'add-request', canActivate : [AuthGuard],
+        path: 'add-request', title: titleP + ' - Add Request', canActivate : [AuthGuard],
         component: AddRequestComponent,
         data: {
           title: 'Add Request',
         },
       },
       {
-        path: 'edit-request/:id', canActivate : [AuthGuard],
+        path: 'edit-request/:id', title: titleP + ' - Edit Request', canActivate : [AuthGuard],
         component: AddRequestComponent,
         data: {
           title: 'Edit Request',
@@ -181,80 +176,71 @@ const routes: Routes = [
       },
 
 
-      // {
-      //   path: 'role',              //'list-group',
-      //   component: ListGroupsComponent,
-      //   data: {
-      //     title: 'Role',             //'List Group',
-      //   },
-      // },
+
+      //for status
       {
-        path: 'status', canActivate : [AuthGuard],             //'navs',
-        component: NavsComponent,
+        path: 'status', title: titleP + ' - Status', canActivate : [AuthGuard],
+        component: StatusComponent,
         data: {
-          title: 'Status',             //'Navs & Tabs',
+          title: 'Status',
         },
       },
 
-
-      // {
-      //   path: 'user-details',              //'pagination',
-      //   component: PaginationsComponent,
-      //   data: {
-      //     title: 'User Details',             //'Pagination',
-      //   },
-      // },
 
       
+      //for user details
       {
-        path: 'users', canActivate : [AuthGuard],             //'placeholder',
-        component: PlaceholdersComponent,
+        path: 'users', title: titleP + ' - Users', canActivate : [AuthGuard],
+        component: UserdetailsComponent,
         data: {
-          title: 'Users',             //'Placeholder',
+          title: 'Users',
         },
       },
+
+
 
       //for vendors
       {
-        path: 'vendor', canActivate : [AuthGuard],             //'popovers',
-        component: PopoversComponent,
+        path: 'vendor', title: titleP + ' - Vendors', canActivate : [AuthGuard],
+        component: VendorsComponent,
         data: {
-          title: 'Vendor',             //'Popovers',
+          title: 'Vendor',
         },
       },
       {
-        path: 'add-vendors', canActivate : [AuthGuard],
+        path: 'add-vendors', title: titleP + ' - Add Vendors', canActivate : [AuthGuard],
         component: AddVendorsComponent,
         data: {
           title: 'Add Vendors',
         },
       },
       {
-        path: 'edit-vendors/:id', canActivate : [AuthGuard],
+        path: 'edit-vendors/:id', title: titleP + ' - Edit Vendors', canActivate : [AuthGuard],
         component: AddVendorsComponent,
         data: {
           title: 'Edit Vendors',
         },
       },
 
+      
 
       //for scrap
       {
-        path: 'scrap', canActivate : [AuthGuard],             //'progress',
-        component: ProgressComponent,
+        path: 'scrap', title: titleP + ' - Scrap', canActivate : [AuthGuard],
+        component: ScrapComponent,
         data: {
-          title: 'Scrap',             //'Progress',
+          title: 'Scrap',
         },
       },
       {
-        path: 'add-scrap', canActivate : [AuthGuard],
+        path: 'add-scrap', title: titleP + ' - Add Scrap', canActivate : [AuthGuard],
         component: AddScrapComponent,
         data: {
           title: 'Add Scrap',
         },
       },
       {
-        path: 'edit-scrap/:id', canActivate : [AuthGuard],
+        path: 'edit-scrap/:id', title: titleP + ' - Edit Scrap', canActivate : [AuthGuard],
         component: AddScrapComponent,
         data: {
           title: 'Edit Scrap',
@@ -262,35 +248,6 @@ const routes: Routes = [
       },
 
 
-
-      // {
-      //   path: 'spinners',
-      //   component: SpinnersComponent,
-      //   data: {
-      //     title: 'Spinners',
-      //   },
-      // },
-      // {
-      //   path: 'tables',
-      //   component: TablesComponent,
-      //   data: {
-      //     title: 'Tables',
-      //   },
-      // },
-      // {
-      //   path: 'tabs',
-      //   component: TabsComponent,
-      //   data: {
-      //     title: 'Tabs',
-      //   },
-      // },
-      // {
-      //   path: 'tooltips',
-      //   component: TooltipsComponent,
-      //   data: {
-      //     title: 'Tooltips',
-      //   },
-      // },
     ],
   },
 ];

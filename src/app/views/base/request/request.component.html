@@ -1,0 +1,107 @@
+<div class="container">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+          <div class="row">
+            <!-- <div class="col mr-2">
+              <p class="p-2 badge badge-info ">Total Record : <b style="font-size: 15px;">{{totalrecord}}</b></p>
+            </div> -->
+            <div class="col input-group">
+              <div>
+                <input type="search" class="form-control form-control-sm" [(ngModel)]="Requests" (keyup.enter)="searchRequest()" placeholder="Search">
+              </div>
+              <span class="input-group-append">
+                <button type="button" class="btn btn-outline-info btn-sm" (click)="searchRequest()" >
+                  <i class="fas fa-search"></i>
+                </button>
+              </span>
+            </div>
+  
+  
+            <div class="col" align="right">
+              <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-request"> <span>Add</span></button>
+            </div>
+          </div>
+          <br>
+  
+  
+  
+        <table class="table table-hover">
+  
+  
+          <thead class="table-title">
+            <tr>
+              <th>User</th>
+              <th>Asset</th>
+              <th>Created_at</th>
+              <th>Justify</th>
+              <th>IsWorking</th>
+              <th>InUse</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+  
+  
+  
+          <tbody>
+          <tr *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
+            <td>{{requestlist.UserName}}</td>
+            <td>{{requestlist.Asset}}</td>
+            <td>{{requestlist.Created_at}}</td>
+            <td>{{requestlist.Justify}}</td>
+            <td>
+              <c-form-check [switch]="true">
+                <input [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" checked cFormCheckInput type="checkbox">
+              </c-form-check>
+            </td>
+            <td>
+              <c-form-check [switch]="true">
+                <input *ngIf="requestlist.isworking==false" disabled [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput type="checkbox">
+                <input *ngIf="requestlist.isworking==true" [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput type="checkbox">
+              </c-form-check>
+            </td>
+            <td>
+                <c-badge *ngIf="requestlist.Status==1" color="info">
+                  {{requestlist.CurrentStatus}}
+                </c-badge>
+                <c-badge *ngIf="requestlist.Status==2" color="success">
+                  {{requestlist.CurrentStatus}}
+                </c-badge>
+                <c-badge *ngIf="requestlist.Status==3" color="secondary">
+                  {{requestlist.CurrentStatus}}
+                </c-badge>
+                <c-badge *ngIf="requestlist.Status==4" color="danger">
+                  {{requestlist.CurrentStatus}}
+                </c-badge>
+            </td>
+            <td>
+                <a href="javascript:void(0)" routerLink="/base/edit-request/{{requestlist.Requestid}}" class="edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+              <a href="javascript:void(0)" (click)="deleteRequest(requestlist)" class="delete" title="Delete"><i class="fa-regular fa-trash-can"></i></a>
+            </td>
+          </tr>
+          </tbody>
+  
+        </table>
+  
+        <div class="col">
+          <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
+              <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
+                  (change)="changePageSize()">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+              </select>
+          </span>
+      </div>
+  
+        <div>
+        <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+    </div>      
+  
+  
+  
+  
+      </div>
+    </div>
+  </div>
