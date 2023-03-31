@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from 'src/app/services/auth.guard';
 const titleP = "Asset Managment";
 
-import { DashboardComponent } from './dashboard.component';
+import { NewRequestComponent } from './new-request.component';
 
 const routes: Routes = [
   {
-    path: '', title: titleP + ' - Dashboard',
-    component: DashboardComponent,
+    path: 'new-request', title: titleP + ' - New Request',
+    component: NewRequestComponent,
     data: {
-      title: 'Dashboard'
+      title: 'New Request'
     },
   }
 ];
@@ -19,5 +18,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashboardRoutingModule {
+export class NewRequestRoutingModule {
 }

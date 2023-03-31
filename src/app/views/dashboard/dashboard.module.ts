@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BadgeModule } from '@coreui/angular';
 
 import {
@@ -20,6 +20,7 @@ import { ChartjsModule } from '@coreui/angular-chartjs';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { TotalinuseComponent } from './totalinuse/totalinuse.component';
 import { TotalspareComponent } from './totalspare/totalspare.component';
@@ -32,7 +33,7 @@ import { TotalworkingComponent } from './totalworking/totalworking.component';
     DashboardComponent,
     TotalinuseComponent,
     TotalspareComponent,
-    TotalworkingComponent
+    TotalworkingComponent,
   ],
 
   imports: [
@@ -45,6 +46,7 @@ import { TotalworkingComponent } from './totalworking/totalworking.component';
     GridModule,
     ProgressModule,
     ReactiveFormsModule,
+    FormsModule,
     ButtonModule,
     FormModule,
     ButtonModule,
@@ -52,7 +54,8 @@ import { TotalworkingComponent } from './totalworking/totalworking.component';
     ChartjsModule,
     AvatarModule,
     TableModule,
-    BadgeModule
+    BadgeModule,
+    NgxPaginationModule
   ],
 })
 export class DashboardModule {

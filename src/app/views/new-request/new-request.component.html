@@ -1,0 +1,63 @@
+<section>
+  <div class="d-flex justify-content-center">
+      <div class="w-75">
+          <h2 *ngIf="title=='Add'">New Request</h2>
+          <h2 *ngIf="title=='Update'">Update Request</h2>
+          <div class="p-4">
+
+              <form [formGroup]="requestForm" (ngSubmit)="addRequest(userid,asset,justify)">
+
+                  <div class="form-outline mb-4">
+                      <input type="number" class="form-control" placeholder="Enter UserID" formControlName="userid"
+                          [ngClass]="{ 'has-error': submitted && f['userid'].errors }">
+                      <div *ngIf="submitted && f['userid'].errors" class="has-error">
+                          <div *ngIf="f['userid'].errors['required']">UserID is required!</div>
+                          <div *ngIf="f['userid'].errors['pattern']">Please enter valid UserID!!</div>
+                      </div>
+                  </div>
+
+                  <!-- <div class="form-outline mb-4">
+                      <select type="text" class="form-control form-select" formControlName="typeid"
+                          [ngClass]="{ 'has-error': submitted && f['typeid'].errors }">
+                          <option value="">select Asset Type</option>
+                          <option [ngValue]="types.typeid" *ngFor="let types of typelistdata">
+                               {{types.typeName}}
+                          </option>
+                      </select>
+                      <div *ngIf="submitted && f['typeid'].errors" class="has-error">
+                          <div *ngIf="f['typeid'].errors['required']">Asset Type is required!</div>
+                      </div>
+                  </div> -->
+
+                  <div class="form-outline mb-4">
+                      <select type="text" class="form-control form-select" formControlName="asset"
+                          [ngClass]="{ 'has-error': submitted && f['asset'].errors }">
+                          <option value="">select Asset</option>
+                          <option [ngValue]="assets.assetid" *ngFor="let assets of typelistdata">
+                               {{assets.specification}}
+                          </option>
+                      </select>
+                      <div *ngIf="submitted && f['asset'].errors" class="has-error">
+                          <div *ngIf="f['asset'].errors['required']">Asset Type is required!</div>
+                      </div>
+                  </div>
+                  
+
+                  <div class="form-outline mb-4">
+                      <input type="text" class="form-control" placeholder="Enter Justify" formControlName="justify"
+                          [ngClass]="{ 'has-error': submitted && f['justify'].errors }">
+                      <div *ngIf="submitted && f['justify'].errors" class="has-error">
+                          <div *ngIf="f['justify'].errors['required']">Justify is required!</div>
+                          <div *ngIf="f['justify'].errors['pattern']">Please enter valid Justify!!</div>
+                      </div>
+                  </div>
+
+                  
+                  <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add'">Add</button>
+                  <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update'">Update</button>
+              </form>
+
+          </div>
+      </div>
+  </div>
+</section>

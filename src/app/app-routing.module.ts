@@ -7,6 +7,7 @@ import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { AuthGuard } from './services/auth.guard';
+import { NewRequestComponent } from './views/new-request/new-request.component';
 const titleP = "Asset Managment";
 
 const routes: Routes = [
@@ -22,15 +23,25 @@ const routes: Routes = [
       title: ''
     },  
     children: [
+      
+       {
+         path: 'new-request',  title: titleP + ' - New Request', 
+         component: NewRequestComponent,
+          data: {
+            title: 'New Request'
+         }
+       },
+       {
+         path: 'edit-request/:id',  title: titleP + ' - Edit Request', 
+         component: NewRequestComponent,
+          data: {
+            title: 'Edit Request'
+         }
+       },
       {
         path: 'dashboard', title: titleP + ' - Dashboard',  canActivate : [AuthGuard], //new
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule),
-      },
-      {
-        path: 'base',  title: titleP + ' - Base', canActivate : [AuthGuard],
-        loadChildren: () =>
-          import('./views/base/base.module').then((m) => m.BaseModule)
       },
       {
         path: 'icons', canActivate : [AuthGuard],

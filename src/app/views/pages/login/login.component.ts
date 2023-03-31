@@ -62,6 +62,7 @@ export class LoginComponent {
       // sessionStorage.setItem('isSuccess',response.isLoggedIn);
       localStorage.setItem('isSuccess',response.IsSuccess);
       sessionStorage.setItem('isSuccess',response.IsSuccess);
+      sessionStorage.setItem('role',response.Data.item2.Role);
 
       if(response.IsSuccess)
       {

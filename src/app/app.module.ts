@@ -50,6 +50,8 @@ import {
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { AuthGuard } from './services/auth.guard';
+import { NewRequestComponent } from './views/new-request/new-request.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -63,7 +65,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS,],
+  declarations: [AppComponent, ...APP_CONTAINERS, NewRequestComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -94,6 +96,7 @@ const APP_CONTAINERS = [
     FormsModule,
     HttpClientModule,
     ModalModule,
+    NgxPaginationModule
   ],
   providers: [
     {
