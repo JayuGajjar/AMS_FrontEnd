@@ -21,7 +21,7 @@ import { StatusComponent } from './status/status.component';
 import { UserdetailsComponent } from './userdetails/userdetails.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { ScrapComponent } from './scrap/scrap.component';
-const titleP = "Asset Managment";
+const titleP = "Asset Managment Admin";
 const routes: Routes = [
   {
     path: '',
@@ -160,13 +160,13 @@ const routes: Routes = [
           title: 'Request',
         },
       },
-      {
-        path: 'add-request', title: titleP + ' - Add Request', canActivate : [AuthGuard],
-        component: AddRequestComponent,
-        data: {
-          title: 'Add Request',
-        },
-      },
+      // {
+      //   path: 'add-request', title: titleP + ' - Add Request', canActivate : [AuthGuard],
+      //   component: AddRequestComponent,
+      //   data: {
+      //     title: 'Add Request',
+      //   },
+      // },
       {
         path: 'edit-request/:id', title: titleP + ' - Edit Request', canActivate : [AuthGuard],
         component: AddRequestComponent,
@@ -190,7 +190,7 @@ const routes: Routes = [
       
       //for user details
       {
-        path: 'users', title: titleP + ' - Users', canActivate : [AuthGuard],
+        path: 'users', title: titleP + ' - AllUsers', canActivate : [AuthGuard],
         component: UserdetailsComponent,
         data: {
           title: 'Users',

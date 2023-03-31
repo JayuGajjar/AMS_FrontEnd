@@ -7,7 +7,7 @@ import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { AuthGuard } from './services/auth.guard';
-const titleP = "Asset Managment";
+const titleP = "Asset Managment Admin";
 
 const routes: Routes = [
   {

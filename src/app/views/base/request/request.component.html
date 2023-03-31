@@ -16,10 +16,9 @@
               </span>
             </div>
   
-  
-            <div class="col" align="right">
+            <!-- <div class="col" align="right">
               <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-request"> <span>Add</span></button>
-            </div>
+            </div> -->
           </div>
           <br>
   
@@ -51,13 +50,12 @@
             <td>{{requestlist.Justify}}</td>
             <td>
               <c-form-check [switch]="true">
-                <input [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" checked cFormCheckInput type="checkbox">
+                <input *ngIf="requestlist.isworking" disabled [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" cFormCheckInput type="checkbox">
               </c-form-check>
             </td>
             <td>
               <c-form-check [switch]="true">
-                <input *ngIf="requestlist.isworking==false" disabled [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput type="checkbox">
-                <input *ngIf="requestlist.isworking==true" [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput type="checkbox">
+                <input *ngIf="requestlist.isworking" disabled [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput type="checkbox">
               </c-form-check>
             </td>
             <td>
