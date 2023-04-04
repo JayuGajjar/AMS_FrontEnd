@@ -30,7 +30,7 @@ export const navItems: INavData[] = [
     title: true
   },
   {
-    name: 'Base',
+    name: 'Master',
     url: '/base',
     iconComponent: { name: 'cil-puzzle' },
     children: [

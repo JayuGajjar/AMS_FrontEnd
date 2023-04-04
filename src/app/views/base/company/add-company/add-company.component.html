@@ -1,12 +1,10 @@
 <section>
     <div class="d-flex justify-content-center">
         <div class="w-75">
-            <h2 *ngIf="title=='Add'">Add Company Name</h2>
-            <h2 *ngIf="title=='Update'">Update Company Name</h2>
-            <div class="p-4">
+            <div class="p-4 border">
 
                 <form [formGroup]="companyForm" (ngSubmit)="addCompany()">
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
                         <label>Cpmany Name</label>
                         <input type="text" class="form-control" placeholder="Enter Company" formControlName="name"
                             [ngClass]="{ 'has-error': submitted && f['name'].errors }">

@@ -63,20 +63,22 @@
   
         </table>
   
-        <div class="col">
-          <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-              <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
-                  (change)="changePageSize()">
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-              </select>
-          </span>
-      </div>
-  
-        <div>
-          <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+        <div class="row">
+          <div class="col-2">
+            <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
+                <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
+                    (change)="changePageSize()">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </span>
+          </div>
+    
+          <div class="col d-flex justify-content-end">
+            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+          </div>      
         </div>
   
   

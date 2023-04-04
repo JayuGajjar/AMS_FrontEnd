@@ -1,12 +1,11 @@
 <section>
     <div class="d-flex justify-content-center">
         <div class="w-75">
-            <h2 *ngIf="title=='Add'">Add Scrap</h2>
-            <h2 *ngIf="title=='Update'">Update Scrap</h2>
-            <div class="p-4">
+            <div class="p-4 border">
 
                 <form [formGroup]="scrapForm" (ngSubmit)="addScrap()">
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
+                        <label>Asset</label>
                         <select type="text" class="form-control form-select" formControlName="asset"
                             [ngClass]="{ 'has-error': submitted && f['asset'].errors }">
                             <option value="">select Asset</option>
@@ -19,7 +18,8 @@
                         </div>
                     </div>
 
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
+                        <label>Branch</label>
                         <select type="text" class="form-control form-select" formControlName="branch"
                             [ngClass]="{ 'has-error': submitted && f['branch'].errors }">
                             <option value="">select Branch</option>
@@ -32,7 +32,8 @@
                         </div>
                     </div>
                     
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
+                        <label>User Name</label>
                         <input type="datetime" class="form-control" placeholder="Enter EmpID who use the last" formControlName="last_user"
                             [ngClass]="{ 'has-error': submitted && f['last_user'].errors }">
                         <div *ngIf="submitted && f['last_user'].errors" class="has-error">
@@ -41,7 +42,8 @@
                         </div>
                     </div>
 
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
+                        <label>Vendor</label>
                         <select type="datetime" class="form-control form-select" formControlName="vendor"
                             [ngClass]="{ 'has-error': submitted && f['vendor'].errors }">
                             <option value="">select Vendor</option>

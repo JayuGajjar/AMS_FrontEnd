@@ -1,13 +1,11 @@
 <section>
     <div class="d-flex justify-content-center">
         <div class="w-75">
-                    <h2 *ngIf="title=='Add'">Add Asset</h2>
-                    <h2 *ngIf="title=='Update'">Update Asset</h2>
-            <div class="p-4">
+            <div class="p-4 border">
                 <form [formGroup]="assetForm" (ngSubmit)="addAsset()">
 
 
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
                         <label>Asset SerialNo</label>
                         <input type="text" class="form-control" placeholder="Enter SerialNo" formControlName="serialno"
                             [ngClass]="{ 'has-error': submitted && f['serialno'].errors }">
@@ -18,7 +16,7 @@
 
 
 
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
                         <label>Branch Name</label>
                         <select type="text" class="form-control form-select" formControlName="branch"
                             [ngClass]="{ 'has-error': submitted && f['branch'].errors }">
@@ -34,7 +32,7 @@
 
 
 
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
                         <label>Brand Name</label>
                         <input type="text" class="form-control" placeholder="Enter Brand" formControlName="brand"
                             [ngClass]="{ 'has-error': submitted && f['brand'].errors }">
@@ -46,7 +44,7 @@
 
 
 
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
                         <label>Asset Type</label>
                         <select type="text" class="form-control form-select" formControlName="type"
                             [ngClass]="{ 'has-error': submitted && f['type'].errors }">
@@ -62,7 +60,7 @@
 
 
 
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
                         <label>Model Name</label>
                         <input type="text" class="form-control" placeholder="Enter Model" formControlName="model"
                             [ngClass]="{ 'has-error': submitted && f['model'].errors }">
@@ -74,7 +72,7 @@
 
 
 
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
                         <label>NOS</label>
                         <input type="text" class="form-control" placeholder="Enter NOS" formControlName="nos"
                             [ngClass]="{ 'has-error': submitted && f['nos'].errors }">
@@ -86,7 +84,7 @@
 
 
 
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
                         <label>Specification</label>
                         <input type="text" class="form-control" placeholder="Enter Specification" formControlName="specification"
                             [ngClass]="{ 'has-error': submitted && f['specification'].errors }">
@@ -98,7 +96,7 @@
 
 
 
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
                         <label>Vendor Name</label>
                         <select type="text" class="form-control form-select" formControlName="vendorid"
                             [ngClass]="{ 'has-error': submitted && f['vendorid'].errors }">

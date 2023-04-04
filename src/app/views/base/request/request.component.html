@@ -50,12 +50,13 @@
             <td>{{requestlist.Justify}}</td>
             <td>
               <c-form-check [switch]="true">
-                <input *ngIf="requestlist.isworking" disabled [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" cFormCheckInput type="checkbox">
+                <input *ngIf="requestlist.isworking==false" [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" cFormCheckInput type="checkbox">
+                <input *ngIf="requestlist.isworking==true" disabled [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" cFormCheckInput type="checkbox">
               </c-form-check>
             </td>
             <td>
               <c-form-check [switch]="true">
-                <input *ngIf="requestlist.isworking" disabled [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput type="checkbox">
+                <input disabled [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput type="checkbox">
               </c-form-check>
             </td>
             <td>
@@ -80,8 +81,10 @@
           </tbody>
   
         </table>
-  
-        <div class="col">
+
+
+      <div class="row">
+        <div class="col-2">
           <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
               <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
                   (change)="changePageSize()">
@@ -91,12 +94,12 @@
                   <option value="20">20</option>
               </select>
           </span>
+        </div>
+  
+        <div class="col d-flex justify-content-end">
+          <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+        </div>      
       </div>
-  
-        <div>
-        <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-    </div>      
-  
   
   
   

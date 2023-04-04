@@ -1,12 +1,11 @@
 <section>
     <div class="d-flex justify-content-center">
         <div class="w-75">
-            <h2 *ngIf="title=='Add'">Add Vendor</h2>
-            <h2 *ngIf="title=='Update'">Update Vendor</h2>
-            <div class="p-4">
+            <div class="p-4 border">
                 
                 <form [formGroup]="vendorForm" (ngSubmit)="addVendors()">
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
+                        <label>Vendor Name</label>
                         <input type="text" class="form-control" placeholder="Enter Name" formControlName="name"
                             [ngClass]="{ 'has-error': submitted && f['name'].errors }">
                         <div *ngIf="submitted && f['name'].errors" class="has-error">
@@ -15,7 +14,8 @@
                         </div>
                     </div>
 
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
+                        <label>Invoice No.</label>
                         <input type="text" class="form-control" placeholder="Invoice No" formControlName="invoiceno"
                             [ngClass]="{ 'has-error': submitted && f['invoiceno'].errors }">
                         <div *ngIf="submitted && f['invoiceno'].errors" class="has-error">
@@ -24,7 +24,8 @@
                         </div>
                     </div>
                     
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
+                        <label>Invoice Date</label>
                         <input type="datetime-local" class="form-control" placeholder="Invoice Date" formControlName="invoicedate"
                             [ngClass]="{ 'has-error': submitted && f['invoicedate'].errors }">
                         <div *ngIf="submitted && f['invoicedate'].errors" class="has-error">
@@ -33,7 +34,8 @@
                         </div>
                     </div>
 
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4 col-sm-8">
+                        <label>Warranty Date</label>
                         <input type="datetime-local" class="form-control" placeholder="Warranty Date" formControlName="warranty_till"
                             [ngClass]="{ 'has-error': submitted && f['warranty_till'].errors }">
                         <div *ngIf="submitted && f['warranty_till'].errors" class="has-error">
