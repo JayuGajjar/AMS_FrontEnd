@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   PageNumber : any=1;
   totalrecord : number=0;
   Requests : any="";
+  userId : any=0;
   id : any;
   type: any;
   isworking : any;
@@ -33,12 +34,13 @@ export class DashboardComponent implements OnInit {
       //   this.statusChange(this.id,this.isworking,this.inuse);
       // }
       //debugger
-      this.requestDetails(this.PageNumber,this.pageSize,this.Requests);
+      this.userId = sessionStorage.getItem('userid');
+      this.requestDetails(this.PageNumber,this.pageSize,this.Requests,this.userId);
     }
   
-    requestDetails(PageNumber:number,pageSize:number,Requests:string) {
+    requestDetails(PageNumber:number,pageSize:number,Requests:string,userId:number) {
       // debugger
-      this.authservice.requestDetails(PageNumber,pageSize,Requests).subscribe(responce => {
+      this.authservice.requestDetails(PageNumber,pageSize,Requests,userId).subscribe(responce => {
        
         if(responce.IsSuccess)
         {
@@ -55,20 +57,20 @@ export class DashboardComponent implements OnInit {
   
     pageChangeEvent(event: number) {
       this.PageNumber = event;
-      this.requestDetails(this.PageNumber, this.pageSize, this.Requests);
+      this.requestDetails(this.PageNumber, this.pageSize, this.Requests, this.userId);
     }
   
   
     changePageSize(){
       // debugger
       this.PageNumber=1;
-     this.requestDetails(this.PageNumber, this.pageSize, this.Requests);
+     this.requestDetails(this.PageNumber, this.pageSize, this.Requests, this.userId);
     }
 
 
     //search method
     searchRequest(){
-      this.requestDetails(this.PageNumber, this.pageSize, this.Requests);
+      this.requestDetails(this.PageNumber, this.pageSize, this.Requests, this.userId);
     }
     
 
@@ -85,7 +87,7 @@ export class DashboardComponent implements OnInit {
               responce.ReturnMessage,
               'success'
               )
-              this.requestDetails(this.PageNumber,this.pageSize, this.Requests);
+              this.requestDetails(this.PageNumber,this.pageSize, this.Requests, this.userId);
             }
             else
             {
@@ -121,7 +123,7 @@ export class DashboardComponent implements OnInit {
                 responce.ReturnMessage,
                 'success'
               )
-              this.requestDetails(this.PageNumber,this.pageSize, this.Requests);
+              this.requestDetails(this.PageNumber,this.pageSize, this.Requests, this.userId);
             }
             else 
             {

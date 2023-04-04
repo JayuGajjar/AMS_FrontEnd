@@ -30,6 +30,10 @@ export class NewRequestComponent implements OnInit {
 
 constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
 { 
+  // this.userid=sessionStorage.getItem('userid');
+  this.useridd=sessionStorage.getItem('userid');
+  this.userid = Number(this.useridd);
+  
   this.data = {
     userid : 0,
     asset : 0,
@@ -37,14 +41,16 @@ constructor(private authservice: AuthService, private FB: FormBuilder,private ro
   }
   
   this.requestForm = this.FB.group({
-    userid : ['',[Validators.required, Validators.pattern("[0-9]+")]],
+    userid : [''],
     asset : ['',[Validators.required]],
-    justify : ['',[Validators.required, Validators.pattern("[a-zA-Z][a-zA-Z ]+")]],
+    justify : ['',[Validators.required, Validators.pattern('^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$')]],
 
   })
  
 }
 
+username = sessionStorage.getItem('username');
+useridd = sessionStorage.getItem('userid');
 get f() { return this.requestForm.controls; }
 
 addRequest(userid:number, asset:number, justify:string){
@@ -57,11 +63,11 @@ addRequest(userid:number, asset:number, justify:string){
 
   if(this.requestid>0){
     // debugger
-    this.data.userid = this.requestForm.value.userid;
-    this.data.asset = this.requestForm.value.asset;
-    this.data.justify = this.requestForm.value.justify;
+    this.userid;
+    this.asset = this.requestForm.value.asset;
+    this.justify = this.requestForm.value.justify;
 
-    this.authservice.editRequest(this.data,this.requestid).subscribe(response => {
+    this.authservice.editRequest(this.userid,this.asset,this.justify,this.requestid).subscribe(response => {
   
       // debugger
       if(response.IsSuccess)
@@ -86,12 +92,12 @@ addRequest(userid:number, asset:number, justify:string){
   }
   else{
     // debugger
-    this.userid = this.requestForm.value.userid;
+    this.userid;
     this.asset = this.requestForm.value.asset;
     this.justify = this.requestForm.value.justify;
 
     this.authservice.addrequest(this.userid,this.asset,this.justify).subscribe(response => {
-      
+      // debugger
       if(response.IsSuccess)
       {
         Swal.fire(
@@ -149,8 +155,9 @@ ngOnInit(): void {
         this.requestdata = [];
 
         if(responce.Data.length > 0){
+          // debugger
           this.requestid=responce.Data[0].Requestid;
-          this.requestForm.controls["userid"].setValue(responce.Data[0].Userid);
+          this.requestForm.controls["userid"].setValue(responce.Data[0].Username);
           this.requestForm.controls["asset"].setValue(responce.Data[0].Assetid);
           this.requestForm.controls["justify"].setValue(responce.Data[0].Justify);
          }

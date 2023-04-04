@@ -51,7 +51,8 @@
           <td>{{requestlist.Justify}}</td>
           <td>
             <c-form-check [switch]="true">
-              <input [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" checked cFormCheckInput type="checkbox">
+              <input *ngIf="requestlist.isworking==true" [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" checked cFormCheckInput type="checkbox">
+              <input *ngIf="requestlist.isworking==false" disabled [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" checked cFormCheckInput type="checkbox">
             </c-form-check>
           </td>
           <td>
@@ -83,21 +84,23 @@
 
       </table>
 
-      <div class="col">
-        <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-            <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
-                (change)="changePageSize()">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-            </select>
-        </span>
-    </div>
-
-      <div>
-      <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-  </div>      
+      <div class="row">
+        <div class="col-2">
+          <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
+              <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
+                  (change)="changePageSize()">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+              </select>
+          </span>
+        </div>
+  
+        <div class="col d-flex justify-content-end">
+          <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+        </div>      
+      </div>
 
 
 

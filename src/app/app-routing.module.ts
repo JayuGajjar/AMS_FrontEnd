@@ -25,14 +25,14 @@ const routes: Routes = [
     children: [
       
        {
-         path: 'new-request',  title: titleP + ' - New Request', 
+         path: 'new-request',  title: titleP + ' - New Request',  canActivate : [AuthGuard], 
          component: NewRequestComponent,
           data: {
             title: 'New Request'
          }
        },
        {
-         path: 'edit-request/:id',  title: titleP + ' - Edit Request', 
+         path: 'edit-request/:id',  title: titleP + ' - Edit Request',  canActivate : [AuthGuard], 
          component: NewRequestComponent,
           data: {
             title: 'Edit Request'
