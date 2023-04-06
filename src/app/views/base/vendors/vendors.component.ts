@@ -33,7 +33,7 @@ export class VendorsComponent {
         }
         else
         {
-          alert(responce.ReturnMessage);
+          this.vendordata = [];
         }
        
       });

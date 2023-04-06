@@ -1,4 +1,3 @@
-<div class="container">
     <div class="table-responsive">
       <div class="table-wrapper">
           <div class="row">
@@ -35,7 +34,7 @@
   
   
   
-          <tbody>
+          <tbody *ngIf="statusdata.length > 0">
           <tr *ngFor="let statuslist of statusdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
             <td>{{statuslist.UserName}}</td>
             <td>{{statuslist.Asset}}</td>
@@ -62,7 +61,12 @@
                 <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Remove">&#xE872;</i></a>
             </td> -->
           </tr>
-         </tbody> 
+         </tbody>
+         <tbody *ngIf="statusdata.length <= 0">
+          <tr>
+            <td colspan="100" class="text-center text-danger">No Match found</td>
+          </tr>
+        </tbody>
   
         </table>
   
@@ -89,4 +93,3 @@
   
       </div>
     </div>
-  </div>

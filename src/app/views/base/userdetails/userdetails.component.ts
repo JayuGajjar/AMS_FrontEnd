@@ -33,7 +33,7 @@ export class UserdetailsComponent {
         }
         else
         {
-          alert(responce.ReturnMessage);
+          this.userdata = [];
         }
        
       });

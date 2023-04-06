@@ -207,8 +207,8 @@ ngOnInit(): void {
           this.branchlistdata = [];
         }
 
-        if(responce.Data.table5.length > 0){
-          this.vendorlistdata = responce.Data.table5;
+        if(responce.Data.table6.length > 0){
+          this.vendorlistdata = responce.Data.table6;
         }
         else
         {

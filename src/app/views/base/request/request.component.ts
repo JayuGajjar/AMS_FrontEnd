@@ -35,7 +35,7 @@ export class RequestComponent {
   
     requestDetails(PageNumber:number,pageSize:number,Requests:string) {
       // debugger
-      this.authservice.requestDetails(PageNumber,pageSize,Requests).subscribe(responce => {
+      this.authservice.requestDetailsAdmin(PageNumber,pageSize,Requests).subscribe(responce => {
        
         if(responce.IsSuccess)
         {
@@ -44,7 +44,7 @@ export class RequestComponent {
         }
         else
         {
-          alert(responce.ReturnMessage);
+          this.requestdata = [];
         }
        
       });

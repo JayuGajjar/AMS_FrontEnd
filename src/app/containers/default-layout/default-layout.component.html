@@ -13,8 +13,6 @@
       height: 80,
       alt: 'CoreUI Logo'
     }"
-    
-    routerLink="./"
   >
   </c-sidebar-brand>
 
@@ -55,9 +53,9 @@
   <app-default-header class="mb-4 d-print-none header header-sticky" position="sticky" sidebarId="sidebar"></app-default-header>
   <!--app-body-->
   <div class="body flex-grow-1 px-3">
-    <c-container breakpoint="lg" class="h-auto">
+   
       <router-outlet></router-outlet>
-    </c-container>
+    
   </div>
   <!--app footer-->
   <app-default-footer></app-default-footer>

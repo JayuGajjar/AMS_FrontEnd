@@ -32,7 +32,7 @@ export class StatusComponent {
       }
       else
       {
-        alert(responce.ReturnMessage);
+        this.statusdata = [];
       }
      
     });

@@ -1,3 +1,4 @@
+
     <div class="table-responsive">
       <div class="table-wrapper">
           <div class="row">
@@ -21,28 +22,28 @@
   
           <thead class="table-title">
             <tr>
+              <th>UserInfo</th>
               <th>Branch</th>
               <th>Type</th>
-              <th>SpareAsset</th>
               <th>Status</th>
             </tr>
           </thead>
   
   
   
-          <tbody>
-          <!-- <tr *ngFor="let assetlist of assetdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index"> -->
-          <tr *ngFor="let sparelist of sparedata">
-            <td>{{sparelist.branch}}</td>
-            <td>{{sparelist.type}}</td>
-            <td>{{sparelist.spareassets}}</td>
-            <td>
-              <c-badge color="secondary">
-                {{sparelist.status}}
-              </c-badge>
-            </td>
-          </tr>
-          </tbody> 
+        <tbody>
+          <!-- <tr *ngFor="let inuselist of inusedata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index"> -->
+          <tr *ngFor="let newrequestlist of newrequestsdata">
+                <td>{{newrequestlist.userinfo}}</td>
+                <td>{{newrequestlist.branch}}</td>
+                <td>{{newrequestlist.type}}</td>
+                <td>
+                  <c-badge color="info">
+                    {{newrequestlist.status}}
+                  </c-badge>
+                </td>
+            </tr>
+        </tbody> 
   
         </table>
   

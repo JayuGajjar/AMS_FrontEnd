@@ -1,4 +1,3 @@
-<div class="container">
     <div class="table-responsive">
       <div class="table-wrapper">
           <div class="row">
@@ -43,7 +42,7 @@
   
   
   
-          <tbody>
+          <tbody *ngIf="assetdata.length > 0">
           <tr *ngFor="let assetlist of assetdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
             <td>{{assetlist.SerialNo}}</td>
             <td>{{assetlist.Branches}}</td>
@@ -52,14 +51,17 @@
             <td>{{assetlist.Nos}}</td>
             <td>{{assetlist.Specification}}</td>
             <td>{{assetlist.Vendors}}</td>
-            <!-- <td>{{assetlist.Status}}</td>
-            <td>{{assetlist.Allocated_to}}</td> -->
             <td>
-                <a href="javascript:void(0)" routerLink="/base/edit-asset/{{assetlist.Assetid}}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
+              <a href="javascript:void(0)" routerLink="/base/edit-asset/{{assetlist.Assetid}}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
               <a href="javascript:void(0)" (click)="deleteAsset(assetlist)" class="delete"><i class="fa-regular fa-trash-can"></i></a>
             </td>
           </tr>
-          </tbody> 
+          </tbody>
+          <tbody *ngIf="assetdata.length <= 0">
+            <tr>
+              <td colspan="100" class="text-center text-danger">No Match found</td>
+            </tr>
+          </tbody>
   
         </table>
   
@@ -86,4 +88,3 @@
   
       </div>
     </div>
-  </div>

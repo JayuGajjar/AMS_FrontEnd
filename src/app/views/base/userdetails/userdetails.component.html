@@ -1,4 +1,3 @@
-<div class="container">
     <div class="table-responsive">
       <div class="table-wrapper">
           <div class="row">
@@ -12,6 +11,10 @@
                   <i class="fas fa-search"></i>
                 </button>
               </span>
+            </div>
+
+            <div class="col" align="right">
+              <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/register"> <span>Add</span></button>
             </div>
   
           </div>
@@ -28,24 +31,28 @@
               <th>Email</th>
               <!-- <th>Create Date</th> -->
               <th>Role</th>
-              <th>Actions</th>
+              <th>Delete</th>
             </tr>
           </thead>
   
   
   
-          <tbody>
+          <tbody *ngIf="userdata.length > 0">
             <tr *ngFor="let userlist of userdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
               <td>{{userlist.Username}}</td>
               <td>{{userlist.Email}}</td>
-              <td>{{userlist.Role}}</td>
               <td>
-                <!-- <svg cIcon name = "cilPencil"></svg> -->
-                <!-- <a href="#editEmployeeModal" class="info" data-toggle="modal"><i class="material-icons"
-                    data-toggle="tooltip" title="Info">&#8505;</i></a>  -->
-                <!-- <svg cIcon name = "cilTrash"></svg> -->
+                <a href="javascript:void(0)" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                {{userlist.Role}}
+              </td>
+              <td>
                 <a href="javascript:void(0)" (click)="deleteUser(userlist)" class="delete"><i class="fa-regular fa-trash-can"></i></a> 
               </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="userdata.length <= 0">
+            <tr>
+              <td colspan="100" class="text-center text-danger">No Match found</td>
             </tr>
           </tbody>
   
@@ -71,4 +78,3 @@
   
       </div>
     </div>
-  </div>

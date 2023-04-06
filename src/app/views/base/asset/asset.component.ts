@@ -33,7 +33,7 @@ export class AssetComponent {
       }
       else
       {
-        alert(responce.ReturnMessage);
+        this.assetdata = [];
       }
      
     });

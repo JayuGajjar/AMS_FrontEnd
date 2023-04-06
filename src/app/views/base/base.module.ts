@@ -40,10 +40,6 @@ import { ModalModule } from '@coreui/angular';
 // Components Routing
 import { BaseRoutingModule } from './base-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { AddBranchComponent } from './branch/add-branch/add-branch.component';
-import { AddCompanyComponent } from './company/add-company/add-company.component';
-import { AddDepartmentComponent } from './department/add-department/add-department.component';
-import { AddRequestComponent } from './request/add-request/add-request.component';
 import { AddVendorsComponent } from './vendors/add-vendors/add-vendors.component';
 import { AddScrapComponent } from './scrap/add-scrap/add-scrap.component';
 import { AddAssetComponent } from './asset/add-asset/add-asset.component';
@@ -56,6 +52,7 @@ import { StatusComponent } from './status/status.component';
 import { UserdetailsComponent } from './userdetails/userdetails.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { ScrapComponent } from './scrap/scrap.component';
+import { NewRequestComponent } from './new-request/new-request.component';
 
 @NgModule({
   imports: [
@@ -93,10 +90,6 @@ import { ScrapComponent } from './scrap/scrap.component';
     ModalModule
   ],
   declarations: [
-    AddBranchComponent,
-    AddCompanyComponent,
-    AddDepartmentComponent,
-    AddRequestComponent,
     AddVendorsComponent,
     AddScrapComponent,
     AddAssetComponent,
@@ -109,6 +102,7 @@ import { ScrapComponent } from './scrap/scrap.component';
     UserdetailsComponent,
     VendorsComponent,
     ScrapComponent,
+    NewRequestComponent,
   ],
 })
 export class BaseModule {}

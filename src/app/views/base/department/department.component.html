@@ -1,8 +1,4 @@
-<head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  </head>
-  <div class="container">
-    <div class="table-responsive">
+<div class="table-responsive">
       <div class="table-wrapper">
           <div class="row">
             
@@ -18,7 +14,7 @@
             </div>
   
             <div class="col" align="right">
-              <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-department"> <span>Add</span></button>
+              <button type="button" class="btn btn-outline-primary btn-sm" (click)="toggleModal()"> <span>Add</span></button>
             </div>
           </div>
           <br>
@@ -40,14 +36,19 @@
   
   
   
-          <tbody>
+          <tbody *ngIf="depdata.length > 0">
             <tr *ngFor="let deplist of depdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
               <td>{{deplist.Depid}}</td>
               <td>{{deplist.Name}}</td>
               <td>
-                <a href="javascript:void(0)" routerLink="/base/edit-department/{{deplist.Depid}}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="javascript:void(0)" (click)="companyModal(deplist)" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
                 <a href="javascript:void(0)" (click)="deleteDepartment(deplist)" class="delete"><i class="fa-regular fa-trash-can"></i></a>
               </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="depdata.length <= 0">
+            <tr>
+              <td colspan="100" class="text-center text-danger">No Match found</td>
             </tr>
           </tbody>
   
@@ -73,4 +74,34 @@
   
       </div>
     </div>
-  </div>
+
+
+
+    <!-- PopUp Form -->
+    <c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleChange($event)">
+      
+      <c-modal-header>
+        <h5 cModalTitle>{{frlable}} Company</h5>
+      </c-modal-header>
+
+      <form [formGroup]="departmentForm" (ngSubmit)="addDepartment()">
+
+        <c-modal-body>
+            <div class="form-outline mb-4">
+                <label>Department Name</label>
+                <input type="text" class="form-control" placeholder="Enter Department" formControlName="name"
+                    [ngClass]="{ 'has-error': submitted && f['name'].errors }">
+                <div *ngIf="submitted && f['name'].errors" class="has-error">
+                    <div *ngIf="f['name'].errors['required']">Department name is required!</div>
+                    <div *ngIf="f['name'].errors['pattern']">Please enter valid Department Name!!</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add' && !submitbtn">{{frlable}}</button>
+            <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update' && !submitbtn">{{frlable}}</button>
+            <button type="button" class="btn btn-secondary btn-block ms-2" (click)="toggleModal()">Close</button>
+        </c-modal-body>
+        
+      </form>
+
+    </c-modal>

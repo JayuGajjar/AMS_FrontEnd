@@ -45,7 +45,7 @@ export class AuthGuard implements CanActivate {
 
   }
   canActivate(){
-    if(sessionStorage.getItem('isSuccess')=="true" && sessionStorage.getItem('role')=="Admin")
+    if(sessionStorage.getItem('isSuccess')=="true")
     {
     return true;
     }

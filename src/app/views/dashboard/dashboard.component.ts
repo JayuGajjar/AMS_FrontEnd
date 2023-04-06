@@ -5,6 +5,7 @@ import * as Highcharts from 'highcharts';
 
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -27,6 +28,18 @@ export class DashboardComponent implements OnInit {
   columnchart: any;
   piechart: any;
 
+  requestdata : any=[];
+  pageSize : number=5;
+  PageNumber : any=1;
+  specialrecord : number=0;
+  Requests : any="";
+  userId : any=0;
+  id : any;
+  type: any;
+  isworking : any;
+  inuse : any;
+  role : number=0;
+
 
   constructor(private authService: AuthService,private router: Router) { }
 
@@ -34,7 +47,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.role = Number(sessionStorage.getItem('role'));
+
     this.getAllValues();
+
+    this.userId = sessionStorage.getItem('userid');
+    this.requestDetails(this.PageNumber,this.pageSize,this.Requests,this.userId);
   }
 
 
@@ -104,6 +122,7 @@ export class DashboardComponent implements OnInit {
         series: [{
           data: [{y: this.totalinUse, color: '#80D651' },
           {y: this.totalSpare, color: '#969696'},
+          {y: this.totalnew, color: '#003cff'},
           {y: this.totalWorking, color: '#58a6ff'},
           {y: this.totalscrap, color: '#d73814'}],
           colorByPoint: true
@@ -154,9 +173,12 @@ export class DashboardComponent implements OnInit {
               {
                  name: 'Total Working',
                  y: this.totalWorking,
+                 color: '#003cff',
+              },
+              {
+                 name: 'Total Working',
+                 y: this.totalnew,
                  color: '#58a6ff',
-                 sliced: true,
-                 selected: true
               },
               {
                  name: 'Total Scrap',
@@ -173,120 +195,104 @@ export class DashboardComponent implements OnInit {
 
 
 
-  // data = {
-  //   labels: ['InUse', 'Spare', 'InWorking', 'Scrap'],
-  //   datasets: [
-  //     {
-  //       label: 'Total',
-  //       backgroundColor: '#f87979',
-  //       data: [40, 20, 100, 39, 10, 100, 40]
-  //     }
-  //   ]
-  // };
+  requestDetails(PageNumber:number,pageSize:number,Requests:string,userId:number) {
+    // debugger
+    this.authService.requestDetails(PageNumber,pageSize,Requests,userId).subscribe(responce => {
+     
+      if(responce.IsSuccess)
+      {
+        this.specialrecord=responce.Data[0].specialrecord;
+        this.requestdata = responce.Data;
+      }
+      else
+      {
+        this.requestdata = [];  
+      }
+     
+    });
+  }
+
+  pageChangeEvent(event: number) {
+    this.PageNumber = event;
+    this.requestDetails(this.PageNumber, this.pageSize, this.Requests, this.userId);
+  }
 
 
+  changePageSize(){
+    // debugger
+    this.PageNumber=1;
+   this.requestDetails(this.PageNumber, this.pageSize, this.Requests, this.userId);
+  }
+
+
+  //search method
+  searchRequest(){
+    this.requestDetails(this.PageNumber, this.pageSize, this.Requests, this.userId);
+  }
   
-  
 
+
+  //status change
+    statusChange(id:number,type:number,isworking:boolean,inuse:boolean){
+      // debugger
+      this.authService.statusChange(id,type,isworking,inuse).subscribe(responce => {
+        debugger
+        if(responce.IsSuccess)
+        {
+          Swal.fire(
+            'Success!',
+            responce.ReturnMessage,
+            'success'
+            )
+            this.requestDetails(this.PageNumber,this.pageSize, this.Requests, this.userId);
+          }
+          else
+          {
+            Swal.fire(
+              'Something went wrong!',
+              responce.ReturnMessage,
+              'error'
+              )
+            }
+          })
+    }
+    
+
+  //delete method
+  deleteRequest(requestlist : any) {
+        
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+
+      if (result.value) {
+        this.authService.deleteRequest(requestlist.Requestid).subscribe(responce => {
+        
+          if (responce.IsSuccess){
+            Swal.fire(
+              'Deleted!',
+              responce.ReturnMessage,
+              'success'
+            )
+            this.requestDetails(this.PageNumber,this.pageSize, this.Requests, this.userId);
+          }
+          else 
+          {
+            Swal.fire(
+              'Something went wrong!',
+              responce.ReturnMessage,
+              'error'
+            )
+          }
+        });
+      }
+    })
+  }
 
 }
-
-  // public users: IUser[] = [
-  //   {
-  //     name: 'Yiorgos Avraamu',
-  //     state: 'New',
-  //     registered: 'Jan 1, 2021',
-  //     country: 'Us',
-  //     usage: 50,
-  //     period: 'Jun 11, 2021 - Jul 10, 2021',
-  //     payment: 'Mastercard',
-  //     activity: '10 sec ago',
-  //     avatar: './assets/img/avatars/1.jpg',
-  //     status: 'success',
-  //     color: 'success'
-  //   },
-  //   {
-  //     name: 'Avram Tarasios',
-  //     state: 'Recurring ',
-  //     registered: 'Jan 1, 2021',
-  //     country: 'Br',
-  //     usage: 10,
-  //     period: 'Jun 11, 2021 - Jul 10, 2021',
-  //     payment: 'Visa',
-  //     activity: '5 minutes ago',
-  //     avatar: './assets/img/avatars/2.jpg',
-  //     status: 'danger',
-  //     color: 'info'
-  //   },
-  //   {
-  //     name: 'Quintin Ed',
-  //     state: 'New',
-  //     registered: 'Jan 1, 2021',
-  //     country: 'In',
-  //     usage: 74,
-  //     period: 'Jun 11, 2021 - Jul 10, 2021',
-  //     payment: 'Stripe',
-  //     activity: '1 hour ago',
-  //     avatar: './assets/img/avatars/3.jpg',
-  //     status: 'warning',
-  //     color: 'warning'
-  //   },
-  //   {
-  //     name: 'Enéas Kwadwo',
-  //     state: 'Sleep',
-  //     registered: 'Jan 1, 2021',
-  //     country: 'Fr',
-  //     usage: 98,
-  //     period: 'Jun 11, 2021 - Jul 10, 2021',
-  //     payment: 'Paypal',
-  //     activity: 'Last month',
-  //     avatar: './assets/img/avatars/4.jpg',
-  //     status: 'secondary',
-  //     color: 'danger'
-  //   },
-  //   {
-  //     name: 'Agapetus Tadeáš',
-  //     state: 'New',
-  //     registered: 'Jan 1, 2021',
-  //     country: 'Es',
-  //     usage: 22,
-  //     period: 'Jun 11, 2021 - Jul 10, 2021',
-  //     payment: 'ApplePay',
-  //     activity: 'Last week',
-  //     avatar: './assets/img/avatars/5.jpg',
-  //     status: 'success',
-  //     color: 'primary'
-  //   },
-  //   {
-  //     name: 'Friderik Dávid',
-  //     state: 'New',
-  //     registered: 'Jan 1, 2021',
-  //     country: 'Pl',
-  //     usage: 43,
-  //     period: 'Jun 11, 2021 - Jul 10, 2021',
-  //     payment: 'Amex',
-  //     activity: 'Yesterday',
-  //     avatar: './assets/img/avatars/6.jpg',
-  //     status: 'info',
-  //     color: 'dark'
-  //   }
-  // ];
-  // public mainChart: IChartProps = {};
-  // public chart: Array<IChartProps> = [];
-  // public trafficRadioGroup = new UntypedFormGroup({
-  //   trafficRadio: new UntypedFormControl('Month')
-  // });
-
-  // ngOnInit(): void {
-  //   this.initCharts();
-  // }
-
-  // initCharts(): void {
-  //   this.mainChart = this.chartsData.mainChart;
-  // }
-
-  // setTrafficPeriod(value: string): void {
-  //   this.trafficRadioGroup.setValue({ trafficRadio: value });
-  //   this.chartsData.initMainChart(value);
-  //   this.initCharts();
-  // }

@@ -59,29 +59,31 @@ export class LoginComponent {
     this.authService.loginUser(this.data).subscribe(response => {
       // console.log(response);
       // localStorage.setItem('isSuccess',response.isLoggedIn);
-      // sessionStorage.setItem('isSuccess',response.isLoggedIn);
-      localStorage.setItem('isSuccess',response.IsSuccess);
       sessionStorage.setItem('isSuccess',response.IsSuccess);
       sessionStorage.setItem('role',response.Data.Role);
-
+      sessionStorage.setItem('rolename',response.Data.RoleName);
+      sessionStorage.setItem('username',response.Data.Username);
+      sessionStorage.setItem('userid',response.Data.Userid);
+      sessionStorage.getItem(response.Data);
+      
       if(response.IsSuccess)
-      {
-        Swal.fire(
-          'Great!',
-          response.ReturnMessage,
-          'success'
-        )
-        this.router.navigate(['/dashboard']);
-      }
-      else
-      {
-        Swal.fire(
-          'Something went wrong!',
-          response.ReturnMessage,
-          'error'
-        )
-        this.onReset();
-      }
+        {
+          Swal.fire(
+            'Great!',
+            response.ReturnMessage,
+            'success'
+          )
+          this.router.navigate(['/dashboard']);
+        }
+        else
+        {
+          Swal.fire(
+            'Something went wrong!',
+            response.ReturnMessage,
+            'error'
+          )
+          this.onReset();
+        }
     })
   }
   onReset() {

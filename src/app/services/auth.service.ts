@@ -24,8 +24,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  readonly Url = "https://localhost:44377/api/";
-  // readonly Url = environment.apiURL;
+  // readonly Url = "https://localhost:44377/api/";
+  readonly Url = environment.apiURL;
   // readonly Url = "https://localhost:5001/api/";
   // readonly Url = "https://localhost:5000/api/";
 
@@ -69,6 +69,14 @@ export class AuthService {
   workingDetails(): Observable<any> {
     // debugger
     return this.http.get(this.Url + "Reports/GetIsWorkingTable");
+  }
+
+
+
+  //get method for new request
+  newRequestsDetails(): Observable<any> {
+    // debugger
+    return this.http.get(this.Url + "Reports/GetNew_RequestTable");
   }
 
 
@@ -239,9 +247,9 @@ export class AuthService {
 
 
   //edit request
-  editRequest(request: any, id: any): Observable<any> {
+  editRequest(userid: any, asset: any, justify: any, requestid: any): Observable<any> {
     debugger
-    return this.http.put(this.Url + "Request/UpdateRequest/" + id, request);
+    return this.http.put(this.Url + "Request/UpdateRequest/" + requestid + "?userid=" + userid + '&asset=' + asset + '&justify=' + justify, this.httpOptions);
   }
 
 
@@ -258,10 +266,17 @@ export class AuthService {
   }
 
 
-  //Request get service
-  requestDetails(PageNumber: any, pageSize: any, Requests: any): Observable<any> {
+  //Request get service for admin
+  requestDetailsAdmin(PageNumber: any, pageSize: any, Requests: any): Observable<any> {
     //debugger
     return this.http.get(this.Url + "Request/GetAllRequests?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchString=' + Requests);
+  }
+
+
+  //Request get service
+  requestDetails(PageNumber: any, pageSize: any, Requests: any, userId: any): Observable<any> {
+    debugger
+    return this.http.get(this.Url + "Request/GetAllRequests?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchString=' + Requests + '&userId=' + userId);
   }
 
 

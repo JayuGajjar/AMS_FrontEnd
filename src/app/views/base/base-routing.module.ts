@@ -3,10 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AssetComponent } from './asset/asset.component';
 import { AuthGuard } from 'src/app/services/auth.guard';
-import { AddBranchComponent } from './branch/add-branch/add-branch.component';
-import { AddCompanyComponent } from './company/add-company/add-company.component';
-import { AddDepartmentComponent } from './department/add-department/add-department.component';
-import { AddRequestComponent } from './request/add-request/add-request.component';
 import { AddVendorsComponent } from './vendors/add-vendors/add-vendors.component';
 import { AddScrapComponent } from './scrap/add-scrap/add-scrap.component';
 import { AddAssetComponent } from './asset/add-asset/add-asset.component';
@@ -21,6 +17,8 @@ import { StatusComponent } from './status/status.component';
 import { UserdetailsComponent } from './userdetails/userdetails.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { ScrapComponent } from './scrap/scrap.component';
+import { TotalnewRequestComponent } from '../dashboard/totalnew-request/totalnew-request.component';
+import { NewRequestComponent } from './new-request/new-request.component';
 const titleP = "Asset Managment Admin";
 const routes: Routes = [
   {
@@ -38,12 +36,20 @@ const routes: Routes = [
           title: 'InUse', 
         },
       },
+      //total new request
+      {
+        path: 'newrequests', title: titleP + ' - New Requests', canActivate : [AuthGuard],
+        component: TotalnewRequestComponent,
+        data: {
+          title: 'New Requests', 
+        },
+      },
       //total Spare
       {
         path: 'spare', title: titleP + ' - Spare', canActivate : [AuthGuard],
         component: TotalspareComponent,
         data: {
-          title: 'Spare', 
+          title: 'Spares', 
         },
       },
       //total Working
@@ -60,7 +66,7 @@ const routes: Routes = [
         path: 'asset', title: titleP + ' - Asset', canActivate : [AuthGuard],
         component: AssetComponent,
         data: {
-          title: 'Asset',
+          title: 'Assets',
         },
       },
       {
@@ -84,21 +90,7 @@ const routes: Routes = [
         path: 'branch', title: titleP + ' - Branch', canActivate : [AuthGuard],
         component: BranchComponent,
         data: {
-          title: 'Branch',
-        },
-      },
-      {
-        path: 'add-branch', title: titleP + ' - Add Branch', canActivate : [AuthGuard],
-        component: AddBranchComponent,
-        data: {
-          title: 'Add Branch', 
-        },
-      },
-      {
-        path: 'edit-branch/:id', title: titleP + ' - Edit Branch', canActivate : [AuthGuard], 
-        component: AddBranchComponent,
-        data: {
-          title: 'Edit Branch',
+          title: 'Branches',
         },
       },
 
@@ -108,21 +100,7 @@ const routes: Routes = [
         path: 'company', title: titleP + ' - Company', canActivate : [AuthGuard],
         component: CompanyComponent,
         data: {
-          title: 'Company',
-        },
-      },
-      {
-        path: 'add-company', title: titleP + ' - Add Company', canActivate : [AuthGuard],
-        component: AddCompanyComponent,
-        data: {
-          title: 'Add Company',
-        },
-      },
-      {
-        path: 'edit-company/:id', title: titleP + ' - Edit Company', canActivate : [AuthGuard],
-        component: AddCompanyComponent,
-        data: {
-          title: 'Edit Company',
+          title: 'Companies',
         },
       },
 
@@ -132,21 +110,7 @@ const routes: Routes = [
         path: 'department', title: titleP + ' - Department', canActivate : [AuthGuard],
         component: DepartmentComponent,
         data: {
-          title: 'Department',
-        },
-      },
-      {
-        path: 'add-department', title: titleP + ' - Add Department', canActivate : [AuthGuard],
-        component: AddDepartmentComponent,
-        data: {
-          title: 'Add Department',
-        },
-      },
-      {
-        path: 'edit-department/:id', title: titleP + ' - Edit Department', canActivate : [AuthGuard],
-        component: AddDepartmentComponent,
-        data: {
-          title: 'Edit Department',
+          title: 'Departments',
         },
       },
 
@@ -157,21 +121,14 @@ const routes: Routes = [
         path: 'request', title: titleP + ' - Request', canActivate : [AuthGuard],
         component: RequestComponent,
         data: {
-          title: 'Request',
+          title: 'Requests',
         },
       },
-      // {
-      //   path: 'add-request', title: titleP + ' - Add Request', canActivate : [AuthGuard],
-      //   component: AddRequestComponent,
-      //   data: {
-      //     title: 'Add Request',
-      //   },
-      // },
       {
-        path: 'edit-request/:id', title: titleP + ' - Edit Request', canActivate : [AuthGuard],
-        component: AddRequestComponent,
+        path: 'new-request', title: titleP + ' - New Request', canActivate : [AuthGuard],
+        component: NewRequestComponent,
         data: {
-          title: 'Edit Request',
+          title: 'New Requests',
         },
       },
 
@@ -204,7 +161,7 @@ const routes: Routes = [
         path: 'vendor', title: titleP + ' - Vendors', canActivate : [AuthGuard],
         component: VendorsComponent,
         data: {
-          title: 'Vendor',
+          title: 'Vendors',
         },
       },
       {
@@ -229,7 +186,7 @@ const routes: Routes = [
         path: 'scrap', title: titleP + ' - Scrap', canActivate : [AuthGuard],
         component: ScrapComponent,
         data: {
-          title: 'Scrap',
+          title: 'Scraps',
         },
       },
       {

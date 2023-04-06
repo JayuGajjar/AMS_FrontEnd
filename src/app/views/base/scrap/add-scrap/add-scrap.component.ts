@@ -173,16 +173,16 @@ export class AddScrapComponent {
             this.branchlistdata = [];
           }
   
-          if(responce.Data.table5.length > 0){
-            this.vendorlistdata = responce.Data.table5;
+          if(responce.Data.table6.length > 0){
+            this.vendorlistdata = responce.Data.table6;
           }
           else
           {
             this.vendorlistdata = [];
           }
   
-          if(responce.Data.table6.length > 0){
-            this.assetlistdata = responce.Data.table6;
+          if(responce.Data.table7.length > 0){
+            this.assetlistdata = responce.Data.table7;
           }
           else
           {

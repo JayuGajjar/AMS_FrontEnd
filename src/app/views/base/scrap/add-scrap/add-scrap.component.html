@@ -1,64 +1,73 @@
-<section>
+<section class="border">
     <div class="d-flex justify-content-center">
-        <div class="w-75">
-            <div class="p-4 border">
+        <div class="w-100">
+            <div class="p-4">
 
                 <form [formGroup]="scrapForm" (ngSubmit)="addScrap()">
-                    <div class="form-outline mb-4 col-sm-8">
-                        <label>Asset</label>
-                        <select type="text" class="form-control form-select" formControlName="asset"
-                            [ngClass]="{ 'has-error': submitted && f['asset'].errors }">
-                            <option value="">select Asset</option>
-                            <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
-                              {{assets.specification}}
-                            </option>
-                        </select>
-                        <div *ngIf="submitted && f['asset'].errors" class="has-error">
-                            <div *ngIf="f['asset'].errors['required']">Asset is required!</div>
+
+
+                    <div class="row">
+                        <div class="col form-outline mb-4">
+                            <label>Asset</label>
+                            <select type="text" class="form-control form-select" formControlName="asset"
+                                [ngClass]="{ 'has-error': submitted && f['asset'].errors }">
+                                <option value="">select Asset</option>
+                                <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
+                                  {{assets.specification}}
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f['asset'].errors" class="has-error">
+                                <div *ngIf="f['asset'].errors['required']">Asset is required!</div>
+                            </div>
+                        </div>
+
+                        <div class="col form-outline mb-4">
+                            <label>Branch</label>
+                            <select type="text" class="form-control form-select" formControlName="branch"
+                                [ngClass]="{ 'has-error': submitted && f['branch'].errors }">
+                                <option value="">select Branch</option>
+                                <option [ngValue]="branches.branchid" *ngFor="let branches of branchlistdata">
+                                  {{branches.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f['branch'].errors" class="has-error">
+                                <div *ngIf="f['branch'].errors['required']">Branch is required!</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-outline mb-4 col-sm-8">
-                        <label>Branch</label>
-                        <select type="text" class="form-control form-select" formControlName="branch"
-                            [ngClass]="{ 'has-error': submitted && f['branch'].errors }">
-                            <option value="">select Branch</option>
-                            <option [ngValue]="branches.branchid" *ngFor="let branches of branchlistdata">
-                              {{branches.name}}
-                            </option>
-                        </select>
-                        <div *ngIf="submitted && f['branch'].errors" class="has-error">
-                            <div *ngIf="f['branch'].errors['required']">Branch is required!</div>
+                    <div class="row">
+                        <div class="col form-outline mb-4">
+                            <label>User Name</label>
+                            <input type="datetime" class="form-control" placeholder="Enter EmpID who use the last" formControlName="last_user"
+                                [ngClass]="{ 'has-error': submitted && f['last_user'].errors }">
+                            <div *ngIf="submitted && f['last_user'].errors" class="has-error">
+                                <div *ngIf="f['last_user'].errors['required']">EmpID is required!</div>
+                                <div *ngIf="f['last_user'].errors['pattern']">Please enter valid EmpID!!</div>
+                            </div>
+                        </div>
+
+                        <div class="col form-outline mb-4">
+                            <label>Vendor</label>
+                            <select type="datetime" class="form-control form-select" formControlName="vendor"
+                                [ngClass]="{ 'has-error': submitted && f['vendor'].errors }">
+                                <option value="">select Vendor</option>
+                                <option [ngValue]="vendors.vendorid" *ngFor="let vendors of vendorlistdata">
+                                  {{vendors.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f['vendor'].errors" class="has-error">
+                                <div *ngIf="f['vendor'].errors['required']">Vendor is required!</div>
+                            </div>
                         </div>
                     </div>
+
                     
-                    <div class="form-outline mb-4 col-sm-8">
-                        <label>User Name</label>
-                        <input type="datetime" class="form-control" placeholder="Enter EmpID who use the last" formControlName="last_user"
-                            [ngClass]="{ 'has-error': submitted && f['last_user'].errors }">
-                        <div *ngIf="submitted && f['last_user'].errors" class="has-error">
-                            <div *ngIf="f['last_user'].errors['required']">EmpID is required!</div>
-                            <div *ngIf="f['last_user'].errors['pattern']">Please enter valid EmpID!!</div>
-                        </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add'">Add</button>
+                        <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update'">Update</button>
                     </div>
 
-                    <div class="form-outline mb-4 col-sm-8">
-                        <label>Vendor</label>
-                        <select type="datetime" class="form-control form-select" formControlName="vendor"
-                            [ngClass]="{ 'has-error': submitted && f['vendor'].errors }">
-                            <option value="">select Vendor</option>
-                            <option [ngValue]="vendors.vendorid" *ngFor="let vendors of vendorlistdata">
-                              {{vendors.name}}
-                            </option>
-                        </select>
-                        <div *ngIf="submitted && f['vendor'].errors" class="has-error">
-                            <div *ngIf="f['vendor'].errors['required']">Vendor is required!</div>
-                        </div>
-                    </div>
-
-                    
-                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add'">Add</button>
-                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update'">Update</button>
                 </form>
             </div>
         </div>

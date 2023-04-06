@@ -1,52 +1,60 @@
-<section>
+<section class="border">
     <div class="d-flex justify-content-center">
-        <div class="w-75">
-            <div class="p-4 border">
+        <div class="w-100">
+            <div class="p-4">
                 
                 <form [formGroup]="vendorForm" (ngSubmit)="addVendors()">
-                    <div class="form-outline mb-4 col-sm-8">
-                        <label>Vendor Name</label>
-                        <input type="text" class="form-control" placeholder="Enter Name" formControlName="name"
-                            [ngClass]="{ 'has-error': submitted && f['name'].errors }">
-                        <div *ngIf="submitted && f['name'].errors" class="has-error">
-                            <div *ngIf="f['name'].errors['required']">Vendor name is required!</div>
-                            <div *ngIf="f['name'].errors['pattern']">Please enter valid Vendor Name!!</div>
-                        </div>
-                    </div>
 
-                    <div class="form-outline mb-4 col-sm-8">
-                        <label>Invoice No.</label>
-                        <input type="text" class="form-control" placeholder="Invoice No" formControlName="invoiceno"
-                            [ngClass]="{ 'has-error': submitted && f['invoiceno'].errors }">
-                        <div *ngIf="submitted && f['invoiceno'].errors" class="has-error">
-                            <div *ngIf="f['invoiceno'].errors['required']">Invoice No is required!</div>
-                            <div *ngIf="f['invoiceno'].errors['pattern']">Please enter valid Invoice No!!</div>
+                    
+                    <div class="row">
+                        <div class="col form-outline mb-4">
+                            <label>Vendor Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Name" formControlName="name"
+                                [ngClass]="{ 'has-error': submitted && f['name'].errors }">
+                            <div *ngIf="submitted && f['name'].errors" class="has-error">
+                                <div *ngIf="f['name'].errors['required']">Vendor name is required!</div>
+                                <div *ngIf="f['name'].errors['pattern']">Please enter valid Vendor Name!!</div>
+                            </div>
+                        </div>
+
+                        <div class="col form-outline mb-4 ">
+                            <label>Invoice No.</label>
+                            <input type="text" class="form-control" placeholder="Invoice No" formControlName="invoiceno"
+                                [ngClass]="{ 'has-error': submitted && f['invoiceno'].errors }">
+                            <div *ngIf="submitted && f['invoiceno'].errors" class="has-error">
+                                <div *ngIf="f['invoiceno'].errors['required']">Invoice No is required!</div>
+                                <div *ngIf="f['invoiceno'].errors['pattern']">Please enter valid Invoice No!!</div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="form-outline mb-4 col-sm-8">
-                        <label>Invoice Date</label>
-                        <input type="datetime-local" class="form-control" placeholder="Invoice Date" formControlName="invoicedate"
-                            [ngClass]="{ 'has-error': submitted && f['invoicedate'].errors }">
-                        <div *ngIf="submitted && f['invoicedate'].errors" class="has-error">
-                            <div *ngIf="f['invoicedate'].errors['required']">Invoice Date is required!</div>
-                            <!-- <div *ngIf="f['invoicedate'].errors['pattern']">Please enter valid Invoice Date!! (DD/MM/YYYY)</div> -->
+
+                    <div class="row">
+                        <div class="col form-outline mb-4 ">
+                            <label>Invoice Date</label>
+                            <input type="datetime-local" class="form-control" placeholder="Invoice Date" formControlName="invoicedate"
+                                [ngClass]="{ 'has-error': submitted && f['invoicedate'].errors }">
+                            <div *ngIf="submitted && f['invoicedate'].errors" class="has-error">
+                                <div *ngIf="f['invoicedate'].errors['required']">Invoice Date is required!</div>
+                            </div>
+                        </div>
+
+                        <div class="col form-outline mb-4 ">
+                            <label>Warranty Date</label>
+                            <input type="datetime-local" class="form-control" placeholder="Warranty Date" formControlName="warranty_till"
+                                [ngClass]="{ 'has-error': submitted && f['warranty_till'].errors }">
+                            <div *ngIf="submitted && f['warranty_till'].errors" class="has-error">
+                                <div *ngIf="f['warranty_till'].errors['required']">Warranty Date is required!</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-outline mb-4 col-sm-8">
-                        <label>Warranty Date</label>
-                        <input type="datetime-local" class="form-control" placeholder="Warranty Date" formControlName="warranty_till"
-                            [ngClass]="{ 'has-error': submitted && f['warranty_till'].errors }">
-                        <div *ngIf="submitted && f['warranty_till'].errors" class="has-error">
-                            <div *ngIf="f['warranty_till'].errors['required']">Warranty Date is required!</div>
-                            <!-- <div *ngIf="f['warranty_till'].errors['pattern']">Please enter valid Warranty Date!! (DD/MM/YYYY)</div> -->
-                        </div>
+
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add'">Add</button>
+                        <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update'">Update</button>
                     </div>
-
-
-                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add'">Add</button>
-                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update'">Update</button>
+                    
                 </form>
 
             </div>

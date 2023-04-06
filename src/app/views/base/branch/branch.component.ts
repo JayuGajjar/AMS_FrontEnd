@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { branch } from 'src/app/Interfaces/branch';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
@@ -11,28 +13,74 @@ import Swal from 'sweetalert2';
 export class BranchComponent {
 
 
-  branchdata : any=[];
+    branchFrom : FormGroup;
+    data : branch;
+    submitted = false;
+    submitbtn = false;
+    frlable:string="";
+    title:string="";
+    branchid:number=0;
+    branchdata : any=[];
     pageSize : number=5;
     PageNumber : number=1;
     totalrecord : any=0;
     Branches : any="";
     
-      constructor(private authservice:AuthService, private FB: FormBuilder) {  }
+    constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
+    { 
+      this.data = {
+        name : "",
+      }
+      
+      this.branchFrom = this.FB.group({
+        name : ['',[Validators.required, Validators.pattern("[a-zA-Z0-9-_][a-zA-Z0-9-_]+")]],
+  
+      })
+     
+    }
+  
+    get f() { return this.branchFrom.controls; }
+  
+    public visible = false;
+
+    toggleModal()
+    {
+      this.onReset();
+      this.visible = !this.visible;
+      this.frlable="Add";
+    }
+
+    branchModal(getDatabyId:any) {
+      debugger
+      this.onReset();
+      this.visible = !this.visible;
+      this.frlable="Update";
+      this.branchFrom.controls["name"].setValue(getDatabyId.Name);
+      this.branchid=getDatabyId.Branchid;
+    }
+  
+    handleChange(event: any) {
+      this.visible = event;
+    }
     
       ngOnInit(): void {
         // debugger
-        this.branchDetails(this.PageNumber,this.pageSize,this.Branches);
+          const ID: number = parseInt(this.route.snapshot.params['id']);
+          if(ID>0){
+          //fill record in
+          this.title="Update";
+          this.frlable="Update";
+          this.getBranchById(ID)
+          }
+          else
+          {
+            this.title="Add"
+            this.frlable="Add";
+            this.branchid=0;
+          }
+
+           this.branchDetails(this.PageNumber,this.pageSize,this.Branches);
       }
-
-      //for popup form
-      // openForm(){
-      //   debugger
-      //   this.visible = !this.visible;
-      // }
-
-      // handleLiveDemoChange(event : any){
-      //   this.visible = event;
-      // }
       
     
       //get method for get the data of branch
@@ -47,7 +95,7 @@ export class BranchComponent {
           }
           else
           {
-            alert(responce.ReturnMessage);
+            this.branchdata = [];
           }
          
         });
@@ -109,6 +157,95 @@ export class BranchComponent {
                 });
               }
             })
+        }
+
+
+
+        addBranch(){
+          this.submitted = true;
+      
+          if(this.branchFrom.invalid)
+          {
+            return;
+          }
+      
+          if(this.branchid>0){
+            debugger
+      
+            this.data.name = this.branchFrom.value.name;
+      
+            this.authservice.editBranch(this.data,this.branchid).subscribe(response => {
+          
+              if(response.IsSuccess)
+              {
+                Swal.fire(
+                  'Great!',
+                  response.ReturnMessage,
+                  'success'
+                )
+                this.visible = !this.visible;
+                this.branchDetails(this.PageNumber,this.pageSize,this.Branches);
+              }
+              else
+              {
+                Swal.fire(
+                  'Something went wrong!',
+                  response.ReturnMessage,
+                  'error'
+                )
+              }
+            })
+      
+          }
+          else{
+      
+            this.data.name = this.branchFrom.value.name;
+      
+            this.authservice.addbranch(this.data).subscribe(response => {
+          
+              if(response.IsSuccess)
+              {
+                Swal.fire(
+                  'Great!',
+                  response.ReturnMessage,
+                  'success'
+                )
+                this.visible = !this.visible;
+                this.branchDetails(this.PageNumber,this.pageSize,this.Branches);
+              }
+              else
+              {
+                Swal.fire(
+                  'Something went wrong!',
+                  response.ReturnMessage,
+                  'error'
+                )
+                this.onReset();
+              }
+            })
+          }
+        }
+      
+        onReset(){
+          this.branchFrom.patchValue({name:""});
+          this.submitbtn = false;
+          this.submitted = false;
+        }
+
+
+        getBranchById(Branchid : any){
+          this.authservice.getBranchById(Branchid).subscribe(responce => {
+            // debugger
+            if (responce.IsSuccess)
+            {
+              this.branchdata = [];
+    
+              if(responce.Data.length > 0){
+                this.branchid=responce.Data[0].Branchid;
+               this.branchFrom.controls["name"].setValue(responce.Data[0].Name);
+               }
+            }
+          })
         }
 
 

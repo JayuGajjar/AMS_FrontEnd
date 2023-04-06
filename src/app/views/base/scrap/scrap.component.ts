@@ -33,7 +33,7 @@ export class ScrapComponent {
       }
       else
       {
-        alert(responce.ReturnMessage);
+        this.scrapdata = [];
       }
      
     });

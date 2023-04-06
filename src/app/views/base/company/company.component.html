@@ -1,4 +1,3 @@
-<div class="container">
     <div class="table-responsive">
       <div class="table-wrapper">
           <div class="row">
@@ -15,7 +14,7 @@
             </div>
   
             <div class="col" align="right">
-              <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-company"> <span>Add</span></button>
+              <button type="button" class="btn btn-outline-primary btn-sm" (click)="toggleModal()"> <span>Add</span></button>
             </div>
           </div>
           <br>
@@ -37,21 +36,26 @@
   
   
   
-          <tbody>
+          <tbody *ngIf="companydata.length > 0">
           <tr *ngFor="let companylist of companydata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
             <td>{{companylist.Companyid}}</td>
             <td>{{companylist.Name}}</td>
             <td>
-                <a href="javascript:void(0)" routerLink="/base/edit-company/{{companylist.Companyid}}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="javascript:void(0)" (click)="companyModal(companylist)" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
                 <a href="javascript:void(0)" (click)="deleteCompany(companylist)" class="delete"><i class="fa-regular fa-trash-can"></i></a>
             </td>
           </tr>
          </tbody>
+         <tbody *ngIf="companydata.length <= 0">
+          <tr>
+            <td colspan="100" class="text-center text-danger">No Match found</td>
+          </tr>
+        </tbody>
   
         </table>
   
         <div class="row">
-          <div class="col-2">
+          <div class="col-1">
             <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
                 <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
                     (change)="changePageSize()">
@@ -71,4 +75,35 @@
         
       </div>
     </div>
-  </div>
+
+
+
+
+    <!-- PopUp Form -->
+    <c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleChange($event)">
+      
+      <c-modal-header>
+        <h5 cModalTitle>{{frlable}} Company</h5>
+      </c-modal-header>
+
+      <form [formGroup]="companyForm" (ngSubmit)="addCompany()">
+
+        <c-modal-body>
+            <div class="form-outline mb-4">
+                <label>Company Name</label>
+                <input type="text" class="form-control" placeholder="Enter Company" formControlName="name"
+                    [ngClass]="{ 'has-error': submitted && f['name'].errors }">
+                <div *ngIf="submitted && f['name'].errors" class="has-error">
+                    <div *ngIf="f['name'].errors['required']">Company name is required!</div>
+                    <div *ngIf="f['name'].errors['pattern']">Please enter valid Company Name!!</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add' && !submitbtn">{{frlable}}</button>
+            <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update' && !submitbtn">{{frlable}}</button>
+            <button type="button" class="btn btn-secondary btn-block ms-2" (click)="toggleModal()">Close</button>
+        </c-modal-body>
+        
+      </form>
+
+    </c-modal>
