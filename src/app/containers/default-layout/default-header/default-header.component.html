@@ -30,11 +30,18 @@
       </c-nav-item>
     </c-header-nav>
 
+    <!-- <c-header-nav class="d-flex justify-content-center me-auto">
+      <source src="/src/assets/images/logo-color.svg">
+    </c-header-nav> -->
+
     <c-header-nav class="d-none d-lg-flex">
       <c-nav-item>
         <!-- <a routerLink="./" cNavLink>
           <svg cIcon name="cilBell" size="lg"></svg>
         </a> -->
+      </c-nav-item>
+      <c-nav-item>
+        {{username}}
       </c-nav-item>
     </c-header-nav>
     <c-header-nav class="ms-3">
@@ -61,12 +68,12 @@
       class="py-0"
     >
       <c-avatar
-        cTextColor="primary"
-        shape="rounded-1"
-        size="md"
-        src="./assets/img/avatars/8.jpg"
+        cTextColor="white"
+        size="lg"
+        color="info"
         status="success"
       >
+      {{F}}{{L}}
       </c-avatar>
     </button>
     <ul cDropdownMenu class="pt-0 pr-5 w-auto">

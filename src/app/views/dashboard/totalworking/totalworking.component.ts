@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,24 +12,33 @@ export class TotalworkingComponent {
 
 
   workingdata : any=[];
-  // pageSize : number=5;
-  // PageNumber: any=1;
-  // Assets : any="";
+  role : number=0;
+  pageSize : number=5;
+  PageNumber: any=1;
+  totalrecord : any=0;
+  working : any="";
 
-  constructor(private authservice:AuthService) { }
+  constructor(private authservice:AuthService,private router:Router) { }
 
   ngOnInit(): void {
+
+    this.role = Number(sessionStorage.getItem('role'));
+    if(this.role==2){
+      this.router.navigate(['/dashboard']);
+    }
+
     //debugger
-    this.workingDetails();
+    this.workingDetails(this.PageNumber,this.pageSize,this.working);
   }
 
   //get method for get the data of branch
-  workingDetails() {
+  workingDetails(PageNumber:number,pageSize:number,working:string) {
     // debugger
-    this.authservice.workingDetails().subscribe(responce => {
+    this.authservice.workingDetails(PageNumber,pageSize,working).subscribe(responce => {
      
       if(responce.IsSuccess)
       {
+        this.totalrecord = responce.Data[0].totalrecord;
         this.workingdata = responce.Data;
       }
       else
@@ -39,24 +49,24 @@ export class TotalworkingComponent {
     });
   }
 
-  // pageChangeEvent(event: number) {
-  //   this.PageNumber = event;
-  //   this.assetDetails(this.PageNumber, this.pageSize,this.Assets);
-  // }
+  pageChangeEvent(event: number) {
+    this.PageNumber = event;
+    this.workingDetails(this.PageNumber, this.pageSize,this.working);
+  }
 
 
-  // changePageSize(){
-  //   // debugger
-  //   this.PageNumber=1;
-  //  this.assetDetails(this.PageNumber, this.pageSize,this.Assets);
-  // }
+  changePageSize(){
+    // debugger
+    this.PageNumber=1;
+   this.workingDetails(this.PageNumber, this.pageSize,this.working);
+  }
 
 
-  // //search method
-  // searchAsset(){
-  //   // debugger
-  //   this.assetDetails(this.PageNumber,this.pageSize,this.Assets);
-  // }
+  //search method
+  searchWorking(){
+    // debugger
+    this.workingDetails(this.PageNumber,this.pageSize,this.working);
+  }
 
 
 

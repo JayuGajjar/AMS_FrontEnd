@@ -1,5 +1,5 @@
 export interface vendors{
-    // userid : number;
+    vendorid : number;
     name : string;
     invoiceno : string;
     invoicedate : string

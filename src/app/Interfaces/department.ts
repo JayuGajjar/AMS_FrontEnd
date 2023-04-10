@@ -1,5 +1,5 @@
 export interface department{
-    // userid : number;
+    Depid : number;
     name : string;
     //Email : string;
     //password : string

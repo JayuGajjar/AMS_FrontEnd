@@ -19,10 +19,12 @@ export class AddVendorsComponent {
     frlable:string="";
     title:string="";
     vendorid: number=0;
+    role : number=0;
 
   constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
   { 
     this.data = {
+      vendorid : 0,
       name : "",
       invoiceno : "",
       invoicedate : "",
@@ -50,12 +52,13 @@ export class AddVendorsComponent {
     }
 
     if(this.vendorid>0){
+      this.data.vendorid = this.vendorid;
       this.data.name = this.vendorForm.value.name;
       this.data.invoiceno = this.vendorForm.value.invoiceno;
       this.data.invoicedate = this.vendorForm.value.invoicedate;
       this.data.warranty_till = this.vendorForm.value.warranty_till;
 
-      this.authservice.editVendor(this.data,this.vendorid).subscribe(response => {
+      this.authservice.editVendor(this.data).subscribe(response => {
     
         if(response.IsSuccess)
         {
@@ -78,6 +81,7 @@ export class AddVendorsComponent {
 
     }
     else{
+      this.data.vendorid = this.vendorid;
       this.data.name = this.vendorForm.value.name;
       this.data.invoiceno = this.vendorForm.value.invoiceno;
       this.data.invoicedate = this.vendorForm.value.invoicedate;
@@ -116,7 +120,13 @@ export class AddVendorsComponent {
   }
 
   ngOnInit(): void {
-   debugger
+
+    this.role = Number(sessionStorage.getItem('role'));
+    if(this.role==2){
+      this.router.navigate(['/dashboard']);
+    }
+
+  //  debugger
     const ID: number = parseInt(this.route.snapshot.params['id']);
     if(ID>0){
       //fill record in

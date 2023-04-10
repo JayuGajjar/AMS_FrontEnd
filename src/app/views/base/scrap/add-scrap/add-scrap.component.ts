@@ -22,10 +22,12 @@ export class AddScrapComponent {
     assetlistdata : any=[];
     branchlistdata : any=[];
     vendorlistdata : any=[];
+    role : number=0;
 
   constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
   { 
     this.data = {
+      scrapid : 0,
       asset : "",
       branch : "",
       last_user : "",
@@ -33,10 +35,10 @@ export class AddScrapComponent {
     }
     
     this.scrapForm = this.FB.group({
-      asset : ['',[Validators.required, Validators.pattern("[0-9]+")]],
-      branch : ['',[Validators.required, Validators.pattern("[0-9]+")]],
-      last_user : ['',[Validators.required, Validators.pattern("[0-9]+")]],
-      vendor : ['',[Validators.required, Validators.pattern("[0-9]+")]],
+      asset : ['',[Validators.required]],
+      branch : ['',[Validators.required]],
+      last_user : ['',[Validators.required]],
+      vendor : ['',[Validators.required]],
 
     })
    
@@ -53,12 +55,13 @@ export class AddScrapComponent {
     }
 
     if(this.scrapid>0){
+      this.data.scrapid = this.scrapid;
       this.data.asset = this.scrapForm.value.asset;
       this.data.branch = this.scrapForm.value.branch;
       this.data.last_user = this.scrapForm.value.last_user;
       this.data.vendor = this.scrapForm.value.vendor;
 
-      this.authservice.editScrap(this.data,this.scrapid).subscribe(response => {
+      this.authservice.editScrap(this.data).subscribe(response => {
     
         if(response.IsSuccess)
         {
@@ -81,6 +84,7 @@ export class AddScrapComponent {
 
     }
     else{
+      this.data.scrapid = this.scrapid;
       this.data.asset = this.scrapForm.value.asset;
       this.data.branch = this.scrapForm.value.branch;
       this.data.last_user = this.scrapForm.value.last_user;
@@ -119,6 +123,11 @@ export class AddScrapComponent {
   }
 
   ngOnInit(): void {
+
+    this.role = Number(sessionStorage.getItem('role'));
+    if(this.role==2){
+      this.router.navigate(['/dashboard']);
+    }
 
     this.getAllTables();
 

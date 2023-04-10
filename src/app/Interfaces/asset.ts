@@ -1,4 +1,5 @@
 export interface asset{
+    assetid : number;
     serialno : string;
     branch : number;
     brand : string;

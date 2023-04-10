@@ -24,10 +24,12 @@ export class AddAssetComponent {
   companylistdata : any=[];
   departmentlistdata : any=[];
   vendorlistdata : any=[];
+  role : number=0;
 
 constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
 { 
   this.data = {
+    assetid : 0,
     serialno : "",
     branch : 0,
     brand : "",
@@ -65,6 +67,7 @@ addAsset(){
   }
 
   if(this.assetid>0){
+    this.data.assetid = this.assetid;
     this.data.serialno = this.assetForm.value.serialno;
     this.data.branch = this.assetForm.value.branch;
     this.data.brand = this.assetForm.value.brand;
@@ -74,7 +77,7 @@ addAsset(){
     this.data.specification = this.assetForm.value.specification;
     this.data.vendorid = this.assetForm.value.vendorid;
 
-    this.authservice.editAsset(this.data,this.assetid).subscribe(response => {
+    this.authservice.editAsset(this.data).subscribe(response => {
   
       if(response.IsSuccess)
       {
@@ -97,6 +100,7 @@ addAsset(){
 
   }
   else{
+    this.data.assetid = this.assetid;
     this.data.serialno = this.assetForm.value.serialno;
     this.data.branch = this.assetForm.value.branch;
     this.data.brand = this.assetForm.value.brand;
@@ -143,6 +147,11 @@ onReset(){
 }
 
 ngOnInit(): void {
+
+  this.role = Number(sessionStorage.getItem('role'));
+    if(this.role==2){
+      this.router.navigate(['/dashboard']);
+    }
 
   this.getAllTables();
 

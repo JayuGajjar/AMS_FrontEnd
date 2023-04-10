@@ -20,12 +20,22 @@ export class DefaultHeaderComponent extends HeaderComponent {
     super();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    setTimeout(()=>{
+      sessionStorage.clear();
+    },1800000);
+   }
+
+  username = String(sessionStorage.getItem('username'));
+  firstname = String(sessionStorage.getItem('firstname'));
+  lastname = String(sessionStorage.getItem('lastname'));
+  F = Array.from(this.firstname)[0];
+  L = Array.from(this.lastname)[0];
 
 
   logOut(){
-    sessionStorage.removeItem('role');
-    sessionStorage.removeItem('isSuccess');
+    this.ngOnInit();
+    sessionStorage.clear();
     this.router.navigate(['/login']);
   }
 

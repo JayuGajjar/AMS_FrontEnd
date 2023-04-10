@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class BranchComponent {
 
 
-    branchFrom : FormGroup;
+    branchForm : FormGroup;
     data : branch;
     submitted = false;
     submitbtn = false;
@@ -25,27 +25,30 @@ export class BranchComponent {
     PageNumber : number=1;
     totalrecord : any=0;
     Branches : any="";
+    role : number=0;
     
     constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
     { 
       this.data = {
+        branchid : 0,
         name : "",
       }
       
-      this.branchFrom = this.FB.group({
+      this.branchForm = this.FB.group({
         name : ['',[Validators.required, Validators.pattern("[a-zA-Z0-9-_][a-zA-Z0-9-_]+")]],
   
       })
      
     }
   
-    get f() { return this.branchFrom.controls; }
+    get f() { return this.branchForm.controls; }
   
     public visible = false;
 
     toggleModal()
     {
       this.onReset();
+      this.branchid = 0;
       this.visible = !this.visible;
       this.frlable="Add";
     }
@@ -55,7 +58,7 @@ export class BranchComponent {
       this.onReset();
       this.visible = !this.visible;
       this.frlable="Update";
-      this.branchFrom.controls["name"].setValue(getDatabyId.Name);
+      this.branchForm.controls["name"].setValue(getDatabyId.Name);
       this.branchid=getDatabyId.Branchid;
     }
   
@@ -65,6 +68,12 @@ export class BranchComponent {
     
       ngOnInit(): void {
         // debugger
+
+        this.role = Number(sessionStorage.getItem('role'));
+        if(this.role==2){
+          this.router.navigate(['/dashboard']);
+          }
+
           const ID: number = parseInt(this.route.snapshot.params['id']);
           if(ID>0){
           //fill record in
@@ -137,7 +146,7 @@ export class BranchComponent {
 
               if (result.value) {
                 this.authservice.deleteBranch(branchlist.Branchid).subscribe(responce => {
-                
+                debugger
                   if (responce.IsSuccess){
                     Swal.fire(
                       'Deleted!',
@@ -164,7 +173,7 @@ export class BranchComponent {
         addBranch(){
           this.submitted = true;
       
-          if(this.branchFrom.invalid)
+          if(this.branchForm.invalid)
           {
             return;
           }
@@ -172,10 +181,11 @@ export class BranchComponent {
           if(this.branchid>0){
             debugger
       
-            this.data.name = this.branchFrom.value.name;
+            this.data.branchid = this.branchid;
+            this.data.name = this.branchForm.value.name;
       
-            this.authservice.editBranch(this.data,this.branchid).subscribe(response => {
-          
+            this.authservice.editBranch(this.data).subscribe(response => {
+              debugger
               if(response.IsSuccess)
               {
                 Swal.fire(
@@ -199,9 +209,12 @@ export class BranchComponent {
           }
           else{
       
-            this.data.name = this.branchFrom.value.name;
+            debugger
+            this.data.branchid = this.branchid;
+            this.data.name = this.branchForm.value.name;
       
             this.authservice.addbranch(this.data).subscribe(response => {
+              debugger
           
               if(response.IsSuccess)
               {
@@ -227,7 +240,7 @@ export class BranchComponent {
         }
       
         onReset(){
-          this.branchFrom.patchValue({name:""});
+          this.branchForm.patchValue({name:""});
           this.submitbtn = false;
           this.submitted = false;
         }
@@ -242,7 +255,7 @@ export class BranchComponent {
     
               if(responce.Data.length > 0){
                 this.branchid=responce.Data[0].Branchid;
-               this.branchFrom.controls["name"].setValue(responce.Data[0].Name);
+               this.branchForm.controls["name"].setValue(responce.Data[0].Name);
                }
             }
           })

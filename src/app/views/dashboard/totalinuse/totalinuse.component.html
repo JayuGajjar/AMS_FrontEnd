@@ -1,16 +1,16 @@
     <div class="table-responsive">
       <div class="table-wrapper">
           <div class="row">
-            <!-- <div class="col input-group">
+            <div class="col input-group">
               <div>
-                <input type="search" class="form-control form-control-sm" [(ngModel)]="Assets" (keyup.enter)="searchAsset()" placeholder="Search">
+                <input type="search" class="form-control form-control-sm" [(ngModel)]="InUse" (keyup.enter)="searchInUse()" placeholder="Search">
               </div>
               <span class="input-group-append">
-                <button type="button" class="btn btn-outline-info btn-sm" (click)="searchAsset()" >
+                <button type="button" class="btn btn-outline-info btn-sm" (click)="searchInUse()" >
                   <i class="fas fa-search"></i>
                 </button>
               </span>
-            </div> -->
+            </div>
           </div>
           <br>
   
@@ -32,8 +32,7 @@
   
   
         <tbody>
-          <!-- <tr *ngFor="let inuselist of inusedata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index"> -->
-          <tr *ngFor="let inuselist of inusedata">
+          <tr *ngFor="let inuselist of inusedata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
                 <td>{{inuselist.userinfo}}</td>
                 <td>{{inuselist.branch}}</td>
                 <td>{{inuselist.type}}</td>
@@ -48,21 +47,23 @@
   
         </table>
   
-        <!-- <div class="col">
-          <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-              <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
-                  (change)="changePageSize()">
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-              </select>
-          </span>
+        <div class="row">
+          <div class="col-2">
+            <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
+                <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
+                    (change)="changePageSize()">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </span>
+          </div>
+    
+          <div class="col d-flex justify-content-end">
+            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+          </div>      
         </div>
-  
-        <div>
-          <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-        </div> -->
   
       </div>
     </div>

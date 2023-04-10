@@ -115,15 +115,16 @@ export class DashboardComponent implements OnInit {
           
           categories: [
             'Total InUse', 
-            'Total Spare', 
+            'Total Spare',
             'Total Working',
+            'Total New Request',
             'Total Scrap']
         },
         series: [{
           data: [{y: this.totalinUse, color: '#80D651' },
           {y: this.totalSpare, color: '#969696'},
-          {y: this.totalnew, color: '#003cff'},
-          {y: this.totalWorking, color: '#58a6ff'},
+          {y: this.totalWorking, color: '#003cff'},
+          {y: this.totalnew, color: '#58a6ff'},
           {y: this.totalscrap, color: '#d73814'}],
           colorByPoint: true
         }]
@@ -176,7 +177,7 @@ export class DashboardComponent implements OnInit {
                  color: '#003cff',
               },
               {
-                 name: 'Total Working',
+                 name: 'Total New Requests',
                  y: this.totalnew,
                  color: '#58a6ff',
               },

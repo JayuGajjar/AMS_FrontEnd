@@ -19,8 +19,10 @@ import { VendorsComponent } from './vendors/vendors.component';
 import { ScrapComponent } from './scrap/scrap.component';
 import { TotalnewRequestComponent } from '../dashboard/totalnew-request/totalnew-request.component';
 import { NewRequestComponent } from './new-request/new-request.component';
-const titleP = "Asset Managment Admin";
+const titleP = "Asset Managment";
+
 const routes: Routes = [
+  
   {
     path: '',
     data: {
@@ -122,6 +124,13 @@ const routes: Routes = [
         component: RequestComponent,
         data: {
           title: 'Requests',
+        },
+      },
+      {
+        path: 'edit-request/:id', title: titleP + ' - Edit Request', canActivate : [AuthGuard],
+        component: NewRequestComponent,
+        data: {
+          title: 'Edit Requests',
         },
       },
       {

@@ -1,5 +1,5 @@
 export interface company{
-    // userid : number;
+    companyid : number;
     name : string;
     //Email : string;
     //password : string

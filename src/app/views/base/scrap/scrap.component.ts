@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
@@ -14,10 +15,17 @@ export class ScrapComponent {
   PageNumber : any=1;
   totalrecord : any=0;
   Scraps : any="";
+  role : number=0;
 
-  constructor(private authservice:AuthService) { }
+  constructor(private authservice:AuthService, private router:Router) { }
 
   ngOnInit(): void {
+    
+    this.role = Number(sessionStorage.getItem('role'));
+    if(this.role==2){
+      this.router.navigate(['/dashboard']);
+    }
+
     // debugger
     this.scrapDetails(this.PageNumber,this.pageSize,this.Scraps);
   }

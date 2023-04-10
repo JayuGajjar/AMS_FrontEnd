@@ -64,7 +64,9 @@ export class LoginComponent {
       sessionStorage.setItem('rolename',response.Data.RoleName);
       sessionStorage.setItem('username',response.Data.Username);
       sessionStorage.setItem('userid',response.Data.Userid);
-      sessionStorage.getItem(response.Data);
+      sessionStorage.setItem('firstname',response.Data.First_name);
+      sessionStorage.setItem('lastname',response.Data.Last_name);
+      sessionStorage.setItem('data',response.Data);
       
       if(response.IsSuccess)
         {

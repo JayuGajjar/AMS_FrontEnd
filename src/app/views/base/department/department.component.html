@@ -11,11 +11,11 @@
                   <i class="fas fa-search"></i>
                 </button>
               </span>
+              <div style="margin-left: 5px;">
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="toggleModal()"> <span>Add</span></button>
+              </div>
             </div>
   
-            <div class="col" align="right">
-              <button type="button" class="btn btn-outline-primary btn-sm" (click)="toggleModal()"> <span>Add</span></button>
-            </div>
           </div>
           <br>
   
@@ -25,12 +25,9 @@
   
           <thead class="table-title">
             <tr>
-              <th>No</th>
+              <!-- <th>No</th> -->
               <th>Name</th>
-              <!-- <th>Remarks</th> -->
-              <!-- <th>Created_at</th> -->
-              <!-- <th>Created_at</th> -->
-              <th>Actions</th>
+              <th style="text-align: end;">Actions</th>
             </tr>
           </thead>
   
@@ -38,9 +35,9 @@
   
           <tbody *ngIf="depdata.length > 0">
             <tr *ngFor="let deplist of depdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
-              <td>{{deplist.Depid}}</td>
+              <!-- <td>{{deplist.Depid}}</td> -->
               <td>{{deplist.Name}}</td>
-              <td>
+              <td style="text-align: end;">
                 <a href="javascript:void(0)" (click)="companyModal(deplist)" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
                 <a href="javascript:void(0)" (click)="deleteDepartment(deplist)" class="delete"><i class="fa-regular fa-trash-can"></i></a>
               </td>

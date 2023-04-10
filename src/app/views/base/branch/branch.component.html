@@ -11,11 +11,11 @@
                     <i class="fas fa-search"></i>
                   </button>
                 </span>
+                <div style="margin-left: 5px;">
+                  <a type="button" class="btn btn-outline-primary btn-sm" (click)="toggleModal()">Add</a>
+                </div>
               </div>
   
-            <div class="col" align="right">
-              <a type="button" class="btn btn-outline-primary btn-sm" (click)="toggleModal()">Add</a>
-            </div>
             
           </div>
           <br>
@@ -27,9 +27,9 @@
   
           <thead class="table-title">
             <tr>
-              <th>No</th>
+              <!-- <th>No</th> -->
               <th>Name</th>
-              <th>Actions</th>
+              <th style="text-align: end;">Actions</th>
             </tr>
           </thead>
   
@@ -37,9 +37,9 @@
   
           <tbody *ngIf="branchdata.length > 0">
             <tr *ngFor="let branchlist of branchdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
-              <td>{{branchlist.Branchid}}</td>
+              <!-- <td>{{branchlist.Branchid}}</td> -->
               <td>{{branchlist.Name}}</td>
-              <td>
+              <td style="text-align: end;">
                 <a href="javascript:void(0)" (click)="branchModal(branchlist)" class="edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
                 <a href="javascript:void(0)" (click)="deleteBranch(branchlist)" class="delete" title="Remove"><i class="fa-regular fa-trash-can"></i></a> 
               </td>
@@ -80,19 +80,19 @@
     <c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleChange($event)">
       
       <c-modal-header>
-        <h5 cModalTitle>{{frlable}} Company</h5>
+        <h5 cModalTitle>{{frlable}} Branch</h5>
       </c-modal-header>
 
-      <form [formGroup]="branchFrom" (ngSubmit)="addBranch()">
+      <form [formGroup]="branchForm" (ngSubmit)="addBranch()">
 
         <c-modal-body>
             <div class="form-outline mb-4">
-                <label>Company Name</label>
-                <input type="text" class="form-control" placeholder="Enter Company" formControlName="name"
+                <label>Branch Name</label>
+                <input type="text" class="form-control" placeholder="Enter Branch" formControlName="name"
                     [ngClass]="{ 'has-error': submitted && f['name'].errors }">
                 <div *ngIf="submitted && f['name'].errors" class="has-error">
-                    <div *ngIf="f['name'].errors['required']">Company name is required!</div>
-                    <div *ngIf="f['name'].errors['pattern']">Please enter valid Company Name!!</div>
+                    <div *ngIf="f['name'].errors['required']">Branch name is required!</div>
+                    <div *ngIf="f['name'].errors['pattern']">Please enter valid Branch Name!!</div>
                 </div>
             </div>
 

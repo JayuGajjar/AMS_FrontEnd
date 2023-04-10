@@ -1,7 +1,7 @@
 export interface scrap{
-    // userid : number;
+    scrapid : number;
     asset : string;
     branch : string;
-    last_user : string
+    last_user : string;
     vendor : string
 }

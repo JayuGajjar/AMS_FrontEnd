@@ -23,15 +23,17 @@ export class CompanyComponent {
   PageNumber:any=1;
   totalrecord : any=0;
   Companies : any="";
+  role : number=0;
 
   constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
   { 
     this.data = {
+      companyid : 0,
       name : "",
     }
     
     this.companyForm = this.FB.group({
-      name : ['',[Validators.required, Validators.pattern("[a-zA-Z0-9-_][a-zA-Z0-9-_]+")]],
+      name : ['',[Validators.required, Validators.pattern('^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$')]],
 
     })
    
@@ -44,6 +46,7 @@ export class CompanyComponent {
   toggleModal()
   {
     this.onReset();
+    this.companyid = 0;
     this.visible = !this.visible;
     this.frlable="Add";
   }
@@ -60,6 +63,12 @@ export class CompanyComponent {
   }
 
   ngOnInit(): void {
+
+    this.role = Number(sessionStorage.getItem('role'));
+    if(this.role==2){
+      this.router.navigate(['/dashboard']);
+    }
+
     const ID: number = parseInt(this.route.snapshot.params['id']);
     if(ID>0){
       //fill record in
@@ -164,10 +173,12 @@ export class CompanyComponent {
     }
 
     if(this.companyid>0){
+      debugger
+      this.data.companyid = this.companyid;
       this.data.name = this.companyForm.value.name;
 
-      this.authservice.editCompany(this.data,this.companyid).subscribe(response => {
-    
+      this.authservice.editCompany(this.data).subscribe(response => {
+        debugger
         if(response.IsSuccess)
         {
           Swal.fire(
@@ -192,11 +203,12 @@ export class CompanyComponent {
     
 
     else{
-      this.submitbtn=true;
+
+      this.data.companyid = this.companyid;
       this.data.name = this.companyForm.value.name;
 
       this.authservice.addcompany(this.data).subscribe(response => {
-    
+        debugger
         if(response.IsSuccess)
         {
           Swal.fire(

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
@@ -13,11 +14,16 @@ export class AssetComponent {
   PageNumber: any=1;
   totalrecord : any=0;
   Assets : any="";
+  role : number=0;
 
-  constructor(private authservice:AuthService) { }
+  constructor(private authservice:AuthService, private router:Router) { }
 
   ngOnInit(): void {
     //debugger
+    this.role = Number(sessionStorage.getItem('role'));
+    if(this.role==2){
+      this.router.navigate(['/dashboard']);
+    }
     this.assetDetails(this.PageNumber,this.pageSize,this.Assets);
   }
 

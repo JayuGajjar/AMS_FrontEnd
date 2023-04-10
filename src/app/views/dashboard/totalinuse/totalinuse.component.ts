@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,24 +14,27 @@ export class TotalinuseComponent {
   name : any;
   userinfo : any;
   assetsinUse : any;
-  // pageSize : number=5;
-  // PageNumber: any=1;
-  // Assets : any="";
+  role : number=0;
+  pageSize : number=5;
+  PageNumber: any=1;
+  totalrecord : any=0;
+  InUse : any="";
 
-  constructor(private authservice:AuthService) { }
+  constructor(private authservice:AuthService, private router:Router) { }
 
   ngOnInit(): void {
     // debugger
-    this.inuseDetails();
+    this.inuseDetails(this.PageNumber,this.pageSize,this.InUse);
   }
 
   //get method for get the data of branch
-  inuseDetails() {
+  inuseDetails(PageNumber:number,pageSize:number,InUse:string) {
     // debugger
-    this.authservice.inuseDetails().subscribe(responce => {
+    this.authservice.inuseDetails(PageNumber,pageSize,InUse).subscribe(responce => {
      
       if(responce.IsSuccess)
       {
+        this.totalrecord = responce.Data[0].totalrecord;
         this.inusedata = responce.Data;
       }
       else
@@ -41,24 +45,24 @@ export class TotalinuseComponent {
     });
   }
 
-  // pageChangeEvent(event: number) {
-  //   this.PageNumber = event;
-  //   this.assetDetails(this.PageNumber, this.pageSize,this.Assets);
-  // }
+  pageChangeEvent(event: number) {
+    this.PageNumber = event;
+    this.inuseDetails(this.PageNumber, this.pageSize,this.InUse);
+  }
 
 
-  // changePageSize(){
-  //   // debugger
-  //   this.PageNumber=1;
-  //  this.assetDetails(this.PageNumber, this.pageSize,this.Assets);
-  // }
+  changePageSize(){
+    // debugger
+    this.PageNumber=1;
+   this.inuseDetails(this.PageNumber, this.pageSize,this.InUse);
+  }
 
 
-  // //search method
-  // searchAsset(){
-  //   // debugger
-  //   this.assetDetails(this.PageNumber,this.pageSize,this.Assets);
-  // }
+  //search method
+  searchInUse(){
+    // debugger
+    this.inuseDetails(this.PageNumber,this.pageSize,this.InUse);
+  }
 
 
 

@@ -50,33 +50,33 @@ export class AuthService {
 
   
   //get method for inuse
-  inuseDetails(): Observable<any> {
+  inuseDetails(PageNumber: any, pageSize: any, InUse: any): Observable<any> {
     debugger
-    return this.http.get(this.Url + "Reports/GetInUseTable");
+    return this.http.get(this.Url + "Reports/GetInUseTable?pageNumber=" + PageNumber + "&pageSize=" + pageSize + "&searchString=" + InUse);
   }
 
 
 
   //get method for spare
-  spareDetails(): Observable<any> {
+  spareDetails(PageNumber: any, pageSize: any, spares: any): Observable<any> {
     // debugger
-    return this.http.get(this.Url + "Reports/GetIsSpareTable");
+    return this.http.get(this.Url + "Reports/GetIsSpareTable?pageNumber=" + PageNumber + "&pageSize=" + pageSize + "&searchString=" + spares);
   }
 
 
 
   //get method for working
-  workingDetails(): Observable<any> {
+  workingDetails(PageNumber: any, pageSize: any, working: any): Observable<any> {
     // debugger
-    return this.http.get(this.Url + "Reports/GetIsWorkingTable");
+    return this.http.get(this.Url + "Reports/GetIsWorkingTable?pageNumber=" + PageNumber + "&pageSize=" + pageSize + "&searchString=" + working);
   }
 
 
 
   //get method for new request
-  newRequestsDetails(): Observable<any> {
+  newRequestsDetails(PageNumber: any, pageSize: any, newRequests: any): Observable<any> {
     // debugger
-    return this.http.get(this.Url + "Reports/GetNew_RequestTable");
+    return this.http.get(this.Url + "Reports/GetNew_RequestTable?pageNumber=" + PageNumber + "&pageSize=" + pageSize + "&searchString=" + newRequests);
   }
 
 
@@ -112,14 +112,15 @@ export class AuthService {
 
 
   //edit branch
-  editAsset(asset: any, id: any): Observable<any> {
-    return this.http.put(this.Url + "Asset/Update/" + id, asset);
+  editAsset(asset: any): Observable<any> {
+    debugger
+    return this.http.post(this.Url + "Asset/Update/", asset);
   }
 
 
   //delete branch
   deleteAsset(id: any): Observable<any> {
-    return this.http.delete(this.Url + "Asset/Delete/" + id);
+    return this.http.get(this.Url + "Asset/Delete/" + id);
   }
 
 
@@ -132,6 +133,7 @@ export class AuthService {
 
   //add post branch
   addbranch(objbranch: branch): Observable<any> {
+    // debugger
     return this.http.post<branch>(this.Url + "Branch/AddNew", objbranch);
   }
 
@@ -144,14 +146,15 @@ export class AuthService {
 
 
   //edit branch
-  editBranch(branch: any, id: any): Observable<any> {
-    return this.http.put(this.Url + "Branch/Update/" + id, branch);
+  editBranch(branch: any): Observable<any> {
+    // debugger
+    return this.http.post(this.Url + "Branch/Update/", branch);
   }
 
 
   //delete branch
   deleteBranch(id: any): Observable<any> {
-    return this.http.delete(this.Url + "Branch/Delete/" + id);
+    return this.http.get(this.Url + "Branch/Delete/" + id);
   }
 
 
@@ -164,6 +167,7 @@ export class AuthService {
 
   //add post company
   addcompany(objcompany: company): Observable<any> {
+    debugger
     return this.http.post<company>(this.Url + "Company/AddNew", objcompany);
   }
 
@@ -175,14 +179,15 @@ export class AuthService {
 
 
   //edit company
-  editCompany(company: any, id: any): Observable<any> {
-    return this.http.put(this.Url + "Company/Update/" + id, company);
+  editCompany(company: any): Observable<any> {
+    debugger
+    return this.http.post(this.Url + "Company/Update/", company);
   }
 
 
   //delete company
   deleteCompany(id: any): Observable<any> {
-    return this.http.delete(this.Url + "Company/Delete/" + id);
+    return this.http.get(this.Url + "Company/Delete/" + id);
   }
 
 
@@ -195,6 +200,7 @@ export class AuthService {
 
   //add post department
   adddepartment(objdepartment: department): Observable<any> {
+    debugger
     return this.http.post<department>(this.Url + "Department/AddNew", objdepartment);
   }
 
@@ -206,14 +212,15 @@ export class AuthService {
 
 
   //edit department
-  editDepartment(department: any, id: any): Observable<any> {
-    return this.http.put(this.Url + "Department/Update/" + id, department);
+  editDepartment(department: any): Observable<any> {
+    debugger
+    return this.http.post(this.Url + "Department/Update/", department);
   }
 
 
   //delete department
   deleteDepartment(id: any): Observable<any> {
-    return this.http.delete(this.Url + "Department/Delete/" + id);
+    return this.http.get(this.Url + "Department/Delete/" + id);
   }
 
 
@@ -249,13 +256,13 @@ export class AuthService {
   //edit request
   editRequest(userid: any, asset: any, justify: any, requestid: any): Observable<any> {
     debugger
-    return this.http.put(this.Url + "Request/UpdateRequest/" + requestid + "?userid=" + userid + '&asset=' + asset + '&justify=' + justify, this.httpOptions);
+    return this.http.post(this.Url + "Request/UpdateRequest?id=" + requestid + "&userid=" + userid + '&asset=' + asset + '&justify=' + justify, this.httpOptions);
   }
 
 
   //delete request
   deleteRequest(id: any): Observable<any> {
-    return this.http.delete(this.Url + "Request/DeleteRequest/" + id);
+    return this.http.get(this.Url + "Request/DeleteRequest/" + id);
   }
 
 
@@ -289,7 +296,7 @@ export class AuthService {
 
   //delete User
   deleteUser(id: any): Observable<any> {
-    return this.http.delete(this.Url + "Registeration/Delete/" + id);
+    return this.http.get(this.Url + "Registeration/Delete/" + id);
   }
 
 
@@ -297,6 +304,22 @@ export class AuthService {
   userDetails(PageNumber: any, pageSize: any, Users: any): Observable<any> {
     //debugger
     return this.http.get(this.Url + "Registeration/GetAllUsers?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Users);
+  }
+
+
+
+  //user get service
+  searchUserById(Userid:any): Observable<any> {
+    //debugger
+    return this.http.get(this.Url + "Registeration/Searchbyid/" + Userid);
+  }
+
+
+
+  //user get service
+  changeRole(id: any, role: any): Observable<any> {
+    debugger
+    return this.http.post(this.Url + "Registeration/SetRole/" + id + '?Role=' + role, this.httpOptions);
   }
 
 
@@ -314,14 +337,14 @@ export class AuthService {
 
 
   //edit vendor
-  editVendor(vendor: any, id: any): Observable<any> {
-    return this.http.put(this.Url + "Vendor/Update/" + id, vendor);
+  editVendor(vendor: any): Observable<any> {
+    return this.http.post(this.Url + "Vendor/Update/", vendor);
   }
 
 
   //delete vendor
   deleteVendor(id: any): Observable<any> {
-    return this.http.delete(this.Url + "Vendor/Delete/" + id);
+    return this.http.get(this.Url + "Vendor/Delete/" + id);
   }
 
   //vendor get service
@@ -344,14 +367,14 @@ export class AuthService {
 
 
   //edit scrap
-  editScrap(scrap: any, id: any): Observable<any> {
-    return this.http.put(this.Url + "Scrap/Update/" + id, scrap);
+  editScrap(scrap: any): Observable<any> {
+    return this.http.post(this.Url + "Scrap/Update/" , scrap);
   }
 
 
   //delete scrap
   deleteScrap(id: any): Observable<any> {
-    return this.http.delete(this.Url + "Scrap/Delete/" + id);
+    return this.http.get(this.Url + "Scrap/Delete/" + id);
   }
 
 

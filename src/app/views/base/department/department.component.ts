@@ -25,10 +25,12 @@ export class DepartmentComponent {
   PageNumber : any=1;
   totalrecord : any=0;
   Departments : any="";
+  role : number=0;
 
   constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
   { 
     this.data = {
+      Depid : 0,
       name : "",
     }
     
@@ -47,9 +49,11 @@ export class DepartmentComponent {
   toggleModal()
   {
     this.onReset();
+    this.departmentid = 0;
     this.visible = !this.visible;
     this.frlable="Add";
   }
+
   companyModal(getDatabyId:any) {
     this.onReset();
     this.visible = !this.visible;
@@ -64,6 +68,12 @@ export class DepartmentComponent {
 
 
   ngOnInit(): void {
+
+    this.role = Number(sessionStorage.getItem('role'));
+    if(this.role==2){
+      this.router.navigate(['/dashboard']);
+    }
+
     //debugger
     const ID: number = parseInt(this.route.snapshot.params['id']);
     if(ID>0){
@@ -165,11 +175,12 @@ export class DepartmentComponent {
     }
 
     if(this.departmentid>0){
-      // debugger
+      debugger
+      this.data.Depid = this.departmentid;
       this.data.name = this.departmentForm.value.name;
 
-      this.authservice.editDepartment(this.data,this.departmentid).subscribe(response => {
-    
+      this.authservice.editDepartment(this.data).subscribe(response => {
+        debugger
         if(response.IsSuccess)
         {
           Swal.fire(
@@ -192,10 +203,12 @@ export class DepartmentComponent {
 
     }
     else{
+
+      this.data.Depid = this.departmentid;
       this.data.name = this.departmentForm.value.name;
 
       this.authservice.adddepartment(this.data).subscribe(response => {
-    
+        debugger
         if(response.IsSuccess)
         {
           Swal.fire(

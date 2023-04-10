@@ -1,5 +1,5 @@
 export interface branch{
-    // userid : number;
+    branchid : number;
     name : string;
     //Email : string;
     //password : string

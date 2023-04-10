@@ -1,80 +1,115 @@
-    <div class="table-responsive">
-      <div class="table-wrapper">
-          <div class="row">
-            
-            <div class="col input-group">
-              <div>
-                <input type="search" class="form-control form-control-sm" [(ngModel)]="Users" (keyup.enter)="searchUser()" placeholder="Search">
-              </div>
-              <span class="input-group-append">
-                <button type="button" class="btn btn-outline-info btn-sm" (click)="searchUser()" >
-                  <i class="fas fa-search"></i>
-                </button>
-              </span>
-            </div>
+<div class="table-responsive">
+  <div class="table-wrapper">
+    <div class="row">
 
-            <div class="col" align="right">
-              <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/register"> <span>Add</span></button>
-            </div>
-  
-          </div>
-          <br>
-  
-  
-  
-        <table class="table table-hover">
-  
-  
-          <thead class="table-title">
-            <tr>
-              <th>Username</th>
-              <th>Email</th>
-              <!-- <th>Create Date</th> -->
-              <th>Role</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-  
-  
-  
-          <tbody *ngIf="userdata.length > 0">
-            <tr *ngFor="let userlist of userdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
-              <td>{{userlist.Username}}</td>
-              <td>{{userlist.Email}}</td>
-              <td>
-                <a href="javascript:void(0)" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                {{userlist.Role}}
-              </td>
-              <td>
-                <a href="javascript:void(0)" (click)="deleteUser(userlist)" class="delete"><i class="fa-regular fa-trash-can"></i></a> 
-              </td>
-            </tr>
-          </tbody>
-          <tbody *ngIf="userdata.length <= 0">
-            <tr>
-              <td colspan="100" class="text-center text-danger">No Match found</td>
-            </tr>
-          </tbody>
-  
-        </table>
-  
-        <div class="row">
-          <div class="col-2">
-            <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-                <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
-                    (change)="changePageSize()">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                </select>
-            </span>
-          </div>
-    
-          <div class="col d-flex justify-content-end">
-            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>      
+      <div class="col input-group">
+        <div>
+          <input type="search" class="form-control form-control-sm" [(ngModel)]="Users" (keyup.enter)="searchUser()"
+            placeholder="Search">
         </div>
-  
+        <span class="input-group-append">
+          <button type="button" class="btn btn-outline-info btn-sm" (click)="searchUser()">
+            <i class="fas fa-search"></i>
+          </button>
+        </span>
+        <div style="margin-left: 5px;">
+          <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/register"> <span>Add</span></button>
+        </div>
+      </div>
+
+
+    </div>
+    <br>
+
+
+
+    <table class="table table-hover">
+
+
+      <thead class="table-title">
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <!-- <th>Create Date</th> -->
+          <th>Role</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+
+
+
+      <tbody *ngIf="userdata.length > 0">
+        <tr
+          *ngFor="let userlist of userdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
+          <td>{{userlist.Username}}</td>
+          <td>{{userlist.Email}}</td>
+          <td>
+            <a href="javascript:void(0)" (click)="usreModel(userlist)" class="edit"><i
+                class="fa-solid fa-pen-to-square"></i></a>
+            {{userlist.RoleName}}
+          </td>
+          <td>
+            <a href="javascript:void(0)" (click)="deleteUser(userlist)" class="delete"><i
+                class="fa-regular fa-trash-can"></i></a>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="userdata.length <= 0">
+        <tr>
+          <td colspan="100" class="text-center text-danger">No Match found</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <div class="row">
+      <div class="col-2">
+        <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
+          <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
+            (change)="changePageSize()">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </span>
+      </div>
+
+      <div class="col d-flex justify-content-end">
+        <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
       </div>
     </div>
+
+  </div>
+</div>
+
+
+
+<!-- PopUp Form -->
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleChange($event)">
+
+  <c-modal-header>
+    <h5 cModalTitle>Set Role</h5>
+  </c-modal-header>
+
+  <form [formGroup]="roleForm" (ngSubmit)="changeRole()">
+
+    <c-modal-body>
+      <div class="form-outline mb-4">
+        <label>Choose Role</label>
+        <select type="text" class="form-control form-select" formControlName="role"
+          [ngClass]="{ 'has-error': submitted && f['asset'].errors }">
+          <option value="">select Role</option>
+          <option [ngValue]="role.roleId" *ngFor="let role of rolelistdata">
+            {{role.role}}
+          </option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" *ngIf="!submitbtn">Save</button>
+      <button type="button" class="btn btn-secondary btn-block ms-2" (click)="toggleModal()">Close</button>
+    </c-modal-body>
+
+  </form>
+
+</c-modal>

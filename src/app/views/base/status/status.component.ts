@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,10 +14,17 @@ export class StatusComponent {
   PageNumber:any=1;
   totalrecord : any=0;
   Status : any="";
+  role : number=0;
 
-  constructor(private service:AuthService) { }
+  constructor(private service:AuthService, private router:Router) { }
 
   ngOnInit(): void {
+
+    this.role = Number(sessionStorage.getItem('role'));
+    if(this.role==2){
+      this.router.navigate(['/dashboard']);
+    }
+
     //debugger
     this.getFeedbacktype(this.PageNumber,this.pageSize,this.Status);
   }

@@ -5,7 +5,7 @@ import { AuthGuard } from 'src/app/services/auth.guard';
 
 import { DashboardComponent } from './dashboard.component';
 import { TotalinuseComponent } from './totalinuse/totalinuse.component';
-const  titleP = 'Asset Managment Admin';
+const  titleP = 'Asset Managment';
 
 const routes: Routes = [
   {

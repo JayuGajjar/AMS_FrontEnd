@@ -8,7 +8,7 @@ import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { AuthGuard } from './services/auth.guard';
 import { AssetComponent } from './views/base/asset/asset.component';
-const titleP = "Asset Managment Admin";
+const titleP = "Asset Managment";
 
 const routes: Routes = [
   {

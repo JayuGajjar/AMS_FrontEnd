@@ -62,7 +62,7 @@ addRequest(userid:number, asset:number, justify:string){
   }
 
   if(this.requestid>0){
-    // debugger
+    debugger
     this.userid;
     this.asset = this.requestForm.value.asset;
     this.justify = this.requestForm.value.justify;
@@ -91,7 +91,7 @@ addRequest(userid:number, asset:number, justify:string){
 
   }
   else{
-    // debugger
+    debugger
     this.userid;
     this.asset = this.requestForm.value.asset;
     this.justify = this.requestForm.value.justify;
@@ -194,8 +194,8 @@ ngOnInit(): void {
       // debugger
       if(responce.IsSuccess)
       {
-        if(responce.Data.table6.length > 0){
-          this.typelistdata = responce.Data.table6;
+        if(responce.Data.table7.length > 0){
+          this.typelistdata = responce.Data.table7;
         }
         else
         {

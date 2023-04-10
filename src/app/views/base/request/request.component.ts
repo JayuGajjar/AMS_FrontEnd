@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
@@ -19,11 +19,18 @@ export class RequestComponent {
   type: any;
   isworking : any;
   inuse : any;
+  role : number=0;
 
 
-    constructor(private authservice:AuthService, private route:ActivatedRoute) { }
+    constructor(private authservice:AuthService, private router:Router ,private route:ActivatedRoute) { }
   
     ngOnInit(): void {
+
+      this.role = Number(sessionStorage.getItem('role'));
+      if(this.role==2){
+        this.router.navigate(['/dashboard']);
+      }
+
 
       // const ID: number = parseInt(this.route.snapshot.params['id']);
       // if(ID>0){

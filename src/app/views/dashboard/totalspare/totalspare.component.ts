@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -16,24 +17,33 @@ export class TotalspareComponent {
   type: any;
   spareAssets: any;
   status: any;
-  // pageSize : number=5;
-  // PageNumber: any=1;
-  // Assets : any="";
+  role : number=0;
+  pageSize : number=5;
+  PageNumber: any=1;
+  totalrecord : any=0;
+  spares : any="";
 
-  constructor(private authservice:AuthService) { }
+  constructor(private authservice:AuthService, private router:Router) { }
 
   ngOnInit(): void {
+
+    this.role = Number(sessionStorage.getItem('role'));
+    if(this.role==2){
+      this.router.navigate(['/dashboard']);
+    }
+
     //debugger
-    this.spareDetails();
+    this.spareDetails(this.PageNumber,this.pageSize,this.spares);
   }
 
   //get method for get the data of branch
-  spareDetails() {
+  spareDetails(PageNumber:number,pageSize:number,spares:string) {
     // debugger
-    this.authservice.spareDetails().subscribe(responce => {
+    this.authservice.spareDetails(PageNumber,pageSize,spares).subscribe(responce => {
      
       if(responce.IsSuccess)
       {
+        this.totalrecord = responce.Data[0].totalrecord;
         this.sparedata = responce.Data;
       }
       else
@@ -44,24 +54,24 @@ export class TotalspareComponent {
     });
   }
 
-  // pageChangeEvent(event: number) {
-  //   this.PageNumber = event;
-  //   this.assetDetails(this.PageNumber, this.pageSize,this.Assets);
-  // }
+  pageChangeEvent(event: number) {
+    this.PageNumber = event;
+    this.spareDetails(this.PageNumber, this.pageSize,this.spares);
+  }
 
 
-  // changePageSize(){
-  //   // debugger
-  //   this.PageNumber=1;
-  //  this.assetDetails(this.PageNumber, this.pageSize,this.Assets);
-  // }
+  changePageSize(){
+    // debugger
+    this.PageNumber=1;
+   this.spareDetails(this.PageNumber, this.pageSize,this.spares);
+  }
 
 
-  // //search method
-  // searchAsset(){
-  //   // debugger
-  //   this.assetDetails(this.PageNumber,this.pageSize,this.Assets);
-  // }
+  //search method
+  searchSpare(){
+    // debugger
+    this.spareDetails(this.PageNumber,this.pageSize,this.spares);
+  }
 
 
 
