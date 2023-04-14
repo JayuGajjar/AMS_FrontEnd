@@ -22,6 +22,10 @@ a:hover>div>.danger{
     color:#d73814;
     text-decoration: underline;
 }
+a:hover>div>.light{
+    color:#63004a;
+    text-decoration: underline;
+}
 
 
 .notice {
@@ -44,9 +48,6 @@ a:hover>div>.danger{
 .notice-success {
     border-left-color: #80D651;
 }
-.notice-success>strong {
-    color: #80D651;
-}
 .notice-secondary {
     border-left-color: #969696;
 }
@@ -56,20 +57,14 @@ a:hover>div>.danger{
 .notice-info {
     border-left-color: #58a6ff;
 }
-.notice-info>strong {
-    color: #58a6ff;
-}
 .notice-warning {
     border-left-color: #FEAF20;
-}
-.notice-warning>strong {
-    color: #FEAF20;
 }
 .notice-danger {
     border-left-color: #d73814;
 }
-.notice-danger>strong {
-    color: #d73814;
+.notice-light {
+    border-left-color: #63004a;
 }
 .infotxt {
     color: #021b38;
@@ -92,8 +87,14 @@ a:hover>div>.danger{
 .danger {
     color: #d73814;
 }
+.light {
+    color: #63004a;
+}
 
 
+.shadow1 {
+    box-shadow: 0 0.5rem 1rem rgb(0 0 21 / 48%) !important;
+}
 
 
 .form-control:focus{

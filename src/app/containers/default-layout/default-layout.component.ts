@@ -20,6 +20,6 @@ export class DefaultLayoutComponent {
   constructor() {}
 
   ngOnInit(){
-    this.role = Number(sessionStorage.getItem('role'));
+    this.role = Number(localStorage.getItem('role'));
   }
 }

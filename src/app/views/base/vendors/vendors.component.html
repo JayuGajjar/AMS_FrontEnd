@@ -1,19 +1,19 @@
-    <div class="table-responsive">
+    <div class="table-responsive shadow">
       <div class="table-wrapper">
           <div class="row">
             
             <div class="col input-group">
               <div>
-                <input type="search" class="form-control form-control-sm" [(ngModel)]="Vendors" (keyup.enter)="searchVendor()" placeholder="Search">
+                <button type="button" class="btn btn-outline-primary" routerLink="/base/add-vendors"><i class="fa-solid fa-plus"></i>&nbsp;<span>Add</span></button>
+              </div>
+              <div style="margin-left: 5px;">
+                <input type="search" class="form-control" [(ngModel)]="Vendors" (keyup)="searchVendor()" placeholder="Search">
               </div>
               <span class="input-group-append">
-                <button type="button" class="btn btn-outline-info btn-sm" (click)="searchVendor()" >
+                <button type="button" class="btn btn-outline-info" (click)="searchVendor()" >
                   <i class="fas fa-search"></i>
                 </button>
               </span>
-              <div style="margin-left: 5px;">
-                <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-vendors"> <span>Add</span></button>
-              </div>
             </div>
   
           </div>
@@ -40,8 +40,8 @@
           <tr *ngFor="let vendorlist of vendordata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
             <td>{{vendorlist.InvoiceNo}}</td>
             <td>{{vendorlist.Name}}</td>
-            <td>{{vendorlist.InvoiceDate}}</td>
-            <td>{{vendorlist.Warranty_Till}}</td>
+            <td>{{vendorlist.InvoiceDate | date:'medium'}}</td>
+            <td>{{vendorlist.Warranty_Till | date:'medium'}}</td>
             <td>
               <a href="javascript:void(0)" routerLink="/base/edit-vendors/{{vendorlist.Vendorid}}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
               <a href="javascript:void(0)" (click)="deleteVendor(vendorlist)" class="delete"><i class="fa-regular fa-trash-can"></i></a>
@@ -57,16 +57,18 @@
         </table>
   
         <div class="row">
-          <div class="col-2">
+          <div class="col-1" style="width: 6.6%;">
             <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-                <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
-                    (change)="changePageSize()">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                </select>
             </span>
+          </div>
+          <div class="col-1">
+            <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
+              (change)="changePageSize()">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
           </div>
     
           <div class="col d-flex justify-content-end">

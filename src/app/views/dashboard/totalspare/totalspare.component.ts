@@ -27,7 +27,7 @@ export class TotalspareComponent {
 
   ngOnInit(): void {
 
-    this.role = Number(sessionStorage.getItem('role'));
+    this.role = Number(localStorage.getItem('role'));
     if(this.role==2){
       this.router.navigate(['/dashboard']);
     }
@@ -48,7 +48,7 @@ export class TotalspareComponent {
       }
       else
       {
-        alert(responce.ReturnMessage);
+        this.sparedata = [];
       }
      
     });

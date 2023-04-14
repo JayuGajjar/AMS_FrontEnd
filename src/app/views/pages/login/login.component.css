@@ -5,6 +5,9 @@ body {
     "Helvetica Neue", Helvetica, Arial, sans-serif; 
   }
 
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgb(0 0 21 / 46%) !important;
+}
 
 
 .has-error{

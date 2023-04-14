@@ -1,12 +1,12 @@
-    <div class="table-responsive">
+    <div class="table-responsive shadow">
       <div class="table-wrapper">
           <div class="row">
             <div class="col input-group">
               <div>
-                <input type="search" class="form-control form-control-sm" [(ngModel)]="working" (keyup.enter)="searchWorking()" placeholder="Search">
+                <input type="search" class="form-control" [(ngModel)]="working" (keyup)="searchWorking()" placeholder="Search">
               </div>
               <span class="input-group-append">
-                <button type="button" class="btn btn-outline-info btn-sm" (click)="searchWorking()" >
+                <button type="button" class="btn btn-outline-info" (click)="searchWorking()" >
                   <i class="fas fa-search"></i>
                 </button>
               </span>
@@ -30,7 +30,7 @@
   
   
   
-          <tbody>
+          <tbody *ngIf="workingdata.length > 0">
           <tr *ngFor="let workinglist of workingdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
             <td>{{workinglist.branch}}</td>
             <td>{{workinglist.type}}</td>
@@ -44,21 +44,28 @@
               </c-badge>
             </td>
           </tr>
-          </tbody> 
+          </tbody>
+          <tbody *ngIf="workingdata.length <= 0">
+            <tr>
+              <td colspan="100" class="text-center text-danger">No Match found</td>
+            </tr>
+          </tbody>
   
         </table>
   
         <div class="row">
-          <div class="col-2">
+          <div class="col-1" style="width: 6.6%;">
             <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-                <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
-                    (change)="changePageSize()">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                </select>
             </span>
+          </div>
+          <div class="col-1">
+            <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
+              (change)="changePageSize()">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
           </div>
     
           <div class="col d-flex justify-content-end">

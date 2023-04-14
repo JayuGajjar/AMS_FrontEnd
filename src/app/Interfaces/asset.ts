@@ -6,6 +6,19 @@ export interface asset{
     type : number;
     model : string;
     nos : number;
+    Processor_Type : string;
+    Monitor_Type : string;
+    Range_Type : string;
+    Battery_Type : string;
+    Battery_Ampere : string;
+    Battery_Capacity : string;
+    GraphicsCard : string;
+    Optical_Drive : string;
+    HDD : string;
+    RAM : string;
+    Inches : string;
+    Port_Switch : string;
     specification : string;
     vendorid : number;
+    Created_at : string;
 }

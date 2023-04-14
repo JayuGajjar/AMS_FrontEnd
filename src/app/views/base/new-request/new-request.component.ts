@@ -30,8 +30,8 @@ export class NewRequestComponent implements OnInit {
 
 constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
 { 
-  // this.userid=sessionStorage.getItem('userid');
-  this.useridd=sessionStorage.getItem('userid');
+  // this.userid=localStorage.getItem('userid');
+  this.useridd=localStorage.getItem('userid');
   this.userid = Number(this.useridd);
   
   this.data = {
@@ -49,8 +49,8 @@ constructor(private authservice: AuthService, private FB: FormBuilder,private ro
  
 }
 
-username = sessionStorage.getItem('username');
-useridd = sessionStorage.getItem('userid');
+username = localStorage.getItem('username');
+useridd = localStorage.getItem('userid');
 get f() { return this.requestForm.controls; }
 
 addRequest(userid:number, asset:number, justify:string){

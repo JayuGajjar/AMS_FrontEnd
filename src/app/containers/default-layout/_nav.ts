@@ -39,12 +39,12 @@ export const navItems: INavData[] = [
     url: '/base/department'
   },
   {
-    name: 'Requests',
+    name: 'Requests Status',
     type: 1,
     url: '/base/request'
   },
   {
-    name: 'Status',
+    name: 'Assets Status',
     type: 1,
     url: '/base/status'
   },

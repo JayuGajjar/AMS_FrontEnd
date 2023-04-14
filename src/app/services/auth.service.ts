@@ -125,9 +125,9 @@ export class AuthService {
 
 
   //Asset get Service
-  assetDetails(PageNumber: any, pageSize: any, Assets: any): Observable<any> {
-    // debugger
-    return this.http.get(this.Url + "Asset/GetAllAssets?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Assets);
+  assetDetails(PageNumber: any, pageSize: any, Assets: any, branchid: any, typeid: any, vendorid: any, dateid: any): Observable<any> {
+    debugger
+    return this.http.get(this.Url + "Asset/GetAllAssets?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Assets + '&Brcid=' + branchid + '&Typeid=' + typeid + '&Vendid=' + vendorid + '&DateFilter=' + dateid);
   }
 
 
@@ -274,9 +274,9 @@ export class AuthService {
 
 
   //Request get service for admin
-  requestDetailsAdmin(PageNumber: any, pageSize: any, Requests: any): Observable<any> {
+  requestDetailsAdmin(PageNumber: any, pageSize: any, Requests: any, assetid: any, statusid: any): Observable<any> {
     //debugger
-    return this.http.get(this.Url + "Request/GetAllRequests?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchString=' + Requests);
+    return this.http.get(this.Url + "Request/GetAllRequests?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchString=' + Requests + '&assetId=' + assetid + '&statId=' + statusid);
   }
 
 
@@ -288,9 +288,9 @@ export class AuthService {
 
 
   //status get service
-  statusDetails(PageNumber: any, pageSize: any, Status: any): Observable<any> {
+  statusDetails(PageNumber: any, pageSize: any, Status: any, assetid: any, statusid: any): Observable<any> {
     //debugger
-    return this.http.get(this.Url + "Status/GetAllStatus?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Status);
+    return this.http.get(this.Url + "Status/GetAllStatus?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Status + '&Assetid=' + assetid + '&Statid=' + statusid);
   }
 
 
@@ -307,8 +307,15 @@ export class AuthService {
   }
 
 
+  //user update method
+  editUser(user: any): Observable<any> {
+    debugger
+    return this.http.post(this.Url + "Registeration/Update", user);
+  }
 
-  //user get service
+
+
+  //user search by id service
   searchUserById(Userid:any): Observable<any> {
     //debugger
     return this.http.get(this.Url + "Registeration/Searchbyid/" + Userid);
@@ -379,9 +386,9 @@ export class AuthService {
 
 
   //scrap get service
-  scrapDetails(PageNumber: any, pageSize: any, Scraps: any): Observable<any> {
+  scrapDetails(PageNumber: any, pageSize: any, Scraps: any, assetid: any, branchid: any, vendorid: any): Observable<any> {
     //debugger
-    return this.http.get(this.Url + "Scrap/GetAllScrap?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Scraps);
+    return this.http.get(this.Url + "Scrap/GetAllScrap?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Scraps + '&assetId=' + assetid + '&brcId=' + branchid + '&vedId=' + vendorid);
   }
 
 

@@ -15,21 +15,27 @@ export class RequestComponent {
   PageNumber : any=1;
   totalrecord : number=0;
   Requests : any="";
+  assetid : any=0;
+  statusid : any=0;
   id : any;
   type: any;
   isworking : any;
   inuse : any;
   role : number=0;
+  assetlistdata : any=[];
+  statuslistdata : any=[];
 
 
     constructor(private authservice:AuthService, private router:Router ,private route:ActivatedRoute) { }
   
     ngOnInit(): void {
 
-      this.role = Number(sessionStorage.getItem('role'));
+      this.role = Number(localStorage.getItem('role'));
       if(this.role==2){
         this.router.navigate(['/dashboard']);
       }
+
+      this.getAllTables();
 
 
       // const ID: number = parseInt(this.route.snapshot.params['id']);
@@ -37,12 +43,12 @@ export class RequestComponent {
       //   this.statusChange(this.id,this.isworking,this.inuse);
       // }
       //debugger
-      this.requestDetails(this.PageNumber,this.pageSize,this.Requests);
+      this.requestDetails(this.PageNumber,this.pageSize,this.Requests,this.assetid,this.statusid);
     }
   
-    requestDetails(PageNumber:number,pageSize:number,Requests:string) {
+    requestDetails(PageNumber:number,pageSize:number,Requests:string,assetid:number,statusid:number) {
       // debugger
-      this.authservice.requestDetailsAdmin(PageNumber,pageSize,Requests).subscribe(responce => {
+      this.authservice.requestDetailsAdmin(PageNumber,pageSize,Requests,assetid,statusid).subscribe(responce => {
        
         if(responce.IsSuccess)
         {
@@ -59,20 +65,20 @@ export class RequestComponent {
   
     pageChangeEvent(event: number) {
       this.PageNumber = event;
-      this.requestDetails(this.PageNumber, this.pageSize, this.Requests);
+      this.requestDetails(this.PageNumber, this.pageSize, this.Requests,this.assetid,this.statusid);
     }
   
   
     changePageSize(){
       // debugger
       this.PageNumber=1;
-     this.requestDetails(this.PageNumber, this.pageSize, this.Requests);
+     this.requestDetails(this.PageNumber, this.pageSize, this.Requests,this.assetid,this.statusid);
     }
 
 
     //search method
     searchRequest(){
-      this.requestDetails(this.PageNumber, this.pageSize, this.Requests);
+      this.requestDetails(this.PageNumber, this.pageSize, this.Requests,this.assetid,this.statusid);
     }
     
 
@@ -89,7 +95,7 @@ export class RequestComponent {
               responce.ReturnMessage,
               'success'
               )
-              this.requestDetails(this.PageNumber,this.pageSize, this.Requests);
+              this.requestDetails(this.PageNumber,this.pageSize, this.Requests,this.assetid,this.statusid);
             }
             else
             {
@@ -125,7 +131,7 @@ export class RequestComponent {
                 responce.ReturnMessage,
                 'success'
               )
-              this.requestDetails(this.PageNumber,this.pageSize, this.Requests);
+              this.requestDetails(this.PageNumber,this.pageSize, this.Requests,this.assetid,this.statusid);
             }
             else 
             {
@@ -138,6 +144,34 @@ export class RequestComponent {
           });
         }
       })
+  }
+
+
+
+  //get for all tables
+  getAllTables(){
+    // debugger
+    this.authservice.getAllTables().subscribe(responce => {
+      debugger
+      if(responce.IsSuccess){
+        
+        if(responce.Data.table1.length > 0){
+          this.statuslistdata = responce.Data.table1;
+        }
+        else
+        {
+          this.statuslistdata = [];
+        }
+
+        if(responce.Data.table7.length > 0){
+          this.assetlistdata = responce.Data.table7;
+        }
+        else
+        {
+          this.assetlistdata = [];
+        }
+      }
+    })
   }
   
 }

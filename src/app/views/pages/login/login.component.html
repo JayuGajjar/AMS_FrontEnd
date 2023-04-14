@@ -1,13 +1,16 @@
-<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+<section class="vh-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-8 col-xl-6">
-        <div class="card rounded-3">
-          <img src="./assets/images/image_2023_03_23T09_02_43_496Z.png"
-            style="border-top-left-radius: .3rem; padding-top: 20px;
-            margin: auto; border-top-right-radius: .3rem;" alt="Sample photo">
-          <div class="card-body p-4 p-md-5">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2"><u><i>Admin LogIn</i></u></h3>
+      <div class="col col-xl-10">
+        <div class="card shadow" style="border-radius: 2rem; background-color: whitesmoke;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+          <img src="./assets/images/logo-color.svg"
+            style="margin-top: 100px;" alt="Sample photo">
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+            <div class="card-body p-4 p-lg-5 text-black">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2"><u><i>LogIn</i></u></h3>
 
 
 
@@ -16,7 +19,8 @@
 
 
               <div class="form-outline mb-4">
-                <input type="text" class="form-control" placeholder="Gmail" formControlName="email"
+                <label>Mail</label>
+                <input type="text" class="form-control" placeholder="Mail" formControlName="email"
                   [ngClass]="{'has-error': submitted && f['email'].errors }">
                 <div *ngIf="submitted && f['email'].errors" class="has-error">
                   <div *ngIf="f['email'].errors['required']">Email is required!</div>
@@ -28,6 +32,7 @@
 
 
               <div class="form-outline mb-4">
+                <label>Password</label>
                 <input type="password" class="form-control" placeholder="Password" formControlName="password"
                   [ngClass]="{ 'has-error': submitted && f['password'].errors }">
                 <div *ngIf="submitted && f['password'].errors" class="has-error">
@@ -39,8 +44,11 @@
 
 
               <div class="form-outline mb-4">
-                <button class="px-4" color="primary" class="btn form-control gradient-custom-4 rounded submit px-3">
+                <button class="px-4" color="primary" *ngIf="!submitbtn" class="btn form-control gradient-custom-4 rounded submit px-3">
                   Login</button>
+                  <button class="px-4" color="primary" class="btn form-control gradient-custom-4 rounded submit px-3" *ngIf="submitbtn" [disabled]="submitbtn">
+                    <i class="fa-solid fa-spinner fa-spin"></i> Loading
+                </button>
               </div>
 
 
@@ -56,7 +64,8 @@
             </div>
 
 
-
+          </div>
+          </div>
           </div>
         </div>
       </div>

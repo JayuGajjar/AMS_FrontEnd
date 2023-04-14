@@ -1,4 +1,4 @@
-<section class="border">
+<section class="border shadow">
     <div class="d-flex justify-content-center">
         <div class="w-100">
             <div class="p-4">
@@ -51,8 +51,11 @@
 
 
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add'">Add</button>
-                        <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update'">Update</button>
+                        <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add' && !submitted">Add</button>
+                        <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update' !submitted">Update</button>
+                        <button class="btn btn-primary btn-block" *ngIf="submitted" [disabled]="submitted">
+                            <i class="fa-solid fa-spinner fa-spin"></i> Loading
+                        </button>
                     </div>
                     
                 </form>

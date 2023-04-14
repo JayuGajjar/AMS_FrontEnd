@@ -1,4 +1,4 @@
-    <div class="table-responsive">
+    <div class="table-responsive shadow">
       <div class="table-wrapper">
           <div class="row">
             <!-- <div class="col mr-2">
@@ -6,18 +6,31 @@
             </div> -->
             <div class="col input-group">
               <div>
-                <input type="search" class="form-control form-control-sm" [(ngModel)]="Requests" (keyup.enter)="searchRequest()" placeholder="Search">
+                <input type="search" class="form-control" [(ngModel)]="Requests" (keyup)="searchRequest()" placeholder="Search">
               </div>
               <span class="input-group-append">
-                <button type="button" class="btn btn-outline-info btn-sm" (click)="searchRequest()" >
+                <button type="button" class="btn btn-outline-info" (click)="searchRequest()" >
                   <i class="fas fa-search"></i>
                 </button>
               </span>
+              <div style="margin-left: 5px;">
+                <select type="text" class="form-select form-control" [(ngModel)]="assetid" (change)="searchRequest()">
+                  <option value="0">Filter by Asset</option>
+                  <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
+                    {{assets.specification}}
+                  </option>
+                </select>
+              </div>
+              <div style="margin-left: 5px;">
+                <select type="text" class="form-select form-control" [(ngModel)]="statusid" (change)="searchRequest()">
+                  <option value="0">Filter by Status</option>
+                  <option [ngValue]="status.statid" *ngFor="let status of statuslistdata">
+                    {{status.name}}
+                  </option>
+                </select>
+              </div>
             </div>
   
-            <!-- <div class="col" align="right">
-              <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-request"> <span>Add</span></button>
-            </div> -->
           </div>
           <br>
   
@@ -28,10 +41,10 @@
   
           <thead class="table-title">
             <tr>
-              <th>User</th>
+              <th>Allocated To</th>
               <th>Asset</th>
               <th>Created_at</th>
-              <th>Justify</th>
+              <th>Remarks</th>
               <th>IsWorking</th>
               <th>InUse</th>
               <th>Status</th>
@@ -45,7 +58,7 @@
           <tr *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
             <td>{{requestlist.UserName}}</td>
             <td>{{requestlist.Asset}}</td>
-            <td>{{requestlist.Created_at}}</td>
+            <td>{{requestlist.Created_at | date}}</td>
             <td>{{requestlist.Justify}}</td>
             <td>
               <c-form-check [switch]="true">
@@ -88,16 +101,18 @@
 
 
       <div class="row">
-        <div class="col-2">
+        <div class="col-1" style="width: 6.6%;">
           <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-              <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
-                  (change)="changePageSize()">
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-              </select>
           </span>
+        </div>
+        <div class="col-1">
+          <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
+            (change)="changePageSize()">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
         </div>
   
         <div class="col d-flex justify-content-end">

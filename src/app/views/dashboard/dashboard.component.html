@@ -1,221 +1,169 @@
 <div *ngIf="role==1">
+
+  <!-- <div class="table-title row">
+    Assets Total Values
+  </div> -->
   <!-- First Row -->
-<div class="row">
-  <div class="col-xl-4 col-md-6 mb-4">
-      <div class="card shadow h-100 py-2 notice notice-success">
+  <div class="row">
+    <div class="row col-7">
+      <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
+        <div class="card shadow h-100 py-2 notice notice-success">
           <div class="card-body">
-              <a href="javascript:void(0)" routerLink="/base/inuse">
-                  <div class="row align-items-center">
-                      <div class="col mr-2 success">
-                          <div class="text-uppercase">
-                              Total InUses
-                          </div>
-                          <div class="h3 mb-0 font-weight-bold"> {{totalinUse}} </div>
-                      </div>
-                      <div class="col-auto success">
-                        <i class="fa-solid fa-clipboard-check fa-2xl"></i>
-                      </div>
+            <a href="javascript:void(0)" routerLink="/base/inuse">
+              <div class="row align-items-center">
+                <div class="col mr-2 success">
+                  <div class="text-uppercase">
+                    Total InUses
                   </div>
-              </a>
+                  <div class="h3 mb-0 font-weight-bold"> {{totalinUse}} </div>
+                </div>
+                <div class="col-auto success">
+                  <i class="fa-solid fa-clipboard-check fa-2xl"></i>
+                </div>
+              </div>
+            </a>
           </div>
+        </div>
       </div>
-  </div>
 
 
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card shadow h-100 py-2 notice notice-secondary">
-        <div class="card-body">
+      <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
+        <div class="card shadow h-100 py-2 notice notice-secondary">
+          <div class="card-body">
             <a href="javascript:void(0)" routerLink="/base/spare">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2 secondary">
-                        <div class="text-uppercase">
-                            Total Spares
-                        </div>
-                        <div class="h3 mb-0 font-weight-bold"> {{totalSpare}} </div>
-                    </div>
-                    <div class="col-auto secondary">
-                      <i class="fa-solid fa-box fa-2xl"></i>
-                    </div>
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2 secondary">
+                  <div class="text-uppercase">
+                    Total Spares
+                  </div>
+                  <div class="h3 mb-0 font-weight-bold"> {{totalSpare}} </div>
                 </div>
+                <div class="col-auto secondary">
+                  <i class="fa-solid fa-box fa-2xl"></i>
+                </div>
+              </div>
             </a>
+          </div>
         </div>
-    </div>
-  </div>
+      </div>
 
 
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card shadow h-100 py-2 notice notice-primary">
-        <div class="card-body">
+      <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
+        <div class="card shadow h-100 py-2 notice notice-primary">
+          <div class="card-body">
             <a href="javascript:void(0)" routerLink="/base/working">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2 primary">
-                        <div class="text-uppercase">
-                            Total Working
-                        </div>
-                        <div class="h3 mb-0 font-weight-bold"> {{totalWorking}} </div>
-                    </div>
-                    <div class="col-auto primary">
-                      <i class="fa-solid fa-plug-circle-check fa-2xl"></i>
-                    </div>
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2 primary">
+                  <div class="text-uppercase">
+                    Total Working
+                  </div>
+                  <div class="h3 mb-0 font-weight-bold"> {{totalWorking}} </div>
                 </div>
+                <div class="col-auto primary">
+                  <i class="fa-solid fa-plug-circle-check fa-2xl"></i>
+                </div>
+              </div>
             </a>
+          </div>
         </div>
-    </div>
-  </div>
-</div>
+      </div>
 
 
+      <!-- Second Row -->
+      <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
+        <div class="card shadow h-100 py-2 notice notice-info">
+          <div class="card-body">
+            <a href="javascript:void(0)" routerLink="/base/newrequests">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2 info">
+                  <div class="text-uppercase">
+                    Total New Requests
+                  </div>
+                  <div class="h3 mb-0 font-weight-bold"> {{totalnew}} </div>
+                </div>
+                <div class="col-auto info">
+                  <i class="fa-solid fa-user-plus fa-2xl"></i>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
 
-<!-- Second Row -->
-<!-- <div class="row">
-  <div class="col-xl-4 col-md-6 mb-4">
+
+      <!-- <div class="col-xl-4 col-md-6 mb-4">
       <div class="card shadow h-100 py-2 notice notice-info">
           <div class="card-body">
               <a href="javascript:void(0)"> (click)="redirectCandidatePage(4)"></a>
-              <a routerLink="/base/department">
+              <a routerLink="/base/vendor">
                   <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                           <div class="text-uppercase infotxt">
-                              Total Departments
+                              Total Vendors
                           </div>
-                          <div class="h5 mb-0 font-weight-bold"> {{totaldepartments}} </div>
+                          <div class="h5 mb-0 font-weight-bold"> {{totalvendors}} </div>
                       </div>
                       <div class="col-auto info">
-                        <i class="fa-solid fa-building-user fa-2x"></i>
+                        <i class="fa-solid fa-store fa-2x"></i>
                       </div>
                   </div>
               </a>
           </div>
       </div>
-  </div>
+    </div> -->
 
 
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card shadow h-100 py-2 notice notice-info">
-        <div class="card-body">
-            <a href="javascript:void(0)"> (click)="redirectCandidatePage(4)"></a>
-            <a routerLink="/base/request">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-uppercase infotxt">
-                            Total Requests
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold"> {{totalrequest}} </div>
-                    </div>
-                    <div class="col-auto info">
-                      <i class="fa-solid fa-user-plus fa-2x"></i>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-  </div>
-
-
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card shadow h-100 py-2 notice notice-info">
-        <div class="card-body">
-            <a href="javascript:void(0)"> (click)="redirectCandidatePage(4)"></a>
-            <a routerLink="/base/status">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-uppercase infotxt">
-                          Status
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold"> {{totalstatus}} </div>
-                    </div>
-                    <div class="col-auto info">
-                      <i class="fa-solid fa-circle-info fa-2x"></i>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-  </div>
-</div> -->
-
-
-
-<!-- Third Row -->
-<div class="row">
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card shadow h-100 py-2 notice notice-info">
-        <div class="card-body">
-            <a href="javascript:void(0)" routerLink="/base/newrequests">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2 info">
-                        <div class="text-uppercase">
-                            Total New Requests
-                        </div>
-                        <div class="h3 mb-0 font-weight-bold"> {{totalnew}} </div>
-                    </div>
-                    <div class="col-auto info">
-                      <i class="fa-solid fa-user-plus fa-2xl"></i>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-  </div>
-
-
-  <!-- <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card shadow h-100 py-2 notice notice-info">
-        <div class="card-body">
-            <a href="javascript:void(0)"> (click)="redirectCandidatePage(4)"></a>
-            <a routerLink="/base/vendor">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-uppercase infotxt">
-                            Total Vendors
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold"> {{totalvendors}} </div>
-                    </div>
-                    <div class="col-auto info">
-                      <i class="fa-solid fa-store fa-2x"></i>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-  </div> -->
-
-
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card shadow h-100 py-2 notice notice-danger">
-        <div class="card-body">
+      <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
+        <div class="card shadow h-100 py-2 notice notice-danger">
+          <div class="card-body">
             <a routerLink="/base/scrap">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2 danger">
-                        <div class="text-uppercase">
-                            Total Scraps
-                        </div>
-                        <div class="h3 mb-0 font-weight-bold"> {{totalscrap}} </div>
-                    </div>
-                    <div class="col-auto danger">
-                      <i class="fa-solid fa-trash fa-2xl"></i>
-                    </div>
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2 danger">
+                  <div class="text-uppercase">
+                    Total Scraps
+                  </div>
+                  <div class="h3 mb-0 font-weight-bold"> {{totalscrap}} </div>
                 </div>
+                <div class="col-auto danger">
+                  <i class="fa-solid fa-trash fa-2xl"></i>
+                </div>
+              </div>
             </a>
+          </div>
         </div>
+      </div>
+
+
+      <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
+        <div class="card shadow h-100 py-2 notice notice-light">
+          <div class="card-body">
+            <a routerLink="/base/asset">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2 light">
+                  <div class="text-uppercase">
+                    Total Assets
+                  </div>
+                  <div class="h3 mb-0 font-weight-bold"> {{totalasset}} </div>
+                </div>
+                <div class="col-auto light">
+                  <i class="fa-solid fa-computer fa-2xl"></i>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+
+    <div class="col-5">
+      <div class="shadow" id="pieChart"></div>
+    </div>
+
+    <br>
   </div>
-</div>
-<br>
 
-
-
-
-
-
-<div class="row"> <!--*ngIf="userroleid === '1' || userroleid === '2'" -->
-  <div class="col-xl-6 col-md-6 mb-4">
-      <div id="columnChart"></div>
-  </div>
-  <div class="col-xl-6 col-md-6 mb-4" >
-      <div id="pieChart"></div>
-  </div>
-</div>
 
 </div>
 
@@ -223,19 +171,27 @@
 
 
 <!-- For user only -->
- 
-<div class="table-responsive">
-  <div class="table-wrapper">
+<div style="background: whitesmoke;
+            color: #002e7c;
+            padding: 16px 30px;
+            margin: -5px -25px -10px;
+            border-radius: 3px 3px 0 0;" class="shadow">
+      <h4 style="text-shadow: 2px 2px lightgray; margin-top: 5px;">Your Assets</h4>
+
+  <div class="table-responsive shadow1">
+    <div class="table-wrapper">
+
       <div class="row">
         <!-- <div class="col mr-2">
           <p class="p-2 badge badge-info ">Total Record : <b style="font-size: 15px;">{{totalrecord}}</b></p>
         </div> -->
         <div class="col input-group">
           <div>
-            <input type="search" class="form-control form-control-sm" [(ngModel)]="Requests" (keyup.enter)="searchRequest()" placeholder="Search">
+            <input type="search" class="form-control" [(ngModel)]="Requests" (keyup)="searchRequest()"
+              placeholder="Search">
           </div>
           <span class="input-group-append">
-            <button type="button" class="btn btn-outline-info btn-sm" (click)="searchRequest()" >
+            <button type="button" class="btn btn-outline-info" (click)="searchRequest()">
               <i class="fas fa-search"></i>
             </button>
           </span>
@@ -250,85 +206,99 @@
 
 
 
-    <table class="table table-hover">
+      <table class="table table-hover">
 
 
-      <thead class="table-title">
-        <tr>
-          <th>User</th>
-          <th>Asset</th>
-          <th>Created_at</th>
-          <th>Justify</th>
-          <th>IsWorking</th>
-          <th>InUse</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
+        <thead class="table-title">
+          <tr>
+            <th>Allocated To</th>
+            <th>Asset</th>
+            <th>Created_at</th>
+            <th>Remarks</th>
+            <th>IsWorking</th>
+            <th>InUse</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
 
 
 
-      <tbody *ngIf="requestdata.length > 0">
-      <tr *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: specialrecord};let i = index">
-        <td>{{requestlist.UserName}}</td>
-        <td>{{requestlist.Asset}}</td>
-        <td>{{requestlist.Created_at}}</td>
-        <td>{{requestlist.Justify}}</td>
-        <td>
-          <c-form-check [switch]="true">
-            <input *ngIf="requestlist.isworking==true" [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" checked cFormCheckInput type="checkbox">
-            <input *ngIf="requestlist.isworking==false" disabled [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" checked cFormCheckInput type="checkbox">
-          </c-form-check>
-        </td>
-        <td>
-          <c-form-check [switch]="true">
-            <input *ngIf="requestlist.isworking==false" disabled [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput type="checkbox">
-            <input *ngIf="requestlist.isworking==true" [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput type="checkbox">
-          </c-form-check>
-        </td>
-        <td>
-            <c-badge *ngIf="requestlist.Status==1" color="info">
-              {{requestlist.CurrentStatus}}
-            </c-badge>
-            <c-badge *ngIf="requestlist.Status==2" color="success">
-              {{requestlist.CurrentStatus}}
-            </c-badge>
-            <c-badge *ngIf="requestlist.Status==3" color="secondary">
-              {{requestlist.CurrentStatus}}
-            </c-badge>
-            <c-badge *ngIf="requestlist.Status==4" color="danger">
-              {{requestlist.CurrentStatus}}
-            </c-badge>
-        </td>
-        <td>
-            <a href="javascript:void(0)" routerLink="/base/edit-request/{{requestlist.Requestid}}" class="edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
-          <a href="javascript:void(0)" (click)="deleteRequest(requestlist)" class="delete" title="Delete"><i class="fa-regular fa-trash-can"></i></a>
-        </td>
-      </tr>
-      </tbody>
-      <tbody *ngIf="requestdata.length <= 0">
-        <tr>
-          <td colspan="100" class="text-center text-danger">No Match found</td>
-        </tr>
-      </tbody>
-    </table>
+        <tbody *ngIf="requestdata.length > 0">
+          <tr
+            *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: specialrecord};let i = index">
+            <td>{{requestlist.UserName}}</td>
+            <td>{{requestlist.Asset}}</td>
+            <td>{{requestlist.Created_at}}</td>
+            <td>{{requestlist.Justify}}</td>
+            <td>
+              <c-form-check [switch]="true">
+                <input *ngIf="requestlist.isworking==true" [(ngModel)]="requestlist.isworking"
+                  (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" checked
+                  cFormCheckInput type="checkbox">
+                <input *ngIf="requestlist.isworking==false" disabled [(ngModel)]="requestlist.isworking"
+                  (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" checked
+                  cFormCheckInput type="checkbox">
+              </c-form-check>
+            </td>
+            <td>
+              <c-form-check [switch]="true">
+                <input *ngIf="requestlist.isworking==false" disabled [(ngModel)]="requestlist.inuse"
+                  (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput
+                  type="checkbox">
+                <input *ngIf="requestlist.isworking==true" [(ngModel)]="requestlist.inuse"
+                  (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput
+                  type="checkbox">
+              </c-form-check>
+            </td>
+            <td>
+              <c-badge *ngIf="requestlist.Status==1" color="info">
+                {{requestlist.CurrentStatus}}
+              </c-badge>
+              <c-badge *ngIf="requestlist.Status==2" color="success">
+                {{requestlist.CurrentStatus}}
+              </c-badge>
+              <c-badge *ngIf="requestlist.Status==3" color="secondary">
+                {{requestlist.CurrentStatus}}
+              </c-badge>
+              <c-badge *ngIf="requestlist.Status==4" color="danger">
+                {{requestlist.CurrentStatus}}
+              </c-badge>
+            </td>
+            <td>
+              <a href="javascript:void(0)" routerLink="/base/edit-request/{{requestlist.Requestid}}" class="edit"
+                title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+              <a href="javascript:void(0)" (click)="deleteRequest(requestlist)" class="delete" title="Delete"><i
+                  class="fa-regular fa-trash-can"></i></a>
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="requestdata.length <= 0">
+          <tr>
+            <td colspan="100" class="text-center text-danger">No Match found</td>
+          </tr>
+        </tbody>
+      </table>
 
-    <div class="row">
-      <div class="col-2">
-        <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-            <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
-                (change)="changePageSize()">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-            </select>
-        </span>
+      <div class="row">
+        <div class="col-1" style="width: 6.6%;">
+          <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
+          </span>
+        </div>
+        <div class="col-1">
+          <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
+            (change)="changePageSize()">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+
+        <div class="col d-flex justify-content-end">
+          <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+        </div>
       </div>
-
-      <div class="col d-flex justify-content-end">
-        <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-      </div>      
     </div>
 
 

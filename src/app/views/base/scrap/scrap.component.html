@@ -1,18 +1,42 @@
-    <div class="table-responsive">
+    <div class="table-responsive shadow">
       <div class="table-wrapper">
           <div class="row">
             
             <div class="col input-group">
               <div>
-                <input type="search" class="form-control form-control-sm" [(ngModel)]="Scraps" (keyup.enter)="searchScrap()" placeholder="Search">
+                <button type="button" class="btn btn-outline-primary" routerLink="/base/add-scrap"><i class="fa-solid fa-plus"></i>&nbsp;<span>Add</span></button>
+              </div>
+              <div style="margin-left: 5px;">
+                <input type="search" class="form-control" [(ngModel)]="Scraps" (keyup)="searchScrap()" placeholder="Search">
               </div>
               <span class="input-group-append">
-                <button type="button" class="btn btn-outline-info btn-sm" (click)="searchScrap()" >
+                <button type="button" class="btn btn-outline-info" (click)="searchScrap()" >
                   <i class="fas fa-search"></i>
                 </button>
               </span>
               <div style="margin-left: 5px;">
-                <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/base/add-scrap"> <span>Add</span></button>
+                <select type="text" class="form-select form-control" [(ngModel)]="assetid" (change)="searchScrap()">
+                  <option value="0">Filter by Asset</option>
+                  <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
+                    {{assets.specification}}
+                  </option>
+                </select>
+              </div>
+              <div style="margin-left: 5px;">
+                <select type="text" class="form-select form-control" [(ngModel)]="branchid" (change)="searchScrap()">
+                  <option value="0">Filter by Branch</option>
+                  <option [ngValue]="branches.branchid" *ngFor="let branches of branchlistdata">
+                    {{branches.name}}
+                  </option>
+                </select>
+              </div>
+              <div style="margin-left: 5px;">
+                <select type="text" class="form-select form-control" [(ngModel)]="vendorid" (change)="searchScrap()">
+                  <option value="0">Filter by Vendor</option>
+                  <option [ngValue]="vendors.vendorid" *ngFor="let vendors of vendorlistdata">
+                    {{vendors.name}}
+                  </option>
+                </select>
               </div>
             </div>
   
@@ -26,8 +50,8 @@
   
           <thead class="table-title">
             <tr>
-              <th>Asset</th>
               <th>Branch</th>
+              <th>Asset</th>
               <th>LastUser</th>
               <th>Vendor</th>
               <th>Created_at</th>
@@ -39,11 +63,11 @@
   
           <tbody *ngIf="scrapdata.length > 0">
             <tr *ngFor="let scraplist of scrapdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
-              <td>{{scraplist.AssetName}}</td>
               <td>{{scraplist.BranchName}}</td>
+              <td>{{scraplist.AssetName}}</td>
               <td>{{scraplist.LastUser}}</td>
               <td>{{scraplist.VendorName}}</td>
-              <td>{{scraplist.Created_at}}</td>
+              <td>{{scraplist.Created_at | date}}</td>
               <td>
                 <a href="javascript:void(0)" routerLink="/base/edit-scrap/{{scraplist.Scrapid}}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
                 <a href="javascript:void(0)" (click)="deleteScrap(scraplist)" class="delete"><i class="fa-regular fa-trash-can"></i></a>
@@ -59,16 +83,18 @@
         </table>
   
         <div class="row">
-          <div class="col-2">
+          <div class="col-1" style="width: 6.6%;">
             <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-                <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
-                    (change)="changePageSize()">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                </select>
             </span>
+          </div>
+          <div class="col-1">
+            <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
+              (change)="changePageSize()">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
           </div>
     
           <div class="col d-flex justify-content-end">

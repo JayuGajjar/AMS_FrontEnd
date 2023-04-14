@@ -1,16 +1,32 @@
-    <div class="table-responsive">
+    <div class="table-responsive shadow">
       <div class="table-wrapper">
           <div class="row">
             
             <div class="col input-group">
               <div>
-                <input type="search" class="form-control form-control-sm" [(ngModel)]="Status" (keyup.enter)="searchStatus()" placeholder="Search">
+                <input type="search" class="form-control" [(ngModel)]="Status" (keyup)="searchStatus()" placeholder="Search">
               </div>
               <span class="input-group-append">
-                <button type="button" class="btn btn-outline-info btn-sm" (click)="searchStatus()" >
+                <button type="button" class="btn btn-outline-info" (click)="searchStatus()" >
                   <i class="fas fa-search"></i>
                 </button>
               </span>
+              <div style="margin-left: 5px;">
+                <select type="text" class="form-select form-control" [(ngModel)]="assetid" (change)="searchStatus()">
+                  <option value="0">Filter by Asset</option>
+                  <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
+                    {{assets.specification}}
+                  </option>
+                </select>
+              </div>
+              <div style="margin-left: 5px;">
+                <select type="text" class="form-select form-control" [(ngModel)]="statusid" (change)="searchStatus()">
+                  <option value="0">Filter by Status</option>
+                  <option [ngValue]="status.statid" *ngFor="let status of statuslistdata">
+                    {{status.name}}
+                  </option>
+                </select>
+              </div>
             </div>
   
           </div>
@@ -23,9 +39,9 @@
   
           <thead class="table-title">
             <tr>
-              <th>User</th>
+              <th>Allocated To</th>
               <th>Asset</th>
-              <th>Request</th>
+              <th>Remarks</th>
               <th>Created_at</th>
               <th>Status</th>
               <!-- <th>Actions</th> -->
@@ -39,7 +55,7 @@
             <td>{{statuslist.UserName}}</td>
             <td>{{statuslist.Asset}}</td>
             <td>{{statuslist.Request}}</td>
-            <td>{{statuslist.Created_at}}</td>
+            <td>{{statuslist.Created_at | date}}</td>
             <td>
               <c-badge *ngIf="statuslist.Status==1" color="info">
                 {{statuslist.StatusNow}}
@@ -71,16 +87,18 @@
         </table>
   
         <div class="row">
-          <div class="col-2">
+          <div class="col-1" style="width: 6.6%;">
             <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-                <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
-                    (change)="changePageSize()">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                </select>
             </span>
+          </div>
+          <div class="col-1">
+            <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
+              (change)="changePageSize()">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
           </div>
     
           <div class="col d-flex justify-content-end">

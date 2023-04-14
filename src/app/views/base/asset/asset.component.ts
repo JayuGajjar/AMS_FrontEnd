@@ -9,29 +9,41 @@ import Swal from 'sweetalert2';
   styleUrls: ['./asset.component.css']
 })
 export class AssetComponent {
+
   assetdata : any=[];
   pageSize : number=5;
   PageNumber: any=1;
   totalrecord : any=0;
   Assets : any="";
+  Assetid : number=0;
+  branchid : any=0;
+  vendorid : any=0;
+  typeid : any=0;
+  dateid : any=0;
   role : number=0;
+  typelistdata : any=[];
+  branchlistdata : any=[];
+  vendorlistdata : any=[];
 
   constructor(private authservice:AuthService, private router:Router) { }
 
   ngOnInit(): void {
     //debugger
-    this.role = Number(sessionStorage.getItem('role'));
+    this.role = Number(localStorage.getItem('role'));
     if(this.role==2){
       this.router.navigate(['/dashboard']);
     }
-    this.assetDetails(this.PageNumber,this.pageSize,this.Assets);
+    this.assetDetails(this.PageNumber,this.pageSize,this.Assets,this.branchid,this.typeid,this.vendorid,this.dateid);
+
+    this.getAllTables();
   }
 
   //get method for get the data of branch
-  assetDetails(PageNumber:number,pageSize:number,Assets:string) {
-    // debugger
-    this.authservice.assetDetails(PageNumber,pageSize,Assets).subscribe(responce => {
+  assetDetails(PageNumber:number,pageSize:number,Assets:string,branchid:number,typeid:number,vendorid:number,dateid:number) {
+    debugger
+    this.authservice.assetDetails(PageNumber,pageSize,Assets,branchid,typeid,vendorid,dateid).subscribe(responce => {
      
+      // localStorage.setItem('assetid',responce.Data.Assetid);
       if(responce.IsSuccess)
       {
         this.totalrecord = responce.Data[0].totalrecord;
@@ -47,21 +59,21 @@ export class AssetComponent {
 
   pageChangeEvent(event: number) {
     this.PageNumber = event;
-    this.assetDetails(this.PageNumber, this.pageSize,this.Assets);
+    this.assetDetails(this.PageNumber, this.pageSize,this.Assets,this.branchid,this.typeid,this.vendorid,this.dateid);
   }
 
 
   changePageSize(){
     // debugger
     this.PageNumber=1;
-   this.assetDetails(this.PageNumber, this.pageSize,this.Assets);
+   this.assetDetails(this.PageNumber, this.pageSize,this.Assets,this.branchid,this.typeid,this.vendorid,this.dateid);
   }
 
 
   //search method
   searchAsset(){
     // debugger
-    this.assetDetails(this.PageNumber,this.pageSize,this.Assets);
+    this.assetDetails(this.PageNumber,this.pageSize,this.Assets,this.branchid,this.typeid,this.vendorid,this.dateid);
   }
 
 
@@ -88,7 +100,7 @@ export class AssetComponent {
               responce.ReturnMessage,
               'success'
             )
-            this.assetDetails(this.PageNumber,this.pageSize,this.Assets);
+            this.assetDetails(this.PageNumber,this.pageSize,this.Assets,this.branchid,this.typeid,this.vendorid,this.dateid);
           }
           else 
           {
@@ -99,6 +111,41 @@ export class AssetComponent {
             )
           }
         });
+      }
+    })
+  }
+
+
+  //get for all tables
+  getAllTables(){
+    // debugger
+    this.authservice.getAllTables().subscribe(responce => {
+      // debugger
+      if(responce.IsSuccess){
+        
+        if(responce.Data.table.length > 0){
+          this.typelistdata = responce.Data.table;
+        }
+        else
+        {
+          this.typelistdata = [];
+        }
+
+        if(responce.Data.table2.length > 0){
+          this.branchlistdata = responce.Data.table2;
+        }
+        else
+        {
+          this.branchlistdata = [];
+        }
+
+        if(responce.Data.table6.length > 0){
+          this.vendorlistdata = responce.Data.table6;
+        }
+        else
+        {
+          this.vendorlistdata = [];
+        }
       }
     })
   }

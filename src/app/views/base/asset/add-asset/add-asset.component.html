@@ -1,8 +1,22 @@
-<section class="border">
+<section class="shadow border">
     <div class="d-flex justify-content-center">
         <div class="w-100">
             <div class="p-4">
                 <form [formGroup]="assetForm" (ngSubmit)="addAsset()">
+
+
+
+                    <div class="row g-3">
+                        <div class="col-auto mb-4">
+                            <label>Created At</label>
+                            <input type="datetime-local" class="form-control" placeholder="Created At" formControlName="createdat"
+                                [ngClass]="{ 'has-error': submitted && f['createdat'].errors }">
+                            <div *ngIf="submitted && f['createdat'].errors" class="has-error">
+                                <div *ngIf="f['createdat'].errors['required']">Invoice Date is required!</div>
+                            </div>
+                        </div>
+                    </div>
+
 
 
                     <div class="row">
@@ -90,6 +104,150 @@
 
                     <div class="row">
                         <div class="col form-outline mb-4">
+                            <label>Processor Type</label>
+                            <input type="text" class="form-control" placeholder="Enter Processor Type" formControlName="processortype"
+                                [ngClass]="{ 'has-error': submitted && f['processortype'].errors }">
+                            <div *ngIf="submitted && f['processortype'].errors" class="has-error">
+                                <div *ngIf="f['processortype'].errors['required']">Model name is required!</div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col form-outline mb-4">
+                            <label>Monitor Type</label>
+                            <input type="text" class="form-control" placeholder="Enter Monitor Type" formControlName="monitortype"
+                                [ngClass]="{ 'has-error': submitted && f['monitortype'].errors }">
+                            <div *ngIf="submitted && f['monitortype'].errors" class="has-error">
+                                <div *ngIf="f['monitortype'].errors['required']">Quantity is required!</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col form-outline mb-4">
+                            <label>Range Type</label>
+                            <input type="text" class="form-control" placeholder="Enter Range Type" formControlName="rangetype"
+                                [ngClass]="{ 'has-error': submitted && f['rangetype'].errors }">
+                            <div *ngIf="submitted && f['rangetype'].errors" class="has-error">
+                                <div *ngIf="f['rangetype'].errors['required']">Model name is required!</div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col form-outline mb-4">
+                            <label>Battery Type</label>
+                            <input type="text" class="form-control" placeholder="Enter Battery Type" formControlName="batterytype"
+                                [ngClass]="{ 'has-error': submitted && f['batterytype'].errors }">
+                            <div *ngIf="submitted && f['batterytype'].errors" class="has-error">
+                                <div *ngIf="f['batterytype'].errors['required']">Quantity is required!</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col form-outline mb-4">
+                            <label>Battery Ampere</label>
+                            <input type="text" class="form-control" placeholder="Enter Battery Ampere" formControlName="batteryampere"
+                                [ngClass]="{ 'has-error': submitted && f['batteryampere'].errors }">
+                            <div *ngIf="submitted && f['batteryampere'].errors" class="has-error">
+                                <div *ngIf="f['batteryampere'].errors['required']">Model name is required!</div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col form-outline mb-4">
+                            <label>Battery Capacity</label>
+                            <input type="text" class="form-control" placeholder="Enter Battery Capacity" formControlName="batterycapacity"
+                                [ngClass]="{ 'has-error': submitted && f['batterycapacity'].errors }">
+                            <div *ngIf="submitted && f['batterycapacity'].errors" class="has-error">
+                                <div *ngIf="f['batterycapacity'].errors['required']">Quantity is required!</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col form-outline mb-4">
+                            <label>GraphicsCard</label>
+                            <input type="text" class="form-control" placeholder="Enter GraphicsCard" formControlName="graphicsCard"
+                                [ngClass]="{ 'has-error': submitted && f['graphicsCard'].errors }">
+                            <div *ngIf="submitted && f['graphicsCard'].errors" class="has-error">
+                                <div *ngIf="f['graphicsCard'].errors['required']">Model name is required!</div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col form-outline mb-4">
+                            <label>Optical Drive</label>
+                            <input type="text" class="form-control" placeholder="Enter Optical Drive" formControlName="opticaldrive"
+                                [ngClass]="{ 'has-error': submitted && f['opticaldrive'].errors }">
+                            <div *ngIf="submitted && f['opticaldrive'].errors" class="has-error">
+                                <div *ngIf="f['opticaldrive'].errors['required']">Quantity is required!</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col form-outline mb-4">
+                            <label>HDD</label>
+                            <input type="text" class="form-control" placeholder="Enter HDD" formControlName="hdd"
+                                [ngClass]="{ 'has-error': submitted && f['hdd'].errors }">
+                            <div *ngIf="submitted && f['hdd'].errors" class="has-error">
+                                <div *ngIf="f['hdd'].errors['required']">Model name is required!</div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col form-outline mb-4">
+                            <label>RAM</label>
+                            <input type="text" class="form-control" placeholder="Enter RAM" formControlName="ram"
+                                [ngClass]="{ 'has-error': submitted && f['ram'].errors }">
+                            <div *ngIf="submitted && f['ram'].errors" class="has-error">
+                                <div *ngIf="f['ram'].errors['required']">Quantity is required!</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col form-outline mb-4">
+                            <label>Inches</label>
+                            <input type="text" class="form-control" placeholder="Enter Inches" formControlName="inches"
+                                [ngClass]="{ 'has-error': submitted && f['inches'].errors }">
+                            <div *ngIf="submitted && f['inches'].errors" class="has-error">
+                                <div *ngIf="f['inches'].errors['required']">Model name is required!</div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col form-outline mb-4">
+                            <label>Port Switch</label>
+                            <input type="text" class="form-control" placeholder="Enter Port Switch" formControlName="portswitch"
+                                [ngClass]="{ 'has-error': submitted && f['portswitch'].errors }">
+                            <div *ngIf="submitted && f['portswitch'].errors" class="has-error">
+                                <div *ngIf="f['portswitch'].errors['required']">Quantity is required!</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col form-outline mb-4">
                             <label>Specification</label>
                             <input type="text" class="form-control" placeholder="Enter Specification" formControlName="specification"
                                 [ngClass]="{ 'has-error': submitted && f['specification'].errors }">
@@ -116,9 +274,13 @@
                     </div>
 
 
+                    
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add'">Add</button>
-                        <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update'">Update</button>
+                        <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add' && !submitbtn">Add</button>
+                        <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update' && !submitbtn">Update</button>
+                        <button class="btn btn-primary btn-block" *ngIf="submitbtn" [disabled]="submitbtn">
+                            <i class="fa-solid fa-spinner fa-spin"></i> Loading
+                        </button>
                     </div>
 
                 </form>

@@ -1,0 +1,117 @@
+<div class="table-responsive shadow">
+    <div class="table-wrapper">
+
+
+      <table class="table table-hover">
+
+
+        <!-- <tbody>
+            <tr>SerialNo</tr>
+            <tr>Branch</tr>
+            <tr>Brand</tr>
+            <tr>Type</tr>
+            <tr>Quantity</tr>
+            <tr>Specification</tr>
+            <tr>CreatedAt</tr>
+            <tr>Vendor</tr>
+            <tr>Actions</tr>
+        </tbody> -->
+
+
+
+        <tbody *ngIf="assetdata.length > 0">
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Created At</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Created_at}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Asset Serial No</td>
+            <td style="background-color: whitesmoke;">{{assetlist.SerialNo}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Branch Name</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Branches}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Brand Name</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Brand}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Asset Type</td>
+            <td style="background-color: whitesmoke;">{{assetlist.TypeName}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Model Name</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Model}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Quantity</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Nos}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Processor Type</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Processor_Type}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Monitor Type</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Monitor_Type}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Range Type</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Range_Type}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Battery Type</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Battery_Type}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Battery Ampere</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Battery_Ampere}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Battery Capacity</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Battery_Capacity}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Graphics Crad</td>
+            <td style="background-color: whitesmoke;">{{assetlist.GraphicsCard}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Optical Drive</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Optional_Drive}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">HDD</td>
+            <td style="background-color: whitesmoke;">{{assetlist.HDD}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">RAM</td>
+            <td style="background-color: whitesmoke;">{{assetlist.RAM}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Inches</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Inches}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Port Switch</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Port_Switch}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Specification</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Specification}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Vendor Name</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Vendors}}</td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="assetdata.length <= 0">
+          <tr>
+            <td colspan="100" class="text-center text-danger">No Match found</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>

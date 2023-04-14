@@ -53,6 +53,8 @@ import { UserdetailsComponent } from './userdetails/userdetails.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { ScrapComponent } from './scrap/scrap.component';
 import { NewRequestComponent } from './new-request/new-request.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AssetsinfoComponent } from './assetsinfo/assetsinfo.component';
 
 @NgModule({
   imports: [
@@ -103,6 +105,8 @@ import { NewRequestComponent } from './new-request/new-request.component';
     VendorsComponent,
     ScrapComponent,
     NewRequestComponent,
+    ProfileComponent,
+    AssetsinfoComponent,
   ],
 })
 export class BaseModule {}

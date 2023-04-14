@@ -16,25 +16,33 @@ export class ScrapComponent {
   totalrecord : any=0;
   Scraps : any="";
   role : number=0;
+  assetid : any=0;
+  branchid : any=0;
+  vendorid : any=0;
+  assetlistdata : any=[];
+  branchlistdata : any=[];
+  vendorlistdata : any=[];
 
   constructor(private authservice:AuthService, private router:Router) { }
 
   ngOnInit(): void {
     
-    this.role = Number(sessionStorage.getItem('role'));
+    this.role = Number(localStorage.getItem('role'));
     if(this.role==2){
       this.router.navigate(['/dashboard']);
     }
 
+    this.getAllTables();
+
     // debugger
-    this.scrapDetails(this.PageNumber,this.pageSize,this.Scraps);
+    this.scrapDetails(this.PageNumber,this.pageSize,this.Scraps,this.assetid,this.branchid,this.vendorid);
   }
 
-  scrapDetails(PageNumber:number,pageSize:number,Scraps:string) {
-    // debugger
-    this.authservice.scrapDetails(PageNumber,pageSize,Scraps).subscribe(responce => {
+  scrapDetails(PageNumber:number,pageSize:number,Scraps:string,assetid:number,branchid:number,vendorid:number) {
+    debugger
+    this.authservice.scrapDetails(PageNumber,pageSize,Scraps,assetid,branchid,vendorid).subscribe(responce => {
      
-      if(responce.IsSuccess=true)
+      if(responce.IsSuccess)
       {
         this.totalrecord = responce.Data[0].totalrecord;
         this.scrapdata = responce.Data;
@@ -49,20 +57,20 @@ export class ScrapComponent {
 
   pageChangeEvent(event: number) {
     this.PageNumber = event;
-    this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps);
+    this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps,this.assetid,this.branchid,this.vendorid);
   }
 
 
   changePageSize(){
     // debugger
     this.PageNumber=1;
-   this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps);
+   this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps,this.assetid,this.branchid,this.vendorid);
   }
 
 
   //search method
   searchScrap(){
-    this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps);
+    this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps,this.assetid,this.branchid,this.vendorid);
   }
 
 
@@ -88,7 +96,7 @@ export class ScrapComponent {
               responce.ReturnMessage,
               'success'
             )
-            this.scrapDetails(this.PageNumber,this.pageSize, this.Scraps);
+            this.scrapDetails(this.PageNumber,this.pageSize, this.Scraps,this.assetid,this.branchid,this.vendorid);
           }
           else 
           {
@@ -102,5 +110,43 @@ export class ScrapComponent {
       }
     })
   }
+
+
+
+  //get for all tables
+  getAllTables(){
+    // debugger
+    this.authservice.getAllTables().subscribe(responce => {
+      // debugger
+      if(responce.IsSuccess){
+        
+        if(responce.Data.table7.length > 0){
+          this.assetlistdata = responce.Data.table7;
+        }
+        else
+        {
+          this.assetlistdata = [];
+        }
+
+        if(responce.Data.table2.length > 0){
+          this.branchlistdata = responce.Data.table2;
+        }
+        else
+        {
+          this.branchlistdata = [];
+        }
+
+        if(responce.Data.table6.length > 0){
+          this.vendorlistdata = responce.Data.table6;
+        }
+        else
+        {
+          this.vendorlistdata = [];
+        }
+      }
+    })
+  }
+
+
   
 }

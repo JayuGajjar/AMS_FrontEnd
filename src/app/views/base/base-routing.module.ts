@@ -19,6 +19,8 @@ import { VendorsComponent } from './vendors/vendors.component';
 import { ScrapComponent } from './scrap/scrap.component';
 import { TotalnewRequestComponent } from '../dashboard/totalnew-request/totalnew-request.component';
 import { NewRequestComponent } from './new-request/new-request.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AssetsinfoComponent } from './assetsinfo/assetsinfo.component';
 const titleP = "Asset Managment";
 
 const routes: Routes = [
@@ -35,7 +37,7 @@ const routes: Routes = [
         path: 'inuse', title: titleP + ' - InUse', canActivate : [AuthGuard],
         component: TotalinuseComponent,
         data: {
-          title: 'InUse', 
+          title: 'InUse Assets', 
         },
       },
       //total new request
@@ -43,7 +45,7 @@ const routes: Routes = [
         path: 'newrequests', title: titleP + ' - New Requests', canActivate : [AuthGuard],
         component: TotalnewRequestComponent,
         data: {
-          title: 'New Requests', 
+          title: 'New Request For Assets', 
         },
       },
       //total Spare
@@ -51,7 +53,7 @@ const routes: Routes = [
         path: 'spare', title: titleP + ' - Spare', canActivate : [AuthGuard],
         component: TotalspareComponent,
         data: {
-          title: 'Spares', 
+          title: 'Spare Assets', 
         },
       },
       //total Working
@@ -59,16 +61,38 @@ const routes: Routes = [
         path: 'working', title: titleP + ' - Working', canActivate : [AuthGuard],
         component: TotalworkingComponent,
         data: {
-          title: 'Working', 
+          title: 'Working Assets', 
         },
       },
 
+      //for Profile
+      {
+        path: 'profile', title: titleP + ' - Profile', canActivate : [AuthGuard],
+        component: ProfileComponent,
+        data: {
+          title: 'Profile',
+        },
+      },
+      {
+        path: 'profile/:id', title: titleP + ' - User Details', canActivate : [AuthGuard],
+        component: ProfileComponent,
+        data: {
+          title: 'User Info',
+        },
+      },
       //for asset
       {
         path: 'asset', title: titleP + ' - Asset', canActivate : [AuthGuard],
         component: AssetComponent,
         data: {
           title: 'Assets',
+        },
+      },
+      {
+        path: 'assetinfo/:id', title: titleP + ' - Asset Info', canActivate : [AuthGuard],
+        component: AssetsinfoComponent,
+        data: {
+          title: 'Asset Info',
         },
       },
       {
@@ -123,7 +147,7 @@ const routes: Routes = [
         path: 'request', title: titleP + ' - Request', canActivate : [AuthGuard],
         component: RequestComponent,
         data: {
-          title: 'Requests',
+          title: 'Requests Status',
         },
       },
       {
@@ -137,7 +161,7 @@ const routes: Routes = [
         path: 'new-request', title: titleP + ' - New Request', canActivate : [AuthGuard],
         component: NewRequestComponent,
         data: {
-          title: 'New Requests',
+          title: 'New Request',
         },
       },
 
@@ -148,7 +172,7 @@ const routes: Routes = [
         path: 'status', title: titleP + ' - Status', canActivate : [AuthGuard],
         component: StatusComponent,
         data: {
-          title: 'Status',
+          title: 'Assets Status',
         },
       },
 

@@ -39,7 +39,7 @@ export class TotalinuseComponent {
       }
       else
       {
-        alert(responce.ReturnMessage);
+        this.inusedata = [];
       }
      
     });

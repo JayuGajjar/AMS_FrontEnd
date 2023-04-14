@@ -13,25 +13,10 @@
       ></svg>
     </button>
     <c-header-nav class="d-none d-lg-flex me-auto">
-      <c-nav-item>
-        <!-- <a cNavLink routerLink="/dashboard" routerLinkActive="active">
-          Dashboard
-        </a> -->
-      </c-nav-item>
-      <c-nav-item>
-        <!-- <a cNavLink routerLink="/users" routerLinkActive="active">
-          Users
-        </a> -->
-      </c-nav-item>
-      <c-nav-item>
-        <!-- <a cNavLink routerLink="/settings" routerLinkActive="active">
-          Settings
-        </a> -->
-      </c-nav-item>
     </c-header-nav>
 
     <!-- <c-header-nav class="d-flex justify-content-center me-auto">
-      <source src="/src/assets/images/logo-color.svg">
+      <img src="./assets/images/logo-color.svg">
     </c-header-nav> -->
 
     <c-header-nav class="d-none d-lg-flex">
@@ -41,7 +26,7 @@
         </a> -->
       </c-nav-item>
       <c-nav-item>
-        {{username}}
+        {{firstname}} {{lastname}}
       </c-nav-item>
     </c-header-nav>
     <c-header-nav class="ms-3">
@@ -81,7 +66,7 @@
         <h6 cDropdownHeader class="bg-light fw-semibold py-2">Account</h6>
       </li>
       <li>
-        <a href="javascript:void(0)" cDropdownItem>
+        <a href="javascript:void(0)" routerLink="/base/profile" cDropdownItem>
           <svg cIcon class="me-2" name="cilUser"></svg>
           Profile
         </a>

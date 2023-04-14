@@ -47,6 +47,7 @@ export class LoginComponent {
   loginSubmited(){
     // console.log(this.loginForm);
     this.submitted = true;
+    this.submitbtn = true;
 
     if(this.loginForm.invalid){
       return;
@@ -59,22 +60,22 @@ export class LoginComponent {
     this.authService.loginUser(this.data).subscribe(response => {
       // console.log(response);
       // localStorage.setItem('isSuccess',response.isLoggedIn);
-      sessionStorage.setItem('isSuccess',response.IsSuccess);
-      sessionStorage.setItem('role',response.Data.Role);
-      sessionStorage.setItem('rolename',response.Data.RoleName);
-      sessionStorage.setItem('username',response.Data.Username);
-      sessionStorage.setItem('userid',response.Data.Userid);
-      sessionStorage.setItem('firstname',response.Data.First_name);
-      sessionStorage.setItem('lastname',response.Data.Last_name);
-      sessionStorage.setItem('data',response.Data);
+      localStorage.setItem('isSuccess',response.IsSuccess);
+      localStorage.setItem('role',response.Data.Role);
+      localStorage.setItem('rolename',response.Data.RoleName);
+      localStorage.setItem('username',response.Data.Username);
+      localStorage.setItem('userid',response.Data.Userid);
+      localStorage.setItem('firstname',response.Data.First_name);
+      localStorage.setItem('lastname',response.Data.Last_name);
+      localStorage.setItem('email',response.Data.Email);
+      localStorage.setItem('department',response.Data.DepartmentName);
+      localStorage.setItem('branch',response.Data.BranchName);
+      localStorage.setItem('floor',response.Data.Floor);
+      localStorage.setItem('company',response.Data.CompanyName);
+      localStorage.setItem('data',response.Data);
       
       if(response.IsSuccess)
         {
-          Swal.fire(
-            'Great!',
-            response.ReturnMessage,
-            'success'
-          )
           this.router.navigate(['/dashboard']);
         }
         else
@@ -90,6 +91,7 @@ export class LoginComponent {
   }
   onReset() {
     this.submitted = false;
+    this.submitbtn = false;
     this.loginForm.patchValue({email: ''});
     this.loginForm.patchValue({password: ''});
   }

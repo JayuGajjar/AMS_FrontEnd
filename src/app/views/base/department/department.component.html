@@ -1,19 +1,19 @@
-<div class="table-responsive">
+<div class="table-responsive shadow">
       <div class="table-wrapper">
           <div class="row">
             
             <div class="col input-group">
               <div>
-                <input type="search" class="form-control form-control-sm" [(ngModel)]="Departments" (keyup.enter)="searchDepartment()" placeholder="Search">
+                <button type="button" class="btn btn-outline-primary" (click)="toggleModal()"><i class="fa-solid fa-plus"></i>&nbsp;<span>Add</span></button>
+              </div>
+              <div style="margin-left: 5px;">
+                <input type="search" class="form-control" [(ngModel)]="Departments" (keyup)="searchDepartment()" placeholder="Search">
               </div>
               <span class="input-group-append">
-                <button type="button" class="btn btn-outline-info btn-sm" (click)="searchDepartment()" >
+                <button type="button" class="btn btn-outline-info" (click)="searchDepartment()" >
                   <i class="fas fa-search"></i>
                 </button>
               </span>
-              <div style="margin-left: 5px;">
-                <button type="button" class="btn btn-outline-primary btn-sm" (click)="toggleModal()"> <span>Add</span></button>
-              </div>
             </div>
   
           </div>
@@ -52,16 +52,18 @@
         </table>
   
         <div class="row">
-          <div class="col-2">
+          <div class="col-1" style="width: 6.6%;">
             <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-                <select id="ddlPageSize" class="form-control control-color" [(ngModel)]="pageSize"
-                    (change)="changePageSize()">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                </select>
             </span>
+          </div>
+          <div class="col-1">
+            <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
+              (change)="changePageSize()">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
           </div>
     
           <div class="col d-flex justify-content-end">
@@ -93,11 +95,16 @@
                     <div *ngIf="f['name'].errors['pattern']">Please enter valid Department Name!!</div>
                 </div>
             </div>
-
-            <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add' && !submitbtn">{{frlable}}</button>
-            <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update' && !submitbtn">{{frlable}}</button>
-            <button type="button" class="btn btn-secondary btn-block ms-2" (click)="toggleModal()">Close</button>
         </c-modal-body>
+
+        <c-modal-footer>
+          <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add' && !submitbtn">{{frlable}}</button>
+          <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update' && !submitbtn">{{frlable}}</button>
+          <button type="button" class="btn btn-secondary btn-block ms-2" (click)="toggleModal()">Close</button>
+          <button class="btn btn-primary btn-block" *ngIf="submitbtn" [disabled]="submitbtn">
+            <i class="fa-solid fa-spinner fa-spin"></i> Loading
+          </button>
+        </c-modal-footer>
         
       </form>
 
