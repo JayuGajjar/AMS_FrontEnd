@@ -119,9 +119,12 @@
             </select>
           </div>
     
-          <div class="col d-flex justify-content-end">
+          <div *ngIf="assetdata.length > 0" class="col d-flex justify-content-end">
             <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>      
+          </div>
+          <div *ngIf="assetdata.length <= 0" class="col d-flex justify-content-end">
+            <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
+          </div>
         </div>
   
   

@@ -19,6 +19,7 @@ export class ScrapComponent {
   assetid : any=0;
   branchid : any=0;
   vendorid : any=0;
+  dateid : any=0;
   assetlistdata : any=[];
   branchlistdata : any=[];
   vendorlistdata : any=[];
@@ -35,12 +36,12 @@ export class ScrapComponent {
     this.getAllTables();
 
     // debugger
-    this.scrapDetails(this.PageNumber,this.pageSize,this.Scraps,this.assetid,this.branchid,this.vendorid);
+    this.scrapDetails(this.PageNumber,this.pageSize,this.Scraps,this.assetid,this.branchid,this.vendorid,this.dateid);
   }
 
-  scrapDetails(PageNumber:number,pageSize:number,Scraps:string,assetid:number,branchid:number,vendorid:number) {
+  scrapDetails(PageNumber:number,pageSize:number,Scraps:string,assetid:number,branchid:number,vendorid:number,dateid:number) {
     debugger
-    this.authservice.scrapDetails(PageNumber,pageSize,Scraps,assetid,branchid,vendorid).subscribe(responce => {
+    this.authservice.scrapDetails(PageNumber,pageSize,Scraps,assetid,branchid,vendorid,dateid).subscribe(responce => {
      
       if(responce.IsSuccess)
       {
@@ -57,20 +58,20 @@ export class ScrapComponent {
 
   pageChangeEvent(event: number) {
     this.PageNumber = event;
-    this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps,this.assetid,this.branchid,this.vendorid);
+    this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps,this.assetid,this.branchid,this.vendorid,this.dateid);
   }
 
 
   changePageSize(){
     // debugger
     this.PageNumber=1;
-   this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps,this.assetid,this.branchid,this.vendorid);
+   this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps,this.assetid,this.branchid,this.vendorid,this.dateid);
   }
 
 
   //search method
   searchScrap(){
-    this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps,this.assetid,this.branchid,this.vendorid);
+    this.scrapDetails(this.PageNumber, this.pageSize, this.Scraps,this.assetid,this.branchid,this.vendorid,this.dateid);
   }
 
 
@@ -96,7 +97,7 @@ export class ScrapComponent {
               responce.ReturnMessage,
               'success'
             )
-            this.scrapDetails(this.PageNumber,this.pageSize, this.Scraps,this.assetid,this.branchid,this.vendorid);
+            this.scrapDetails(this.PageNumber,this.pageSize, this.Scraps,this.assetid,this.branchid,this.vendorid,this.dateid);
           }
           else 
           {

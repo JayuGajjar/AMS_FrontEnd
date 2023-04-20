@@ -15,6 +15,7 @@ export class AddScrapComponent {
     scrapForm : FormGroup;
     data : scrap;
     submitted = false;
+    submitbtn = false;
     scrapdata : any=[];
     frlable:string="";
     title:string="";
@@ -51,6 +52,7 @@ export class AddScrapComponent {
 
     if(this.scrapForm.invalid)
     {
+      this.submitbtn = false;
       return;
     }
 
@@ -116,6 +118,8 @@ export class AddScrapComponent {
   }
 
   onReset(){
+    this.submitted = false;
+    this.submitbtn = false;
     this.scrapForm.patchValue({asset:""});
     this.scrapForm.patchValue({branch:""});
     this.scrapForm.patchValue({last_user:""});

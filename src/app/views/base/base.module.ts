@@ -55,6 +55,7 @@ import { ScrapComponent } from './scrap/scrap.component';
 import { NewRequestComponent } from './new-request/new-request.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AssetsinfoComponent } from './assetsinfo/assetsinfo.component';
+import { TotalassetsComponent } from './totalassets/totalassets.component';
 
 @NgModule({
   imports: [
@@ -107,6 +108,7 @@ import { AssetsinfoComponent } from './assetsinfo/assetsinfo.component';
     NewRequestComponent,
     ProfileComponent,
     AssetsinfoComponent,
+    TotalassetsComponent,
   ],
 })
 export class BaseModule {}

@@ -47,25 +47,25 @@ export class ProfileComponent {
       department: "",
       branch: "",
       company: "",
-      floor: 0,
+      floor: "",
       password: ""
     }
 
     this.registerForm = this.FB.group({
       firstname: ['', [Validators.required,
-      Validators.pattern('[a-zA-Z]+')]],
+                      Validators.pattern('[a-zA-Z]+')]],
       lastname: ['', [Validators.required,
-      Validators.pattern('[a-zA-Z]+')]],
+                      Validators.pattern('[a-zA-Z()]+')]],
       username: ['', [Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(20),
-      Validators.pattern("[a-zA-Z_]+")]],
+                      Validators.minLength(3),
+                      Validators.maxLength(30),
+                      Validators.pattern("[a-z0-9_]+")]],
       email: ['', [Validators.required,
-      Validators.pattern("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")]],
+                      Validators.pattern("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")]],
       department: ['', Validators.required],
       branch: ['', Validators.required],
       company: ['', Validators.required],
-      floor: ['', [Validators.required, Validators.max(30)]],
+      floor: ['', [Validators.required, Validators.pattern("^[0-9a-zA-Z]+")]],
     });
   }
 
@@ -123,7 +123,8 @@ export class ProfileComponent {
 
     this.submitted = true;
     // debugger
-    if (this.registerForm.invalid) {                               //&& this.registerForm.value.password !== this.registerForm.value.confirmpassword) {
+    if (this.registerForm.invalid) {
+      this.submitbtn = false;                            //&& this.registerForm.value.password !== this.registerForm.value.confirmpassword) {
       return
     };
 
@@ -148,14 +149,14 @@ export class ProfileComponent {
     this.authService.editUser(this.data).subscribe(response => {
 
       // localStorage.clear();
-      localStorage.removeItem('username');
-      localStorage.removeItem('firstname');
-      localStorage.removeItem('lastname');
-      localStorage.removeItem('email');
-      localStorage.setItem('username', this.data.username);
-      localStorage.setItem('firstname', this.data.first_name);
-      localStorage.setItem('lastname', this.data.last_name);
-      localStorage.setItem('email', this.data.email);
+      // localStorage.removeItem('username');
+      // localStorage.removeItem('firstname');
+      // localStorage.removeItem('lastname');
+      // localStorage.removeItem('email');
+      // localStorage.setItem('username', this.data.username);
+      // localStorage.setItem('firstname', this.data.first_name);
+      // localStorage.setItem('lastname', this.data.last_name);
+      // localStorage.setItem('email', this.data.email);
       // debugger
       if (response.IsSuccess) {
         Swal.fire(
@@ -164,7 +165,7 @@ export class ProfileComponent {
           'success'
         )
         this.submitbtn = false;
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/base/users']);
       }
       else {
         // debugger

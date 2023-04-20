@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit{
       department : "",
       branch : "",
       company : "",
-      floor : 0,
+      floor : "",
       password : ""
       }
 
@@ -40,17 +40,17 @@ export class RegisterComponent implements OnInit{
         firstname : ['',[Validators.required,
                         Validators.pattern('[a-zA-Z]+')]],
         lastname : ['',[Validators.required,
-                        Validators.pattern('[a-zA-Z]+')]],
+                        Validators.pattern('[a-zA-Z()]+')]],
         username : ['',[Validators.required, 
                         Validators.minLength(3), 
-                        Validators.maxLength(20), 
-                        Validators.pattern("[a-zA-Z_]+")]],
+                        Validators.maxLength(30), 
+                        Validators.pattern("[a-z0-9_]+")]],
         email : ['',[Validators.required, 
                     Validators.pattern("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")]],
         department : ['',Validators.required],
         branch : ['',Validators.required],
         company : ['',Validators.required],
-        floor : ['',[Validators.required, Validators.max(30)]],
+        floor : ['',[Validators.required, Validators.pattern("^[0-9a-zA-Z]+")]],
         password : ['',[Validators.required,
                         Validators.pattern("(?=.*)(?=.*[a-z])(?=.*[!-*,@,?])(?=.*[A-Z]).{8,}")]],
         confirmpassword : ['',[Validators.required,
@@ -100,29 +100,41 @@ export class RegisterComponent implements OnInit{
     this.data.floor=this.registerForm.value.floor;
     this.data.password=this.registerForm.value.password;
 
-
-    this.authService.registerUser(this.data).subscribe(response => {
-      // debugger
-      if(response.IsSuccess)
-      {
-        Swal.fire(
-          'Great!',
-          response.ReturnMessage,
-          'success'
-        )
-        this.router.navigate(['/login']);
-      }
-      else
-      {
+    if(this.registerForm.value.password == this.registerForm.value.confirmpassword){
+      this.authService.registerUser(this.data).subscribe(response => {
         // debugger
-        Swal.fire(
-          'Something went wrong!',
-          response.ReturnMessage,
-          'error'
-        )
-        this.onReset();
-      }
-    })
+        if(response.IsSuccess)
+        {
+          Swal.fire(
+            'Great!',
+            response.ReturnMessage,
+            'success'
+          )
+          this.onReset();
+          this.router.navigate(['/login']);
+        }
+        else
+        {
+          // debugger
+          Swal.fire(
+            'Something went wrong!',
+            response.ReturnMessage,
+            'error'
+          )
+          this.onReset();
+        }
+      })
+    }
+    else{
+      Swal.fire(
+        'Something went wrong!',
+        'Please Enter Same Password',
+        'error'
+      )
+      this.submitbtn = false;
+    }
+
+    
   } 
 
 
@@ -165,28 +177,37 @@ export class RegisterComponent implements OnInit{
 
   onReset() {
     this.submitted = false;
-    // this.registerForm.patchValue({password: ''});
-    // this.registerForm.patchValue({confirmPassword: ''})
-    this.registerForm = this.FB.group({
-      firstname : ['',[Validators.required,
-                      Validators.pattern('[a-zA-Z]')]],
-      lastname : ['',[Validators.required,
-                      Validators.pattern('[a-zA-Z]')]],
-      username : ['',[Validators.required, 
-                      Validators.minLength(3), 
-                      Validators.maxLength(20), 
-                      Validators.pattern("[a-zA-Z][a-zA-Z ]+")]],
-      email : ['',[Validators.required, 
-                  Validators.pattern("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")]],
-      department : ['',Validators.required],
-      branch : ['',Validators.required],
-      company : ['',Validators.required],
-      floor : ['',Validators.required],
-      password : ['',[Validators.required,
-                      Validators.pattern("(?=.*)(?=.*[a-z])(?=.*[!-*,@,?])(?=.*[A-Z]).{8,}")]],
-      confirmpassword : ['',[Validators.required,
-                            Validators.pattern("(?=.*)(?=.*[a-z])(?=.*[!-*,@,?])(?=.*[A-Z]).{8,}")]]
-    });
+    this.submitbtn = false;
+    this.registerForm.patchValue({firstname: ''});
+    this.registerForm.patchValue({lastname: ''})
+    this.registerForm.patchValue({username: ''});
+    this.registerForm.patchValue({email: ''})
+    this.registerForm.patchValue({department: ''});
+    this.registerForm.patchValue({branch: ''})
+    this.registerForm.patchValue({company: ''});
+    this.registerForm.patchValue({floor: ''})
+    this.registerForm.patchValue({password: ''});
+    this.registerForm.patchValue({confirmPassword: ''})
+    // this.registerForm = this.FB.group({
+    //   firstname : ['',[Validators.required,
+    //                   Validators.pattern('[a-zA-Z]')]],
+    //   lastname : ['',[Validators.required,
+    //                   Validators.pattern('[a-zA-Z]')]],
+    //   username : ['',[Validators.required, 
+    //                   Validators.minLength(3), 
+    //                   Validators.maxLength(20), 
+    //                   Validators.pattern("[a-zA-Z][a-zA-Z ]+")]],
+    //   email : ['',[Validators.required, 
+    //               Validators.pattern("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")]],
+    //   department : ['',Validators.required],
+    //   branch : ['',Validators.required],
+    //   company : ['',Validators.required],
+    //   floor : ['',Validators.required],
+    //   password : ['',[Validators.required,
+    //                   Validators.pattern("(?=.*)(?=.*[a-z])(?=.*[!-*,@,?])(?=.*[A-Z]).{8,}")]],
+    //   confirmpassword : ['',[Validators.required,
+    //                         Validators.pattern("(?=.*)(?=.*[a-z])(?=.*[!-*,@,?])(?=.*[A-Z]).{8,}")]]
+    // });
   }
 
 

@@ -175,6 +175,7 @@ export class BranchComponent {
       
           if(this.branchForm.invalid)
           {
+            this.submitbtn = false;
             return;
           }
       

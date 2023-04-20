@@ -15,6 +15,7 @@ export class VendorsComponent {
   PageNumber:any=1;
   totalrecord : any=0;
   Vendors : any="";
+  dateid : any=0;
   role : number=0;
 
     constructor(private authservice:AuthService,private router:Router) { }
@@ -27,12 +28,12 @@ export class VendorsComponent {
       }
 
       //debugger
-      this.vendorDetails(this.PageNumber,this.pageSize,this.Vendors);
+      this.vendorDetails(this.PageNumber,this.pageSize,this.Vendors,this.dateid);
     }
   
-    vendorDetails(PageNumber:number,pageSize:number,Vendor:string) {
+    vendorDetails(PageNumber:number,pageSize:number,Vendor:string,dateid:string) {
       //  debugger
-      this.authservice.vendorDetails(PageNumber,pageSize,Vendor).subscribe(responce => {
+      this.authservice.vendorDetails(PageNumber,pageSize,Vendor,dateid).subscribe(responce => {
        
         if(responce.IsSuccess)
         {
@@ -49,20 +50,20 @@ export class VendorsComponent {
   
     pageChangeEvent(event: number) {
       this.PageNumber = event;
-      this.vendorDetails(this.PageNumber, this.pageSize, this.Vendors);
+      this.vendorDetails(this.PageNumber, this.pageSize, this.Vendors,this.dateid);
     }
   
   
     changePageSize(){
       // debugger
       this.PageNumber=1;
-     this.vendorDetails(this.PageNumber, this.pageSize, this.Vendors);
+     this.vendorDetails(this.PageNumber, this.pageSize, this.Vendors,this.dateid);
     }
 
 
     //search method
     searchVendor(){
-      this.vendorDetails(this.PageNumber, this.pageSize, this.Vendors);
+      this.vendorDetails(this.PageNumber, this.pageSize, this.Vendors,this.dateid);
     }
 
 
@@ -88,7 +89,7 @@ export class VendorsComponent {
               responce.ReturnMessage,
               'success'
             )
-            this.vendorDetails(this.PageNumber,this.pageSize, this.Vendors);
+            this.vendorDetails(this.PageNumber,this.pageSize, this.Vendors,this.dateid);
           }
           else 
           {

@@ -137,11 +137,11 @@
       <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
         <div class="card shadow h-100 py-2 notice notice-light">
           <div class="card-body">
-            <a routerLink="/base/asset">
+            <a routerLink="/base/summary">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2 light">
                   <div class="text-uppercase">
-                    Total Assets
+                    Summary
                   </div>
                   <div class="h3 mb-0 font-weight-bold"> {{totalasset}} </div>
                 </div>
@@ -229,7 +229,7 @@
             *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: specialrecord};let i = index">
             <td>{{requestlist.UserName}}</td>
             <td>{{requestlist.Asset}}</td>
-            <td>{{requestlist.Created_at}}</td>
+            <td>{{requestlist.Created_at | date}}</td>
             <td>{{requestlist.Justify}}</td>
             <td>
               <c-form-check [switch]="true">
@@ -295,8 +295,11 @@
           </select>
         </div>
 
-        <div class="col d-flex justify-content-end">
+        <div *ngIf="requestdata.length > 0" class="col d-flex justify-content-end">
           <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+        </div>
+        <div *ngIf="requestdata.length <= 0" class="col d-flex justify-content-end">
+          <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
         </div>
       </div>
     </div>

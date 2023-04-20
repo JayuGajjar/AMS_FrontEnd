@@ -90,6 +90,7 @@ export class AddAssetComponent {
     this.submitbtn = true;
 
     if (this.assetForm.invalid) {
+      this.submitbtn = false;
       return;
     }
 

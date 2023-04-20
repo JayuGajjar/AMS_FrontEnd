@@ -55,9 +55,9 @@
                     </div>
   
                     
-                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add' && !submitted">Add</button>
-                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update' && !submitted">Update</button>
-                    <button class="btn btn-primary btn-block" *ngIf="submitted" [disabled]="submitted">
+                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add' && !submitbtn">Add</button>
+                    <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Update' && !submitbtn">Update</button>
+                    <button class="btn btn-primary btn-block" *ngIf="submitbtn" [disabled]="submitbtn">
                         <i class="fa-solid fa-spinner fa-spin"></i> Loading
                     </button>
                 </form>

@@ -171,6 +171,7 @@ export class DepartmentComponent {
 
     if(this.departmentForm.invalid)
     {
+      this.submitbtn = false;
       return;
     }
 

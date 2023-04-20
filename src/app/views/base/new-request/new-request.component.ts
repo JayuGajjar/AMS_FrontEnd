@@ -17,6 +17,7 @@ export class NewRequestComponent implements OnInit {
   requestForm : FormGroup;
   data : request;
   submitted = false;
+  submitbtn = false;
   requestdata : any=[];
   frlable:string="";
   title:string="";
@@ -58,6 +59,7 @@ addRequest(userid:number, asset:number, justify:string){
 
   if(this.requestForm.invalid)
   {
+    this.submitbtn = false;
     return;
   }
 
@@ -122,6 +124,8 @@ addRequest(userid:number, asset:number, justify:string){
 }
 
 onReset(){
+  this.submitbtn=false;
+  this.submitted = false;
   this.requestForm.patchValue({userid:""});
   this.requestForm.patchValue({asset:""});
   this.requestForm.patchValue({justify:""});

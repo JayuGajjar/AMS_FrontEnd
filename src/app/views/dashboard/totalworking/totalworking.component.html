@@ -31,7 +31,7 @@
   
   
           <tbody *ngIf="workingdata.length > 0">
-          <tr *ngFor="let workinglist of workingdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
+          <tr *ngFor="let workinglist of workingdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
             <td>{{workinglist.branch}}</td>
             <td>{{workinglist.type}}</td>
             <td>{{workinglist.workingassets}}</td>
@@ -68,9 +68,12 @@
             </select>
           </div>
     
-          <div class="col d-flex justify-content-end">
+          <div *ngIf="workingdata.length > 0" class="col d-flex justify-content-end">
             <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>      
+          </div>
+          <div *ngIf="workingdata.length <= 0" class="col d-flex justify-content-end">
+            <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
+          </div>
         </div>
 
 

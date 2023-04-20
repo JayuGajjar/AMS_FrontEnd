@@ -31,7 +31,7 @@
   
   
           <tbody *ngIf="sparedata.length > 0">
-          <tr *ngFor="let sparelist of sparedata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber };let i = index">
+          <tr *ngFor="let sparelist of sparedata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
             <td>{{sparelist.branch}}</td>
             <td>{{sparelist.type}}</td>
             <td>{{sparelist.spareassets}}</td>
@@ -65,9 +65,12 @@
             </select>
           </div>
     
-          <div class="col d-flex justify-content-end">
+          <div *ngIf="sparedata.length > 0" class="col d-flex justify-content-end">
             <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>      
+          </div>
+          <div *ngIf="sparedata.length <= 0" class="col d-flex justify-content-end">
+            <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
+          </div>
         </div>
   
       </div>

@@ -169,6 +169,7 @@ export class CompanyComponent {
 
     if(this.companyForm.invalid)
     {
+      this.submitbtn = false;
       return;
     }
 

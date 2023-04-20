@@ -7,6 +7,6 @@ export interface Registration{
     department : string;
     branch : string;
     company : string;
-    floor : number;
+    floor : string;
     password : string
 }

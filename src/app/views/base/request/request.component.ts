@@ -17,6 +17,7 @@ export class RequestComponent {
   Requests : any="";
   assetid : any=0;
   statusid : any=0;
+  dateid : any=0;
   id : any;
   type: any;
   isworking : any;
@@ -43,12 +44,12 @@ export class RequestComponent {
       //   this.statusChange(this.id,this.isworking,this.inuse);
       // }
       //debugger
-      this.requestDetails(this.PageNumber,this.pageSize,this.Requests,this.assetid,this.statusid);
+      this.requestDetails(this.PageNumber,this.pageSize,this.Requests,this.assetid,this.statusid,this.dateid);
     }
   
-    requestDetails(PageNumber:number,pageSize:number,Requests:string,assetid:number,statusid:number) {
+    requestDetails(PageNumber:number,pageSize:number,Requests:string,assetid:number,statusid:number,dateid:number) {
       // debugger
-      this.authservice.requestDetailsAdmin(PageNumber,pageSize,Requests,assetid,statusid).subscribe(responce => {
+      this.authservice.requestDetailsAdmin(PageNumber,pageSize,Requests,assetid,statusid,dateid).subscribe(responce => {
        
         if(responce.IsSuccess)
         {
@@ -65,20 +66,20 @@ export class RequestComponent {
   
     pageChangeEvent(event: number) {
       this.PageNumber = event;
-      this.requestDetails(this.PageNumber, this.pageSize, this.Requests,this.assetid,this.statusid);
+      this.requestDetails(this.PageNumber, this.pageSize, this.Requests,this.assetid,this.statusid,this.dateid);
     }
   
   
     changePageSize(){
       // debugger
       this.PageNumber=1;
-     this.requestDetails(this.PageNumber, this.pageSize, this.Requests,this.assetid,this.statusid);
+     this.requestDetails(this.PageNumber, this.pageSize, this.Requests,this.assetid,this.statusid,this.dateid);
     }
 
 
     //search method
     searchRequest(){
-      this.requestDetails(this.PageNumber, this.pageSize, this.Requests,this.assetid,this.statusid);
+      this.requestDetails(this.PageNumber, this.pageSize, this.Requests,this.assetid,this.statusid,this.dateid);
     }
     
 
@@ -95,7 +96,7 @@ export class RequestComponent {
               responce.ReturnMessage,
               'success'
               )
-              this.requestDetails(this.PageNumber,this.pageSize, this.Requests,this.assetid,this.statusid);
+              this.requestDetails(this.PageNumber,this.pageSize, this.Requests,this.assetid,this.statusid,this.dateid);
             }
             else
             {
@@ -131,7 +132,7 @@ export class RequestComponent {
                 responce.ReturnMessage,
                 'success'
               )
-              this.requestDetails(this.PageNumber,this.pageSize, this.Requests,this.assetid,this.statusid);
+              this.requestDetails(this.PageNumber,this.pageSize, this.Requests,this.assetid,this.statusid,this.dateid);
             }
             else 
             {

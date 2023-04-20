@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit {
             plotShadow: false
           },
           title: {
-            text: 'Assets Pie Chart'
+            text: 'Assets Info'
           },
           tooltip: {
             pointFormat: '{series.name}: <b>{point.y}</b>'
@@ -153,12 +153,12 @@ export class DashboardComponent implements OnInit {
                 color: '#d73814',
                 key: "/base/scrap"
               },
-              {
-                name: 'Total Asset',
-                y: this.totalasset,
-                color: '#63004a',
-                key: "/base/asset"
-              },
+              // {
+              //   name: 'Total Asset',
+              //   y: this.totalasset,
+              //   color: '#63004a',
+              //   key: "/base/asset"
+              // },
             ]
           }]
         };

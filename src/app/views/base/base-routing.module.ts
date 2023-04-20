@@ -21,6 +21,7 @@ import { TotalnewRequestComponent } from '../dashboard/totalnew-request/totalnew
 import { NewRequestComponent } from './new-request/new-request.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AssetsinfoComponent } from './assetsinfo/assetsinfo.component';
+import { TotalassetsComponent } from './totalassets/totalassets.component';
 const titleP = "Asset Managment";
 
 const routes: Routes = [
@@ -62,6 +63,14 @@ const routes: Routes = [
         component: TotalworkingComponent,
         data: {
           title: 'Working Assets', 
+        },
+      },
+      //total Assets
+      {
+        path: 'summary', title: titleP + ' - Summary', canActivate : [AuthGuard],
+        component: TotalassetsComponent,
+        data: {
+          title: 'Summary of Assets', 
         },
       },
 
@@ -161,7 +170,7 @@ const routes: Routes = [
         path: 'new-request', title: titleP + ' - New Request', canActivate : [AuthGuard],
         component: NewRequestComponent,
         data: {
-          title: 'New Request',
+          title: 'New Request for Asset',
         },
       },
 

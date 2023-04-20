@@ -27,6 +27,19 @@
                   </option>
                 </select>
               </div>
+              <div style="margin-left: 5px;">
+                <select type="text" class="form-select form-control" [(ngModel)]="dateid" (change)="searchStatus()">
+                  <option value="0">Filter by Date</option>
+                  <option value="1">Today</option>
+                  <option value="2">Yesterday</option>
+                  <option value="3">This Week</option>
+                  <option value="4">Last Week</option>
+                  <option value="5">This Month</option>
+                  <option value="6">Last Month</option>
+                  <option value="7">This Year</option>
+                  <option value="8">Last Year</option>
+                </select>
+              </div>
             </div>
   
           </div>
@@ -101,9 +114,12 @@
             </select>
           </div>
     
-          <div class="col d-flex justify-content-end">
+          <div *ngIf="statusdata.length > 0" class="col d-flex justify-content-end">
             <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>      
+          </div>
+          <div *ngIf="statusdata.length <= 0" class="col d-flex justify-content-end">
+            <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
+          </div>
         </div>
   
   

@@ -16,6 +16,7 @@ export class StatusComponent {
   Status : any="";
   assetid : any=0;
   statusid : any=0;
+  dateid : any=0;
   role : number=0;
   assetlistdata : any=[];
   statuslistdata : any=[];
@@ -33,12 +34,12 @@ export class StatusComponent {
     this.getAllTables();
 
     //debugger
-    this.getFeedbacktype(this.PageNumber,this.pageSize,this.Status,this.assetid,this.statusid);
+    this.getFeedbacktype(this.PageNumber,this.pageSize,this.Status,this.assetid,this.statusid,this.dateid);
   }
 
-  getFeedbacktype(PageNumber:number,pageSize:number,Status:string,assetid:number,statusid:number) {
+  getFeedbacktype(PageNumber:number,pageSize:number,Status:string,assetid:number,statusid:number,dateid:number) {
     // debugger
-    this.service.statusDetails(PageNumber,pageSize,Status,assetid,statusid).subscribe(responce => {
+    this.service.statusDetails(PageNumber,pageSize,Status,assetid,statusid,dateid).subscribe(responce => {
      
       if(responce.IsSuccess)
       {
@@ -55,20 +56,20 @@ export class StatusComponent {
 
   pageChangeEvent(event: number) {
     this.PageNumber = event;
-    this.getFeedbacktype(this.PageNumber, this.pageSize, this.Status,this.assetid,this.statusid);
+    this.getFeedbacktype(this.PageNumber, this.pageSize, this.Status,this.assetid,this.statusid,this.dateid);
   }
 
 
   changePageSize(){
     // debugger
     this.PageNumber=1;
-   this.getFeedbacktype(this.PageNumber, this.pageSize, this.Status,this.assetid,this.statusid);
+   this.getFeedbacktype(this.PageNumber, this.pageSize, this.Status,this.assetid,this.statusid,this.dateid);
   }
 
 
   //search method
   searchStatus(){
-    this.getFeedbacktype(this.PageNumber, this.pageSize, this.Status,this.assetid,this.statusid);
+    this.getFeedbacktype(this.PageNumber, this.pageSize, this.Status,this.assetid,this.statusid,this.dateid);
   }
 
 

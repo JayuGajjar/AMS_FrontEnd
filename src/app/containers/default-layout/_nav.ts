@@ -19,6 +19,11 @@ export const navItems1: INavData[] = [
 export const navItems: INavData[] = [
 
   {
+    name: 'Summary',
+    type: 1,
+    url: '/base/summary',
+  },
+  {
     name: 'Assets',
     type: 1,
     url: '/base/asset',

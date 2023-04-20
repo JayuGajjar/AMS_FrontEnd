@@ -15,6 +15,7 @@ export class AddVendorsComponent {
     vendorForm : FormGroup;
     data : vendors;
     submitted = false;
+    submitbtn = false;
     vendordata : any=[];
     frlable:string="";
     title:string="";
@@ -48,6 +49,7 @@ export class AddVendorsComponent {
 
     if(this.vendorForm.invalid)
     {
+      this.submitbtn = false;
       return;
     }
 
@@ -113,6 +115,8 @@ export class AddVendorsComponent {
   }
 
   onReset(){
+    this.submitted = false;
+    this.submitbtn = false;
     this.vendorForm.patchValue({name:""});
     this.vendorForm.patchValue({invoiceno:""});
     this.vendorForm.patchValue({invoicedate:""});

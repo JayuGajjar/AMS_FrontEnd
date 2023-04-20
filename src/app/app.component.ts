@@ -28,5 +28,9 @@ export class AppComponent implements OnInit {
         return;
       }
     });
+
+    if(localStorage.getItem('isSuccess')=='true'){
+      this.router.navigate(['/dashboard']);
+    }
   }
 }

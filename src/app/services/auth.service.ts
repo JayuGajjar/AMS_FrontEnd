@@ -48,6 +48,22 @@ export class AuthService {
   }
 
 
+
+  //get method for all tables
+  getReport(): Observable<any> {
+    // debugger
+    return this.http.get(this.Url + "Reports/ReportGetAllTables");
+  }
+
+
+
+  //get method for all tables
+  getQuantity(): Observable<any> {
+    // debugger
+    return this.http.get(this.Url + "Reports/ReportGetAllTables");
+  }
+
+
   
   //get method for inuse
   inuseDetails(PageNumber: any, pageSize: any, InUse: any): Observable<any> {
@@ -274,9 +290,9 @@ export class AuthService {
 
 
   //Request get service for admin
-  requestDetailsAdmin(PageNumber: any, pageSize: any, Requests: any, assetid: any, statusid: any): Observable<any> {
+  requestDetailsAdmin(PageNumber: any, pageSize: any, Requests: any, assetid: any, statusid: any, dateid: any): Observable<any> {
     //debugger
-    return this.http.get(this.Url + "Request/GetAllRequests?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchString=' + Requests + '&assetId=' + assetid + '&statId=' + statusid);
+    return this.http.get(this.Url + "Request/GetAllRequests?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchString=' + Requests + '&assetId=' + assetid + '&statId=' + statusid + '&DateFilter=' + dateid);
   }
 
 
@@ -288,9 +304,9 @@ export class AuthService {
 
 
   //status get service
-  statusDetails(PageNumber: any, pageSize: any, Status: any, assetid: any, statusid: any): Observable<any> {
+  statusDetails(PageNumber: any, pageSize: any, Status: any, assetid: any, statusid: any, dateid: any): Observable<any> {
     //debugger
-    return this.http.get(this.Url + "Status/GetAllStatus?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Status + '&Assetid=' + assetid + '&Statid=' + statusid);
+    return this.http.get(this.Url + "Status/GetAllStatus?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Status + '&Assetid=' + assetid + '&Statid=' + statusid + '&DateFilter=' + dateid);
   }
 
 
@@ -355,9 +371,9 @@ export class AuthService {
   }
 
   //vendor get service
-  vendorDetails(PageNumber: any, pageSize: any, Vendors: any): Observable<any> {
+  vendorDetails(PageNumber: any, pageSize: any, Vendors: any, dateid: any): Observable<any> {
     //debugger
-    return this.http.get(this.Url + "Vendor/GetAllVendors?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Vendors);
+    return this.http.get(this.Url + "Vendor/GetAllVendors?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Vendors + '&DateFilter=' + dateid);
   }
 
 
@@ -386,9 +402,9 @@ export class AuthService {
 
 
   //scrap get service
-  scrapDetails(PageNumber: any, pageSize: any, Scraps: any, assetid: any, branchid: any, vendorid: any): Observable<any> {
+  scrapDetails(PageNumber: any, pageSize: any, Scraps: any, assetid: any, branchid: any, vendorid: any, dateid: any): Observable<any> {
     //debugger
-    return this.http.get(this.Url + "Scrap/GetAllScrap?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Scraps + '&assetId=' + assetid + '&brcId=' + branchid + '&vedId=' + vendorid);
+    return this.http.get(this.Url + "Scrap/GetAllScrap?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Scraps + '&assetId=' + assetid + '&brcId=' + branchid + '&vedId=' + vendorid + '&DateFilter=' + dateid);
   }
 
 

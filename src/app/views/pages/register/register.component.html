@@ -47,6 +47,8 @@
                   [ngClass]="{ 'has-error': submitted && f['username'].errors }">
                 <div *ngIf="submitted && f['username'].errors" class="has-error">
                   <div *ngIf="f['username'].errors['required']">User name is required!</div>
+                  <div *ngIf="f['username'].errors['minlength']">Minimun 3 latter required!</div>
+                  <div *ngIf="f['username'].errors['maxlength']">Maximum 30 latter Only!</div>
                   <div *ngIf="f['username'].errors['pattern']">Please enter valid Username!!</div>
                 </div>
               </div>
@@ -118,11 +120,11 @@
 
                   <div class="col form-outline mb-4">
                     <label>Floor</label>
-                    <input type="number" class="form-control" min="0" max="30" placeholder="0 is consider as Groundfloor" formControlName="floor"
+                    <input type="text" class="form-control" min="0" max="30" placeholder="0 is consider as Groundfloor" formControlName="floor"
                       [ngClass]="{ 'has-error': submitted && f['floor'].errors }">
                     <div *ngIf="submitted && f['floor'].errors" class="has-error">
                       <div *ngIf="f['floor'].errors['required']">Floor is required!</div>
-                      <div *ngIf="f['floor'].errors['max']">Please enter valid floor!</div>
+                      <div *ngIf="f['floor'].errors['pattern']">Please enter valid floor!</div>
                     </div>
                   </div>
               </div> 
