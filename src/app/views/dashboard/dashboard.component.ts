@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import * as Highcharts from 'highcharts';
 
@@ -7,6 +7,7 @@ import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
+import { FormModule } from '@coreui/angular';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class DashboardComponent implements OnInit {
   totalrequest: number = 0;
   totalstatus: number = 0;
   totalusers: number = 0;
+  totalinprocess: number = 0;
   columnchart: any;
   piechart: any;
 
@@ -40,19 +42,67 @@ export class DashboardComponent implements OnInit {
   type: any;
   isworking: any;
   inuse: any;
+  uniqueid: any;
+  serialno: any;
   role: number = 0;
   dataPointSelections: any;
 
+  acceptForm : FormGroup;
+  submitted : any;
+  submitbtn : any;
 
-  constructor(private authService: AuthService, private router: Router) { }
+
+  constructor(private authService: AuthService, private router: Router, private FB: FormBuilder) 
+  {
+    this.acceptForm = this.FB.group({
+      uniqueid : ['',[Validators.required]],
+      serialno : ['',[Validators.required]],
+    })
+  }
 
 
+  get f() { return this.acceptForm.controls; }
+  
+    public visible = false;
+
+    toggleModal()
+    {
+      this.onReset();
+      // this.id = 0;
+      this.visible = !this.visible;
+    }
+
+    acceptModal(getDatabyId:any) {
+      debugger
+      this.onReset();
+      this.visible = !this.visible;
+      this.id = getDatabyId;
+    }
+  
+    handleChange(event: any) {
+      this.visible = event;
+    }
+
+    onReset(){
+      this.submitted = false;
+      this.submitbtn = false;
+      this.acceptForm.patchValue({uniqueid : ''})
+      this.acceptForm.patchValue({serialno : ''})
+    }
 
   ngOnInit(): void {
 
     this.role = Number(localStorage.getItem('role'));
 
     this.getAllValues();
+
+    // this.authService.Refreshrequired.subscribe(response=>{
+    //   this.getAllValues();
+    // })
+
+    // setInterval(() => {
+    //   this.getAllValues(); // api call
+    // }, 1000);
 
     this.userId = localStorage.getItem('userid');
     this.requestDetails(this.PageNumber, this.pageSize, this.Requests, this.userId);
@@ -74,7 +124,7 @@ export class DashboardComponent implements OnInit {
           this.totalSpare = responce.Data.table[0].totalSpare;
           this.totalWorking = responce.Data.table[0].totalWorking;
           this.totalscrap = responce.Data.table[0].totalscrap;
-          // this.totalbranches = responce.Data.table[0].totalbranches;
+          this.totalinprocess = responce.Data.table[0].totalinprocess;
           // this.totalcompanies = responce.Data.table[0].totalcompanies;
           // this.totaldepartments = responce.Data.table[0].totaldepartments;
           this.totalrequest = responce.Data.table[0].totalrequest;
@@ -104,11 +154,12 @@ export class DashboardComponent implements OnInit {
                 events: {
                   dataPointSelection: (event: any, chartContext: any, config: any) => {
                     if (event) this.dataPointSelections.emit(config.dataPointIndex)
+                  },
+                  click: function(event:any) {
+                    debugger
+                    location.href = 'http://localhost:4200/#' + event.point.path;
+                    // location.href + this.options.key
                   }
-                  // click: function() {
-                  //   // location.href = 'http://localhost:4200/#'
-                  //   // location.href + this.options.key
-                  // }
                 }
               },
 
@@ -127,38 +178,38 @@ export class DashboardComponent implements OnInit {
                 name: 'Total InUse',
                 y: this.totalinUse,
                 color: '#80D651',
-                event: "/base/inuse",
+                path: "/base/inuse",
               },
               {
                 name: 'Total Spare',
                 y: this.totalSpare,
                 color: '#969696',
-                key: "/base/spare"
+                path: "/base/spare"
               },
               {
                 name: 'Total Working',
                 y: this.totalWorking,
                 color: '#003cff',
-                key: "/base/working"
+                path: "/base/working"
               },
               {
                 name: 'Total New Requests',
                 y: this.totalnew,
                 color: '#58a6ff',
-                key: "/base/newrequests"
+                path: "/base/newrequests"
               },
               {
                 name: 'Total Scrap',
                 y: this.totalscrap,
                 color: '#d73814',
-                key: "/base/scrap"
+                path: "/base/scrap"
               },
-              // {
-              //   name: 'Total Asset',
-              //   y: this.totalasset,
-              //   color: '#63004a',
-              //   key: "/base/asset"
-              // },
+              {
+                name: 'Total InProgress',
+                y: this.totalinprocess,
+                color: '#FEAF20',
+                path: "/base/inprogress"
+              },
             ]
           }]
         };
@@ -205,26 +256,42 @@ export class DashboardComponent implements OnInit {
 
 
   //status change
-  statusChange(id: number, type: number, isworking: boolean, inuse: boolean) {
-    // debugger
-    this.authService.statusChange(id, type, isworking, inuse).subscribe(responce => {
-      debugger
-      if (responce.IsSuccess) {
-        Swal.fire(
-          'Success!',
-          responce.ReturnMessage,
-          'success'
-        )
-        this.requestDetails(this.PageNumber, this.pageSize, this.Requests, this.userId);
-      }
-      else {
-        Swal.fire(
-          'Something went wrong!',
-          responce.ReturnMessage,
-          'error'
-        )
-      }
-    })
+  statusChange(id: number, type: number, isworking: boolean, inuse: boolean, uniqueid: boolean, serialno: boolean) {
+
+    this.submitted = true;
+    this.submitbtn = true;
+    if(this.acceptForm.invalid){
+      this.submitbtn = false;
+      return;
+    }
+
+
+        this.id = this.id;
+        this.uniqueid = this.acceptForm.value.uniqueid;
+        this.serialno = this.acceptForm.value.serialno;
+        debugger
+        this.authService.statusChange(this.id,type, isworking, inuse, this.uniqueid, this.serialno).subscribe(responce => {
+          debugger
+          if (responce.IsSuccess) {
+            Swal.fire(
+              'Success!',
+              responce.ReturnMessage,
+              'success'
+            )
+            this.submitbtn = false;
+            this.visible = !this.visible;
+            this.requestDetails(this.PageNumber, this.pageSize, this.Requests, this.userId);
+          }
+          else {
+            Swal.fire(
+              'Something went wrong!',
+              responce.ReturnMessage,
+              'error'
+            )
+            this.visible = !this.visible;
+            this.onReset();
+          }
+        })
   }
 
 
@@ -260,6 +327,23 @@ export class DashboardComponent implements OnInit {
             )
           }
         });
+      }
+    })
+  }
+
+
+
+  getRequestById(Requestid : any){
+    this.authService.getRequestById(Requestid).subscribe(responce => {
+      // debugger
+      if (responce.IsSuccess)
+      {
+        this.requestdata = [];
+
+        if(responce.Data.length > 0){
+          // debugger
+          this.id=responce.Data[0].Requestid;
+         }
       }
     })
   }

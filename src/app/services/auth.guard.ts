@@ -44,6 +44,19 @@ export class AuthGuard implements CanActivate {
   constructor(private auth : AuthService, private router : Router) {
 
   }
+
+
+  // ngOnInit(): void {
+
+  //   setTimeout(()=>{
+  //     localStorage.clear();
+  //   },1800000);
+
+
+  //   this.canActivate();
+  // }
+
+
   canActivate(){
     if(localStorage.getItem('isSuccess')=="true")
     {

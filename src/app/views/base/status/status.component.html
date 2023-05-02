@@ -1,129 +1,146 @@
-    <div class="table-responsive shadow">
-      <div class="table-wrapper">
-          <div class="row">
-            
-            <div class="col input-group">
-              <div>
-                <input type="search" class="form-control" [(ngModel)]="Status" (keyup)="searchStatus()" placeholder="Search">
-              </div>
-              <span class="input-group-append">
-                <button type="button" class="btn btn-outline-info" (click)="searchStatus()" >
-                  <i class="fas fa-search"></i>
-                </button>
-              </span>
-              <div style="margin-left: 5px;">
-                <select type="text" class="form-select form-control" [(ngModel)]="assetid" (change)="searchStatus()">
-                  <option value="0">Filter by Asset</option>
-                  <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
-                    {{assets.specification}}
-                  </option>
-                </select>
-              </div>
-              <div style="margin-left: 5px;">
-                <select type="text" class="form-select form-control" [(ngModel)]="statusid" (change)="searchStatus()">
-                  <option value="0">Filter by Status</option>
-                  <option [ngValue]="status.statid" *ngFor="let status of statuslistdata">
-                    {{status.name}}
-                  </option>
-                </select>
-              </div>
-              <div style="margin-left: 5px;">
-                <select type="text" class="form-select form-control" [(ngModel)]="dateid" (change)="searchStatus()">
-                  <option value="0">Filter by Date</option>
-                  <option value="1">Today</option>
-                  <option value="2">Yesterday</option>
-                  <option value="3">This Week</option>
-                  <option value="4">Last Week</option>
-                  <option value="5">This Month</option>
-                  <option value="6">Last Month</option>
-                  <option value="7">This Year</option>
-                  <option value="8">Last Year</option>
-                </select>
-              </div>
-            </div>
-  
-          </div>
-          <br>
-  
-  
-  
-        <table class="table table-hover">
-  
-  
-          <thead class="table-title">
-            <tr>
-              <th>Allocated To</th>
-              <th>Asset</th>
-              <th>Remarks</th>
-              <th>Created_at</th>
-              <th>Status</th>
-              <!-- <th>Actions</th> -->
-            </tr>
-          </thead>
-  
-  
-  
-          <tbody *ngIf="statusdata.length > 0">
-          <tr *ngFor="let statuslist of statusdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
-            <td>{{statuslist.UserName}}</td>
-            <td>{{statuslist.Asset}}</td>
-            <td>{{statuslist.Request}}</td>
-            <td>{{statuslist.Created_at | date}}</td>
-            <td>
-              <c-badge *ngIf="statuslist.Status==1" color="info">
-                {{statuslist.StatusNow}}
-              </c-badge>
-              <c-badge *ngIf="statuslist.Status==2" color="success">
-                {{statuslist.StatusNow}}
-              </c-badge>
-              <c-badge *ngIf="statuslist.Status==3" color="secondary">
-                {{statuslist.StatusNow}}
-              </c-badge>
-              <c-badge *ngIf="statuslist.Status==4" color="danger">
-                {{statuslist.StatusNow}}
-              </c-badge>
-            </td>
-            <!-- <td>
+<div class="center">
+  <div class="blink" role="status" *ngIf="loader">
+    <img src="./assets/images/image_2023_03_23T09_02_43_496Z.png">
+  </div>
+</div>
+
+
+
+<div class="table-responsive shadow" *ngIf="!loader">
+  <div class="table-wrapper">
+    <div class="row">
+
+      <div class="col input-group">
+        <div>
+          <input type="search" class="form-control" [(ngModel)]="Status" (keyup)="searchStatus()" placeholder="Search">
+        </div>
+        <span class="input-group-append">
+          <button type="button" class="btn btn-outline-info" (click)="searchStatus()">
+            <i class="fas fa-search"></i>
+          </button>
+        </span>
+        <div style="margin-left: 5px;">
+          <select type="text" class="form-select form-control" [(ngModel)]="assetid" (change)="searchStatus()">
+            <option value="0">Filter by Asset</option>
+            <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
+              {{assets.specification}}
+            </option>
+          </select>
+        </div>
+        <div style="margin-left: 5px;">
+          <select type="text" class="form-select form-control" [(ngModel)]="statusid" (change)="searchStatus()">
+            <option value="0">Filter by Status</option>
+            <option [ngValue]="status.statid" *ngFor="let status of statuslistdata">
+              {{status.name}}
+            </option>
+          </select>
+        </div>
+        <div style="margin-left: 5px;">
+          <select type="text" class="form-select form-control" [(ngModel)]="dateid" (change)="searchStatus()">
+            <option value="0">Filter by Date</option>
+            <option value="1">Today</option>
+            <option value="2">Yesterday</option>
+            <option value="3">This Week</option>
+            <option value="4">Last Week</option>
+            <option value="5">This Month</option>
+            <option value="6">Last Month</option>
+            <option value="7">This Year</option>
+            <option value="8">Last Year</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+    <br>
+
+
+
+    <table class="table table-hover">
+
+
+      <thead class="table-title">
+        <tr>
+          <th>Allocated To</th>
+          <th>UniqueId</th>
+          <th>AssetType</th>
+          <th>Remarks</th>
+          <th>Created_at</th>
+          <th>Status</th>
+          <!-- <th>Actions</th> -->
+        </tr>
+      </thead>
+
+
+
+      <tbody *ngIf="statusdata.length > 0">
+        <tr
+          *ngFor="let statuslist of statusdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
+          <td>{{statuslist.UserName}}</td>
+          <td>{{statuslist.UniqueId}}</td>
+          <td>{{statuslist.TypeName}}</td>
+          <td>{{statuslist.Request}}</td>
+          <td>{{statuslist.Created_at | date}}</td>
+          <td>
+            <c-badge *ngIf="statuslist.Status==1" color="info">
+              {{statuslist.StatusNow}}
+            </c-badge>
+            <c-badge *ngIf="statuslist.Status==2" color="success">
+              {{statuslist.StatusNow}}
+            </c-badge>
+            <c-badge *ngIf="statuslist.Status==3" color="secondary">
+              {{statuslist.StatusNow}}
+            </c-badge>
+            <c-badge *ngIf="statuslist.Status==4" color="danger">
+              {{statuslist.StatusNow}}
+            </c-badge>
+            <c-badge *ngIf="statuslist.Status==6" color="danger">
+              {{statuslist.StatusNow}}
+            </c-badge>
+            <c-badge *ngIf="statuslist.Status==7" color="warning">
+              {{statuslist.StatusNow}}
+            </c-badge>
+          </td>
+          <!-- <td>
                 <svg cIcon name = "cilPencil"></svg>
                 <a href="#editEmployeeModal" class="info" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Info">&#8505;</i></a>  
                 <svg cIcon name = "cilTrash"></svg>
                 <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Remove">&#xE872;</i></a>
             </td> -->
-          </tr>
-         </tbody>
-         <tbody *ngIf="statusdata.length <= 0">
-          <tr>
-            <td colspan="100" class="text-center text-danger">No Match found</td>
-          </tr>
-        </tbody>
-  
-        </table>
-  
-        <div class="row">
-          <div class="col-1" style="width: 6.6%;">
-            <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-            </span>
-          </div>
-          <div class="col-1">
-            <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
-              (change)="changePageSize()">
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </select>
-          </div>
-    
-          <div *ngIf="statusdata.length > 0" class="col d-flex justify-content-end">
-            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>
-          <div *ngIf="statusdata.length <= 0" class="col d-flex justify-content-end">
-            <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>
-        </div>
-  
-  
-  
-  
+        </tr>
+      </tbody>
+      <tbody *ngIf="statusdata.length <= 0">
+        <tr>
+          <td colspan="100" class="text-center text-danger">No Match found</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <div class="row">
+      <div class="col-1" style="width: 6.6%;">
+        <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
+        </span>
+      </div>
+      <div class="col-1">
+        <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
+          (change)="changePageSize()">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
+      </div>
+
+      <div *ngIf="statusdata.length > 0" class="col d-flex justify-content-end">
+        <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+      </div>
+      <div *ngIf="statusdata.length <= 0" class="col d-flex justify-content-end">
+        <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
       </div>
     </div>
+
+
+
+
+  </div>
+</div>

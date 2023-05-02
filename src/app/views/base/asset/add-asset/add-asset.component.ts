@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { debug } from 'console';
 import { asset } from 'src/app/Interfaces/asset';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
@@ -21,21 +22,23 @@ export class AddAssetComponent {
   title: string = "";
   assetid: number = 0;
   typelistdata: any = [];
+  statuslistdata: any = [];
   branchlistdata: any = [];
   companylistdata: any = [];
   departmentlistdata: any = [];
   vendorlistdata: any = [];
+  locationlistdata: any = [];
   role: number = 0;
 
   constructor(private authservice: AuthService, private FB: FormBuilder, private router: Router, private route: ActivatedRoute) {
     this.data = {
-      assetid: 0,
-      serialno: "",
-      branch: 0,
-      brand: "",
-      type: 0,
-      model: "",
-      nos: 0,
+      Assetid : 0,
+      SerialNo : "",
+      Branch : 0,
+      Brand : "",
+      Type : 0,
+      Model : "",
+      Nos: 0,
       Processor_Type: "",
       Monitor_Type: "",
       Range_Type: "",
@@ -48,18 +51,32 @@ export class AddAssetComponent {
       RAM: "",
       Inches: "",
       Port_Switch: "",
-      specification: "",
-      vendorid: 0,
+      Specification: "",
+      Vendorid: 0,
+      Status : 0,
+      InvoiceDate : "",
+      Warranty_Till : "",
+      Invoice_No : "",
+      Location : 0,
+      Uid : "",
+      // Description : "",
       Created_at: "",
+      Branches : "",
+      TypeName : "",
+      Vendors : "",
+      StatusName : "",
+      totalrecord : 0,
+      LocationName : "",
+      Remarks : "",
     }
 
     this.assetForm = this.FB.group({
-      serialno: ['', [Validators.required]],
+      serialno: ['N/A', [Validators.required]],
       branch: ['', [Validators.required]],
       brand: ['', [Validators.required,
-      Validators.pattern('[A-Z]+')]],
+      Validators.pattern('^[a-zA-Z0-9-]+( [a-zA-Z0-9-]+)*$')]],
       type: ['', [Validators.required]],
-      model: ['', [Validators.required]],
+      model: ['N/A', [Validators.required]],
       nos: ['', [Validators.required,
       Validators.pattern('[0-9]+')]],
       processortype: ['N/A', [Validators.required]],
@@ -72,12 +89,18 @@ export class AddAssetComponent {
       opticaldrive: ['N/A', [Validators.required]],
       hdd: ['N/A', [Validators.required]],
       ram: ['N/A', [Validators.required]],
-      inches: ['0', [Validators.required,
-      Validators.pattern('[0-9]+')]],
+      inches: ['N/A', [Validators.required]],
       portswitch: ['N/A', [Validators.required]],
-      specification: ['', [Validators.required]],
+      specification: ['N/A', [Validators.required]],
       vendorid: ['', [Validators.required]],
+      invoicedate: [null, [Validators.pattern("^(?:[0-9]{2})?[0-9]{2}/[0-3]?[0-9]/[0-3]?[0-9]$")]],//, [Validators.required]],
+      warranty_till: [null, [Validators.pattern("^(?:[0-9]{2})?[0-9]{2}/[0-3]?[0-9]/[0-3]?[0-9]$")]], //date formate DD/MM/YYYY],//, [Validators.required]],
+      invoice_no: ['N/A', [Validators.required]],
+      location: ['', [Validators.required]],
+      uid: ['N/A', [Validators.required]],
+      status: ['', [Validators.required]],
       createdat: ['', [Validators.required]],
+      remarks: ['N/A', [Validators.required]],
 
     })
 
@@ -95,13 +118,13 @@ export class AddAssetComponent {
     }
 
     if (this.assetid > 0) {
-      this.data.assetid = this.assetid;
-      this.data.serialno = this.assetForm.value.serialno;
-      this.data.branch = this.assetForm.value.branch;
-      this.data.brand = this.assetForm.value.brand;
-      this.data.type = this.assetForm.value.type;
-      this.data.model = this.assetForm.value.model;
-      this.data.nos = this.assetForm.value.nos;
+      this.data.Assetid = this.assetid;
+      this.data.SerialNo = this.assetForm.value.serialno;
+      this.data.Branch = this.assetForm.value.branch;
+      this.data.Brand = this.assetForm.value.brand;
+      this.data.Type = this.assetForm.value.type;
+      this.data.Model = this.assetForm.value.model;
+      this.data.Nos = this.assetForm.value.nos;
       this.data.Processor_Type = this.assetForm.value.processortype;
       this.data.Monitor_Type = this.assetForm.value.monitortype;
       this.data.Range_Type = this.assetForm.value.rangetype;
@@ -114,9 +137,16 @@ export class AddAssetComponent {
       this.data.RAM = this.assetForm.value.ram;
       this.data.Inches = this.assetForm.value.inches;
       this.data.Port_Switch = this.assetForm.value.portswitch;
-      this.data.specification = this.assetForm.value.specification;
-      this.data.vendorid = this.assetForm.value.vendorid;
+      this.data.Specification = this.assetForm.value.specification;
+      this.data.Vendorid = this.assetForm.value.vendorid;
+      this.data.InvoiceDate = this.assetForm.value.invoicedate;
+      this.data.Warranty_Till = this.assetForm.value.warranty_till;
+      this.data.Invoice_No = this.assetForm.value.invoice_no;
+      this.data.Location = this.assetForm.value.location;
+      this.data.Uid = this.assetForm.value.uid;
+      this.data.Status = this.assetForm.value.status;
       this.data.Created_at = this.assetForm.value.createdat;
+      this.data.Remarks = this.assetForm.value.remarks;
 
       this.authservice.editAsset(this.data).subscribe(response => {
 
@@ -126,6 +156,7 @@ export class AddAssetComponent {
             response.ReturnMessage,
             'success'
           )
+          this.submitbtn = false;
           this.router.navigate(['/base/asset']);
         }
         else {
@@ -134,18 +165,20 @@ export class AddAssetComponent {
             response.ReturnMessage,
             'error'
           )
+          this.submitbtn = false;
         }
       })
 
     }
     else {
-      this.data.assetid = this.assetid;
-      this.data.serialno = this.assetForm.value.serialno;
-      this.data.branch = this.assetForm.value.branch;
-      this.data.brand = this.assetForm.value.brand;
-      this.data.type = this.assetForm.value.type;
-      this.data.model = this.assetForm.value.model;
-      this.data.nos = this.assetForm.value.nos;
+      debugger
+      this.data.Assetid = this.assetid;
+      this.data.SerialNo = this.assetForm.value.serialno;
+      this.data.Branch = this.assetForm.value.branch;
+      this.data.Brand = this.assetForm.value.brand;
+      this.data.Type = this.assetForm.value.type;
+      this.data.Model = this.assetForm.value.model;
+      this.data.Nos = this.assetForm.value.nos;
       this.data.Processor_Type = this.assetForm.value.processortype;
       this.data.Monitor_Type = this.assetForm.value.monitortype;
       this.data.Range_Type = this.assetForm.value.rangetype;
@@ -158,18 +191,26 @@ export class AddAssetComponent {
       this.data.RAM = this.assetForm.value.ram;
       this.data.Inches = this.assetForm.value.inches;
       this.data.Port_Switch = this.assetForm.value.portswitch;
-      this.data.specification = this.assetForm.value.specification;
-      this.data.vendorid = this.assetForm.value.vendorid;
+      this.data.Specification = this.assetForm.value.specification;
+      this.data.Vendorid = this.assetForm.value.vendorid;
+      this.data.InvoiceDate = this.assetForm.value.invoicedate;
+      this.data.Warranty_Till = this.assetForm.value.warranty_till;
+      this.data.Invoice_No = this.assetForm.value.invoice_no;
+      this.data.Location = this.assetForm.value.location;
+      this.data.Uid = this.assetForm.value.uid;
+      this.data.Status = this.assetForm.value.status;
       this.data.Created_at = this.assetForm.value.createdat;
+      this.data.Remarks = this.assetForm.value.remarks;
 
       this.authservice.addasset(this.data).subscribe(response => {
-
+        debugger
         if (response.IsSuccess) {
           Swal.fire(
             'Great!',
             response.ReturnMessage,
             'success'
           )
+          this.submitbtn = false;
           this.router.navigate(['/base/asset']);
         }
         else {
@@ -182,6 +223,7 @@ export class AddAssetComponent {
         }
       })
     }
+    // this.submitbtn = false;
 
   }
 
@@ -208,7 +250,14 @@ export class AddAssetComponent {
     this.assetForm.patchValue({ portswitch: "" });
     this.assetForm.patchValue({ specification: "" });
     this.assetForm.patchValue({ vendorid: "" });
+    this.assetForm.patchValue({ invoicedate: "" });
+    this.assetForm.patchValue({ warranty_till: "" });
+    this.assetForm.patchValue({ invoice_no: "" });
+    this.assetForm.patchValue({ location: "" });
+    this.assetForm.patchValue({ uid: "" });
+    this.assetForm.patchValue({ status: "" });
     this.assetForm.patchValue({ createdat: "" });
+    this.assetForm.patchValue({ remarks: "" });
   }
 
   ngOnInit(): void {
@@ -256,14 +305,21 @@ export class AddAssetComponent {
           this.assetForm.controls["batteryampere"].setValue(responce.Data[0].Battery_Ampere);
           this.assetForm.controls["batterycapacity"].setValue(responce.Data[0].Battery_Capacity);
           this.assetForm.controls["graphicsCard"].setValue(responce.Data[0].GraphicsCard);
-          this.assetForm.controls["opticaldrive"].setValue(responce.Data[0].Optional_Drive);
+          this.assetForm.controls["opticaldrive"].setValue(responce.Data[0].Optical_Drive);
           this.assetForm.controls["hdd"].setValue(responce.Data[0].HDD);
           this.assetForm.controls["ram"].setValue(responce.Data[0].RAM);
           this.assetForm.controls["inches"].setValue(responce.Data[0].Inches);
           this.assetForm.controls["portswitch"].setValue(responce.Data[0].Port_Switch);
           this.assetForm.controls["specification"].setValue(responce.Data[0].Specification);
           this.assetForm.controls["vendorid"].setValue(responce.Data[0].Vendorid);
+          this.assetForm.controls["invoicedate"].setValue(responce.Data[0].InvoiceDate);
+          this.assetForm.controls["warranty_till"].setValue(responce.Data[0].Warranty_Till);
+          this.assetForm.controls["invoice_no"].setValue(responce.Data[0].Invoice_No);
+          this.assetForm.controls["location"].setValue(responce.Data[0].Location);
+          this.assetForm.controls["uid"].setValue(responce.Data[0].Uid);
+          this.assetForm.controls["status"].setValue(responce.Data[0].Status);
           this.assetForm.controls["createdat"].setValue(responce.Data[0].Created_at);
+          this.assetForm.controls["remarks"].setValue(responce.Data[0].Remarks);
         }
       }
     })
@@ -284,6 +340,13 @@ export class AddAssetComponent {
           this.typelistdata = [];
         }
 
+        if (responce.Data.table1.length > 0) {
+          this.statuslistdata = responce.Data.table1;
+        }
+        else {
+          this.statuslistdata = [];
+        }
+
         if (responce.Data.table2.length > 0) {
           this.branchlistdata = responce.Data.table2;
         }
@@ -296,6 +359,13 @@ export class AddAssetComponent {
         }
         else {
           this.vendorlistdata = [];
+        }
+
+        if (responce.Data.table8.length > 0) {
+          this.locationlistdata = responce.Data.table8;
+        }
+        else {
+          this.locationlistdata = [];
         }
       }
     })

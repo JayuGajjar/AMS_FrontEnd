@@ -24,6 +24,7 @@ export class CompanyComponent {
   totalrecord : any=0;
   Companies : any="";
   role : number=0;
+  loader = true;
 
   constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
   { 
@@ -92,6 +93,7 @@ export class CompanyComponent {
      
       if(responce.IsSuccess)
       {
+        this.loader = false;
         this.totalrecord = responce.Data[0].totalrecord;
         this.companydata = responce.Data;
       }

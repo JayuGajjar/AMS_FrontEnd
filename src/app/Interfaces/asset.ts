@@ -1,11 +1,10 @@
 export interface asset{
-    assetid : number;
-    serialno : string;
-    branch : number;
-    brand : string;
-    type : number;
-    model : string;
-    nos : number;
+    Assetid : number;
+    SerialNo : string;
+    Branch : number;
+    Brand : string;
+    Type : number;
+    Model : string;
     Processor_Type : string;
     Monitor_Type : string;
     Range_Type : string;
@@ -18,7 +17,23 @@ export interface asset{
     RAM : string;
     Inches : string;
     Port_Switch : string;
-    specification : string;
-    vendorid : number;
+    Nos : number;
+    Specification : string;
+    Vendorid : number;
+    Status : number;
+    Remarks : string;
     Created_at : string;
+    InvoiceDate : string;
+    Warranty_Till : string;
+    Invoice_No : string;
+    Location : number;
+    Uid : string;
+    // Description : string;
+    Branches : string;
+    TypeName : string;
+    Vendors : string;
+    StatusName : string;
+    totalrecord : number;
+    LocationName : string;
+
 }

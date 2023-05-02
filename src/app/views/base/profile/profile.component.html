@@ -1,265 +1,305 @@
-<div class="wrap shadow">
+<div class="center">
+    <div class="blink" role="status" *ngIf="loader">
+        <img src="./assets/images/image_2023_03_23T09_02_43_496Z.png">
+    </div>
+</div>
+
+
+
+<div class="wrap shadow" *ngIf="!loader">
     <div class="card-body">
         <div class="row">
             <div class="col-lg-12">
-                <div>
-                    <div style="background: whitesmoke;
-                                color: darkgray;
+                <div style="background: whitesmoke;
+                                color: #002e7c;
                                 padding: 16px 30px;
-                                margin: -20px -25px 25px;
-                                border-radius: 3px 3px 0 0;" class="shadow">
-                        <h3>Personal Information</h3>
+                                margin: -20px -25px 10px;
+                                border-radius: 3px 3px 0 0;">
+                    <h4 style="text-shadow: 2px 2px lightgray; margin-top: 5px;">Personal Information</h4>
+                </div>
+                <h5 class="modal-title">
+                    <div class="profile-wrapper mb-3">
+                        <div class="test rounded-circle bg-info"
+                            style=" display: flex; align-items: center; justify-content: center;">
+                            <ng-container>
+                                <h1 class="text-uppercase" style="color: white;">{{F}}{{L}}</h1>
+                            </ng-container>
+                        </div>
+                        <div class="details">
+                            <h4 class="name" style="padding-left: 10px;">{{firstname}} {{lastname}}</h4>
+                        </div>
                     </div>
-                    <h5 class="modal-title">
-                        <div class="profile-wrapper mb-3">
-                            <div class="test rounded-circle bg-info"
-                                style=" display: flex; align-items: center; justify-content: center;">
-                                <ng-container>
-                                    <h1 class="text-uppercase" style="color: white;">{{F}}{{L}}</h1>
-                                </ng-container>
-                            </div>
-                            <div class="details">
-                                <h4 class="name" style="padding-left: 10px;">{{firstname}} {{lastname}}</h4>
-                            </div>
-                        </div>
-                    </h5>
+                </h5>
 
 
 
-                    <form class="user px-md-2" [formGroup]="registerForm" (ngSubmit)="editUser()">
+                <form class="user px-md-2" [formGroup]="registerForm" (ngSubmit)="editUser()">
 
 
-                        <div class="row">
-                            <div class="col form-outline mb-4">
-                                <label>First Name</label>
-                                <input type="text" class="form-control" placeholder="Enter FirstName"
-                                    formControlName="firstname"
-                                    [ngClass]="{ 'has-error': submitted && f['firstname'].errors }">
-                                <div *ngIf="submitted && f['firstname'].errors" class="has-error">
-                                    <div *ngIf="f['firstname'].errors['required']">First-name is required!</div>
-                                    <div *ngIf="f['firstname'].errors['pattern']">Please enter valid First-Name!!</div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="col form-outline mb-4">
-                                <label>Last Name</label>
-                                <input type="text" class="form-control" placeholder="Enter LastName"
-                                    formControlName="lastname"
-                                    [ngClass]="{ 'has-error': submitted && f['lastname'].errors }">
-                                <div *ngIf="submitted && f['lastname'].errors" class="has-error">
-                                    <div *ngIf="f['lastname'].errors['required']">Last-Name is required!</div>
-                                    <div *ngIf="f['lastname'].errors['pattern']">Please enter valid Last-Name!!</div>
-                                </div>
+                    <div class="row">
+                        <div class="col form-outline mb-4">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" placeholder="Enter FirstName"
+                                formControlName="firstname"
+                                [ngClass]="{ 'has-error': submitted && f['firstname'].errors }">
+                            <div *ngIf="submitted && f['firstname'].errors" class="has-error">
+                                <div *ngIf="f['firstname'].errors['required']">First-name is required!</div>
+                                <div *ngIf="f['firstname'].errors['pattern']">Please enter valid First-Name!!</div>
                             </div>
                         </div>
 
 
 
-                        <div class="row">
-                            <div class="col form-outline mb-4">
-                                <label>Username</label>
-                                <input type="text" class="form-control" placeholder="Enter Username"
-                                    formControlName="username"
-                                    [ngClass]="{ 'has-error': submitted && f['username'].errors }">
-                                <div *ngIf="submitted && f['username'].errors" class="has-error">
-                                    <div *ngIf="f['username'].errors['required']">User name is required!</div>
-                                    <div *ngIf="f['username'].errors['minlength']">Minimun 3 latter required!</div>
-                                    <div *ngIf="f['username'].errors['maxlength']">Maximum 30 latter Only!</div>
-                                    <div *ngIf="f['username'].errors['pattern']">Please enter valid Username!!</div>
-                                </div>
+                        <div class="col form-outline mb-4">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" placeholder="Enter LastName"
+                                formControlName="lastname"
+                                [ngClass]="{ 'has-error': submitted && f['lastname'].errors }">
+                            <div *ngIf="submitted && f['lastname'].errors" class="has-error">
+                                <div *ngIf="f['lastname'].errors['required']">Last-Name is required!</div>
+                                <div *ngIf="f['lastname'].errors['pattern']">Please enter valid Last-Name!!</div>
                             </div>
+                        </div>
+                    </div>
 
 
 
-                            <div class="col form-outline mb-4">
-                                <label>Mail</label>
-                                <input type="text" class="form-control" placeholder="Enter Mail" formControlName="email"
-                                    [ngClass]="{ 'has-error': submitted && f['email'].errors }">
-                                <div *ngIf="submitted && f['email'].errors" class="has-error">
-                                    <div *ngIf="f['email'].errors['required']">Email is required!</div>
-                                    <div *ngIf="f['email'].errors['pattern']">Please enter valid Email!!</div>
-                                </div>
+                    <div class="row">
+                        <div class="col form-outline mb-4">
+                            <label>Username</label>
+                            <input type="text" class="form-control" placeholder="Enter Username"
+                                formControlName="username"
+                                [ngClass]="{ 'has-error': submitted && f['username'].errors }">
+                            <div *ngIf="submitted && f['username'].errors" class="has-error">
+                                <div *ngIf="f['username'].errors['required']">User name is required!</div>
+                                <div *ngIf="f['username'].errors['minlength']">Minimun 3 latter required!</div>
+                                <div *ngIf="f['username'].errors['maxlength']">Maximum 30 latter Only!</div>
+                                <div *ngIf="f['username'].errors['pattern']">Please enter valid Username!!</div>
                             </div>
                         </div>
 
 
 
-                        <div class="row">
-                            <div class="col form-outline mb-4">
-                                <label>Department</label>
-                                <select type="text" class="form-control form-select" formControlName="department"
-                                    [ngClass]="{ 'has-error': submitted && f['department'].errors }">
-                                    <option value="">Select Department</option>
-                                    <option [ngValue]="departments.depid"
-                                        *ngFor="let departments of departmentlistdata">
-                                        {{departments.name}}
-                                    </option>
-                                </select>
-                                <div *ngIf="submitted && f['department'].errors" class="has-error">
-                                    <div *ngIf="f['department'].errors['required']">department is required!</div>
-                                </div>
+                        <div class="col form-outline mb-4">
+                            <label>Mail</label>
+                            <input type="text" class="form-control" placeholder="Enter Mail" formControlName="email"
+                                [ngClass]="{ 'has-error': submitted && f['email'].errors }">
+                            <div *ngIf="submitted && f['email'].errors" class="has-error">
+                                <div *ngIf="f['email'].errors['required']">Email is required!</div>
+                                <div *ngIf="f['email'].errors['pattern']">Please enter valid Email!!</div>
                             </div>
+                        </div>
+                    </div>
 
 
 
-                            <div class="col form-outline mb-4">
-                                <label>Branch</label>
-                                <select type="text" class="form-control form-select" formControlName="branch"
-                                    [ngClass]="{ 'has-error': submitted && f['branch'].errors }">
-                                    <option value="">Select Branch</option>
-                                    <option [ngValue]="branches.branchid" *ngFor="let branches of branchlistdata">
-                                        {{branches.name}}
-                                    </option>
-                                </select>
-                                <div *ngIf="submitted && f['branch'].errors" class="has-error">
-                                    <div *ngIf="f['branch'].errors['required']">Branch is required!</div>
-                                </div>
+                    <div class="row">
+                        <div class="col form-outline mb-4">
+                            <label>Department</label>
+                            <select type="text" class="form-control form-select" formControlName="department"
+                                [ngClass]="{ 'has-error': submitted && f['department'].errors }">
+                                <option value="">Select Department</option>
+                                <option [ngValue]="departments.depid" *ngFor="let departments of departmentlistdata">
+                                    {{departments.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f['department'].errors" class="has-error">
+                                <div *ngIf="f['department'].errors['required']">department is required!</div>
                             </div>
                         </div>
 
 
 
-                        <div class="row">
-                            <div class="col form-outline mb-4">
-                                <label>Company</label>
-                                <select type="text" class="form-control form-select" formControlName="company"
-                                    [ngClass]="{ 'has-error': submitted && f['company'].errors }">
-                                    <option value="">Select Company</option>
-                                    <option [ngValue]="companies.companyid" *ngFor="let companies of companylistdata">
-                                        {{companies.name}}
-                                    </option>
-                                </select>
-                                <div *ngIf="submitted && f['company'].errors" class="has-error">
-                                    <div *ngIf="f['company'].errors['required']">Company is required!</div>
-                                </div>
+                        <div class="col form-outline mb-4">
+                            <label>Branch</label>
+                            <select type="text" class="form-control form-select" formControlName="branch"
+                                [ngClass]="{ 'has-error': submitted && f['branch'].errors }">
+                                <option value="">Select Branch</option>
+                                <option [ngValue]="branches.branchid" *ngFor="let branches of branchlistdata">
+                                    {{branches.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f['branch'].errors" class="has-error">
+                                <div *ngIf="f['branch'].errors['required']">Branch is required!</div>
                             </div>
+                        </div>
+                    </div>
 
 
 
-                            <div class="col form-outline mb-4">
-                                <label>Floor</label>
-                                <input type="text" class="form-control" min="0" max="30" placeholder="Enter Floor"
-                                    formControlName="floor" [ngClass]="{ 'has-error': submitted && f['floor'].errors }">
-                                <div *ngIf="submitted && f['floor'].errors" class="has-error">
-                                    <div *ngIf="f['floor'].errors['required']">Floor is required!</div>
-                                    <div *ngIf="f['floor'].errors['pattern']">Please enter valid floor!</div>
-                                </div>
+                    <div class="row">
+                        <div class="col form-outline mb-4">
+                            <label>Company</label>
+                            <select type="text" class="form-control form-select" formControlName="company"
+                                [ngClass]="{ 'has-error': submitted && f['company'].errors }">
+                                <option value="">Select Company</option>
+                                <option [ngValue]="companies.companyid" *ngFor="let companies of companylistdata">
+                                    {{companies.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f['company'].errors" class="has-error">
+                                <div *ngIf="f['company'].errors['required']">Company is required!</div>
                             </div>
                         </div>
 
 
 
-                        <div class="form-outline mb-4">
-                            <button class="px-4" color="primary" *ngIf="!submitbtn" class="btn btn-primary rounded submit px-3">
-                                Save</button>
-                            <button class="px-4" color="primary" class="btn btn-primary rounded submit px-3" *ngIf="submitbtn" [disabled]="submitbtn">
-                                <i class="fa-solid fa-spinner fa-spin"></i> Loading
-                            </button>
+                        <div class="col form-outline mb-4">
+                            <label>Floor</label>
+                            <input type="text" class="form-control" min="0" max="30" placeholder="Enter Floor"
+                                formControlName="floor" [ngClass]="{ 'has-error': submitted && f['floor'].errors }">
+                            <div *ngIf="submitted && f['floor'].errors" class="has-error">
+                                <div *ngIf="f['floor'].errors['required']">Floor is required!</div>
+                                <div *ngIf="f['floor'].errors['pattern']">Please enter valid floor!</div>
+                            </div>
                         </div>
+                    </div>
 
 
-                    </form>
 
-                    <div style="background: whitesmoke;
-                                color: darkgray;
+                    <div class="form-outline mb-4">
+                        <button class="px-4" color="primary" *ngIf="!submitbtn"
+                            class="btn btn-primary rounded submit px-3">
+                            Save</button>
+                        <button class="px-4" color="primary" class="btn btn-primary rounded submit px-3"
+                            *ngIf="submitbtn" [disabled]="submitbtn">
+                            <i class="fa-solid fa-spinner fa-spin"></i> Loading
+                        </button>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="!loader" style="background: whitesmoke;
+                                color: #002e7c;
                                 padding: 16px 30px;
-                                margin: 40px -25px 25px;
-                                border-radius: 3px 3px 0 0;" class="shadow">
-                        <h3>Your Asset Info</h3>
-                    </div>
-                    <div class="table-responsive shadow">
-                        <div class="table-wrapper">
-                            <div class="row">
-                                <!-- <div class="col mr-2">
+                                margin: 40px 0px -10px;
+                                border-radius: 3px 3px 0 0;">
+    <h4 style="text-shadow: 2px 2px lightgray; margin-top: 5px;">Your Asset Info</h4>
+
+    <div class="table-responsive shadow">
+        <div class="table-wrapper">
+            <div class="row">
+                <!-- <div class="col mr-2">
                                 <p class="p-2 badge badge-info ">Total Record : <b style="font-size: 15px;">{{totalrecord}}</b></p>
                               </div> -->
-                                <div class="col input-group">
-                                    <div>
-                                        <input type="search" class="form-control" [(ngModel)]="Requests"
-                                            (keyup)="searchRequest()" placeholder="Search">
-                                    </div>
-                                    <span class="input-group-append">
-                                        <button type="button" class="btn btn-outline-info" (click)="searchRequest()">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
+                <div class="col input-group">
+                    <div>
+                        <input type="search" class="form-control" [(ngModel)]="Requests" (keyup)="searchRequest()"
+                            placeholder="Search">
+                    </div>
+                    <span class="input-group-append">
+                        <button type="button" class="btn btn-outline-info" (click)="searchRequest()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </span>
+                </div>
 
 
-                                <!-- <div class="col" align="right">
+                <!-- <div class="col" align="right">
                                 <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/new-request"> <span>Add</span></button>
                               </div> -->
-                            </div>
-                            <br>
+            </div>
+            <br>
 
 
 
-                            <table class="table table-hover">
+            <table class="table table-hover">
 
 
-                                <thead class="table-title">
-                                    <tr>
-                                        <th>Allocated To</th>
-                                        <th>Asset</th>
-                                        <th>Created_at</th>
-                                        <th>Remarks</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-
-
-
-                                <tbody *ngIf="requestdata.length > 0">
-                                    <tr
-                                        *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: specialrecord};let i = index">
-                                        <td>{{requestlist.UserName}}</td>
-                                        <td>{{requestlist.Asset}}</td>
-                                        <td>{{requestlist.Created_at}}</td>
-                                        <td>{{requestlist.Justify}}</td>
-                                        <td>
-                                            <c-badge *ngIf="requestlist.Status==1" color="info">
-                                                {{requestlist.CurrentStatus}}
-                                            </c-badge>
-                                            <c-badge *ngIf="requestlist.Status==2" color="success">
-                                                {{requestlist.CurrentStatus}}
-                                            </c-badge>
-                                            <c-badge *ngIf="requestlist.Status==3" color="secondary">
-                                                {{requestlist.CurrentStatus}}
-                                            </c-badge>
-                                            <c-badge *ngIf="requestlist.Status==4" color="danger">
-                                                {{requestlist.CurrentStatus}}
-                                            </c-badge>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tbody *ngIf="requestdata.length <= 0">
-                                    <tr>
-                                        <td colspan="100" class="text-center text-danger">No Match found</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <div *ngIf="requestdata.length > 0" class="row">
-                                <div class="col d-flex justify-content-end">
-                                    <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-                                </div>
-                            </div>
-                            <div *ngIf="requestdata.length <= 0" class="row">
-                                <div class="col d-flex justify-content-end">
-                                    <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
-                                </div>
-                            </div>
+                <thead class="table-title">
+                    <tr>
+                        <th>Allocated To</th>
+                        <th>UniqueId</th>
+                        <th>AssetType</th>
+                        <th>Created_at</th>
+                        <th>Remarks</th>
+                        <th>IsWorking</th>
+                        <th>InUse</th>
+                        <th>Status</th>
+                        <!-- <th>Actions</th> -->
+                    </tr>
+                </thead>
 
 
 
+                <tbody *ngIf="requestdata.length > 0">
+                    <tr
+                        *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: specialrecord};let i = index">
+                        <td>{{requestlist.UserName}}</td>
+                        <td>{{requestlist.UniqueId}}</td>
+                        <td>{{requestlist.TypeName}}</td>
+                        <td>{{requestlist.Created_at}}</td>
+                        <td>{{requestlist.Justify}}</td>
+                        <td>
+                            <c-form-check [switch]="true" *ngIf="requestlist.Status==2 || requestlist.Status==3 || requestlist.Status==4 || requestlist.Status==5">
+                                <input [(ngModel)]="requestlist.isworking"
+                                    (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse,uniqueid,serialno)"
+                                    cFormCheckInput type="checkbox">
+                                <!-- <input *ngIf="requestlist.isworking==true" disabled [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" cFormCheckInput type="checkbox"> -->
+                            </c-form-check>
+                        </td>
+                        <td>
+                            <c-form-check [switch]="true" *ngIf="requestlist.Status==2 || requestlist.Status==3 || requestlist.Status==4 || requestlist.Status==5">
+                                <input [(ngModel)]="requestlist.inuse"
+                                    (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse,uniqueid,serialno)"
+                                    cFormCheckInput type="checkbox">
+                            </c-form-check>
+                        </td>
+                        <td>
+                            <c-badge *ngIf="requestlist.Status==1" color="info">
+                                {{requestlist.CurrentStatus}}
+                            </c-badge>
+                            <c-badge *ngIf="requestlist.Status==2" color="success">
+                                {{requestlist.CurrentStatus}}
+                            </c-badge>
+                            <c-badge *ngIf="requestlist.Status==3" color="secondary">
+                                {{requestlist.CurrentStatus}}
+                            </c-badge>
+                            <c-badge *ngIf="requestlist.Status==4" color="danger">
+                                {{requestlist.CurrentStatus}}
+                            </c-badge>
+                            <c-badge *ngIf="requestlist.Status==6" color="danger">
+                                {{requestlist.CurrentStatus}}
+                            </c-badge>
+                            <c-badge *ngIf="requestlist.Status==7" color="warning">
+                                {{requestlist.CurrentStatus}}
+                            </c-badge>
+                        </td>
+                        <!-- <td>
+                                            <a href="javascript:void(0)" routerLink="/base/edit-request/{{requestlist.Requestid}}" class="edit"
+                                              title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a href="javascript:void(0)" (click)="deleteRequest(requestlist)" class="delete" title="Delete"><i
+                                                class="fa-regular fa-trash-can"></i></a>
+                                          </td> -->
+                    </tr>
+                </tbody>
+                <tbody *ngIf="requestdata.length <= 0">
+                    <tr>
+                        <td colspan="100" class="text-center text-danger">No Match found</td>
+                    </tr>
+                </tbody>
+            </table>
 
-                        </div>
-                    </div>
-
+            <div *ngIf="requestdata.length > 0" class="row">
+                <div class="col d-flex justify-content-end">
+                    <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
                 </div>
             </div>
+            <div *ngIf="requestdata.length <= 0" class="row">
+                <div class="col d-flex justify-content-end">
+                    <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                </div>
+            </div>
+
+
+
+
         </div>
     </div>
 </div>

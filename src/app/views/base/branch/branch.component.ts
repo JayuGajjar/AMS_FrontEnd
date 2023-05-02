@@ -17,15 +17,16 @@ export class BranchComponent {
     data : branch;
     submitted = false;
     submitbtn = false;
-    frlable:string="";
-    title:string="";
-    branchid:number=0;
+    frlable : string="";
+    title : string="";
+    branchid : number=0;
     branchdata : any=[];
     pageSize : number=5;
     PageNumber : number=1;
     totalrecord : any=0;
     Branches : any="";
     role : number=0;
+    loader = true;
     
     constructor(private authservice: AuthService, private FB: FormBuilder,private router: Router,private route: ActivatedRoute) 
     { 
@@ -99,6 +100,7 @@ export class BranchComponent {
          
           if(responce.IsSuccess)
           {
+            this.loader = false;
             this.totalrecord = responce.Data[0].totalrecord;
             this.branchdata = responce.Data;
           }

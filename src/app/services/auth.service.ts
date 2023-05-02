@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Registration } from '../Interfaces/registration';
 import { Login } from '../Interfaces/login';
-import { Observable } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 import { branch } from '../Interfaces/branch';
 import { company } from '../Interfaces/company';
 import { department } from '../Interfaces/department';
@@ -12,6 +12,7 @@ import { vendors } from '../Interfaces/vendors';
 import { scrap } from '../Interfaces/scrap';
 import { asset } from '../Interfaces/asset';
 import { environment } from 'src/environments/environment';
+import { type } from '../Interfaces/type';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,13 @@ export class AuthService {
         'Content-Type': 'application/json'
       })
     };
+
+
+  // private _refreshrequired = new Subject<void>();
+
+  // get Refreshrequired(){
+  //   return this._refreshrequired;
+  // }
 
   // this.http.post(url, jsonData, httpOptions).subscribe(...);
 
@@ -73,6 +81,14 @@ export class AuthService {
 
 
 
+  //get method for inuse
+  inprogressDetails(PageNumber: any, pageSize: any, InProgress: any): Observable<any> {
+    debugger
+    return this.http.get(this.Url + "Reports/GetInProcessTable?pageNumber=" + PageNumber + "&pageSize=" + pageSize + "&searchString=" + InProgress);
+  }
+
+
+
   //get method for spare
   spareDetails(PageNumber: any, pageSize: any, spares: any): Observable<any> {
     // debugger
@@ -93,6 +109,11 @@ export class AuthService {
   newRequestsDetails(PageNumber: any, pageSize: any, newRequests: any): Observable<any> {
     // debugger
     return this.http.get(this.Url + "Reports/GetNew_RequestTable?pageNumber=" + PageNumber + "&pageSize=" + pageSize + "&searchString=" + newRequests);
+    // .pipe(
+    //   tap(() => {
+    //     this.Refreshrequired.next();
+    //   })
+    // )
   }
 
 
@@ -100,6 +121,11 @@ export class AuthService {
   getAllValues(): Observable<any> {
     // debugger
     return this.http.get(this.Url + "Reports/DashbordValues");
+    // .pipe(
+    //   tap(() => {
+    //     this.Refreshrequired.next();
+    //   })
+    // )
   }
 
 
@@ -115,35 +141,77 @@ export class AuthService {
   }
 
 
-  //add post branch
+  //add post asset
   addasset(objasset: asset): Observable<any> {
+    debugger
     return this.http.post<asset>(this.Url + "Asset/AddNew", objasset);
+  } 
+
+
+
+  //transfer post asset
+  transferasset(assetid: any, branch: any, description: any): Observable<any> {
+    debugger
+    return this.http.post(this.Url + "Asset/Transfer?id=" + assetid + "&Branch=" + branch + "&Description=" + description, this.httpOptions);
   }
 
 
-  //get current branch data with the ID
+  //get current asset data with the ID
   getAssetById(Assetid: any): Observable<any> {
     return this.http.get(this.Url + "Asset/Getid/" + Assetid);
   }
 
 
-  //edit branch
+  //edit Asset
   editAsset(asset: any): Observable<any> {
     debugger
     return this.http.post(this.Url + "Asset/Update/", asset);
   }
 
 
-  //delete branch
+  //delete asset
   deleteAsset(id: any): Observable<any> {
     return this.http.get(this.Url + "Asset/Delete/" + id);
   }
 
 
   //Asset get Service
-  assetDetails(PageNumber: any, pageSize: any, Assets: any, branchid: any, typeid: any, vendorid: any, dateid: any): Observable<any> {
+  assetDetails(PageNumber: any, pageSize: any, Assets: any, branchid: any, typeid: any, vendorid: any, dateid: any, statusid: any): Observable<any> {
     debugger
-    return this.http.get(this.Url + "Asset/GetAllAssets?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Assets + '&Brcid=' + branchid + '&Typeid=' + typeid + '&Vendid=' + vendorid + '&DateFilter=' + dateid);
+    return this.http.get(this.Url + "Asset/GetAllAssets?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + Assets + '&Brcid=' + branchid + '&Typeid=' + typeid + '&Vendid=' + vendorid + '&DateFilter=' + dateid + '&Statid=' + statusid);
+  }
+
+
+  //add post Asset type
+  addassettype(objassettype: type): Observable<any> {
+    return this.http.post<type>(this.Url + "Assettype/AddNew", objassettype);
+  }
+
+
+  //get current type data with the ID
+  getTypeById(Typeid: any): Observable<any> {
+    return this.http.get(this.Url + "Assettype/Getid/" + Typeid);
+  }
+
+
+
+  //edit type
+  editType(type: any): Observable<any> {
+    // debugger
+    return this.http.post(this.Url + "Assettype/Update/", type);
+  }
+
+
+  //delete type
+  deleteType(id: any): Observable<any> {
+    return this.http.get(this.Url + "Assettype/Delete/" + id);
+  }
+
+
+  //Asset type get Service
+  assetTypeDetails(PageNumber: any, pageSize: any, AssetType: any): Observable<any> {
+    debugger
+    return this.http.get(this.Url + "Assettype/GetAllTypes?pageNumber=" + PageNumber + '&pageSize=' + pageSize + '&searchTerm=' + AssetType);
   }
 
 
@@ -283,9 +351,16 @@ export class AuthService {
 
 
   //status change in request
-  statusChange(id: any, type: any, isworking: any, inuse: any): Observable<any> {
+  statusChange(id: any, type: any, isworking: any, inuse: any, uniqueid: any, serialno: any): Observable<any> {
+    // debugger
+    return this.http.get(this.Url + "Request/StatusChange/" + id + '?type=' + type + '&isworking=' + isworking + '&inuse=' + inuse + '&UniqueId=' + uniqueid + '&SerialNo=' + serialno);
+  }
+
+
+  //accept nd dlt in request
+  acptdltRequest(id: any, type: any, accept: any): Observable<any> {
     debugger
-    return this.http.get(this.Url + "Request/StatusChange/" + id + '?type=' + type + '&isworking=' + isworking + '&inuse=' + inuse);
+    return this.http.get(this.Url + "Request/RequestAccepted/" + id + '?type=' + type + '&isAccepted=' + accept);
   }
 
 

@@ -198,8 +198,8 @@ ngOnInit(): void {
       // debugger
       if(responce.IsSuccess)
       {
-        if(responce.Data.table7.length > 0){
-          this.typelistdata = responce.Data.table7;
+        if(responce.Data.table.length > 0){
+          this.typelistdata = responce.Data.table;
         }
         else
         {

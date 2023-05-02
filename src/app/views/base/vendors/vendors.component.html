@@ -1,20 +1,29 @@
-    <div class="table-responsive shadow">
-      <div class="table-wrapper">
-          <div class="row">
-            
-            <div class="col input-group">
-              <div>
-                <button type="button" class="btn btn-outline-primary" routerLink="/base/add-vendors"><i class="fa-solid fa-plus"></i>&nbsp;<span>Add</span></button>
-              </div>
-              <div style="margin-left: 5px;">
-                <input type="search" class="form-control" [(ngModel)]="Vendors" (keyup)="searchVendor()" placeholder="Search">
-              </div>
-              <span class="input-group-append">
-                <button type="button" class="btn btn-outline-info" (click)="searchVendor()" >
-                  <i class="fas fa-search"></i>
-                </button>
-              </span>
-              <!-- <div style="margin-left: 5px;">
+<div class="center">
+  <div class="blink" role="status" *ngIf="loader">
+    <img src="./assets/images/image_2023_03_23T09_02_43_496Z.png">
+  </div>
+</div>
+
+
+
+<div class="table-responsive shadow" *ngIf="!loader">
+  <div class="table-wrapper">
+    <div class="row">
+
+      <div class="col input-group">
+        <div>
+          <a type="button" class="btn btn-outline-primary" (click)="toggleModal()"><i
+              class="fa-solid fa-plus"></i>&nbsp;Add</a>
+        </div>
+        <div style="margin-left: 5px;">
+          <input type="search" class="form-control" [(ngModel)]="Vendors" (keyup)="searchVendor()" placeholder="Search">
+        </div>
+        <span class="input-group-append">
+          <button type="button" class="btn btn-outline-info" (click)="searchVendor()">
+            <i class="fas fa-search"></i>
+          </button>
+        </span>
+        <!-- <div style="margin-left: 5px;">
                 <select type="text" class="form-select form-control" [(ngModel)]="dateid" (change)="searchVendor()">
                   <option value="0">Filter by Date</option>
                   <option value="1">Today</option>
@@ -27,68 +36,108 @@
                   <option value="8">Last Year</option>
                 </select>
               </div> -->
-            </div>
-  
-          </div>
-          <br>
-  
-  
-  
-        <table class="table table-hover">
-  
-  
-          <thead class="table-title">
-            <tr>
-              <th>Name</th>
-              <th style="text-align: end;">Actions</th>
-            </tr>
-          </thead>
-  
-  
-  
-          <tbody *ngIf="vendordata.length > 0">
-          <tr *ngFor="let vendorlist of vendordata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
-            <td>{{vendorlist.Name}}</td>
-            <td style="text-align: end;"
-            >
-              <a href="javascript:void(0)" routerLink="/base/edit-vendors/{{vendorlist.Vendorid}}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
-              <a href="javascript:void(0)" (click)="deleteVendor(vendorlist)" class="delete"><i class="fa-regular fa-trash-can"></i></a>
-            </td>
-          </tr>
-          </tbody>
-          <tbody *ngIf="vendordata.length <= 0">
-            <tr>
-              <td colspan="100" class="text-center text-danger">No Match found</td>
-            </tr>
-          </tbody>
-  
-        </table>
-  
-        <div class="row">
-          <div class="col-1" style="width: 6.6%;">
-            <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-            </span>
-          </div>
-          <div class="col-1">
-            <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
-              (change)="changePageSize()">
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </select>
-          </div>
-    
-          <div *ngIf="vendordata.length > 0" class="col d-flex justify-content-end">
-            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>
-          <div *ngIf="vendordata.length <= 0" class="col d-flex justify-content-end">
-            <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>
-        </div>
-  
-  
-  
-  
+      </div>
+
+    </div>
+    <br>
+
+
+
+    <table class="table table-hover">
+
+
+      <thead class="table-title">
+        <tr>
+          <th>Name</th>
+          <th style="text-align: end;">Actions</th>
+        </tr>
+      </thead>
+
+
+
+      <tbody *ngIf="vendordata.length > 0">
+        <tr
+          *ngFor="let vendorlist of vendordata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
+          <td>{{vendorlist.Name}}</td>
+          <td style="text-align: end;">
+            <a href="javascript:void(0)" (click)="vendorModal(vendorlist)" class="edit" title="Edit"><i
+                class="fa-solid fa-pen-to-square"></i></a>
+            <a href="javascript:void(0)" (click)="deleteVendor(vendorlist)" class="delete"><i
+                class="fa-regular fa-trash-can"></i></a>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="vendordata.length <= 0">
+        <tr>
+          <td colspan="100" class="text-center text-danger">No Match found</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <div class="row">
+      <div class="col-1" style="width: 6.6%;">
+        <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
+        </span>
+      </div>
+      <div class="col-1">
+        <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
+          (change)="changePageSize()">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
+      </div>
+
+      <div *ngIf="vendordata.length > 0" class="col d-flex justify-content-end">
+        <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+      </div>
+      <div *ngIf="vendordata.length <= 0" class="col d-flex justify-content-end">
+        <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
       </div>
     </div>
+
+
+
+
+  </div>
+</div>
+
+
+
+
+<!-- PopUp Form -->
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleChange($event)">
+
+  <c-modal-header>
+    <h5 cModalTitle>{{frlable}} Type</h5>
+  </c-modal-header>
+
+  <form [formGroup]="vendorForm" (ngSubmit)="addVendors()">
+
+    <c-modal-body>
+      <div class="form-outline mb-4">
+        <label>Vendor Name</label>
+        <input type="text" class="form-control" placeholder="Enter Name" formControlName="name"
+          [ngClass]="{ 'has-error': submitted && f['name'].errors }">
+        <div *ngIf="submitted && f['name'].errors" class="has-error">
+          <div *ngIf="f['name'].errors['required']">Vendor name is required!</div>
+          <div *ngIf="f['name'].errors['pattern']">Please enter valid Vendor Name!!</div>
+        </div>
+      </div>
+    </c-modal-body>
+
+    <c-modal-footer>
+      <button type="submit" class="btn btn-primary btn-block" *ngIf="frlable=='Add' && !submitbtn">{{frlable}}</button>
+      <button type="submit" class="btn btn-primary btn-block"
+        *ngIf="frlable=='Update' && !submitbtn">{{frlable}}</button>
+      <button type="button" class="btn btn-secondary btn-block ms-2" (click)="toggleModal()">Close</button>
+      <button class="btn btn-primary btn-block" *ngIf="submitbtn" [disabled]="submitbtn">
+        <i class="fa-solid fa-spinner fa-spin"></i> Loading
+      </button>
+    </c-modal-footer>
+
+  </form>
+
+</c-modal>

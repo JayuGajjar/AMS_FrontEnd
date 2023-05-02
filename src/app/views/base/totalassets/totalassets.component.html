@@ -1,4 +1,11 @@
-<div class="table-responsive shadow">
+<div class="center">
+  <div class="blink" role="status" *ngIf="loader">
+    <img src="./assets/images/image_2023_03_23T09_02_43_496Z.png">
+  </div>
+</div>
+
+
+<div class="table-responsive shadow" *ngIf="!loader">
     <div class="table-wrapper">
         <!-- <div class="row">
 
@@ -107,6 +114,9 @@
                     <td *ngFor="let status of statuslistdata">
                       <ng-container *ngFor="let total of quantitylistdata">
                         <ng-container *ngFor="let branches of branchlistdata">
+                            <!-- <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==1 && total.branch==1 && total.status==2 && status.statid==1">
+                              {{total.total}}
+                            </div> -->
                             <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==1 && total.branch==1 && total.status==2 && status.statid==1">
                               {{total.total}}
                             </div>

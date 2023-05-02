@@ -20,6 +20,7 @@ export class ProfileComponent {
   branchlistdata: any = [];
   companylistdata: any = [];
   departmentlistdata: any = [];
+  loader = true;
 
   requestdata: any = [];
   pageSize: number = 100;
@@ -30,6 +31,8 @@ export class ProfileComponent {
   userdata: any = [];
   userid: number = 0;
   Userid: number = 0;
+  uniqueid : any;
+  serialno : any;
 
   firstname: string = '';
   lastname: string = '';
@@ -186,7 +189,9 @@ export class ProfileComponent {
     // debugger
     this.authService.requestDetails(PageNumber, pageSize, Requests, userId).subscribe(responce => {
 
-      if (responce.IsSuccess) {
+      if (responce.IsSuccess) 
+      {
+        this.loader = false;
         this.specialrecord = responce.Data[0].specialrecord;
         this.requestdata = responce.Data;
       }
@@ -225,7 +230,7 @@ export class ProfileComponent {
 
         if (responce.Data.length > 0) {
           debugger
-          // this.userid = Number(localStorage.getItem('userid'));
+          this.loader = false;
           this.userid = responce.Data[0].Userid;
           this.registerForm.controls["firstname"].setValue(responce.Data[0].First_name);
           this.registerForm.controls["lastname"].setValue(responce.Data[0].Last_name);
@@ -274,6 +279,71 @@ export class ProfileComponent {
         else {
           this.departmentlistdata = [];
         }
+      }
+    })
+  }
+
+
+
+
+  //status change
+  statusChange(id:number,type:number,isworking:boolean,inuse:boolean,uniqueid:any,serialno:any){
+    // debugger
+    this.authService.statusChange(id,type,isworking,inuse,uniqueid,serialno).subscribe(responce => {
+      debugger
+      if(responce.IsSuccess)
+      {
+        Swal.fire(
+          'Success!',
+          responce.ReturnMessage,
+          'success'
+          )
+          this.requestDetails(this.PageNumber, this.pageSize, this.Requests, this.userId);
+        }
+        else
+        {
+          Swal.fire(
+            'Something went wrong!',
+            responce.ReturnMessage,
+            'error'
+            )
+          }
+        })
+  }
+
+
+  //delete method
+  deleteRequest(requestlist: any) {
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+
+      if (result.value) {
+        this.authService.deleteRequest(requestlist.Requestid).subscribe(responce => {
+
+          if (responce.IsSuccess) {
+            Swal.fire(
+              'Deleted!',
+              responce.ReturnMessage,
+              'success'
+            )
+            this.requestDetails(this.PageNumber, this.pageSize, this.Requests, this.userId);
+          }
+          else {
+            Swal.fire(
+              'Something went wrong!',
+              responce.ReturnMessage,
+              'error'
+            )
+          }
+        });
       }
     })
   }

@@ -12,7 +12,8 @@
         size="lg"
       ></svg>
     </button>
-    <c-header-nav class="d-none d-lg-flex me-auto">
+    <c-header-nav style="height: 50px; margin: auto" class="d-none d-lg-flex me-auto">
+      <img src="./assets/images/logo-color.svg">
     </c-header-nav>
 
     <!-- <c-header-nav class="d-flex justify-content-center me-auto">
@@ -20,12 +21,10 @@
     </c-header-nav> -->
 
     <c-header-nav class="d-none d-lg-flex">
-      <c-nav-item>
-        <!-- <a routerLink="./" cNavLink>
-          <svg cIcon name="cilBell" size="lg"></svg>
-        </a> -->
+      <c-nav-item *ngIf="user==1">
+        <ng-container *ngTemplateOutlet="notificationDropdown"></ng-container>
       </c-nav-item>
-      <c-nav-item>
+      <c-nav-item style="align-self: center;">
         {{firstname}} {{lastname}}
       </c-nav-item>
     </c-header-nav>
@@ -43,6 +42,8 @@
 </ng-container>
 <!--</c-header>-->
 
+
+<!-- user dropdown -->
 <ng-template #userDropdown>
   <c-dropdown alignment="end" variant="nav-item">
     <button
@@ -81,3 +82,40 @@
   </c-dropdown>
 </ng-template>
 
+<!-- notification dropdown -->
+<ng-template #notificationDropdown>
+  <c-dropdown alignment="end" variant="nav-item">
+    <button
+      cButton
+      color=""
+      [caret]="false"
+      cDropdownToggle
+      class="py-0"
+    >
+    <a href="javascript:void(0)" class="nav-link nav-icon iconClass" >
+          <i class="fa-solid fa-bell fa-xl"></i>
+          <span *ngIf="totalnew>0" class="badge rounded-pill badge-notification bg-danger">{{totalnew}}</span>
+          <span *ngIf="totalnew<=0" hidden class="badge rounded-pill badge-notification bg-danger">{{totalnew}}</span>
+        </a>
+    </button>
+    <ul cDropdownMenu class="pt-0 pr-5 w-auto" style="background-color: aliceblue;">
+      <li>
+        <h6 cDropdownHeader class="bg-light fw-semibold py-2">Notification</h6>
+      </li>
+      <div *ngIf="notificationdata.length > 0">
+        <li *ngFor="let notificationlist of notificationdata">
+          <a href="javascript:void(0)" routerLink="/base/newrequests" cDropdownItem>
+            <i class="fa-solid fa-user"></i>
+            New Requested From {{notificationlist.username}}<br>
+            {{notificationlist.created_at | date}}
+          </a>
+        </li>
+      </div>
+      <div *ngIf="notificationdata.length <= 0">
+        <li class="text-center text-danger">
+          No New Notification
+        </li>
+      </div>
+    </ul>
+  </c-dropdown>
+</ng-template>

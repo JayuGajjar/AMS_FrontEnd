@@ -1,125 +1,137 @@
-    <div class="table-responsive shadow">
-      <div class="table-wrapper">
-          <div class="row">
-            
-            <div class="col input-group">
-              <div>
-                <button type="button" class="btn btn-outline-primary" routerLink="/base/add-scrap"><i class="fa-solid fa-plus"></i>&nbsp;<span>Add</span></button>
-              </div>
-              <div style="margin-left: 5px;">
-                <input type="search" class="form-control" [(ngModel)]="Scraps" (keyup)="searchScrap()" placeholder="Search">
-              </div>
-              <span class="input-group-append">
-                <button type="button" class="btn btn-outline-info" (click)="searchScrap()" >
-                  <i class="fas fa-search"></i>
-                </button>
-              </span>
-              <div style="margin-left: 5px;">
-                <select type="text" class="form-select form-control" [(ngModel)]="assetid" (change)="searchScrap()">
-                  <option value="0">Filter by Asset</option>
-                  <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
-                    {{assets.specification}}
-                  </option>
-                </select>
-              </div>
-              <div style="margin-left: 5px;">
-                <select type="text" class="form-select form-control" [(ngModel)]="branchid" (change)="searchScrap()">
-                  <option value="0">Filter by Branch</option>
-                  <option [ngValue]="branches.branchid" *ngFor="let branches of branchlistdata">
-                    {{branches.name}}
-                  </option>
-                </select>
-              </div>
-              <div style="margin-left: 5px;">
-                <select type="text" class="form-select form-control" [(ngModel)]="vendorid" (change)="searchScrap()">
-                  <option value="0">Filter by Vendor</option>
-                  <option [ngValue]="vendors.vendorid" *ngFor="let vendors of vendorlistdata">
-                    {{vendors.name}}
-                  </option>
-                </select>
-              </div>
-              <div style="margin-left: 5px;">
-                <select type="text" class="form-select form-control" [(ngModel)]="dateid" (change)="searchScrap()">
-                  <option value="0">Filter by Date</option>
-                  <option value="1">Today</option>
-                  <option value="2">Yesterday</option>
-                  <option value="3">This Week</option>
-                  <option value="4">Last Week</option>
-                  <option value="5">This Month</option>
-                  <option value="6">Last Month</option>
-                  <option value="7">This Year</option>
-                  <option value="8">Last Year</option>
-                </select>
-              </div>
-            </div>
-  
-          </div>
-          <br>
-  
-  
-  
-        <table class="table table-hover">
-  
-  
-          <thead class="table-title">
-            <tr>
-              <th>Branch</th>
-              <th>Asset</th>
-              <th>LastUser</th>
-              <th>Vendor</th>
-              <th>Created_at</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-  
-  
-  
-          <tbody *ngIf="scrapdata.length > 0">
-            <tr *ngFor="let scraplist of scrapdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
-              <td>{{scraplist.BranchName}}</td>
-              <td>{{scraplist.AssetName}}</td>
-              <td>{{scraplist.LastUser}}</td>
-              <td>{{scraplist.VendorName}}</td>
-              <td>{{scraplist.Created_at | date}}</td>
-              <td>
-                <a href="javascript:void(0)" routerLink="/base/edit-scrap/{{scraplist.Scrapid}}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                <a href="javascript:void(0)" (click)="deleteScrap(scraplist)" class="delete"><i class="fa-regular fa-trash-can"></i></a>
-              </td>
-            </tr>
-          </tbody>
-          <tbody *ngIf="scrapdata.length <= 0">
-            <tr>
-              <td colspan="100" class="text-center text-danger">No Match found</td>
-            </tr>
-          </tbody>
-  
-        </table>
-  
-        <div class="row">
-          <div class="col-1" style="width: 6.6%;">
-            <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-            </span>
-          </div>
-          <div class="col-1">
-            <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
-              (change)="changePageSize()">
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </select>
-          </div>
-    
-          <div *ngIf="scrapdata.length > 0" class="col d-flex justify-content-end">
-            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>
-          <div *ngIf="scrapdata.length <= 0" class="col d-flex justify-content-end">
-            <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>
+<div class="center">
+  <div class="blink" role="status" *ngIf="loader">
+    <img src="./assets/images/image_2023_03_23T09_02_43_496Z.png">
+  </div>
+</div>
+
+
+
+<div class="table-responsive shadow" *ngIf="!loader">
+  <div class="table-wrapper">
+    <div class="row">
+
+      <div class="col input-group">
+        <div>
+          <button type="button" class="btn btn-outline-primary" routerLink="/base/add-scrap"><i
+              class="fa-solid fa-plus"></i>&nbsp;<span>Add</span></button>
         </div>
-  
-  
-  
-  
+        <div style="margin-left: 5px;">
+          <input type="search" class="form-control" [(ngModel)]="Scraps" (keyup)="searchScrap()" placeholder="Search">
+        </div>
+        <span class="input-group-append">
+          <button type="button" class="btn btn-outline-info" (click)="searchScrap()">
+            <i class="fas fa-search"></i>
+          </button>
+        </span>
+        <div style="margin-left: 5px;">
+          <select type="text" class="form-select form-control" [(ngModel)]="assetid" (change)="searchScrap()">
+            <option value="0">Filter by Asset</option>
+            <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
+              {{assets.specification}}
+            </option>
+          </select>
+        </div>
+        <div style="margin-left: 5px;">
+          <select type="text" class="form-select form-control" [(ngModel)]="branchid" (change)="searchScrap()">
+            <option value="0">Filter by Branch</option>
+            <option [ngValue]="branches.branchid" *ngFor="let branches of branchlistdata">
+              {{branches.name}}
+            </option>
+          </select>
+        </div>
+        <div style="margin-left: 5px;">
+          <select type="text" class="form-select form-control" [(ngModel)]="vendorid" (change)="searchScrap()">
+            <option value="0">Filter by Vendor</option>
+            <option [ngValue]="vendors.vendorid" *ngFor="let vendors of vendorlistdata">
+              {{vendors.name}}
+            </option>
+          </select>
+        </div>
+        <div style="margin-left: 5px;">
+          <select type="text" class="form-select form-control" [(ngModel)]="dateid" (change)="searchScrap()">
+            <option value="0">Filter by Date</option>
+            <option value="1">Today</option>
+            <option value="2">Yesterday</option>
+            <option value="3">This Week</option>
+            <option value="4">Last Week</option>
+            <option value="5">This Month</option>
+            <option value="6">Last Month</option>
+            <option value="7">This Year</option>
+            <option value="8">Last Year</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+    <br>
+
+
+
+    <table class="table table-hover">
+
+
+      <thead class="table-title">
+        <tr>
+          <th>Branch</th>
+          <th>Asset</th>
+          <th>LastUser</th>
+          <th>Vendor</th>
+          <th>Created_at</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+
+
+      <tbody *ngIf="scrapdata.length > 0">
+        <tr
+          *ngFor="let scraplist of scrapdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
+          <td>{{scraplist.BranchName}}</td>
+          <td>{{scraplist.AssetName}}</td>
+          <td>{{scraplist.LastUser}}</td>
+          <td>{{scraplist.VendorName}}</td>
+          <td>{{scraplist.Created_at | date}}</td>
+          <td>
+            <a href="javascript:void(0)" routerLink="/base/edit-scrap/{{scraplist.Scrapid}}" class="edit"><i
+                class="fa-solid fa-pen-to-square"></i></a>
+            <a href="javascript:void(0)" (click)="deleteScrap(scraplist)" class="delete"><i
+                class="fa-regular fa-trash-can"></i></a>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="scrapdata.length <= 0">
+        <tr>
+          <td colspan="100" class="text-center text-danger">No Match found</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <div class="row">
+      <div class="col-1" style="width: 6.6%;">
+        <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
+        </span>
+      </div>
+      <div class="col-1">
+        <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
+          (change)="changePageSize()">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
+      </div>
+
+      <div *ngIf="scrapdata.length > 0" class="col d-flex justify-content-end">
+        <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+      </div>
+      <div *ngIf="scrapdata.length <= 0" class="col d-flex justify-content-end">
+        <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
       </div>
     </div>
+
+
+
+
+  </div>
+</div>

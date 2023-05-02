@@ -22,6 +22,8 @@ import { NewRequestComponent } from './new-request/new-request.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AssetsinfoComponent } from './assetsinfo/assetsinfo.component';
 import { TotalassetsComponent } from './totalassets/totalassets.component';
+import { AssettypeComponent } from './assettype/assettype.component';
+import { TotalinprogressComponent } from '../dashboard/totalinprogress/totalinprogress.component';
 const titleP = "Asset Managment";
 
 const routes: Routes = [
@@ -39,6 +41,14 @@ const routes: Routes = [
         component: TotalinuseComponent,
         data: {
           title: 'InUse Assets', 
+        },
+      },
+      //total in progress
+      {
+        path: 'inprogress', title: titleP + ' - InProgress', canActivate : [AuthGuard],
+        component: TotalinprogressComponent,
+        data: {
+          title: 'InProgress Assets', 
         },
       },
       //total new request
@@ -120,6 +130,16 @@ const routes: Routes = [
       },
 
 
+      //for asset type
+      {
+        path: 'assettype', title: titleP + ' - Asset Type', canActivate : [AuthGuard],
+        component: AssettypeComponent,
+        data: {
+          title: 'Asset Types',
+        },
+      },
+
+
       //for branch
       {
         path: 'branch', title: titleP + ' - Branch', canActivate : [AuthGuard],
@@ -152,20 +172,20 @@ const routes: Routes = [
 
 
       //for request
-      {
-        path: 'request', title: titleP + ' - Request', canActivate : [AuthGuard],
-        component: RequestComponent,
-        data: {
-          title: 'Requests Status',
-        },
-      },
-      {
-        path: 'edit-request/:id', title: titleP + ' - Edit Request', canActivate : [AuthGuard],
-        component: NewRequestComponent,
-        data: {
-          title: 'Edit Requests',
-        },
-      },
+      // {
+      //   path: 'request', title: titleP + ' - Request', canActivate : [AuthGuard],
+      //   component: RequestComponent,
+      //   data: {
+      //     title: 'Requests Status',
+      //   },
+      // },
+      // {
+      //   path: 'edit-request/:id', title: titleP + ' - Edit Request', canActivate : [AuthGuard],
+      //   component: NewRequestComponent,
+      //   data: {
+      //     title: 'Edit Requests',
+      //   },
+      // },
       {
         path: 'new-request', title: titleP + ' - New Request', canActivate : [AuthGuard],
         component: NewRequestComponent,
@@ -204,20 +224,6 @@ const routes: Routes = [
         component: VendorsComponent,
         data: {
           title: 'Vendors',
-        },
-      },
-      {
-        path: 'add-vendors', title: titleP + ' - Add Vendors', canActivate : [AuthGuard],
-        component: AddVendorsComponent,
-        data: {
-          title: 'Add Vendors',
-        },
-      },
-      {
-        path: 'edit-vendors/:id', title: titleP + ' - Edit Vendors', canActivate : [AuthGuard],
-        component: AddVendorsComponent,
-        data: {
-          title: 'Edit Vendors',
         },
       },
 

@@ -27,16 +27,13 @@ export class AddVendorsComponent {
     this.data = {
       vendorid : 0,
       name : "",
-      invoiceno : "",
-      invoicedate : "",
-      warranty_till : "",
     }
     
     this.vendorForm = this.FB.group({
       name : ['',[Validators.required, Validators.pattern("[a-zA-Z0-9-_ ][a-zA-Z0-9-_ ]+")]],
-      invoiceno : ['',[Validators.required, Validators.pattern("[a-zA-Z0-9-_ ][a-zA-Z0-9-_ ]+")]],
-      invoicedate : ['',[Validators.required]], //Validators.pattern("^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$")]], //date formate DD/MM/YYYY
-      warranty_till : ['',[Validators.required]], //Validators.pattern("^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$")]], //date formate DD/MM/YYYY
+      // invoiceno : ['',[Validators.required, Validators.pattern("[a-zA-Z0-9-_ ][a-zA-Z0-9-_ ]+")]],
+      // invoicedate : ['',[Validators.required]], //Validators.pattern("^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$")]], //date formate DD/MM/YYYY
+      // warranty_till : ['',[Validators.required]], //Validators.pattern("^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$")]], //date formate DD/MM/YYYY
 
     })
    
@@ -56,9 +53,6 @@ export class AddVendorsComponent {
     if(this.vendorid>0){
       this.data.vendorid = this.vendorid;
       this.data.name = this.vendorForm.value.name;
-      this.data.invoiceno = this.vendorForm.value.invoiceno;
-      this.data.invoicedate = this.vendorForm.value.invoicedate;
-      this.data.warranty_till = this.vendorForm.value.warranty_till;
 
       this.authservice.editVendor(this.data).subscribe(response => {
     
@@ -85,9 +79,6 @@ export class AddVendorsComponent {
     else{
       this.data.vendorid = this.vendorid;
       this.data.name = this.vendorForm.value.name;
-      this.data.invoiceno = this.vendorForm.value.invoiceno;
-      this.data.invoicedate = this.vendorForm.value.invoicedate;
-      this.data.warranty_till = this.vendorForm.value.warranty_till;
 
       this.authservice.addvendors(this.data).subscribe(response => {
     
@@ -118,9 +109,6 @@ export class AddVendorsComponent {
     this.submitted = false;
     this.submitbtn = false;
     this.vendorForm.patchValue({name:""});
-    this.vendorForm.patchValue({invoiceno:""});
-    this.vendorForm.patchValue({invoicedate:""});
-    this.vendorForm.patchValue({warranty_till:""});
   }
 
   ngOnInit(): void {
@@ -156,9 +144,6 @@ export class AddVendorsComponent {
           if(responce.Data.length > 0){
             this.vendorid=responce.Data[0].Vendorid;
            this.vendorForm.controls["name"].setValue(responce.Data[0].Name);
-           this.vendorForm.controls["invoiceno"].setValue(responce.Data[0].InvoiceNo);
-           this.vendorForm.controls["invoicedate"].setValue(responce.Data[0].InvoiceDate);
-           this.vendorForm.controls["warranty_till"].setValue(responce.Data[0].Warranty_Till);
            }
         }
       })

@@ -24,6 +24,7 @@ export class UserdetailsComponent {
   role : number=0;
   userid : number=0;
   rolelistdata : any=[];
+  loader = true;
   
     constructor(private authservice:AuthService,private router:Router ,private FB: FormBuilder,private route: ActivatedRoute) {
 
@@ -89,6 +90,7 @@ export class UserdetailsComponent {
        
         if(responce.IsSuccess)
         {
+          this.loader = false;
           this.totalrecord = responce.Data[0].totalrecord;
           this.userdata = responce.Data;
         }

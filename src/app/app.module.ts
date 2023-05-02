@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from "./services/auth.service";
-import { ModalModule } from '@coreui/angular';
+import { CollapseModule, ModalModule, PopoverModule } from '@coreui/angular';
 
 
 import {
@@ -94,6 +94,8 @@ const APP_CONTAINERS = [
     FormsModule,
     HttpClientModule,
     ModalModule,
+    CollapseModule,
+    PopoverModule,
   ],
   providers: [
     {

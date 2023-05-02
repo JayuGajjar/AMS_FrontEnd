@@ -3,14 +3,14 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-totalinuse',
-  templateUrl: './totalinuse.component.html',
-  styleUrls: ['./totalinuse.component.css']
+  selector: 'app-totalinprogress',
+  templateUrl: './totalinprogress.component.html',
+  styleUrls: ['./totalinprogress.component.css']
 })
-export class TotalinuseComponent {
+export class TotalinprogressComponent  {
 
 
-  inusedata : any=[];
+  inprogressdata : any=[];
   name : any;
   userinfo : any;
   assetsinUse : any;
@@ -18,7 +18,7 @@ export class TotalinuseComponent {
   pageSize : number=5;
   PageNumber: any=1;
   totalrecord : any=0;
-  InUse : any="";
+  InProgress : any="";
 
   constructor(private authservice:AuthService, private router:Router) { }
 
@@ -29,22 +29,22 @@ export class TotalinuseComponent {
       this.router.navigate(['/dashboard']);
     }
     // debugger
-    this.inuseDetails(this.PageNumber,this.pageSize,this.InUse);
+    this.inprogressDetails(this.PageNumber,this.pageSize,this.InProgress);
   }
 
   //get method for get the data of branch
-  inuseDetails(PageNumber:number,pageSize:number,InUse:string) {
+  inprogressDetails(PageNumber:number,pageSize:number,InProgress:string) {
     // debugger
-    this.authservice.inuseDetails(PageNumber,pageSize,InUse).subscribe(responce => {
+    this.authservice.inprogressDetails(PageNumber,pageSize,InProgress).subscribe(responce => {
      
       if(responce.IsSuccess)
       {
         this.totalrecord = responce.Data[0].totalrecord;
-        this.inusedata = responce.Data;
+        this.inprogressdata = responce.Data;
       }
       else
       {
-        this.inusedata = [];
+        this.inprogressdata = [];
       }
      
     });
@@ -52,21 +52,21 @@ export class TotalinuseComponent {
 
   pageChangeEvent(event: number) {
     this.PageNumber = event;
-    this.inuseDetails(this.PageNumber, this.pageSize,this.InUse);
+    this.inprogressDetails(this.PageNumber, this.pageSize,this.InProgress);
   }
 
 
   changePageSize(){
     // debugger
     this.PageNumber=1;
-   this.inuseDetails(this.PageNumber, this.pageSize,this.InUse);
+   this.inprogressDetails(this.PageNumber, this.pageSize,this.InProgress);
   }
 
 
   //search method
-  searchInUse(){
+  searchInProgress(){
     // debugger
-    this.inuseDetails(this.PageNumber,this.pageSize,this.InUse);
+    this.inprogressDetails(this.PageNumber,this.pageSize,this.InProgress);
   }
 
 

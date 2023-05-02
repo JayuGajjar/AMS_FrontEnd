@@ -40,6 +40,16 @@
   >
   </c-sidebar-nav>
   <c-sidebar-nav *ngIf="role==1"
+  [navItems]="navItems2"
+  dropdownMode="close"
+  >
+  </c-sidebar-nav>
+  <c-sidebar-nav
+  [navItems]="navItems3"
+  dropdownMode="close"
+  >
+  </c-sidebar-nav>
+  <c-sidebar-nav *ngIf="role==1"
     [navItems]="navItems"
     dropdownMode="close"
   >

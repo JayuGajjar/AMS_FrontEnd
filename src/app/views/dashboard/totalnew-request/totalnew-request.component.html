@@ -1,78 +1,133 @@
-
-    <div class="table-responsive shadow">
-      <div class="table-wrapper">
-          <div class="row">
-            <div class="col input-group">
-              <div>
-                <input type="search" class="form-control" [(ngModel)]="newRequests" (keyup)="searchNewRequest()" placeholder="Search">
-              </div>
-              <span class="input-group-append">
-                <button type="button" class="btn btn-outline-info" (click)="searchNewRequest()" >
-                  <i class="fas fa-search"></i>
-                </button>
-              </span>
-            </div>
+<div class="table-responsive shadow">
+    <div class="table-wrapper">
+      <div class="row">
+        <!-- <div class="col mr-2">
+  <p class="p-2 badge badge-info ">Total Record : <b style="font-size: 15px;">{{totalrecord}}</b></p>
+</div> -->
+        <div class="col input-group">
+          <div>
+            <input type="search" class="form-control" [(ngModel)]="Requests" (keyup)="searchRequest()"
+              placeholder="Search">
           </div>
-          <br>
-  
-  
-  
-        <table class="table table-hover">
-  
-  
-          <thead class="table-title">
-            <tr>
-              <th>UserInfo</th>
-              <th>Branch</th>
-              <th>Type</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-  
-  
-  
-        <tbody *ngIf="newrequestsdata.length > 0">
-          <tr *ngFor="let newrequestlist of newrequestsdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
-                <td>{{newrequestlist.userinfo}}</td>
-                <td>{{newrequestlist.branch}}</td>
-                <td>{{newrequestlist.type}}</td>
-                <td>
-                  <c-badge color="info">
-                    {{newrequestlist.status}}
-                  </c-badge>
-                </td>
-            </tr>
+          <span class="input-group-append">
+            <button type="button" class="btn btn-outline-info" (click)="searchRequest()">
+              <i class="fas fa-search"></i>
+            </button>
+          </span>
+          <!-- <div style="margin-left: 5px;">
+    <select type="text" class="form-select form-control" [(ngModel)]="assetid" (change)="searchRequest()">
+      <option value="0">Filter by Asset</option>
+      <option [ngValue]="assets.assetid" *ngFor="let assets of assetlistdata">
+        {{assets.specification}}
+      </option>
+    </select>
+  </div>
+  <div style="margin-left: 5px;">
+    <select type="text" class="form-select form-control" [(ngModel)]="statusid" (change)="searchRequest()">
+      <option value="0">Filter by Status</option>
+      <option [ngValue]="status.statid" *ngFor="let status of statuslistdata">
+        {{status.name}}
+      </option>
+    </select>
+  </div> -->
+          <div style="margin-left: 5px;">
+            <select type="text" class="form-select form-control" [(ngModel)]="dateid" (change)="searchRequest()">
+              <option value="0">Filter by Date</option>
+              <option value="1">Today</option>
+              <option value="2">Yesterday</option>
+              <option value="3">This Week</option>
+              <option value="4">Last Week</option>
+              <option value="5">This Month</option>
+              <option value="6">Last Month</option>
+              <option value="7">This Year</option>
+              <option value="8">Last Year</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <br>
+
+
+
+      <table class="table table-hover">
+
+
+        <thead class="table-title">
+          <tr>
+            <th style="width: 10%;">Allocated To</th>
+            <th>UniqueId</th>
+            <th>AssetType</th>
+            <th>Created_at</th>
+            <th>Remarks</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+
+
+        <tbody *ngIf="requestdata.length > 0">
+          <tr
+            *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
+            <td>{{requestlist.UserName}}</td>
+            <td>{{requestlist.UniqueId}}</td>
+            <td>{{requestlist.TypeName}}</td>
+            <td>{{requestlist.Created_at | date}}</td>
+            <td>{{requestlist.Justify}}</td>
+            <td>
+              <c-badge *ngIf="requestlist.Status==1" color="info">
+                {{requestlist.CurrentStatus}}
+              </c-badge>
+              <!-- <c-badge *ngIf="requestlist.Status==2" color="success">
+      {{requestlist.CurrentStatus}}
+    </c-badge>
+    <c-badge *ngIf="requestlist.Status==3" color="secondary">
+      {{requestlist.CurrentStatus}}
+    </c-badge>
+    <c-badge *ngIf="requestlist.Status==4" color="danger">
+      {{requestlist.CurrentStatus}}
+    </c-badge> -->
+            </td>
+            <td>
+              <a href="javascript:void(0)" (click)="acptdltRequest(requestlist.Requestid,3,false)" class="delete" title="Decline"><i class="fa-solid fa-xmark"></i></a> <!--(click)="deleteRequest(requestlist)"-->
+              <a href="javascript:void(0)" (click)="acptdltRequest(requestlist.Requestid,3,true)" class="success" title="Accept"><i class="fa-solid fa-check"></i></a> <!--routerLink="/base/edit-request/{{requestlist.Requestid}}"-->
+            </td>
+          </tr>
         </tbody>
-        <tbody *ngIf="newrequestsdata.length <= 0">
+        <tbody *ngIf="requestdata.length <= 0">
           <tr>
             <td colspan="100" class="text-center text-danger">No Match found</td>
           </tr>
         </tbody>
-  
-        </table>
-  
-        <div class="row">
-          <div class="col-1" style="width: 6.6%;">
-            <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-            </span>
-          </div>
-          <div class="col-1">
-            <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
-              (change)="changePageSize()">
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </select>
-          </div>
-    
-          <div *ngIf="newrequestsdata.length > 0" class="col d-flex justify-content-end">
-            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>
-          <div *ngIf="newrequestsdata.length <= 0" class="col d-flex justify-content-end">
-            <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>
+
+      </table>
+
+
+      <div class="row">
+        <div class="col-1" style="width: 6.6%;">
+          <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
+          </span>
         </div>
-  
+        <div class="col-1">
+          <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
+            (change)="changePageSize()">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+
+        <div *ngIf="requestdata.length > 0" class="col d-flex justify-content-end">
+          <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+        </div>
+        <div *ngIf="requestdata.length <= 0" class="col d-flex justify-content-end">
+          <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
+        </div>
       </div>
+
+
+
     </div>
+  </div>

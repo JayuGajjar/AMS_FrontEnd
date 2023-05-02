@@ -17,6 +17,7 @@ export class TotalassetsComponent {
   quantitylistdata : any=[];
   workinglistdata : any=[];
   totalbranches: number = 0;
+  loader = true;
 
 
   constructor(private authservice:AuthService, private router:Router) { }
@@ -42,6 +43,7 @@ export class TotalassetsComponent {
       if (responce.IsSuccess) {
 
         if (responce.Data.table.length > 0) {
+          // this.loader = false;
           this.totalbranches = responce.Data.table[0].totalbranches;
         }
       }
@@ -54,6 +56,7 @@ export class TotalassetsComponent {
 
       debugger
       if(responce.IsSuccess){
+        this.loader = false;
 
         if(responce.Data.table.length > 0){
           this.typelistdata = responce.Data.table;

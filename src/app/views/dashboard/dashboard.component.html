@@ -135,18 +135,18 @@
 
 
       <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
-        <div class="card shadow h-100 py-2 notice notice-light">
+        <div class="card shadow h-100 py-2 notice notice-warning">
           <div class="card-body">
-            <a routerLink="/base/summary">
+            <a routerLink="/base/inprogress">
               <div class="row no-gutters align-items-center">
-                <div class="col mr-2 light">
+                <div class="col mr-2 warning">
                   <div class="text-uppercase">
-                    Summary
+                    Total In Progress
                   </div>
-                  <div class="h3 mb-0 font-weight-bold"> {{totalasset}} </div>
+                  <div class="h3 mb-0 font-weight-bold"> {{totalinprocess}} </div>
                 </div>
-                <div class="col-auto light">
-                  <i class="fa-solid fa-computer fa-2xl"></i>
+                <div class="col-auto warning">
+                  <i class="fa-solid fa-bars-progress fa-2xl"></i>
                 </div>
               </div>
             </a>
@@ -175,8 +175,8 @@
             color: #002e7c;
             padding: 16px 30px;
             margin: -5px -25px -10px;
-            border-radius: 3px 3px 0 0;" class="shadow">
-      <h4 style="text-shadow: 2px 2px lightgray; margin-top: 5px;">Your Assets</h4>
+            border-radius: 3px 3px 0 0;">
+  <h4 style="text-shadow: 2px 2px lightgray; margin-top: 5px;">Your Assets</h4>
 
   <div class="table-responsive shadow1">
     <div class="table-wrapper">
@@ -212,11 +212,10 @@
         <thead class="table-title">
           <tr>
             <th>Allocated To</th>
-            <th>Asset</th>
+            <th>UniqueId</th>
+            <th>AssetType</th>
             <th>Created_at</th>
             <th>Remarks</th>
-            <th>IsWorking</th>
-            <th>InUse</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -228,30 +227,31 @@
           <tr
             *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: specialrecord};let i = index">
             <td>{{requestlist.UserName}}</td>
-            <td>{{requestlist.Asset}}</td>
+            <td>{{requestlist.UniqueId}}</td>
+            <td>{{requestlist.TypeName}}</td>
             <td>{{requestlist.Created_at | date}}</td>
             <td>{{requestlist.Justify}}</td>
-            <td>
+            <!-- <td>
               <c-form-check [switch]="true">
                 <input *ngIf="requestlist.isworking==true" [(ngModel)]="requestlist.isworking"
                   (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" checked
                   cFormCheckInput type="checkbox">
-                <input *ngIf="requestlist.isworking==false" disabled [(ngModel)]="requestlist.isworking"
+                <input disabled [(ngModel)]="requestlist.isworking"
                   (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" checked
                   cFormCheckInput type="checkbox">
               </c-form-check>
             </td>
             <td>
               <c-form-check [switch]="true">
-                <input *ngIf="requestlist.isworking==false" disabled [(ngModel)]="requestlist.inuse"
+                <input disabled [(ngModel)]="requestlist.inuse"
                   (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput
                   type="checkbox">
                 <input *ngIf="requestlist.isworking==true" [(ngModel)]="requestlist.inuse"
                   (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput
                   type="checkbox">
               </c-form-check>
-            </td>
-            <td>
+            </td> -->
+            <td style="width: 10%;">
               <c-badge *ngIf="requestlist.Status==1" color="info">
                 {{requestlist.CurrentStatus}}
               </c-badge>
@@ -264,13 +264,23 @@
               <c-badge *ngIf="requestlist.Status==4" color="danger">
                 {{requestlist.CurrentStatus}}
               </c-badge>
+              <c-badge *ngIf="requestlist.Status==6" color="danger">
+                {{requestlist.CurrentStatus}}
+              </c-badge>
+              <c-badge *ngIf="requestlist.Status==7" color="warning">
+                {{requestlist.CurrentStatus}}
+              </c-badge>
             </td>
-            <td>
+            <td *ngIf="requestlist.Status==7">
+              <a href="javascript:void(0)" (click)="acceptModal(requestlist.Requestid)" class="info"
+                title="Accept"><i class="fa-solid fa-circle-check fa-xl"></i></a>
+            </td>
+            <!-- <td>
               <a href="javascript:void(0)" routerLink="/base/edit-request/{{requestlist.Requestid}}" class="edit"
                 title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
               <a href="javascript:void(0)" (click)="deleteRequest(requestlist)" class="delete" title="Delete"><i
                   class="fa-regular fa-trash-can"></i></a>
-            </td>
+            </td> -->
           </tr>
         </tbody>
         <tbody *ngIf="requestdata.length <= 0">
@@ -304,8 +314,50 @@
       </div>
     </div>
 
-
-
-
   </div>
 </div>
+
+
+
+
+<!-- PopUp Form -->
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleChange($event)">
+
+  <c-modal-header>
+    <h5 cModalTitle>Fill this Form</h5>
+  </c-modal-header>
+
+  <form [formGroup]="acceptForm" (ngSubmit)="statusChange(id,1,true,true,uniqueid,serialno)">
+
+    <c-modal-body>
+      <div class="form-outline mb-4">
+        <label>UniqueId</label>
+        <input type="text" class="form-control" placeholder="Enter Unique Id" formControlName="uniqueid"
+          [ngClass]="{ 'has-error': submitted && f['uniqueid'].errors }">
+        <div *ngIf="submitted && f['uniqueid'].errors" class="has-error">
+          <div *ngIf="f['uniqueid'].errors['required']">UniqueId is required!</div>
+        </div>
+      </div>
+
+
+      <div class="form-outline mb-4">
+        <label>Serial No</label>
+        <input type="text" class="form-control" placeholder="Enter Serial No" formControlName="serialno"
+          [ngClass]="{ 'has-error': submitted && f['serialno'].errors }">
+        <div *ngIf="submitted && f['serialno'].errors" class="has-error">
+          <div *ngIf="f['serialno'].errors['required']">Serial No is required!</div>
+        </div>
+      </div>
+    </c-modal-body>
+
+    <c-modal-footer>
+      <button type="submit" class="btn btn-primary btn-block" *ngIf="!submitbtn">Accept</button>
+      <button type="button" class="btn btn-secondary btn-block ms-2" (click)="toggleModal()">Close</button>
+      <button class="btn btn-primary btn-block" *ngIf="submitbtn" [disabled]="submitbtn">
+        <i class="fa-solid fa-spinner fa-spin"></i> Loading
+      </button>
+    </c-modal-footer>
+
+  </form>
+
+</c-modal>

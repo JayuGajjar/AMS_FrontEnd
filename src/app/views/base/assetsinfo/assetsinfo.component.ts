@@ -12,6 +12,7 @@ export class AssetsinfoComponent {
 
   assetdata : any=[];
   Assetid : number=0;
+  loader = true;
 
 
   constructor(private authservice:AuthService, private router:Router,private route: ActivatedRoute) { }
@@ -34,6 +35,7 @@ export class AssetsinfoComponent {
     this.authservice.getAssetById(Assetid).subscribe(responce => {
       if (responce.IsSuccess)
       {
+        this.loader = false;
         this.assetdata = responce.Data;
       }
       else

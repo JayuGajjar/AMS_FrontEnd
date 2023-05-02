@@ -29,8 +29,31 @@ export class AppComponent implements OnInit {
       }
     });
 
-    if(localStorage.getItem('isSuccess')=='true'){
+    // this.ngOnDestroy();
+
+    setTimeout(()=>{
+      localStorage.clear();
+    },1800000);
+    
+
+    if(Number(localStorage.getItem('userid'))>0){
       this.router.navigate(['/dashboard']);
+      setTimeout(()=>{
+        localStorage.clear();
+      },1800000);
+    }
+    else{
+      this.router.navigate(['/login']);
     }
   }
+
+  // ngOnDestroy(): void { 
+  //   localStorage.clear();
+  //  }
+  // logOut(){
+  //   this.ngOnInit();
+  //   localStorage.clear();
+  //   this.router.navigate(['/login']);
+  // }
+
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
-import { navItems } from './_nav';
-import { navItems1 } from './_nav';
+import { navItems, navItems2, navItems1, navItems3 } from './_nav';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +10,8 @@ export class DefaultLayoutComponent {
 
   public navItems = navItems;
   public navItems1 = navItems1;
+  public navItems2 = navItems2;
+  public navItems3 = navItems3;
   role: number=0;
 
   public perfectScrollbarConfig = {

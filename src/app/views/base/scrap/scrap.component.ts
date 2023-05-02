@@ -23,6 +23,7 @@ export class ScrapComponent {
   assetlistdata : any=[];
   branchlistdata : any=[];
   vendorlistdata : any=[];
+  loader = true;
 
   constructor(private authservice:AuthService, private router:Router) { }
 
@@ -45,6 +46,7 @@ export class ScrapComponent {
      
       if(responce.IsSuccess)
       {
+        this.loader = false;
         this.totalrecord = responce.Data[0].totalrecord;
         this.scrapdata = responce.Data;
       }

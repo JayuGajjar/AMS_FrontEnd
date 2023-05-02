@@ -34,8 +34,8 @@
                         <select type="text" class="form-control form-select" formControlName="asset"
                             [ngClass]="{ 'has-error': submitted && f['asset'].errors }">
                             <option value="">select Asset</option>
-                            <option [ngValue]="assets.assetid" *ngFor="let assets of typelistdata">
-                                 {{assets.specification}}
+                            <option [ngValue]="types.typeid" *ngFor="let types of typelistdata">
+                                 {{types.name}}
                             </option>
                         </select>
                         <div *ngIf="submitted && f['asset'].errors" class="has-error">
@@ -66,3 +66,7 @@
         </div>
     </div>
   </section>
+
+
+
+

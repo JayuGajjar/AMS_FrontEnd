@@ -20,6 +20,7 @@ export class StatusComponent {
   role : number=0;
   assetlistdata : any=[];
   statuslistdata : any=[];
+  loader = true;
 
   constructor(private service:AuthService, private router:Router) { }
 
@@ -34,15 +35,16 @@ export class StatusComponent {
     this.getAllTables();
 
     //debugger
-    this.getFeedbacktype(this.PageNumber,this.pageSize,this.Status,this.assetid,this.statusid,this.dateid);
+    this.statusDetails(this.PageNumber,this.pageSize,this.Status,this.assetid,this.statusid,this.dateid);
   }
 
-  getFeedbacktype(PageNumber:number,pageSize:number,Status:string,assetid:number,statusid:number,dateid:number) {
+  statusDetails(PageNumber:number,pageSize:number,Status:string,assetid:number,statusid:number,dateid:number) {
     // debugger
     this.service.statusDetails(PageNumber,pageSize,Status,assetid,statusid,dateid).subscribe(responce => {
      
       if(responce.IsSuccess)
       {
+        this.loader = false;
         this.totalrecord = responce.Data[0].totalrecord;
         this.statusdata = responce.Data;
       }
@@ -56,20 +58,20 @@ export class StatusComponent {
 
   pageChangeEvent(event: number) {
     this.PageNumber = event;
-    this.getFeedbacktype(this.PageNumber, this.pageSize, this.Status,this.assetid,this.statusid,this.dateid);
+    this.statusDetails(this.PageNumber, this.pageSize, this.Status,this.assetid,this.statusid,this.dateid);
   }
 
 
   changePageSize(){
     // debugger
     this.PageNumber=1;
-   this.getFeedbacktype(this.PageNumber, this.pageSize, this.Status,this.assetid,this.statusid,this.dateid);
+   this.statusDetails(this.PageNumber, this.pageSize, this.Status,this.assetid,this.statusid,this.dateid);
   }
 
 
   //search method
   searchStatus(){
-    this.getFeedbacktype(this.PageNumber, this.pageSize, this.Status,this.assetid,this.statusid,this.dateid);
+    this.statusDetails(this.PageNumber, this.pageSize, this.Status,this.assetid,this.statusid,this.dateid);
   }
 
 

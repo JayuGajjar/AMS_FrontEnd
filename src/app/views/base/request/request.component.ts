@@ -25,6 +25,8 @@ export class RequestComponent {
   role : number=0;
   assetlistdata : any=[];
   statuslistdata : any=[];
+  uniqueid : any;
+  serialno : any;
 
 
     constructor(private authservice:AuthService, private router:Router ,private route:ActivatedRoute) { }
@@ -85,9 +87,9 @@ export class RequestComponent {
 
 
     //status change
-      statusChange(id:number,type:number,isworking:boolean,inuse:boolean){
+      statusChange(id:number,type:number,isworking:boolean,inuse:boolean,uniqueid:any,serialno:any){
         // debugger
-        this.authservice.statusChange(id,type,isworking,inuse).subscribe(responce => {
+        this.authservice.statusChange(id,type,isworking,inuse,uniqueid,serialno).subscribe(responce => {
           debugger
           if(responce.IsSuccess)
           {
