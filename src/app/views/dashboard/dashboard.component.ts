@@ -26,6 +26,8 @@ export class DashboardComponent implements OnInit {
   totalWorking: number = 0;
   totalscrap: number = 0;
   totalrequest: number = 0;
+  totalreadyforscrap: number = 0;
+  totalundermaintenance: number = 0;
   totalstatus: number = 0;
   totalusers: number = 0;
   totalinprocess: number = 0;
@@ -125,8 +127,8 @@ export class DashboardComponent implements OnInit {
           this.totalWorking = responce.Data.table[0].totalWorking;
           this.totalscrap = responce.Data.table[0].totalscrap;
           this.totalinprocess = responce.Data.table[0].totalinprocess;
-          // this.totalcompanies = responce.Data.table[0].totalcompanies;
-          // this.totaldepartments = responce.Data.table[0].totaldepartments;
+          this.totalreadyforscrap = responce.Data.table[0].totalReadyForScrap;
+          this.totalundermaintenance = responce.Data.table[0].totaludermaintainence;
           this.totalrequest = responce.Data.table[0].totalrequest;
           this.totalstatus = responce.Data.table[0].totalstatus;
           this.totalusers = responce.Data.table[0].totalusers;
@@ -199,6 +201,12 @@ export class DashboardComponent implements OnInit {
                 path: "/base/newrequests"
               },
               {
+                name: 'Total Ready For Scrap',
+                y: this.totalreadyforscrap,
+                color: '#ff8945',
+                path: "/base/newrequests"
+              },
+              {
                 name: 'Total Scrap',
                 y: this.totalscrap,
                 color: '#d73814',
@@ -208,6 +216,12 @@ export class DashboardComponent implements OnInit {
                 name: 'Total InProgress',
                 y: this.totalinprocess,
                 color: '#FEAF20',
+                path: "/base/inprogress"
+              },
+              {
+                name: 'Total Under Maintenance',
+                y: this.totalundermaintenance,
+                color: '#531300',
                 path: "/base/inprogress"
               },
             ]

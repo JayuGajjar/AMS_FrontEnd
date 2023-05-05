@@ -22,8 +22,16 @@ a:hover>div>.danger{
     color:#d73814;
     text-decoration: underline;
 }
-a:hover>div>.light{
-    color:#63004a;
+a:hover>div>.warning{
+    color:#FEAF20;
+    text-decoration: underline;
+}
+a:hover>div>.ready{
+    color:#ff8945;
+    text-decoration: underline;
+}
+a:hover>div>.maintenance{
+    color:#531300;
     text-decoration: underline;
 }
 
@@ -62,8 +70,11 @@ a:hover>div>.light{
 .notice-danger {
     border-left-color: #d73814;
 }
-.notice-light {
-    border-left-color: #63004a;
+.notice-ready {
+    border-left-color: #ff8945;
+}
+.notice-maintenance {
+    border-left-color: #531300;
 }
 .infotxt {
     color: #021b38;
@@ -86,8 +97,11 @@ a:hover>div>.light{
 .danger {
     color: #d73814;
 }
-.light {
-    color: #63004a;
+.ready {
+    color: #ff8945;
+}
+.maintenance {
+    color: #531300;
 }
 
 

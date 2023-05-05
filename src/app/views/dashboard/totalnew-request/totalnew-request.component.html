@@ -56,6 +56,7 @@
         <thead class="table-title">
           <tr>
             <th style="width: 10%;">Allocated To</th>
+            <th>Branch</th>
             <th>UniqueId</th>
             <th>AssetType</th>
             <th>Created_at</th>
@@ -71,6 +72,7 @@
           <tr
             *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
             <td>{{requestlist.UserName}}</td>
+            <td>{{requestlist.BranchName}}</td>
             <td>{{requestlist.UniqueId}}</td>
             <td>{{requestlist.TypeName}}</td>
             <td>{{requestlist.Created_at | date}}</td>

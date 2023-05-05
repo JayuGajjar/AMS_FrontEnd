@@ -215,6 +215,7 @@
                 <thead class="table-title">
                     <tr>
                         <th>Allocated To</th>
+                        <th>Branch</th>
                         <th>UniqueId</th>
                         <th>AssetType</th>
                         <th>Created_at</th>
@@ -222,7 +223,7 @@
                         <th>IsWorking</th>
                         <th>InUse</th>
                         <th>Status</th>
-                        <!-- <th>Actions</th> -->
+                        <th>Actions</th>
                     </tr>
                 </thead>
 
@@ -232,12 +233,14 @@
                     <tr
                         *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: specialrecord};let i = index">
                         <td>{{requestlist.UserName}}</td>
+                        <td>{{requestlist.BranchName}}</td>
                         <td>{{requestlist.UniqueId}}</td>
                         <td>{{requestlist.TypeName}}</td>
                         <td>{{requestlist.Created_at}}</td>
                         <td>{{requestlist.Justify}}</td>
                         <td>
-                            <c-form-check [switch]="true" *ngIf="requestlist.Status==2 || requestlist.Status==3 || requestlist.Status==4 || requestlist.Status==5">
+                            <c-form-check [switch]="true"
+                                *ngIf="requestlist.Status==2 || requestlist.Status==3 || requestlist.Status==4 || requestlist.Status==5">
                                 <input [(ngModel)]="requestlist.isworking"
                                     (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse,uniqueid,serialno)"
                                     cFormCheckInput type="checkbox">
@@ -245,7 +248,8 @@
                             </c-form-check>
                         </td>
                         <td>
-                            <c-form-check [switch]="true" *ngIf="requestlist.Status==2 || requestlist.Status==3 || requestlist.Status==4 || requestlist.Status==5">
+                            <c-form-check [switch]="true"
+                                *ngIf="requestlist.Status==2 || requestlist.Status==3 || requestlist.Status==4 || requestlist.Status==5">
                                 <input [(ngModel)]="requestlist.inuse"
                                     (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse,uniqueid,serialno)"
                                     cFormCheckInput type="checkbox">
@@ -264,6 +268,9 @@
                             <c-badge *ngIf="requestlist.Status==4" color="danger">
                                 {{requestlist.CurrentStatus}}
                             </c-badge>
+                            <c-badge *ngIf="requestlist.Status==5" color="warning">
+                                {{requestlist.CurrentStatus}}
+                            </c-badge>
                             <c-badge *ngIf="requestlist.Status==6" color="danger">
                                 {{requestlist.CurrentStatus}}
                             </c-badge>
@@ -271,12 +278,12 @@
                                 {{requestlist.CurrentStatus}}
                             </c-badge>
                         </td>
-                        <!-- <td>
-                                            <a href="javascript:void(0)" routerLink="/base/edit-request/{{requestlist.Requestid}}" class="edit"
-                                              title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <a href="javascript:void(0)" (click)="deleteRequest(requestlist)" class="delete" title="Delete"><i
-                                                class="fa-regular fa-trash-can"></i></a>
-                                          </td> -->
+                        <td>
+                            <!-- <a href="javascript:void(0)" routerLink="/base/edit-request/{{requestlist.Requestid}}"
+                                class="edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a> -->
+                            <a href="javascript:void(0)" (click)="deleteRequest(requestlist)" class="delete"
+                                title="Delete"><i class="fa-regular fa-trash-can"></i></a>
+                        </td>
                     </tr>
                 </tbody>
                 <tbody *ngIf="requestdata.length <= 0">

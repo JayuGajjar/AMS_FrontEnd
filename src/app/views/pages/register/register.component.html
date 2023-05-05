@@ -132,8 +132,12 @@
 
               <div class="form-outline mb-4">
                 <label>Password</label>
-                <input type="password" class="form-control" placeholder="Password" formControlName="password"
+                <input [type]=" showPassword ? 'text' : 'password'" class="form-control" placeholder="Password" formControlName="password"
                   [ngClass]="{ 'has-error': submitted && f['password'].errors }">
+                  <span class="field-icon" (click)="showHidePassword()">
+                    <i class="fa-solid fa-eye"></i>
+                  </span>
+
                 <div *ngIf="submitted && f['password'].errors" class="has-error">
                   <div *ngIf="f['password'].errors['required']">Password is required!</div>
                   <div *ngIf="f['password'].errors['pattern']">Please enter strong Password</div>
@@ -144,9 +148,13 @@
 
               <div class="form-outline mb-4">
                 <label>Confirm Password</label>
-                <input type="password" class="form-control" appNumberonly placeholder="Confirm Password"
+                <input [type]=" showConfirmPassword ? 'text' : 'password'" class="form-control" appNumberonly placeholder="Confirm Password"
                   formControlName="confirmpassword"
                   [ngClass]="{ 'has-error': submitted && f['confirmpassword'].errors }">
+                  <span class="field-icon" (click)="showHideConfirmPassword()">
+                    <i class="fa-solid fa-eye"></i>
+                  </span>
+
                 <div *ngIf="submitted && f['confirmpassword'].errors" class="has-error">
                   <div *ngIf="f['confirmpassword'].errors['required']">Confirm Password is required!</div>
                   <div *ngIf="f['confirmpassword'].errors['pattern']">Password doesn't match!</div>

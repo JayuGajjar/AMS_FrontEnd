@@ -17,7 +17,7 @@ export interface asset{
     RAM : string;
     Inches : string;
     Port_Switch : string;
-    Nos : number;
+    LastAllocated_To : number;
     Specification : string;
     Vendorid : number;
     Status : number;

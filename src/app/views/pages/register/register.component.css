@@ -6,6 +6,16 @@ body {
   }
 
 
+  .field-icon {
+    float: right;
+    margin-left: 0px;
+    margin-top: -30px;
+    margin-right: 10px;
+    position: relative;
+    z-index: 2;
+  }
+
+
 .has-error{
     border-color: red;
     color: red;

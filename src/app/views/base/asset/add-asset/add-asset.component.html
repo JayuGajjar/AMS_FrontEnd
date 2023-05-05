@@ -30,7 +30,19 @@
                         </div>
 
 
+                        <div class="col form-outline mb-4">
+                            <label>Unique Id<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control" placeholder="Enter Unique Id" formControlName="uid"
+                                [ngClass]="{ 'has-error': submitted && f['uid'].errors }">
+                            <div *ngIf="submitted && f['uid'].errors" class="has-error">
+                                <div *ngIf="f['uid'].errors['required']">Unique Id is required!</div>
+                            </div>
+                        </div>
+                    </div>
 
+
+
+                    <div class="row">
                         <div class="col form-outline mb-4">
                             <label>Branch Name<span style="color:red;">*</span></label>
                             <select type="text" class="form-control form-select" formControlName="branch"
@@ -42,20 +54,6 @@
                             </select>
                             <div *ngIf="submitted && f['branch'].errors" class="has-error">
                                 <div *ngIf="f['branch'].errors['required']">Branch name is required!</div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="row">
-                        <div class="col form-outline mb-4">
-                            <label>Brand Name<span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Enter Brand Name" formControlName="brand"
-                                [ngClass]="{ 'has-error': submitted && f['brand'].errors }">
-                            <div *ngIf="submitted && f['brand'].errors" class="has-error">
-                                <div *ngIf="f['brand'].errors['required']">Brand name is required!</div>
-                                <div *ngIf="f['brand'].errors['pattern']">Please enter Capital latters only!!</div>
                             </div>
                         </div>
 
@@ -80,6 +78,36 @@
 
                     <div class="row">
                         <div class="col form-outline mb-4">
+                            <label>Brand Name<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control" placeholder="Enter Brand Name" formControlName="brand"
+                                [ngClass]="{ 'has-error': submitted && f['brand'].errors }">
+                            <div *ngIf="submitted && f['brand'].errors" class="has-error">
+                                <div *ngIf="f['brand'].errors['required']">Brand name is required!</div>
+                                <div *ngIf="f['brand'].errors['pattern']">Double space and space at the beginning and at the end does not allow</div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col form-outline mb-4">
+                            <label>Allocated To</label>
+                            <select type="text" class="form-control form-select" formControlName="allocatedto"
+                                [ngClass]="{'has-error': submitted && f['allocatedto'].errors}">
+                                <option value="0">select User</option>
+                                <option [ngValue]="users.userid" *ngFor="let users of userlistdata">
+                                    {{users.username}}
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f['allocatedto'].errors" class="has-error">
+                                <div *ngIf="f['allocatedto'].errors['required']">Quantity is required!</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col form-outline mb-4">
                             <label>Model Name<span style="color:red;">*</span></label>
                             <input type="text" class="form-control" placeholder="Enter Model" formControlName="model"
                                 [ngClass]="{ 'has-error': submitted && f['model'].errors }">
@@ -87,15 +115,54 @@
                                 <div *ngIf="f['model'].errors['required']">Model name is required!</div>
                             </div>
                         </div>
-
-
-
+                    
+                    
+                    
                         <div class="col form-outline mb-4">
-                            <label>Quantity<span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Enter Quantity" formControlName="nos"
-                                [ngClass]="{ 'has-error': submitted && f['nos'].errors }">
-                            <div *ngIf="submitted && f['nos'].errors" class="has-error">
-                                <div *ngIf="f['nos'].errors['required']">Quantity is required!</div>
+                            <label>Status<span style="color:red;">*</span></label>
+                            <select type="text" class="form-control form-select" formControlName="status"
+                                [ngClass]="{'has-error': submitted && f['status'].errors}">
+                                <option value="">select Status</option>
+                                <option [ngValue]="status.statid" *ngFor="let status of statuslistdata">
+                                    {{status.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f['status'].errors" class="has-error">
+                                <div *ngIf="f['status'].errors['required']">Status is required!</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col form-outline mb-4">
+                            <label>Vendor Name<span style="color:red;">*</span></label>
+                            <select type="text" class="form-control form-select" formControlName="vendorid"
+                                [ngClass]="{ 'has-error': submitted && f['vendorid'].errors }">
+                                <option value="">select Vendor</option>
+                                <option [ngValue]="vendors.vendorid" *ngFor="let vendors of vendorlistdata">
+                                    {{vendors.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f['vendorid'].errors" class="has-error">
+                                <div *ngIf="f['vendorid'].errors['required']">Vendor name is required!</div>
+                            </div>
+                        </div>
+                    
+                    
+                    
+                        <div class="col form-outline mb-4">
+                            <label>Location Name<span style="color:red;">*</span></label>
+                            <select type="text" class="form-control form-select" formControlName="location"
+                                [ngClass]="{'has-error': submitted && f['location'].errors}">
+                                <option value="">select Location</option>
+                                <option [ngValue]="location.locid" *ngFor="let location of locationlistdata">
+                                    {{location.locations}}
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f['location'].errors" class="has-error">
+                                <div *ngIf="f['location'].errors['required']">Location is required!</div>
                             </div>
                         </div>
                     </div>
@@ -229,7 +296,6 @@
                                 [ngClass]="{ 'has-error': submitted && f['inches'].errors }">
                             <div *ngIf="submitted && f['inches'].errors" class="has-error">
                                 <div *ngIf="f['inches'].errors['required']">Inches is required!</div>
-                                <!-- <div *ngIf="f['inches'].errors['pattern']">Enter Valid number</div> -->
                             </div>
                         </div>
 
@@ -258,18 +324,12 @@
                         </div>
                     
                     
-                    
                         <div class="col form-outline mb-4">
-                            <label>Vendor Name<span style="color:red;">*</span></label>
-                            <select type="text" class="form-control form-select" formControlName="vendorid"
-                                [ngClass]="{ 'has-error': submitted && f['vendorid'].errors }">
-                                <option value="">select Vendor</option>
-                                <option [ngValue]="vendors.vendorid" *ngFor="let vendors of vendorlistdata">
-                                    {{vendors.name}}
-                                </option>
-                            </select>
-                            <div *ngIf="submitted && f['vendorid'].errors" class="has-error">
-                                <div *ngIf="f['vendorid'].errors['required']">Vendor name is required!</div>
+                            <label>Invoice No</label>
+                            <input type="text" class="form-control" placeholder="Enter Invoice no" formControlName="invoice_no"
+                                [ngClass]="{ 'has-error': submitted && f['invoice_no'].errors }">
+                            <div *ngIf="submitted && f['invoice_no'].errors" class="has-error">
+                                <div *ngIf="f['invoice_no'].errors['required']">Invoice No is required!</div>
                             </div>
                         </div>
                     </div>
@@ -298,63 +358,6 @@
                         </div>
                     </div>
 
-
-
-                    <div class="row">
-                        <div class="col form-outline mb-4">
-                            <label>Invoice No</label>
-                            <input type="text" class="form-control" placeholder="Enter Invoice no" formControlName="invoice_no"
-                                [ngClass]="{ 'has-error': submitted && f['invoice_no'].errors }">
-                            <div *ngIf="submitted && f['invoice_no'].errors" class="has-error">
-                                <div *ngIf="f['invoice_no'].errors['required']">Invoice No is required!</div>
-                            </div>
-                        </div>
-                    
-                    
-                    
-                        <div class="col form-outline mb-4">
-                            <label>Location Name<span style="color:red;">*</span></label>
-                            <select type="text" class="form-control form-select" formControlName="location"
-                                [ngClass]="{'has-error': submitted && f['location'].errors}">
-                                <option value="">select Location</option>
-                                <option [ngValue]="location.locid" *ngFor="let location of locationlistdata">
-                                    {{location.locations}}
-                                </option>
-                            </select>
-                            <div *ngIf="submitted && f['location'].errors" class="has-error">
-                                <div *ngIf="f['location'].errors['required']">Location is required!</div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="row">
-                        <div class="col form-outline mb-4">
-                            <label>Unique Id</label>
-                            <input type="text" class="form-control" placeholder="Enter Unique Id" formControlName="uid"
-                                [ngClass]="{ 'has-error': submitted && f['uid'].errors }">
-                            <div *ngIf="submitted && f['uid'].errors" class="has-error">
-                                <div *ngIf="f['uid'].errors['required']">Unique Id is required!</div>
-                            </div>
-                        </div>
-                    
-                    
-                    
-                        <div class="col form-outline mb-4">
-                            <label>Status<span style="color:red;">*</span></label>
-                            <select type="text" class="form-control form-select" formControlName="status"
-                                [ngClass]="{'has-error': submitted && f['status'].errors}">
-                                <option value="">select Status</option>
-                                <option [ngValue]="status.statid" *ngFor="let status of statuslistdata">
-                                    {{status.name}}
-                                </option>
-                            </select>
-                            <div *ngIf="submitted && f['status'].errors" class="has-error">
-                                <div *ngIf="f['status'].errors['required']">Status is required!</div>
-                            </div>
-                        </div>
-                    </div>
 
 
                     <div class="row">

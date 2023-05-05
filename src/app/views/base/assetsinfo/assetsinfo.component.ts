@@ -11,6 +11,7 @@ export class AssetsinfoComponent {
 
 
   assetdata : any=[];
+  transferassetdata : any=[];
   Assetid : number=0;
   loader = true;
 
@@ -24,6 +25,8 @@ export class AssetsinfoComponent {
     if(ID>0){
     //fill record in
     this.getAssetById(ID)
+    
+    this.transferAssetDetails(ID);
     }
     
   }
@@ -41,6 +44,24 @@ export class AssetsinfoComponent {
       else
       {
         this.assetdata = [];
+      }
+    })
+  }
+
+
+
+  transferAssetDetails(Assetid:number){
+    debugger
+    this.authservice.transferAssetDetails(Assetid).subscribe(responce => {
+      debugger
+      if (responce.IsSuccess)
+      {
+        this.loader = false;
+        this.transferassetdata = responce.Data;
+      }
+      else
+      {
+        this.transferassetdata = [];
       }
     })
   }

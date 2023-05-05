@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { debug } from 'console';
+import { debug, table } from 'console';
 import { asset } from 'src/app/Interfaces/asset';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
@@ -28,6 +28,9 @@ export class AddAssetComponent {
   departmentlistdata: any = [];
   vendorlistdata: any = [];
   locationlistdata: any = [];
+  userlistdata: any = [];
+  userdata : any;
+  userdataid : any;
   role: number = 0;
 
   constructor(private authservice: AuthService, private FB: FormBuilder, private router: Router, private route: ActivatedRoute) {
@@ -38,7 +41,7 @@ export class AddAssetComponent {
       Brand : "",
       Type : 0,
       Model : "",
-      Nos: 0,
+      LastAllocated_To: 0,
       Processor_Type: "",
       Monitor_Type: "",
       Range_Type: "",
@@ -71,14 +74,13 @@ export class AddAssetComponent {
     }
 
     this.assetForm = this.FB.group({
-      serialno: ['N/A', [Validators.required]],
+      serialno: ['', [Validators.required]],
       branch: ['', [Validators.required]],
       brand: ['', [Validators.required,
       Validators.pattern('^[a-zA-Z0-9-]+( [a-zA-Z0-9-]+)*$')]],
       type: ['', [Validators.required]],
       model: ['N/A', [Validators.required]],
-      nos: ['', [Validators.required,
-      Validators.pattern('[0-9]+')]],
+      allocatedto: [0],
       processortype: ['N/A', [Validators.required]],
       monitortype: ['N/A', [Validators.required]],
       rangetype: ['N/A', [Validators.required]],
@@ -97,7 +99,7 @@ export class AddAssetComponent {
       warranty_till: [null, [Validators.pattern("^(?:[0-9]{2})?[0-9]{2}/[0-3]?[0-9]/[0-3]?[0-9]$")]], //date formate DD/MM/YYYY],//, [Validators.required]],
       invoice_no: ['N/A', [Validators.required]],
       location: ['', [Validators.required]],
-      uid: ['N/A', [Validators.required]],
+      uid: ['', [Validators.required]],
       status: ['', [Validators.required]],
       createdat: ['', [Validators.required]],
       remarks: ['N/A', [Validators.required]],
@@ -124,7 +126,7 @@ export class AddAssetComponent {
       this.data.Brand = this.assetForm.value.brand;
       this.data.Type = this.assetForm.value.type;
       this.data.Model = this.assetForm.value.model;
-      this.data.Nos = this.assetForm.value.nos;
+      this.data.LastAllocated_To = this.assetForm.value.allocatedto;
       this.data.Processor_Type = this.assetForm.value.processortype;
       this.data.Monitor_Type = this.assetForm.value.monitortype;
       this.data.Range_Type = this.assetForm.value.rangetype;
@@ -178,7 +180,7 @@ export class AddAssetComponent {
       this.data.Brand = this.assetForm.value.brand;
       this.data.Type = this.assetForm.value.type;
       this.data.Model = this.assetForm.value.model;
-      this.data.Nos = this.assetForm.value.nos;
+      this.data.LastAllocated_To = this.assetForm.value.allocatedto;
       this.data.Processor_Type = this.assetForm.value.processortype;
       this.data.Monitor_Type = this.assetForm.value.monitortype;
       this.data.Range_Type = this.assetForm.value.rangetype;
@@ -235,7 +237,7 @@ export class AddAssetComponent {
     this.assetForm.patchValue({ brand: "" });
     this.assetForm.patchValue({ type: "" });
     this.assetForm.patchValue({ model: "" });
-    this.assetForm.patchValue({ nos: "" });
+    this.assetForm.patchValue({ allocatedto: "" });
     this.assetForm.patchValue({ processortype: "" });
     this.assetForm.patchValue({ monitortype: "" });
     this.assetForm.patchValue({ rangetype: "" });
@@ -268,6 +270,7 @@ export class AddAssetComponent {
     }
 
     this.getAllTables();
+    this.getAllUsers();
 
     //  debugger
     const ID: number = parseInt(this.route.snapshot.params['id']);
@@ -297,7 +300,7 @@ export class AddAssetComponent {
           this.assetForm.controls["brand"].setValue(responce.Data[0].Brand);
           this.assetForm.controls["type"].setValue(responce.Data[0].Type);
           this.assetForm.controls["model"].setValue(responce.Data[0].Model);
-          this.assetForm.controls["nos"].setValue(responce.Data[0].Nos);
+          this.assetForm.controls["allocatedto"].setValue(responce.Data[0].LastAllocated_To);
           this.assetForm.controls["processortype"].setValue(responce.Data[0].Processor_Type);
           this.assetForm.controls["monitortype"].setValue(responce.Data[0].Monitor_Type);
           this.assetForm.controls["rangetype"].setValue(responce.Data[0].Range_Type);
@@ -366,6 +369,27 @@ export class AddAssetComponent {
         }
         else {
           this.locationlistdata = [];
+        }
+      }
+    })
+  }
+
+
+  getAllUsers(){
+    this.authservice.getAllUsers().subscribe(responce => {
+      debugger
+      if(responce.IsSuccess){
+        debugger
+
+        if(responce.Data.table.length > 0){
+
+          this.userlistdata = responce.Data.table;
+          this.userdata = responce.Data.table.username;
+          this.userdataid = responce.Data.table.userid;
+        }
+        else
+        {
+          this.userlistdata = [];
         }
       }
     })

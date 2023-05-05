@@ -57,6 +57,14 @@ export class AuthService {
 
 
 
+  //get method for all users
+  getAllUsers(): Observable<any> {
+    // debugger
+    return this.http.get(this.Url + "Asset/GetAllUsers");
+  }
+
+
+
   //get method for all tables
   getReport(): Observable<any> {
     // debugger
@@ -101,6 +109,22 @@ export class AuthService {
   workingDetails(PageNumber: any, pageSize: any, working: any): Observable<any> {
     // debugger
     return this.http.get(this.Url + "Reports/GetIsWorkingTable?pageNumber=" + PageNumber + "&pageSize=" + pageSize + "&searchString=" + working);
+  }
+
+
+
+  //get method for working
+  readyForScrapDetails(PageNumber: any, pageSize: any, readyforscrap: any): Observable<any> {
+    // debugger
+    return this.http.get(this.Url + "Reports/GetReadyForScrapTable?pageNumber=" + PageNumber + "&pageSize=" + pageSize + "&searchString=" + readyforscrap);
+  }
+
+
+
+  //get method for working
+  underMaintananceDetails(PageNumber: any, pageSize: any, undermaintanance: any): Observable<any> {
+    // debugger
+    return this.http.get(this.Url + "GetAllSentForFixTable?pageNumber=" + PageNumber + "&pageSize=" + pageSize + "&searchString=" + undermaintanance);
   }
 
 
@@ -153,6 +177,12 @@ export class AuthService {
   transferasset(assetid: any, branch: any, description: any): Observable<any> {
     debugger
     return this.http.post(this.Url + "Asset/Transfer?id=" + assetid + "&Branch=" + branch + "&Description=" + description, this.httpOptions);
+  }
+
+
+  //transfer asset get method
+  transferAssetDetails(Assetid:any): Observable<any> {
+    return this.http.get(this.Url + "Transfer/Getid/" + Assetid);
   }
 
 

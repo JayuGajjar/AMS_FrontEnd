@@ -24,6 +24,8 @@ import { AssetsinfoComponent } from './assetsinfo/assetsinfo.component';
 import { TotalassetsComponent } from './totalassets/totalassets.component';
 import { AssettypeComponent } from './assettype/assettype.component';
 import { TotalinprogressComponent } from '../dashboard/totalinprogress/totalinprogress.component';
+import { TotalreadyforscrapComponent } from '../dashboard/totalreadyforscrap/totalreadyforscrap.component';
+import { TotalundermaintenanceComponent } from '../dashboard/totalundermaintenance/totalundermaintenance.component';
 const titleP = "Asset Managment";
 
 const routes: Routes = [
@@ -57,6 +59,22 @@ const routes: Routes = [
         component: TotalnewRequestComponent,
         data: {
           title: 'New Request For Assets', 
+        },
+      },
+      //total Ready For Scarp
+      {
+        path: 'readyforscrap', title: titleP + ' - Ready For Scrap', canActivate : [AuthGuard],
+        component: TotalreadyforscrapComponent,
+        data: {
+          title: 'Ready For Scrap Assets', 
+        },
+      },
+      //total Under Maintenance
+      {
+        path: 'maintenance', title: titleP + ' - Uder Maintenance', canActivate : [AuthGuard],
+        component: TotalundermaintenanceComponent,
+        data: {
+          title: 'Under Maintenance Assets', 
         },
       },
       //total Spare

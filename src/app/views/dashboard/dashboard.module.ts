@@ -27,6 +27,8 @@ import { TotalworkingComponent } from './totalworking/totalworking.component';
 import { TotalnewRequestComponent } from './totalnew-request/totalnew-request.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TotalinprogressComponent } from './totalinprogress/totalinprogress.component';
+import { TotalreadyforscrapComponent } from './totalreadyforscrap/totalreadyforscrap.component';
+import { TotalundermaintenanceComponent } from './totalundermaintenance/totalundermaintenance.component';
 
 @NgModule({
   
@@ -37,7 +39,9 @@ import { TotalinprogressComponent } from './totalinprogress/totalinprogress.comp
     TotalspareComponent,
     TotalworkingComponent,
     TotalnewRequestComponent,
-    TotalinprogressComponent
+    TotalinprogressComponent,
+    TotalreadyforscrapComponent,
+    TotalundermaintenanceComponent
   ],
 
   imports: [

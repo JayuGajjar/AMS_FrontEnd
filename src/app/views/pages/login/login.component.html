@@ -6,69 +6,75 @@
         justify-content: center;">
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
-          <img src="https://ace.keka.com/files/b2d7d5e0-5f96-4fec-b95c-88a2b1169fd7/orglogo/c3f42659fccd45ae81776e37d260f44b.png"
-            style="margin-top: 80px;
+              <img
+                src="https://ace.keka.com/files/b2d7d5e0-5f96-4fec-b95c-88a2b1169fd7/orglogo/c3f42659fccd45ae81776e37d260f44b.png"
+                style="margin-top: 80px;
             padding-left: 15px;
             height: 240px;" alt="Sample photo">
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
-            <div class="card-body p-4 p-lg-5 text-black">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2"><u><i>LogIn</i></u></h3>
+              <div class="card-body p-4 p-lg-5 text-black">
+                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2"><u><i>LogIn</i></u></h3>
 
 
 
-            <form class="user px-md-2" [formGroup]="loginForm" (ngSubmit)="loginSubmited()">
+                <form class="user px-md-2" [formGroup]="loginForm" (ngSubmit)="loginSubmited()">
 
 
 
-              <div class="form-outline mb-4">
-                <label>Mail</label>
-                <input type="text" class="form-control" placeholder="Mail" formControlName="email"
-                  [ngClass]="{'has-error': submitted && f['email'].errors }">
-                <div *ngIf="submitted && f['email'].errors" class="has-error">
-                  <div *ngIf="f['email'].errors['required']">Email is required!</div>
-                  <div *ngIf="f['email'].errors['pattern']">Enter valid Email!!</div>
+                  <div class="form-outline mb-4">
+                    <label>Mail</label>
+                    <input type="text" class="form-control" placeholder="Mail" formControlName="email"
+                      [ngClass]="{'has-error': submitted && f['email'].errors }">
+                    <div *ngIf="submitted && f['email'].errors" class="has-error">
+                      <div *ngIf="f['email'].errors['required']">Email is required!</div>
+                      <div *ngIf="f['email'].errors['pattern']">Enter valid Email!!</div>
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="form-outline mb-4">
+                    <label>Password</label> <!--(keydown.space)="$event.preventDefault();" for space dont allow-->
+                    <input [type]=" showPassword ? 'text' : 'password'" class="form-control" placeholder="Password"
+                      formControlName="password" [ngClass]="{ 'has-error': submitted && f['password'].errors }">
+                    <span class="field-icon" (click)="showHidePassword()">
+                      <i class="fa-solid fa-eye"></i>
+                    </span>
+                    <div *ngIf="submitted && f['password'].errors" class="has-error">
+                      <div *ngIf="f['password'].errors['required']">Password is required!</div>
+                      <div *ngIf="f['password'].errors['pattern']">Enter valid Password!</div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-outline mb-4">
+                    <button class="px-4" color="primary" *ngIf="!submitbtn"
+                      class="btn form-control gradient-custom-4 rounded submit px-3">
+                      Login</button>
+                    <button class="px-4" color="primary" class="btn form-control gradient-custom-4 rounded submit px-3"
+                      *ngIf="submitbtn" [disabled]="submitbtn">
+                      <i class="fa-solid fa-spinner fa-spin"></i> Loading
+                    </button>
+                  </div>
+
+
+                </form>
+
+
+
+                <div class="w-100 text-center mt-4 text">
+                  <p class="mb-0">Don't have an account ?</p>
+                  <a class="mt-3" color="primary" routerLink="/register">
+                    Register
+                  </a>
                 </div>
+
+
               </div>
-
-
-
-
-              <div class="form-outline mb-4">
-                <label>Password</label>
-                <input type="password" class="form-control" placeholder="Password" formControlName="password"
-                  [ngClass]="{ 'has-error': submitted && f['password'].errors }">
-                <div *ngIf="submitted && f['password'].errors" class="has-error">
-                  <div *ngIf="f['password'].errors['required']">Password is required!</div>
-                  <div *ngIf="f['password'].errors['pattern']">Enter valid Password!</div>
-                </div>
-              </div>
-
-
-
-              <div class="form-outline mb-4">
-                <button class="px-4" color="primary" *ngIf="!submitbtn" class="btn form-control gradient-custom-4 rounded submit px-3">
-                  Login</button>
-                  <button class="px-4" color="primary" class="btn form-control gradient-custom-4 rounded submit px-3" *ngIf="submitbtn" [disabled]="submitbtn">
-                    <i class="fa-solid fa-spinner fa-spin"></i> Loading
-                </button>
-              </div>
-
-
-            </form>
-
-
-
-            <div class="w-100 text-center mt-4 text">
-              <p class="mb-0">Don't have an account ?</p>
-              <a class="mt-3" color="primary" routerLink="/register">
-                Register
-              </a>
             </div>
-
-
-          </div>
-          </div>
           </div>
         </div>
       </div>

@@ -19,6 +19,8 @@ export class RegisterComponent implements OnInit{
   branchlistdata : any=[];
   companylistdata : any=[];
   departmentlistdata : any=[];
+  showPassword : boolean = false;
+  showConfirmPassword : boolean = false;
 
   constructor(private FB: FormBuilder,private router: Router,private authService: AuthService) 
   { 
@@ -135,7 +137,16 @@ export class RegisterComponent implements OnInit{
     }
 
     
-  } 
+  }
+
+
+  showHidePassword(){
+    this.showPassword = !this.showPassword;
+  }
+  showHideConfirmPassword(){
+    debugger
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
 
 
 

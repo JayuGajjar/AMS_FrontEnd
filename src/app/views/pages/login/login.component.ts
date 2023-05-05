@@ -17,6 +17,7 @@ export class LoginComponent {
   submitted = false;
   data: Login;
   submitbtn: boolean = false;
+  showPassword : boolean=false;
 
   constructor(private FB: FormBuilder, private router: Router, private authService: AuthService) {
 
@@ -91,11 +92,18 @@ export class LoginComponent {
       }
     })
   }
+
   onReset() {
     this.submitted = false;
     this.submitbtn = false;
     this.loginForm.patchValue({ email: '' });
     this.loginForm.patchValue({ password: '' });
+  }
+
+
+  showHidePassword(){
+    debugger
+    this.showPassword = !this.showPassword;
   }
 
 }

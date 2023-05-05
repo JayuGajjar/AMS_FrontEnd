@@ -83,10 +83,11 @@
         <tr>
           <th>SerialNo</th>
           <th>UniqueID</th>
+          <th>Allocated To</th>
           <th>Branch</th>
           <th>Brand</th>
           <th>Type</th>
-          <th>Quantity</th>
+          <th>Transfer</th>
           <th>Specification</th>
           <th>Warranty</th>
           <th>Vendor</th>
@@ -102,10 +103,17 @@
           *ngFor="let assetlist of assetdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
           <td>{{assetlist.SerialNo}}</td>
           <td>{{assetlist.Uid}}</td>
+          <td>{{assetlist.LastAllocated}}</td>
           <td>{{assetlist.Branches}}</td>
           <td>{{assetlist.Brand}}</td>
           <td>{{assetlist.TypeName}}</td>
-          <td>{{assetlist.Nos}}</td>
+          <td>
+            <c-badge *ngIf="assetlist.IsTransfered==true" color="success">
+              Yes
+            </c-badge>
+            <c-badge *ngIf="assetlist.IsTransfered==false" hidden> 
+            </c-badge>
+          </td>
           <td>{{assetlist.Specification}}</td>
           <td>{{assetlist.Warranty_Till}}</td>
           <td>{{assetlist.Vendors}}</td>

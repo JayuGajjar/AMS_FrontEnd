@@ -6,7 +6,7 @@
   <!-- First Row -->
   <div class="row">
     <div class="row col-7">
-      <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
+      <div class="col-xl-4 col-md-6 mb-4" style="padding-right: 0px;">
         <div class="card shadow h-100 py-2 notice notice-success">
           <div class="card-body">
             <a href="javascript:void(0)" routerLink="/base/inuse">
@@ -27,7 +27,7 @@
       </div>
 
 
-      <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
+      <div class="col-xl-4 col-md-6 mb-4" style="padding-right: 0px;">
         <div class="card shadow h-100 py-2 notice notice-secondary">
           <div class="card-body">
             <a href="javascript:void(0)" routerLink="/base/spare">
@@ -48,7 +48,7 @@
       </div>
 
 
-      <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
+      <div class="col-xl-4 col-md-6 mb-4" style="padding-right: 0px;">
         <div class="card shadow h-100 py-2 notice notice-primary">
           <div class="card-body">
             <a href="javascript:void(0)" routerLink="/base/working">
@@ -69,8 +69,7 @@
       </div>
 
 
-      <!-- Second Row -->
-      <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
+      <div class="col-xl-4 col-md-6 mb-4" style="padding-right: 0px;">
         <div class="card shadow h-100 py-2 notice notice-info">
           <div class="card-body">
             <a href="javascript:void(0)" routerLink="/base/newrequests">
@@ -91,29 +90,28 @@
       </div>
 
 
-      <!-- <div class="col-xl-4 col-md-6 mb-4">
-      <div class="card shadow h-100 py-2 notice notice-info">
+      <div class="col-xl-4 col-md-6 mb-4" style="padding-right: 0px;">
+        <div class="card shadow h-100 py-2 notice notice-ready">
           <div class="card-body">
-              <a href="javascript:void(0)"> (click)="redirectCandidatePage(4)"></a>
-              <a routerLink="/base/vendor">
-                  <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                          <div class="text-uppercase infotxt">
-                              Total Vendors
-                          </div>
-                          <div class="h5 mb-0 font-weight-bold"> {{totalvendors}} </div>
-                      </div>
-                      <div class="col-auto info">
-                        <i class="fa-solid fa-store fa-2x"></i>
-                      </div>
+            <a routerLink="/base/readyforscrap">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2 ready">
+                  <div class="text-uppercase">
+                    Total Ready For Scarp
                   </div>
-              </a>
+                  <div class="h3 mb-0 font-weight-bold"> {{totalreadyforscrap}} </div>
+                </div>
+                <div class="col-auto ready">
+                  <i class="fa-solid fa-trash-can-arrow-up fa-2xl"></i>
+                </div>
+              </div>
+            </a>
           </div>
+        </div>
       </div>
-    </div> -->
 
 
-      <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
+      <div class="col-xl-4 col-md-6 mb-4" style="padding-right: 0px;">
         <div class="card shadow h-100 py-2 notice notice-danger">
           <div class="card-body">
             <a routerLink="/base/scrap">
@@ -134,7 +132,7 @@
       </div>
 
 
-      <div class="col-xl-6 col-md-6 mb-4" style="padding-right: 0px;">
+      <div class="col-xl-4 col-md-6 mb-4" style="padding-right: 0px;">
         <div class="card shadow h-100 py-2 notice notice-warning">
           <div class="card-body">
             <a routerLink="/base/inprogress">
@@ -147,6 +145,27 @@
                 </div>
                 <div class="col-auto warning">
                   <i class="fa-solid fa-bars-progress fa-2xl"></i>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-xl-4 col-md-6 mb-4" style="padding-right: 0px;">
+        <div class="card shadow h-100 py-2 notice notice-maintenance">
+          <div class="card-body">
+            <a routerLink="/base/maintenance">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2 maintenance">
+                  <div class="text-uppercase">
+                    Under Maintenance
+                  </div>
+                  <div class="h3 mb-0 font-weight-bold"> {{totalundermaintenance}} </div>
+                </div>
+                <div class="col-auto maintenance">
+                  <i class="fa-solid fa-gear fa-2xl"></i>
                 </div>
               </div>
             </a>
@@ -212,6 +231,7 @@
         <thead class="table-title">
           <tr>
             <th>Allocated To</th>
+            <th>Branch</th>
             <th>UniqueId</th>
             <th>AssetType</th>
             <th>Created_at</th>
@@ -227,6 +247,7 @@
           <tr
             *ngFor="let requestlist of requestdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: specialrecord};let i = index">
             <td>{{requestlist.UserName}}</td>
+            <td>{{requestlist.BranchName}}</td>
             <td>{{requestlist.UniqueId}}</td>
             <td>{{requestlist.TypeName}}</td>
             <td>{{requestlist.Created_at | date}}</td>
@@ -264,6 +285,9 @@
               <c-badge *ngIf="requestlist.Status==4" color="danger">
                 {{requestlist.CurrentStatus}}
               </c-badge>
+              <c-badge *ngIf="requestlist.Status==5" color="warning">
+                {{requestlist.CurrentStatus}}
+              </c-badge>
               <c-badge *ngIf="requestlist.Status==6" color="danger">
                 {{requestlist.CurrentStatus}}
               </c-badge>
@@ -272,8 +296,8 @@
               </c-badge>
             </td>
             <td *ngIf="requestlist.Status==7">
-              <a href="javascript:void(0)" (click)="acceptModal(requestlist.Requestid)" class="info"
-                title="Accept"><i class="fa-solid fa-circle-check fa-xl"></i></a>
+              <a href="javascript:void(0)" (click)="acceptModal(requestlist.Requestid)" class="info" title="Accept"><i
+                  class="fa-solid fa-circle-check fa-xl"></i></a>
             </td>
             <!-- <td>
               <a href="javascript:void(0)" routerLink="/base/edit-request/{{requestlist.Requestid}}" class="edit"

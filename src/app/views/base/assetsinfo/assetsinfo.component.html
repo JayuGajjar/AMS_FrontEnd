@@ -63,6 +63,10 @@
             <td style="background-color: whitesmoke;">{{assetlist.Uid}}</td>
           </tr>
           <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Allocated To</td>
+            <td style="background-color: whitesmoke;">{{assetlist.LastAllocated}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
             <td class="table-title">Branch Name</td>
             <td style="background-color: whitesmoke;">{{assetlist.Branches}}</td>
           </tr>
@@ -79,8 +83,8 @@
             <td style="background-color: whitesmoke;">{{assetlist.Model}}</td>
           </tr>
           <tr *ngFor="let assetlist of assetdata">
-            <td class="table-title">Quantity</td>
-            <td style="background-color: whitesmoke;">{{assetlist.Nos}}</td>
+            <td class="table-title">Transfer</td>
+            <td style="background-color: whitesmoke;">{{assetlist.IsTransfered}}</td>
           </tr>
           <tr *ngFor="let assetlist of assetdata">
             <td class="table-title">Processor Type</td>
@@ -165,3 +169,52 @@
 
     </div>
   </div>
+
+
+
+
+<!-- Transfer asset details -->
+<div style="background: whitesmoke;
+            color: #002e7c;
+            padding: 16px 30px;
+            margin: -5px -25px -10px;
+            border-radius: 3px 3px 0 0;">
+  <h4 style="text-shadow: 2px 2px lightgray; margin-top: 5px;">Asset Transfer History</h4>
+
+
+<div class="table-responsive shadow" *ngIf="!loader">
+  <div class="table-wrapper">
+
+
+    <table class="table table-hover">
+
+
+      <thead class="table-title">
+        <tr>
+          <th style="width: 40%;">Transfer From</th>
+          <th style="width: 30%;">Description</th>
+          <th style="width: 20%;">Transfer Date</th>
+        </tr>
+      </thead>
+
+
+
+      <tbody *ngIf="transferassetdata.length > 0">
+        <tr
+          *ngFor="let transferlist of transferassetdata">
+          <td>{{transferlist.TrfBranchName}}</td>
+          <td>{{transferlist.Description}}</td>
+          <td>{{transferlist.Transferd_at | date}}</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="transferassetdata.length <= 0">
+        <tr>
+          <td colspan="100" class="text-center text-danger">No Match found</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+</div>
+</div>
