@@ -75,13 +75,13 @@
             <td>{{requestlist.Justify}}</td>
             <td>
               <c-form-check [switch]="true">
-                <input [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse,uniqueid,serialno)" cFormCheckInput type="checkbox">
+                <input [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" cFormCheckInput type="checkbox">
                 <!-- <input *ngIf="requestlist.isworking==true" disabled [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" cFormCheckInput type="checkbox"> -->
               </c-form-check>
             </td>
             <td>
               <c-form-check [switch]="true">
-                <input [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse,uniqueid,serialno)" cFormCheckInput type="checkbox">
+                <input [(ngModel)]="requestlist.inuse" (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)" cFormCheckInput type="checkbox">
               </c-form-check>
             </td>
             <td>

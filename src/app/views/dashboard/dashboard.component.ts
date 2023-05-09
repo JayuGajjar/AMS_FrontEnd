@@ -41,9 +41,6 @@ export class DashboardComponent implements OnInit {
   Requests: any = "";
   userId: any = 0;
   id: any;
-  type: any;
-  isworking: any;
-  inuse: any;
   uniqueid: any;
   serialno: any;
   role: number = 0;
@@ -204,7 +201,7 @@ export class DashboardComponent implements OnInit {
                 name: 'Total Ready For Scrap',
                 y: this.totalreadyforscrap,
                 color: '#ff8945',
-                path: "/base/newrequests"
+                path: "/base/readyforscrap"
               },
               {
                 name: 'Total Scrap',
@@ -222,7 +219,7 @@ export class DashboardComponent implements OnInit {
                 name: 'Total Under Maintenance',
                 y: this.totalundermaintenance,
                 color: '#531300',
-                path: "/base/inprogress"
+                path: "/base/maintenance"
               },
             ]
           }]
@@ -270,7 +267,7 @@ export class DashboardComponent implements OnInit {
 
 
   //status change
-  statusChange(id: number, type: number, isworking: boolean, inuse: boolean, uniqueid: boolean, serialno: boolean) {
+  assetAllotment() {
 
     this.submitted = true;
     this.submitbtn = true;
@@ -284,7 +281,7 @@ export class DashboardComponent implements OnInit {
         this.uniqueid = this.acceptForm.value.uniqueid;
         this.serialno = this.acceptForm.value.serialno;
         debugger
-        this.authService.statusChange(this.id,type, isworking, inuse, this.uniqueid, this.serialno).subscribe(responce => {
+        this.authService.assetAllotment(this.id, this.uniqueid, this.serialno).subscribe(responce => {
           debugger
           if (responce.IsSuccess) {
             Swal.fire(

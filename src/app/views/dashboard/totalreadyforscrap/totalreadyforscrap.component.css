@@ -85,8 +85,12 @@ table.table td a {
 table.table td a:hover {
     color: #62b6fc;
 }
-table.table td a.edit {
-    color: #0040ff;
+table.table td a.success {
+    color: #80D651;
+    padding-right: 10px;
+}
+table.table td a.secondary {
+    color: #969696;
     padding-right: 10px;
 }
 table.table td a.delete {

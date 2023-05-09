@@ -10,7 +10,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class TotalundermaintenanceComponent {
 
 
-
   maintenancedata: any = [];
   role: number = 0;
   pageSize: number = 5;
@@ -33,12 +32,14 @@ export class TotalundermaintenanceComponent {
 
   //get method for get the data of branch
   underMaintenanceDetails(PageNumber: number, pageSize: number, maintenance: string) {
-    // debugger
+    debugger
     this.authservice.underMaintananceDetails(PageNumber, pageSize, maintenance).subscribe(responce => {
 
       if (responce.IsSuccess) {
-        this.totalrecord = responce.Data[0].totalrecord;
-        this.maintenancedata = responce.Data;
+        if(responce.Data.length > 0){
+          this.totalrecord = responce.Data[0].totalrecord;
+          this.maintenancedata = responce.Data;
+        }
       }
       else {
         this.maintenancedata = [];

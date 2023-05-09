@@ -22,10 +22,11 @@
 
             <thead class="table-title">
                 <tr>
-                    <th>Allocated To</th>
                     <th>Branch</th>
+                    <th>Unique Id</th>
                     <th>Type</th>
                     <th>Status</th>
+                    <th style="width: 6%;">Actions</th>
                 </tr>
             </thead>
 
@@ -34,14 +35,19 @@
             <tbody *ngIf="readyforscrapdata.length > 0">
                 <tr
                     *ngFor="let readyforscraplist of readyforscrapdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
-                    <td>{{readyforscraplist.userinfo}}</td>
                     <td>{{readyforscraplist.branch}}</td>
+                    <td>{{readyforscraplist.Uniqueid}}</td>
                     <td>{{readyforscraplist.type}}</td>
                     <td>
-                        <c-badge *ngIf="readyforscraplist.status==5" color="warning">
+                        <c-badge *ngIf="readyforscraplist.Statid==5" color="warning">
                             {{readyforscraplist.status}}
                         </c-badge>
                     </td>
+                    <td>
+                        <a href="javascript:void(0)" (click)="acceptScrap(readyforscraplist.Assetid,readyforscraplist.Uniqueid,4,false)" class="delete" title="Decline"><i class="fa-solid fa-xmark"></i></a> <!--(click)="deleteRequest(requestlist)"-->
+                        <a href="javascript:void(0)" (click)="sentForFixModal(readyforscraplist)" class="secondary" title="Maintenance"><i class="fa-solid fa-gear"></i></a> <!--routerLink="/base/edit-request/{{requestlist.Requestid}}"-->
+                        <a href="javascript:void(0)" (click)="acceptScrap(readyforscraplist.Assetid,readyforscraplist.Uniqueid,4,true)" class="success" title="Accept"><i class="fa-solid fa-check"></i></a> <!--routerLink="/base/edit-request/{{requestlist.Requestid}}"-->
+                      </td>
                 </tr>
             </tbody>
             <tbody *ngIf="readyforscrapdata.length <= 0">
@@ -78,3 +84,61 @@
 
     </div>
 </div>
+
+
+
+
+<!-- PopUp Form -->
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleChange($event)">
+
+    <c-modal-header>
+      <h5 cModalTitle>Maintenance</h5>
+    </c-modal-header>
+  
+    <form [formGroup]="maintenanceForm" (ngSubmit)="sentForFix()">
+  
+      <c-modal-body>
+        <div class="form-outline mb-4">
+          <label>Unique Id</label>
+          <input type="text" class="form-control" placeholder="Enter Branch" formControlName="uniqueid"
+            [ngClass]="{ 'has-error': submitted && f['uniqueid'].errors }">
+          <div *ngIf="submitted && f['uniqueid'].errors" class="has-error">
+            <div *ngIf="f['uniqueid'].errors['required']">Unique Id is required!</div>
+          </div>
+        </div>
+
+        <div class="form-outline mb-4">
+            <label>Vendor Name</label>
+            <select type="text" class="form-control form-select" formControlName="vendorid"
+                [ngClass]="{ 'has-error': submitted && f['vendorid'].errors }">
+                <option value="">select Vendor</option>
+                <option [ngValue]="vendors.vendorid" *ngFor="let vendors of vendorlistdata">
+                    {{vendors.name}}
+                </option>
+            </select>
+            <div *ngIf="submitted && f['vendorid'].errors" class="has-error">
+                <div *ngIf="f['vendorid'].errors['required']">Vendor name is required!</div>
+            </div>
+        </div>
+
+        <div class="form-outline mb-4">
+          <label>Description</label>
+          <input type="text" class="form-control" placeholder="Enter Branch" formControlName="description"
+            [ngClass]="{ 'has-error': submitted && f['description'].errors }">
+          <div *ngIf="submitted && f['description'].errors" class="has-error">
+            <div *ngIf="f['description'].errors['required']">Unique Id is required!</div>
+          </div>
+        </div>
+      </c-modal-body>
+  
+      <c-modal-footer>
+        <button type="submit" class="btn btn-primary btn-block" *ngIf="!submitbtn">Submit</button>
+        <button type="button" class="btn btn-secondary btn-block ms-2" (click)="toggleModal()">Close</button>
+        <button class="btn btn-primary btn-block" *ngIf="submitbtn" [disabled]="submitbtn">
+          <i class="fa-solid fa-spinner fa-spin"></i> Loading
+        </button>
+      </c-modal-footer>
+  
+    </form>
+  
+  </c-modal>

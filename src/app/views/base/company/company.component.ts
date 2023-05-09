@@ -168,6 +168,7 @@ export class CompanyComponent {
 
   addCompany(){
     this.submitted = true;
+    this.submitbtn = true;
 
     if(this.companyForm.invalid)
     {

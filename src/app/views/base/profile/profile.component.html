@@ -242,7 +242,7 @@
                             <c-form-check [switch]="true"
                                 *ngIf="requestlist.Status==2 || requestlist.Status==3 || requestlist.Status==4 || requestlist.Status==5">
                                 <input [(ngModel)]="requestlist.isworking"
-                                    (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse,uniqueid,serialno)"
+                                    (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)"
                                     cFormCheckInput type="checkbox">
                                 <!-- <input *ngIf="requestlist.isworking==true" disabled [(ngModel)]="requestlist.isworking" (click)="statusChange(requestlist.Requestid,2,!requestlist.isworking,requestlist.inuse)" cFormCheckInput type="checkbox"> -->
                             </c-form-check>
@@ -251,7 +251,7 @@
                             <c-form-check [switch]="true"
                                 *ngIf="requestlist.Status==2 || requestlist.Status==3 || requestlist.Status==4 || requestlist.Status==5">
                                 <input [(ngModel)]="requestlist.inuse"
-                                    (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse,uniqueid,serialno)"
+                                    (click)="statusChange(requestlist.Requestid,1,true,!requestlist.inuse)"
                                     cFormCheckInput type="checkbox">
                             </c-form-check>
                         </td>
@@ -275,6 +275,9 @@
                                 {{requestlist.CurrentStatus}}
                             </c-badge>
                             <c-badge *ngIf="requestlist.Status==7" color="warning">
+                                {{requestlist.CurrentStatus}}
+                            </c-badge>
+                            <c-badge *ngIf="requestlist.Status==8" color="warning">
                                 {{requestlist.CurrentStatus}}
                             </c-badge>
                         </td>

@@ -113,10 +113,17 @@ export class AuthService {
 
 
 
-  //get method for working
+  //get method for ready for scrap
   readyForScrapDetails(PageNumber: any, pageSize: any, readyforscrap: any): Observable<any> {
     // debugger
     return this.http.get(this.Url + "Reports/GetReadyForScrapTable?pageNumber=" + PageNumber + "&pageSize=" + pageSize + "&searchString=" + readyforscrap);
+  }
+
+
+  //post method to send in scrap
+  acceptScrap(id: any, uniqueid:any, type: any, isScrap: any): Observable<any> {
+    debugger
+    return this.http.get(this.Url + "Request/SendtoScrap/" + id + "?Uid=" + uniqueid + '&type=' + type + "&isScrap=" + isScrap);
   }
 
 
@@ -124,7 +131,7 @@ export class AuthService {
   //get method for working
   underMaintananceDetails(PageNumber: any, pageSize: any, undermaintanance: any): Observable<any> {
     // debugger
-    return this.http.get(this.Url + "GetAllSentForFixTable?pageNumber=" + PageNumber + "&pageSize=" + pageSize + "&searchString=" + undermaintanance);
+    return this.http.get(this.Url + "Reports/GetAllSentForFixTable?pageNumber=" + PageNumber + "&pageSize=" + pageSize + "&searchString=" + undermaintanance);
   }
 
 
@@ -380,10 +387,26 @@ export class AuthService {
   }
 
 
-  //status change in request
-  statusChange(id: any, type: any, isworking: any, inuse: any, uniqueid: any, serialno: any): Observable<any> {
+  //Allocate the asset to the user
+  assetAllotment(id: any, uniqueid: any, serialno: any): Observable<any> {
     // debugger
-    return this.http.get(this.Url + "Request/StatusChange/" + id + '?type=' + type + '&isworking=' + isworking + '&inuse=' + inuse + '&UniqueId=' + uniqueid + '&SerialNo=' + serialno);
+    return this.http.get(this.Url + "Request/AssetAllotment/" + id + '?UniqueId=' + uniqueid + '&SerialNo=' + serialno);
+  }
+
+
+
+  //sent for fix asset (under maintenance)
+  sentForFix(id: any, type: any, SentForFix: any, Vendorid: any, Uid: any, Description: any): Observable<any> {
+    // debugger
+    return this.http.get(this.Url + "Request/SentForFix/" + id + '?type=' + type + '&SentForFix=' + SentForFix + '&Vendorid=' + Vendorid + '&Uid=' + Uid + '&Description=' + Description);
+  }
+
+
+
+  //status change in request
+  statusChange(id: any, type: any, isworking: any, inuse: any): Observable<any> {
+    // debugger
+    return this.http.get(this.Url + "Request/StatusChange/" + id + '?type=' + type + '&isworking=' + isworking + '&inuse=' + inuse);
   }
 
 

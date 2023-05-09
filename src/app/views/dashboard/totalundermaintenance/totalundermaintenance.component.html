@@ -22,9 +22,12 @@
 
             <thead class="table-title">
                 <tr>
-                    <th>Allocated To</th>
+                    <th>Unique Id</th>
                     <th>Branch</th>
                     <th>Type</th>
+                    <th>Vendor</th>
+                    <th>Date</th>
+                    <th>Description</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -34,11 +37,14 @@
             <tbody *ngIf="maintenancedata.length > 0">
                 <tr
                     *ngFor="let maintenancelist of maintenancedata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
-                    <td>{{maintenancelist.userinfo}}</td>
+                    <td>{{maintenancelist.Uniqueid}}</td>
                     <td>{{maintenancelist.branch}}</td>
                     <td>{{maintenancelist.type}}</td>
+                    <td>{{maintenancelist.SentToVendor}}</td>
+                    <td>{{maintenancelist.SentOnDate | date}}</td>
+                    <td>{{maintenancelist.Description}}</td>
                     <td>
-                        <c-badge *ngIf="maintenancelist.status==8" color="warning">
+                        <c-badge *ngIf="maintenancelist.Statid==8" color="warning">
                             {{maintenancelist.status}}
                         </c-badge>
                     </td>

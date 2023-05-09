@@ -72,11 +72,12 @@
 
       <thead class="table-title">
         <tr>
+          <th>Last User</th>
+          <th>Unique ID</th>
           <th>Branch</th>
           <th>Asset</th>
-          <th>LastUser</th>
-          <th>Vendor</th>
           <th>Created_at</th>
+          <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -86,11 +87,16 @@
       <tbody *ngIf="scrapdata.length > 0">
         <tr
           *ngFor="let scraplist of scrapdata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
-          <td>{{scraplist.BranchName}}</td>
-          <td>{{scraplist.AssetName}}</td>
-          <td>{{scraplist.LastUser}}</td>
-          <td>{{scraplist.VendorName}}</td>
+          <td>{{scraplist.NameofLastUsedBy}}</td>
+          <td>{{scraplist.Uniqueid}}</td>
+          <td>{{scraplist.branch}}</td>
+          <td>{{scraplist.type}}</td>
           <td>{{scraplist.Created_at | date}}</td>
+          <td>
+            <c-badge *ngIf="scraplist.Statid==4" color="danger">
+              {{scraplist.status}}
+            </c-badge>
+          </td>
           <td>
             <a href="javascript:void(0)" routerLink="/base/edit-scrap/{{scraplist.Scrapid}}" class="edit"><i
                 class="fa-solid fa-pen-to-square"></i></a>

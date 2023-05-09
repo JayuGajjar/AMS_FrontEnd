@@ -87,9 +87,9 @@ export class RequestComponent {
 
 
     //status change
-      statusChange(id:number,type:number,isworking:boolean,inuse:boolean,uniqueid:any,serialno:any){
+      statusChange(id:number,type:number,isworking:boolean,inuse:boolean){
         // debugger
-        this.authservice.statusChange(id,type,isworking,inuse,uniqueid,serialno).subscribe(responce => {
+        this.authservice.statusChange(id,type,isworking,inuse).subscribe(responce => {
           debugger
           if(responce.IsSuccess)
           {

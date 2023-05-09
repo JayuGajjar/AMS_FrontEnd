@@ -25,7 +25,7 @@
         <ng-container *ngTemplateOutlet="notificationDropdown"></ng-container>
       </c-nav-item>
       <c-nav-item style="align-self: center;">
-        {{firstname}} {{lastname}}
+        {{firstname | titlecase}} {{lastname | titlecase}}
       </c-nav-item>
     </c-header-nav>
     <c-header-nav class="ms-3">

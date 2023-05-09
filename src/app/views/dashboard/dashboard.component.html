@@ -294,6 +294,9 @@
               <c-badge *ngIf="requestlist.Status==7" color="warning">
                 {{requestlist.CurrentStatus}}
               </c-badge>
+              <c-badge *ngIf="requestlist.Status==8" color="warning">
+                {{requestlist.CurrentStatus}}
+              </c-badge>
             </td>
             <td *ngIf="requestlist.Status==7">
               <a href="javascript:void(0)" (click)="acceptModal(requestlist.Requestid)" class="info" title="Accept"><i
@@ -351,7 +354,7 @@
     <h5 cModalTitle>Fill this Form</h5>
   </c-modal-header>
 
-  <form [formGroup]="acceptForm" (ngSubmit)="statusChange(id,1,true,true,uniqueid,serialno)">
+  <form [formGroup]="acceptForm" (ngSubmit)="assetAllotment()">
 
     <c-modal-body>
       <div class="form-outline mb-4">
