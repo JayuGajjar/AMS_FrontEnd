@@ -28,6 +28,7 @@ export interface asset{
     Invoice_No : string;
     Location : number;
     Uid : string;
+    Allocated_At : string;
     // Description : string;
     Branches : string;
     TypeName : string;

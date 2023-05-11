@@ -1,4 +1,12 @@
-<div class="table-responsive shadow">
+<div class="center">
+  <div class="blink" role="status" *ngIf="loader">
+    <img src="./assets/images/image_2023_03_23T09_02_43_496Z.png">
+  </div>
+</div>
+
+
+
+<div class="table-responsive shadow" *ngIf="!loader">
     <div class="table-wrapper">
       <div class="row">
         <!-- <div class="col mr-2">

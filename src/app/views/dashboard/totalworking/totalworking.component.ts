@@ -17,6 +17,7 @@ export class TotalworkingComponent {
   PageNumber: any=1;
   totalrecord : any=0;
   working : any="";
+  loader = true;
 
   constructor(private authservice:AuthService,private router:Router) { }
 
@@ -38,6 +39,7 @@ export class TotalworkingComponent {
      
       if(responce.IsSuccess)
       {
+        this.loader = false;
         this.totalrecord = responce.Data[0].totalrecord;
         this.workingdata = responce.Data;
       }

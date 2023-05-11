@@ -64,6 +64,7 @@ export class LoginComponent {
       // console.log(response);
       // localStorage.setItem('isSuccess',response.isLoggedIn);
       localStorage.setItem('isSuccess', response.IsSuccess);
+      sessionStorage.setItem('isSuccess', response.IsSuccess);
 
 
       if (response.IsSuccess) 
@@ -89,6 +90,7 @@ export class LoginComponent {
           'error'
         )
         this.onReset();
+        this.router.navigate(['/login']);
       }
     })
   }

@@ -62,6 +62,7 @@ export class AddAssetComponent {
       Invoice_No : "",
       Location : 0,
       Uid : "",
+      Allocated_At : "",
       // Description : "",
       Created_at: "",
       Branches : "",
@@ -81,25 +82,26 @@ export class AddAssetComponent {
       type: ['', [Validators.required]],
       model: ['N/A', [Validators.required]],
       allocatedto: [0],
-      processortype: ['N/A', [Validators.required]],
-      monitortype: ['N/A', [Validators.required]],
-      rangetype: ['N/A', [Validators.required]],
-      batterytype: ['N/A', [Validators.required]],
-      batteryampere: ['N/A', [Validators.required]],
-      batterycapacity: ['N/A', [Validators.required]],
-      graphicsCard: ['N/A', [Validators.required]],
-      opticaldrive: ['N/A', [Validators.required]],
-      hdd: ['N/A', [Validators.required]],
-      ram: ['N/A', [Validators.required]],
-      inches: ['N/A', [Validators.required]],
-      portswitch: ['N/A', [Validators.required]],
-      specification: ['N/A', [Validators.required]],
+      processortype: ['N/A'], //[Validators.required]],
+      monitortype: ['N/A'], //[Validators.required]],
+      rangetype: ['N/A'], //[Validators.required]],
+      batterytype: ['N/A'], //[Validators.required]],
+      batteryampere: ['N/A'], //[Validators.required]],
+      batterycapacity: ['N/A'], //[Validators.required]],
+      graphicsCard: ['N/A'], //[Validators.required]],
+      opticaldrive: ['N/A'], //[Validators.required]],
+      hdd: ['N/A'], //[Validators.required]],
+      ram: ['N/A'], //[Validators.required]],
+      inches: ['N/A'], //[Validators.required]],
+      portswitch: ['N/A'], //[Validators.required]],
+      specification: ['N/A'], //[Validators.required]],
       vendorid: ['', [Validators.required]],
-      invoicedate: [null, [Validators.pattern("^(?:[0-9]{2})?[0-9]{2}/[0-3]?[0-9]/[0-3]?[0-9]$")]],//, [Validators.required]],
-      warranty_till: [null, [Validators.pattern("^(?:[0-9]{2})?[0-9]{2}/[0-3]?[0-9]/[0-3]?[0-9]$")]], //date formate DD/MM/YYYY],//, [Validators.required]],
-      invoice_no: ['N/A', [Validators.required]],
-      location: ['', [Validators.required]],
+      invoicedate: [null, [Validators.pattern("^(?:[0-9]{2})?[0-9]{2}-[0-3]?[0-9]-[0-3]?[0-9]$")]],//, [Validators.required]],
+      warranty_till: [null, [Validators.pattern("^(?:[0-9]{2})?[0-9]{2}-[0-3]?[0-9]-[0-3]?[0-9]$")]], //date formate YYYY-MM-DD],//, [Validators.required]],
+      invoice_no: ['N/A'], //[Validators.required]],
+      location: [0, [Validators.required]],
       uid: ['', [Validators.required]],
+      allocateddate: [null, [Validators.pattern("^(?:[0-9]{2})?[0-9]{2}-[0-3]?[0-9]-[0-3]?[0-9]$")]], //date formate YYYY-MM-DD],//, [Validators.required]],
       status: ['', [Validators.required]],
       createdat: ['', [Validators.required]],
       remarks: ['N/A', [Validators.required]],
@@ -146,6 +148,7 @@ export class AddAssetComponent {
       this.data.Invoice_No = this.assetForm.value.invoice_no;
       this.data.Location = this.assetForm.value.location;
       this.data.Uid = this.assetForm.value.uid;
+      this.data.Allocated_At = this.assetForm.value.allocateddate;
       this.data.Status = this.assetForm.value.status;
       this.data.Created_at = this.assetForm.value.createdat;
       this.data.Remarks = this.assetForm.value.remarks;
@@ -200,6 +203,7 @@ export class AddAssetComponent {
       this.data.Invoice_No = this.assetForm.value.invoice_no;
       this.data.Location = this.assetForm.value.location;
       this.data.Uid = this.assetForm.value.uid;
+      this.data.Allocated_At = this.assetForm.value.allocateddate;
       this.data.Status = this.assetForm.value.status;
       this.data.Created_at = this.assetForm.value.createdat;
       this.data.Remarks = this.assetForm.value.remarks;
@@ -257,6 +261,7 @@ export class AddAssetComponent {
     this.assetForm.patchValue({ invoice_no: "" });
     this.assetForm.patchValue({ location: "" });
     this.assetForm.patchValue({ uid: "" });
+    this.assetForm.patchValue({ allocateddate: "" });
     this.assetForm.patchValue({ status: "" });
     this.assetForm.patchValue({ createdat: "" });
     this.assetForm.patchValue({ remarks: "" });
@@ -320,6 +325,7 @@ export class AddAssetComponent {
           this.assetForm.controls["invoice_no"].setValue(responce.Data[0].Invoice_No);
           this.assetForm.controls["location"].setValue(responce.Data[0].Location);
           this.assetForm.controls["uid"].setValue(responce.Data[0].Uid);
+          this.assetForm.controls["allocateddate"].setValue(responce.Data[0].Allocated_At);
           this.assetForm.controls["status"].setValue(responce.Data[0].Status);
           this.assetForm.controls["createdat"].setValue(responce.Data[0].Created_at);
           this.assetForm.controls["remarks"].setValue(responce.Data[0].Remarks);

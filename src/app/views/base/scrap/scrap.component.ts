@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 export class ScrapComponent {
 
   scrapdata : any=[];
-  pageSize : number=5;
+  pageSize : number=10;
   PageNumber : any=1;
   totalrecord : any=0;
   Scraps : any="";
@@ -43,12 +43,13 @@ export class ScrapComponent {
   scrapDetails(PageNumber:number,pageSize:number,Scraps:string,assetid:number,branchid:number,vendorid:number,dateid:number) {
     debugger
     this.authservice.scrapDetails(PageNumber,pageSize,Scraps,assetid,branchid,vendorid,dateid).subscribe(responce => {
-     
+     debugger
       if(responce.IsSuccess)
       {
         this.loader = false;
         this.totalrecord = responce.Data[0].totalrecord;
         this.scrapdata = responce.Data;
+        responce.Data[0].Uniqueid;
       }
       else
       {

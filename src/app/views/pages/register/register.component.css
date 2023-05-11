@@ -1,44 +1,49 @@
 body {
-    font-family: "Open Sans", 
-    -apple-system, BlinkMacSystemFont, 
-    "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, 
-    "Helvetica Neue", Helvetica, Arial, sans-serif; 
-  }
+  font-family: "Open Sans",
+    -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 
-  .field-icon {
-    float: right;
-    margin-left: 0px;
-    margin-top: -30px;
-    margin-right: 10px;
-    position: relative;
-    z-index: 2;
-  }
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgb(0 0 21 / 46%) !important;
+}
+
+.field-icon {
+  float: right;
+  margin-left: 0px;
+  margin-top: -30px;
+  margin-right: 10px;
+  position: relative;
+  z-index: 2;
+}
 
 
-.has-error{
-    border-color: red;
-    color: red;
+.has-error {
+  border-color: red;
+  color: red;
 }
 
 
 .gradient-custom-3 {
-/* fallback for old browsers */
-background: #84fab0;
+  /* fallback for old browsers */
+  background: #84fab0;
 
-/* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
 
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
 }
+
 .gradient-custom-4 {
-/* fallback for old browsers */
-background: #84fab0;
+  /* fallback for old browsers */
+  background: #84fab0;
 
-/* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
 
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
 }

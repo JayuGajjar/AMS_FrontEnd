@@ -27,6 +27,7 @@ export class TotalnewRequestComponent {
   assetlistdata: any = [];
   typelistdata: any = [];
   requestdata: any = [];
+  loader = true;
 
   constructor(private authservice: AuthService, private router: Router) { }
 
@@ -46,8 +47,10 @@ export class TotalnewRequestComponent {
     debugger
     this.authservice.requestDetailsAdmin(PageNumber, pageSize, Requests, assetid, statusid, dateid).subscribe(responce => {
 
-      if (responce.IsSuccess) {
+      if (responce.IsSuccess)
+      {
         debugger
+        this.loader = false;
         this.totalrecord = responce.Data[0].totalrecord;
         this.requestdata = responce.Data;
       }

@@ -26,6 +26,7 @@ import { AssettypeComponent } from './assettype/assettype.component';
 import { TotalinprogressComponent } from '../dashboard/totalinprogress/totalinprogress.component';
 import { TotalreadyforscrapComponent } from '../dashboard/totalreadyforscrap/totalreadyforscrap.component';
 import { TotalundermaintenanceComponent } from '../dashboard/totalundermaintenance/totalundermaintenance.component';
+import { WelcomepageComponent } from './welcomepage/welcomepage.component';
 const titleP = "Asset Managment";
 
 const routes: Routes = [
@@ -267,6 +268,16 @@ const routes: Routes = [
         component: AddScrapComponent,
         data: {
           title: 'Edit Scrap',
+        },
+      },
+
+
+       //for Welcome page
+       {
+        path: 'welcome', title: titleP , canActivate : [AuthGuard],
+        component: WelcomepageComponent,
+        data: {
+          title: '',
         },
       },
 

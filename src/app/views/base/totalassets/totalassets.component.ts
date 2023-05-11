@@ -16,6 +16,7 @@ export class TotalassetsComponent {
   branchlistdata : any=[];
   quantitylistdata : any=[];
   workinglistdata : any=[];
+  grandtotallistdata : any=[];
   totalbranches: number = 0;
   loader = true;
 
@@ -93,6 +94,14 @@ export class TotalassetsComponent {
         }
         else{
           this.workinglistdata = [];
+        }
+
+        if(responce.Data.table8.length > 0){
+          this.grandtotallistdata = responce.Data.table8;
+
+        }
+        else{
+          this.grandtotallistdata = [];
         }
       }
     })

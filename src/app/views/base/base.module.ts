@@ -57,6 +57,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AssetsinfoComponent } from './assetsinfo/assetsinfo.component';
 import { TotalassetsComponent } from './totalassets/totalassets.component';
 import { AssettypeComponent } from './assettype/assettype.component';
+import { WelcomepageComponent } from './welcomepage/welcomepage.component';
 
 @NgModule({
   imports: [
@@ -111,6 +112,7 @@ import { AssettypeComponent } from './assettype/assettype.component';
     AssetsinfoComponent,
     TotalassetsComponent,
     AssettypeComponent,
+    WelcomepageComponent,
   ],
 })
 export class BaseModule {}

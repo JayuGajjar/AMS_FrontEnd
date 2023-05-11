@@ -84,11 +84,11 @@
           <th>SerialNo</th>
           <th>UniqueID</th>
           <th>Allocated To</th>
+          <th>Allocated Date</th>
           <th>Branch</th>
           <th>Brand</th>
           <th>Type</th>
           <th>Transfer</th>
-          <th>Specification</th>
           <th>Warranty</th>
           <th>Vendor</th>
           <th>Status</th>
@@ -104,6 +104,7 @@
           <td>{{assetlist.SerialNo}}</td>
           <td>{{assetlist.Uid}}</td>
           <td>{{assetlist.LastAllocated}}</td>
+          <td>{{assetlist.Allocated_At | date}}</td>
           <td>{{assetlist.Branches}}</td>
           <td>{{assetlist.Brand}}</td>
           <td>{{assetlist.TypeName}}</td>
@@ -114,8 +115,7 @@
             <c-badge *ngIf="assetlist.IsTransfered==false" hidden> 
             </c-badge>
           </td>
-          <td>{{assetlist.Specification}}</td>
-          <td>{{assetlist.Warranty_Till}}</td>
+          <td>{{assetlist.Warranty_Till | date}}</td>
           <td>{{assetlist.Vendors}}</td>
           <td>
             <c-badge *ngIf="assetlist.Status==1" color="info">

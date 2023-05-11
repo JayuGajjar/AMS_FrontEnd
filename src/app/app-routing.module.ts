@@ -8,13 +8,22 @@ import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { AuthGuard } from './services/auth.guard';
 import { AssetComponent } from './views/base/asset/asset.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { WelcomepageComponent } from './views/base/welcomepage/welcomepage.component';
 const titleP = "Asset Managment";
 
 const routes: Routes = [
   {
-    path: '', title: titleP + ' - Login',
-    component: LoginComponent,
-    pathMatch: 'full'
+    path: '', title: titleP,
+    component: DefaultLayoutComponent,
+    data: {
+    },
+    children: [
+      {
+        path: '',
+        component: WelcomepageComponent,
+      }
+    ]
   },
   {
     path: '',

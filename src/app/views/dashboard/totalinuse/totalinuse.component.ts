@@ -19,6 +19,7 @@ export class TotalinuseComponent {
   PageNumber: any=1;
   totalrecord : any=0;
   InUse : any="";
+  loader = true;
 
   constructor(private authservice:AuthService, private router:Router) { }
 
@@ -39,6 +40,7 @@ export class TotalinuseComponent {
      
       if(responce.IsSuccess)
       {
+        this.loader = false;
         this.totalrecord = responce.Data[0].totalrecord;
         this.inusedata = responce.Data;
       }

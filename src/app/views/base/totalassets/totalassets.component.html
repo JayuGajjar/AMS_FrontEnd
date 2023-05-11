@@ -6,8 +6,8 @@
 
 
 <div class="table-responsive shadow" *ngIf="!loader">
-    <div class="table-wrapper">
-        <!-- <div class="row">
+  <div class="table-wrapper">
+    <!-- <div class="row">
 
           <div class="col input-group">
             <div>
@@ -63,44 +63,123 @@
           
 
         </div> -->
-        <br>
+    <br>
 
 
 
-        <table class="table table-hover">
+    <table class="table table-hover">
 
 
-            <thead class="table-title">
-                <tr >
-                    <th rowspan="2" style="text-align: center;width: 10%;height: 40px">Asset Type</th>
-                    <ng-container *ngFor="let status of statuslistdata">
-                      <th *ngIf="status.statid==2 || status.statid==3" colspan="3" style="text-align: center;width: 30%;height: 80px">
-                        {{status.name}}
-                      </th>
-                    </ng-container>
-                    <th colspan="3" style="text-align: center;width: 30%;height: 80px">Working</th>
-                </tr>
+      <thead class="table-title">
+        <tr>
+          <th rowspan="2" style="text-align: center;width: 10%;height: 40px">Asset Type</th>
+          <ng-container *ngFor="let status of statuslistdata">
+            <th *ngIf="status.statid==2 || status.statid==3" colspan="3"
+              style="text-align: center;width: 30%;height: 80px">
+              {{status.name}}
+            </th>
+          </ng-container>
+          <th colspan="3" style="text-align: center;width: 30%;height: 80px">Working</th>
+          <th rowspan="2" style="text-align: center;width: 10%;height: 40px">Grand Total Working</th>
+          <ng-container *ngFor="let status of statuslistdata">
+            <th *ngIf="status.statid==5 || status.statid==4" colspan="3"
+              style="text-align: center;width: 30%;height: 80px">
+              {{status.name}}
+            </th>
+          </ng-container>
+        </tr>
 
-                <tr>
-                    <ng-container *ngFor="let branches of branchlistdata">
-                        <td style="text-align: center;">{{branches.name}}</td>
-                    </ng-container>
-                    <ng-container *ngFor="let branches of branchlistdata">
-                        <td style="text-align: center;">{{branches.name}}</td>
-                    </ng-container>
-                    <ng-container *ngFor="let branches of branchlistdata">
-                        <td style="text-align: center;">{{branches.name}}</td>
-                    </ng-container>
-                </tr>
+        <tr>
+          <ng-container *ngFor="let branches of branchlistdata">
+            <td style="text-align: center;">{{branches.name}}</td>
+          </ng-container>
+          <ng-container *ngFor="let branches of branchlistdata">
+            <td style="text-align: center;">{{branches.name}}</td>
+          </ng-container>
+          <ng-container *ngFor="let branches of branchlistdata">
+            <td style="text-align: center;">{{branches.name}}</td>
+          </ng-container>
+          <ng-container *ngFor="let branches of branchlistdata">
+            <td style="text-align: center;">{{branches.name}}</td>
+          </ng-container>
+          <ng-container *ngFor="let branches of branchlistdata">
+            <td style="text-align: center;">{{branches.name}}</td>
+          </ng-container>
+        </tr>
 
-            </thead>
+      </thead>
 
+      <tbody *ngIf="typelistdata.length > 0">
 
+        <tr *ngFor="let types of typelistdata">
 
-            <tbody *ngIf="typelistdata.length > 0">
-                <tr *ngFor="let types of typelistdata">
-                    <td>{{types.name}}</td>
-                    <!-- <ng-container *ngFor="let status of statuslistdata">
+          <td>{{types.name}}</td>
+
+          <td *ngFor="let branches of branchlistdata">
+            <ng-container *ngFor="let status of statuslistdata">
+              <ng-container *ngFor="let total of quantitylistdata">
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid && branches.branchid==total.branch && total.status==2 && status.statid==2">
+                  {{total.total}}
+                </div>
+              </ng-container>
+            </ng-container>
+          </td>
+
+          <td *ngFor="let branches of branchlistdata">
+            <ng-container *ngFor="let status of statuslistdata">
+              <ng-container *ngFor="let total of quantitylistdata">
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid && branches.branchid==total.branch && total.status==3 && status.statid==3">
+                  {{total.total}}
+                </div>
+              </ng-container>
+            </ng-container>
+          </td>
+
+          <td *ngFor="let branches of branchlistdata">
+            <ng-container *ngFor="let total of workinglistdata">
+              <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==total.branch">
+                {{total.workingTotal}}
+              </div>
+            </ng-container>
+          </td>
+
+          <ng-container *ngFor="let total of grandtotallistdata">
+            <td style="text-align: center;" *ngIf="total.type==types.typeid">
+              {{total.grandTotal_Working}}
+            </td>
+          </ng-container>
+
+          <td *ngFor="let branches of branchlistdata">
+            <ng-container *ngFor="let status of statuslistdata">
+              <ng-container *ngFor="let total of quantitylistdata">
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid && branches.branchid==total.branch && total.status==4 && status.statid==4">
+                  {{total.total}}
+                </div>
+              </ng-container>
+            </ng-container>
+          </td>
+
+          <td *ngFor="let branches of branchlistdata">
+            <ng-container *ngFor="let status of statuslistdata">
+              <ng-container *ngFor="let total of quantitylistdata">
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid && branches.branchid==total.branch && total.status==5 && status.statid==5">
+                  {{total.total}}
+                </div>
+              </ng-container>
+            </ng-container>
+          </td>
+
+        </tr>
+      </tbody>
+
+      <!-- <tbody *ngIf="typelistdata.length > 0">
+        <tr *ngFor="let types of typelistdata">
+          <td>{{types.name}}</td>
+          -cmnt j rakhvu <ng-container *ngFor="let status of statuslistdata">
                       <ng-container *ngFor="let branches of branchlistdata">
                         <td>
                           <ng-container *ngFor="let total of quantitylistdata">
@@ -110,58 +189,73 @@
                           </ng-container>
                         </td>
                       </ng-container>
-                    </ng-container> -->
-                    <td *ngFor="let status of statuslistdata">
-                      <ng-container *ngFor="let total of quantitylistdata">
-                        <ng-container *ngFor="let branches of branchlistdata">
-                            <!-- <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==1 && total.branch==1 && total.status==2 && status.statid==1">
+                    </ng-container> ahiya sudhi-
+          <td *ngFor="let status of statuslistdata">
+            <ng-container *ngFor="let total of quantitylistdata">
+              <ng-container *ngFor="let branches of branchlistdata">
+                -comnt j rakhvu <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==1 && total.branch==1 && total.status==2 && status.statid==1">
                               {{total.total}}
-                            </div> -->
-                            <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==1 && total.branch==1 && total.status==2 && status.statid==1">
-                              {{total.total}}
-                            </div>
-                            <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==2 && total.branch==2 && total.status==2 && status.statid==2">
-                              {{total.total}}
-                            </div>
-                            <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==3 && total.branch==3 && total.status==2 && status.statid==3">
-                              {{total.total}}
-                            </div>
-                          </ng-container>
-                        </ng-container>
-                    </td>
-                    <td *ngFor="let status of statuslistdata">
-                      <ng-container *ngFor="let total of quantitylistdata">
-                        <ng-container *ngFor="let branches of branchlistdata">
-                            <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==1 && total.branch==1 && total.status==3 && status.statid==1">
-                              {{total.total}}
-                            </div>
-                            <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==2 && total.branch==2 && total.status==3 && status.statid==2">
-                              {{total.total}}
-                            </div>
-                            <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==3 && total.branch==3 && total.status==3 && status.statid==3">
-                              {{total.total}}
-                            </div>
-                          </ng-container>
-                        </ng-container>
-                    </td>
-                    <td *ngFor="let status of statuslistdata">
-                      <ng-container *ngFor="let total of workinglistdata">
-                        <ng-container *ngFor="let branches of branchlistdata">
-                            <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==1 && total.branch==1 && status.statid==1">
-                              {{total.workingTotal}}
-                            </div>
-                            <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==2 && total.branch==2 && status.statid==2">
-                              {{total.workingTotal}}
-                            </div>
-                            <div style="text-align: center;" *ngIf="total.type==types.typeid && branches.branchid==3 && total.branch==3 && status.statid==3">
-                              {{total.workingTotal}}
-                            </div>
-                          </ng-container>
-                        </ng-container>
-                    </td>
-                </tr>
-            </tbody>
-            <!-- <tbody>
+                            </div> ahiya sudhi-
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid && branches.branchid==1 && total.branch==1 && total.status==2 && status.statid==1">
+                  {{total.total}}
+                </div>
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid && branches.branchid==2 && total.branch==2 && total.status==2 && status.statid==2">
+                  {{total.total}}
+                </div>
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid && branches.branchid==3 && total.branch==3 && total.status==2 && status.statid==3">
+                  {{total.total}}
+                </div>
+              </ng-container>
+            </ng-container>
+          </td>
+          <td *ngFor="let status of statuslistdata">
+            <ng-container *ngFor="let total of quantitylistdata">
+              <ng-container *ngFor="let branches of branchlistdata">
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid && branches.branchid==1 && total.branch==1 && total.status==3 && status.statid==1">
+                  {{total.total}}
+                </div>
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid && branches.branchid==2 && total.branch==2 && total.status==3 && status.statid==2">
+                  {{total.total}}
+                </div>
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid && branches.branchid==3 && total.branch==3 && total.status==3 && status.statid==3">
+                  {{total.total}}
+                </div>
+              </ng-container>
+            </ng-container>
+          </td>
+          <td *ngFor="let status of statuslistdata">
+            <ng-container *ngFor="let total of workinglistdata">
+              <ng-container *ngFor="let branches of branchlistdata">
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid && branches.branchid==1 && total.branch==1 && status.statid==1">
+                  {{total.workingTotal}}
+                </div>
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid && branches.branchid==2 && total.branch==2 && status.statid==2">
+                  {{total.workingTotal}}
+                </div>
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid && branches.branchid==3 && total.branch==3 && status.statid==3">
+                  {{total.workingTotal}}
+                </div>
+              </ng-container>
+            </ng-container>
+          </td>
+          <td *ngFor="let total of grandtotallistdata">
+                <div style="text-align: center;"
+                  *ngIf="total.type==types.typeid">
+                  {{total.grandTotal_Working}}
+                </div>
+          </td>
+        </tr>
+      </tbody> -->
+      <!-- <tbody>
               <tr *ngFor="let types of typelistdata">
                 <ng-container *ngFor="let status of statuslistdata">
                   <ng-container *ngFor="let branches of branchlistdata">
@@ -175,15 +269,15 @@
               </tr>
             </tbody> -->
 
-            <tbody *ngIf="typelistdata.length <= 0">
-                <tr>
-                    <td colspan="100" class="text-center text-danger">No Match found</td>
-                </tr>
-            </tbody>
+      <tbody *ngIf="typelistdata.length <= 0">
+        <tr>
+          <td colspan="100" class="text-center text-danger">No Match found</td>
+        </tr>
+      </tbody>
 
-        </table>
+    </table>
 
-        <!-- <div class="row">
+    <!-- <div class="row">
         <div class="col-1" style="width: 6.6%;">
           <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
           </span>
@@ -206,5 +300,5 @@
 
 
 
-    </div>
+  </div>
 </div>

@@ -31,23 +31,22 @@ export class AppComponent implements OnInit {
 
     // this.ngOnDestroy();
 
-    setTimeout(()=>{
-      localStorage.clear();
-    },1800000);
+    // setTimeout(()=>{
+    //   localStorage.clear();
+    // },1800000);
     
 
-    if(Number(localStorage.getItem('userid'))>0){
-      this.router.navigate(['/dashboard']);
-      setTimeout(()=>{
-        localStorage.clear();
-      },1800000);
-    }
-    else{
+    if(Number(localStorage.getItem('userid'))<=0){
       this.router.navigate(['/login']);
     }
   }
 
-  // ngOnDestroy(): void { 
+  // ngOnDestroy(){
+  //   localStorage.clear();
+  //   this.router.navigate(['/login']);
+  // }
+
+  // ngOnUnload(): void { 
   //   localStorage.clear();
   //  }
   // logOut(){

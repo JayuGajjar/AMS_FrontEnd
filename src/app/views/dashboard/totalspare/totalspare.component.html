@@ -1,77 +1,86 @@
-    <div class="table-responsive shadow">
-      <div class="table-wrapper">
-          <div class="row">
-            <div class="col input-group">
-              <div>
-                <input type="search" class="form-control" [(ngModel)]="spares" (keyup)="searchSpare()" placeholder="Search">
-              </div>
-              <span class="input-group-append">
-                <button type="button" class="btn btn-outline-info" (click)="searchSpare()" >
-                  <i class="fas fa-search"></i>
-                </button>
-              </span>
-            </div>
-          </div>
-          <br>
-  
-  
-  
-        <table class="table table-hover">
-  
-  
-          <thead class="table-title">
-            <tr>
-              <th>Branch</th>
-              <th>Type</th>
-              <th>SpareAsset</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-  
-  
-  
-          <tbody *ngIf="sparedata.length > 0">
-          <tr *ngFor="let sparelist of sparedata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
-            <td>{{sparelist.branch}}</td>
-            <td>{{sparelist.type}}</td>
-            <td>{{sparelist.spareassets}}</td>
-            <td>
-              <c-badge color="secondary">
-                {{sparelist.status}}
-              </c-badge>
-            </td>
-          </tr>
-          </tbody>
-          <tbody *ngIf="sparedata.length <= 0">
-            <tr>
-              <td colspan="100" class="text-center text-danger">No Match found</td>
-            </tr>
-          </tbody>
-  
-        </table>
-  
-        <div class="row">
-          <div class="col-1" style="width: 6.6%;">
-            <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
-            </span>
-          </div>
-          <div class="col-1">
-            <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
-              (change)="changePageSize()">
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </select>
-          </div>
-    
-          <div *ngIf="sparedata.length > 0" class="col d-flex justify-content-end">
-            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>
-          <div *ngIf="sparedata.length <= 0" class="col d-flex justify-content-end">
-            <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
-          </div>
+<div class="center">
+  <div class="blink" role="status" *ngIf="loader">
+    <img src="./assets/images/image_2023_03_23T09_02_43_496Z.png">
+  </div>
+</div>
+
+
+
+<div class="table-responsive shadow" *ngIf="!loader">
+  <div class="table-wrapper">
+    <div class="row">
+      <div class="col input-group">
+        <div>
+          <input type="search" class="form-control" [(ngModel)]="spares" (keyup)="searchSpare()" placeholder="Search">
         </div>
-  
+        <span class="input-group-append">
+          <button type="button" class="btn btn-outline-info" (click)="searchSpare()">
+            <i class="fas fa-search"></i>
+          </button>
+        </span>
       </div>
     </div>
+    <br>
+
+
+
+    <table class="table table-hover">
+
+
+      <thead class="table-title">
+        <tr>
+          <th>Branch</th>
+          <th>Type</th>
+          <th>SpareAsset</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+
+
+      <tbody *ngIf="sparedata.length > 0">
+        <tr
+          *ngFor="let sparelist of sparedata | paginate: { itemsPerPage: pageSize, currentPage: PageNumber, totalItems: totalrecord};let i = index">
+          <td>{{sparelist.branch}}</td>
+          <td>{{sparelist.type}}</td>
+          <td>{{sparelist.spareassets}}</td>
+          <td>
+            <c-badge color="secondary">
+              {{sparelist.status}}
+            </c-badge>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="sparedata.length <= 0">
+        <tr>
+          <td colspan="100" class="text-center text-danger">No Match found</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <div class="row">
+      <div class="col-1" style="width: 6.6%;">
+        <span class="form-group pull-left page-size form-inline"> Page Size &nbsp;
+        </span>
+      </div>
+      <div class="col-1">
+        <select id="ddlPageSize" class="form-control form-select control-color" [(ngModel)]="pageSize"
+          (change)="changePageSize()">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
+      </div>
+
+      <div *ngIf="sparedata.length > 0" class="col d-flex justify-content-end">
+        <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+      </div>
+      <div *ngIf="sparedata.length <= 0" class="col d-flex justify-content-end">
+        <pagination-controls hidden (pageChange)="pageChangeEvent($event)"></pagination-controls>
+      </div>
+    </div>
+
+  </div>
+</div>

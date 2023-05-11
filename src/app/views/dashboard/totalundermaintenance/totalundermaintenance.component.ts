@@ -16,6 +16,7 @@ export class TotalundermaintenanceComponent {
   PageNumber: any = 1;
   totalrecord: any = 0;
   maintenance: any = "";
+  loader = true;
 
   constructor(private authservice: AuthService, private router: Router) { }
 
@@ -35,10 +36,16 @@ export class TotalundermaintenanceComponent {
     debugger
     this.authservice.underMaintananceDetails(PageNumber, pageSize, maintenance).subscribe(responce => {
 
-      if (responce.IsSuccess) {
-        if(responce.Data.length > 0){
+      if (responce.IsSuccess)
+      {
+        this.loader = false;
+        if(responce.Data.length > 0)
+        {
           this.totalrecord = responce.Data[0].totalrecord;
           this.maintenancedata = responce.Data;
+        }
+        else {
+          this.maintenancedata = [];
         }
       }
       else {

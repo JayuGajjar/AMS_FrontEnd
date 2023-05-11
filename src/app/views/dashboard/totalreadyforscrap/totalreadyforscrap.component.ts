@@ -30,6 +30,7 @@ export class TotalreadyforscrapComponent {
   Vendorid : any;
   Uid : any;
   Description : any;
+  loader = true;
 
   constructor(private authservice: AuthService, private router: Router, private FB: FormBuilder) { 
 
@@ -86,10 +87,15 @@ export class TotalreadyforscrapComponent {
       debugger
       if (responce.IsSuccess) 
       {
+        this.loader = false;
         // debugger
-        if(responce.Data.length > 0){
+        if(responce.Data.length > 0)
+        {
           this.readyforscrapdata = responce.Data;
           this.totalrecord = responce.Data[0].totalrecord;
+        }
+        else {
+          this.readyforscrapdata =[];
         }
       }
       else {

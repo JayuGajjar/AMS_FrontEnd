@@ -31,6 +31,9 @@ export class DefaultHeaderComponent extends HeaderComponent {
   // toggleCollapse(): void {
   //   this.visible = !this.visible;
   // }
+  // ngOnUnload(): void {
+  //   localStorage.clear();
+  // }
 
   ngOnInit(): void {
 
@@ -38,8 +41,18 @@ export class DefaultHeaderComponent extends HeaderComponent {
 
     setTimeout(()=>{
       localStorage.clear();
-    },1800000);
+    },600000);
 
+
+    // if(sessionStorage.getItem('isSuccess')==null){
+    //   localStorage.clear();
+    // }
+    // window.onbeforeunload = () => {
+    //   localStorage.clear();
+    // }
+    // if(Number(localStorage.getItem('userid'))<=0){
+    //   this.router.navigate(['/login']);
+    // }
 
     setInterval(() => {
       this.getAllValues(); // api call
@@ -49,6 +62,11 @@ export class DefaultHeaderComponent extends HeaderComponent {
     this.getAllValues();
     this.getAllTables();
   }
+
+  // ngOnDestroy(){
+  //   localStorage.clear();
+  //   this.router.navigate(['/login']);
+  // }
 
   username = String(localStorage.getItem('username'));
   firstname = String(localStorage.getItem('firstname'));

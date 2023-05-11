@@ -7,12 +7,44 @@
 
 
                     <div class="row g-3">
-                        <div class="col-auto mb-4">
+                        <div class="col-3 form-outline mb-4">
                             <label>Created At<span style="color:red;">*</span></label>
                             <input type="datetime-local" class="form-control" placeholder="Created At" formControlName="createdat"
                                 [ngClass]="{ 'has-error': submitted && f['createdat'].errors }">
                             <div *ngIf="submitted && f['createdat'].errors" class="has-error">
-                                <div *ngIf="f['createdat'].errors['required']">Invoice Date is required!</div>
+                                <div *ngIf="f['createdat'].errors['required']">Created at is required!</div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-3 form-outline mb-4">
+                            <label>Allocated Date - <span style="color:red;">"YYYY-MM-DD"</span></label>
+                            <input type="text" class="form-control" placeholder="YYYY-MM-DD" formControlName="allocateddate"
+                                [ngClass]="{ 'has-error': submitted && f['allocateddate'].errors }">
+                            <div *ngIf="submitted && f['allocateddate'].errors" class="has-error">
+                                <div *ngIf="f['allocateddate'].errors['pattern']">Please enter valid date pattern! "YYYY-MM-DD"</div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-3 form-outline mb-4">
+                            <label>Invoice Date - <span style="color:red;">"YYYY-MM-DD"</span></label>
+                            <input type="text" class="form-control" placeholder="YYYY-MM-DD" formControlName="invoicedate"
+                                [ngClass]="{ 'has-error': submitted && f['invoicedate'].errors }">
+                            <div *ngIf="submitted && f['invoicedate'].errors" class="has-error">
+                                <div *ngIf="f['invoicedate'].errors['pattern']">Please enter valid date pattern! "YYYY-MM-DD"</div>
+                            </div>
+                        </div>
+                    
+                    
+                    
+                        <div class="col-3 form-outline mb-4">
+                            <label>Warranty Till - <span style="color:red;">"YYYY-MM-DD"</span></label>
+                            <input type="text" class="form-control" placeholder="YYYY-MM-DD" formControlName="warranty_till"
+                                [ngClass]="{ 'has-error': submitted && f['warranty_till'].errors }">
+                            <div *ngIf="submitted && f['warranty_till'].errors" class="has-error">
+                                <div *ngIf="f['warranty_till'].errors['pattern']">Please enter valid date pattern! "YYYY-MM-DD"</div>
                             </div>
                         </div>
                     </div>
@@ -156,7 +188,7 @@
                             <label>Location Name<span style="color:red;">*</span></label>
                             <select type="text" class="form-control form-select" formControlName="location"
                                 [ngClass]="{'has-error': submitted && f['location'].errors}">
-                                <option value="">select Location</option>
+                                <option value="0">select Location</option>
                                 <option [ngValue]="location.locid" *ngFor="let location of locationlistdata">
                                     {{location.locations}}
                                 </option>
@@ -172,22 +204,22 @@
                     <div class="row">
                         <div class="col form-outline mb-4">
                             <label>Processor Type</label>
-                            <input type="text" class="form-control" placeholder="Enter Processor Type" formControlName="processortype"
-                                [ngClass]="{ 'has-error': submitted && f['processortype'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter Processor Type" formControlName="processortype">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['processortype'].errors }">
                             <div *ngIf="submitted && f['processortype'].errors" class="has-error">
                                 <div *ngIf="f['processortype'].errors['required']">Processor Type is required!</div>
-                            </div>
+                            </div> -->
                         </div>
 
 
 
                         <div class="col form-outline mb-4">
                             <label>Monitor Type</label>
-                            <input type="text" class="form-control" placeholder="Enter Monitor Type" formControlName="monitortype"
-                                [ngClass]="{ 'has-error': submitted && f['monitortype'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter Monitor Type" formControlName="monitortype">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['monitortype'].errors }">
                             <div *ngIf="submitted && f['monitortype'].errors" class="has-error">
                                 <div *ngIf="f['monitortype'].errors['required']">Monitor Type is required!</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -196,22 +228,22 @@
                     <div class="row">
                         <div class="col form-outline mb-4">
                             <label>Range Type</label>
-                            <input type="text" class="form-control" placeholder="Enter Range Type" formControlName="rangetype"
-                                [ngClass]="{ 'has-error': submitted && f['rangetype'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter Range Type" formControlName="rangetype">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['rangetype'].errors }">
                             <div *ngIf="submitted && f['rangetype'].errors" class="has-error">
                                 <div *ngIf="f['rangetype'].errors['required']">Range Type is required!</div>
-                            </div>
+                            </div> -->
                         </div>
 
 
 
                         <div class="col form-outline mb-4">
                             <label>Battery Type</label>
-                            <input type="text" class="form-control" placeholder="Enter Battery Type" formControlName="batterytype"
-                                [ngClass]="{ 'has-error': submitted && f['batterytype'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter Battery Type" formControlName="batterytype">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['batterytype'].errors }">
                             <div *ngIf="submitted && f['batterytype'].errors" class="has-error">
                                 <div *ngIf="f['batterytype'].errors['required']">Battery Type is required!</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -220,22 +252,22 @@
                     <div class="row">
                         <div class="col form-outline mb-4">
                             <label>Battery Ampere</label>
-                            <input type="text" class="form-control" placeholder="Enter Battery Ampere" formControlName="batteryampere"
-                                [ngClass]="{ 'has-error': submitted && f['batteryampere'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter Battery Ampere" formControlName="batteryampere">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['batteryampere'].errors }">
                             <div *ngIf="submitted && f['batteryampere'].errors" class="has-error">
                                 <div *ngIf="f['batteryampere'].errors['required']">Battery Ampere is required!</div>
-                            </div>
+                            </div> -->
                         </div>
 
 
 
                         <div class="col form-outline mb-4">
                             <label>Battery Capacity</label>
-                            <input type="text" class="form-control" placeholder="Enter Battery Capacity" formControlName="batterycapacity"
-                                [ngClass]="{ 'has-error': submitted && f['batterycapacity'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter Battery Capacity" formControlName="batterycapacity">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['batterycapacity'].errors }">
                             <div *ngIf="submitted && f['batterycapacity'].errors" class="has-error">
                                 <div *ngIf="f['batterycapacity'].errors['required']">Battery Capacity is required!</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -244,22 +276,22 @@
                     <div class="row">
                         <div class="col form-outline mb-4">
                             <label>GraphicsCard</label>
-                            <input type="text" class="form-control" placeholder="Enter GraphicsCard" formControlName="graphicsCard"
-                                [ngClass]="{ 'has-error': submitted && f['graphicsCard'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter GraphicsCard" formControlName="graphicsCard">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['graphicsCard'].errors }">
                             <div *ngIf="submitted && f['graphicsCard'].errors" class="has-error">
                                 <div *ngIf="f['graphicsCard'].errors['required']">Graphics Card is required!</div>
-                            </div>
+                            </div> -->
                         </div>
 
 
 
                         <div class="col form-outline mb-4">
                             <label>Optical Drive</label>
-                            <input type="text" class="form-control" placeholder="Enter Optical Drive" formControlName="opticaldrive"
-                                [ngClass]="{ 'has-error': submitted && f['opticaldrive'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter Optical Drive" formControlName="opticaldrive">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['opticaldrive'].errors }">
                             <div *ngIf="submitted && f['opticaldrive'].errors" class="has-error">
                                 <div *ngIf="f['opticaldrive'].errors['required']">Optical drive is required!</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -268,22 +300,22 @@
                     <div class="row">
                         <div class="col form-outline mb-4">
                             <label>HDD</label>
-                            <input type="text" class="form-control" placeholder="Enter HDD" formControlName="hdd"
-                                [ngClass]="{ 'has-error': submitted && f['hdd'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter HDD" formControlName="hdd">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['hdd'].errors }">
                             <div *ngIf="submitted && f['hdd'].errors" class="has-error">
                                 <div *ngIf="f['hdd'].errors['required']">HDD is required!</div>
-                            </div>
+                            </div> -->
                         </div>
 
 
 
                         <div class="col form-outline mb-4">
                             <label>RAM</label>
-                            <input type="text" class="form-control" placeholder="Enter RAM" formControlName="ram"
-                                [ngClass]="{ 'has-error': submitted && f['ram'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter RAM" formControlName="ram">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['ram'].errors }">
                             <div *ngIf="submitted && f['ram'].errors" class="has-error">
                                 <div *ngIf="f['ram'].errors['required']">Ram is required!</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -292,22 +324,22 @@
                     <div class="row">
                         <div class="col form-outline mb-4">
                             <label>Inches</label>
-                            <input type="text" class="form-control" placeholder="Enter Inches" formControlName="inches"
-                                [ngClass]="{ 'has-error': submitted && f['inches'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter Inches" formControlName="inches">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['inches'].errors }">
                             <div *ngIf="submitted && f['inches'].errors" class="has-error">
                                 <div *ngIf="f['inches'].errors['required']">Inches is required!</div>
-                            </div>
+                            </div> -->
                         </div>
 
 
 
                         <div class="col form-outline mb-4">
                             <label>Port Switch</label>
-                            <input type="text" class="form-control" placeholder="Enter Port Switch" formControlName="portswitch"
-                                [ngClass]="{ 'has-error': submitted && f['portswitch'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter Port Switch" formControlName="portswitch">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['portswitch'].errors }">
                             <div *ngIf="submitted && f['portswitch'].errors" class="has-error">
                                 <div *ngIf="f['portswitch'].errors['required']">Port Switch is required!</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -316,45 +348,21 @@
                     <div class="row">
                         <div class="col form-outline mb-4">
                             <label>Specification</label>
-                            <input type="text" class="form-control" placeholder="Enter Specification" formControlName="specification"
-                                [ngClass]="{ 'has-error': submitted && f['specification'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter Specification" formControlName="specification">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['specification'].errors }">
                             <div *ngIf="submitted && f['specification'].errors" class="has-error">
                                 <div *ngIf="f['specification'].errors['required']">Specification is required!</div>
-                            </div>
+                            </div> -->
                         </div>
                     
                     
                         <div class="col form-outline mb-4">
                             <label>Invoice No</label>
-                            <input type="text" class="form-control" placeholder="Enter Invoice no" formControlName="invoice_no"
-                                [ngClass]="{ 'has-error': submitted && f['invoice_no'].errors }">
+                            <input type="text" class="form-control" placeholder="Enter Invoice no" formControlName="invoice_no">
+                                <!-- [ngClass]="{ 'has-error': submitted && f['invoice_no'].errors }">
                             <div *ngIf="submitted && f['invoice_no'].errors" class="has-error">
                                 <div *ngIf="f['invoice_no'].errors['required']">Invoice No is required!</div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="row">
-                        <div class="col form-outline mb-4">
-                            <label>Invoice Date - <span style="color:red;">"YYYY/MM/DD"</span></label>
-                            <input type="text" class="form-control" placeholder="YYYY/MM/DD" formControlName="invoicedate"
-                                [ngClass]="{ 'has-error': submitted && f['invoicedate'].errors }">
-                            <div *ngIf="submitted && f['invoicedate'].errors" class="has-error">
-                                <div *ngIf="f['invoicedate'].errors['pattern']">Please enter valid date pattern! "YYYY/MM/DD"</div>
-                            </div>
-                        </div>
-                    
-                    
-                    
-                        <div class="col form-outline mb-4">
-                            <label>Warranty Till - <span style="color:red;">"YYYY/MM/DD"</span></label>
-                            <input type="text" class="form-control" placeholder="YYYY/MM/DD" formControlName="warranty_till"
-                                [ngClass]="{ 'has-error': submitted && f['warranty_till'].errors }">
-                            <div *ngIf="submitted && f['warranty_till'].errors" class="has-error">
-                                <div *ngIf="f['warranty_till'].errors['pattern']">Please enter valid date pattern! "YYYY/MM/DD"</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -363,12 +371,12 @@
                     <div class="row">
                         <div class="col-6 form-outline mb-4">
                             <label>Remarks</label>
-                            <textarea type="text" class="form-control" placeholder="Enter Remarks" formControlName="remarks"
-                                [ngClass]="{ 'has-error': submitted && f['remarks'].errors }">
+                            <textarea type="text" class="form-control" placeholder="Enter Remarks" formControlName="remarks">
                             </textarea>
+                            <!-- [ngClass]="{ 'has-error': submitted && f['remarks'].errors }">
                             <div *ngIf="submitted && f['remarks'].errors" class="has-error">
-                                <!-- <div *ngIf="f['remarks'].errors['required']">Invoice Date is required!</div> -->
-                            </div>
+                                <div *ngIf="f['remarks'].errors['required']">Invoice Date is required!</div>
+                            </div> -->
                         </div>
                     </div>
 

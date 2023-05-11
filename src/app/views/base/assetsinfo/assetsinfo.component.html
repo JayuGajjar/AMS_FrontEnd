@@ -52,7 +52,11 @@
           </tr>
           <tr *ngFor="let assetlist of assetdata">
             <td class="table-title">Created At</td>
-            <td style="background-color: whitesmoke;">{{assetlist.Created_at}}</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Created_at | date}}</td>
+          </tr>
+          <tr *ngFor="let assetlist of assetdata">
+            <td class="table-title">Allocated Date</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Allocated_At | date}}</td>
           </tr>
           <tr *ngFor="let assetlist of assetdata">
             <td class="table-title">Asset Serial No</td>
@@ -144,11 +148,11 @@
           </tr>
           <tr *ngFor="let assetlist of assetdata">
             <td class="table-title">Invoice Date</td>
-            <td style="background-color: whitesmoke;">{{assetlist.InvoiceDate}}</td>
+            <td style="background-color: whitesmoke;">{{assetlist.InvoiceDate | date}}</td>
           </tr>
           <tr *ngFor="let assetlist of assetdata">
             <td class="table-title">Warranty Till</td>
-            <td style="background-color: whitesmoke;">{{assetlist.Warranty_Till}}</td>
+            <td style="background-color: whitesmoke;">{{assetlist.Warranty_Till | date}}</td>
           </tr>
           <tr *ngFor="let assetlist of assetdata">
             <td class="table-title">Invoice No</td>
